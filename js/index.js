@@ -11,7 +11,7 @@ const catalogoJuegos = [
       recomendados: "No disponible (exclusivo de consola)",
     },
     imagen: "img/The Legend of Zelda  Breath of the Wild.png",
-    url: "",
+    url: "https://youtu.be/1rPxiXXxftE",
   },
   {
     id: 2,
@@ -34,7 +34,7 @@ const catalogoJuegos = [
       },
     },
     imagen: "img/Cyber Punk 2077.png",
-    url: "",
+    url: "https://youtu.be/8X2kIfS6fb8",
   },
   {
     id: 3,
@@ -58,7 +58,7 @@ const catalogoJuegos = [
       },
     },
     imagen: "img/FIFA 22.png",
-    url: "",
+    url: "https://youtu.be/o1igaMv46SY",
   },
   {
     id: 4,
@@ -82,7 +82,7 @@ const catalogoJuegos = [
       },
     },
     imagen: "img/Assassins Creed Valhalla.png",
-    url: "",
+    url: "https://youtu.be/1Z7mIKGzowQ",
   },
   {
     id: 5,
@@ -106,7 +106,7 @@ const catalogoJuegos = [
       },
     },
     imagen: "img/Minecraft.png",
-    url: "",
+    url: "https://youtu.be/MmB9b5njVbA",
   },
   {
     id: 6,
@@ -129,7 +129,7 @@ const catalogoJuegos = [
       },
     },
     imagen: "img/Call Of Duty Warzone.png",
-    url: "",
+    url: "https://youtu.be/0E44DClsX5Q",
   },
   {
     id: 7,
@@ -153,7 +153,7 @@ const catalogoJuegos = [
       },
     },
     imagen: "img/The witcher 3 Wild Hunt.png",
-    url: "",
+    url: "https://youtu.be/6qpf3YWbCcE",
   },
   {
     id: 8,
@@ -177,7 +177,7 @@ const catalogoJuegos = [
       },
     },
     imagen: "img/Overwatch.png",
-    url: "",
+    url: "https://youtu.be/Eu7_o0g4n3U",
   },
   {
     id: 9,
@@ -201,7 +201,7 @@ const catalogoJuegos = [
       },
     },
     imagen: "img/RED DEAD 2.png",
-    url: "",
+    url: "https://youtu.be/tx8BPmTMS_o",
   },
   {
     id: 10,
@@ -225,7 +225,7 @@ const catalogoJuegos = [
       },
     },
     imagen: "img/League of Legends.png",
-    url: "",
+    url: "https://youtu.be/ZHhqwBwmRkI",
   },
   {
     id: 11,
@@ -239,7 +239,7 @@ const catalogoJuegos = [
       recomendados: "No disponible (exclusivo de consola)",
     },
     imagen: "img/Super Mario odyssey.png",
-    url: "",
+    url: "https://youtu.be/5kcdRBHM7kM",
   },
   {
     id: 12,
@@ -263,7 +263,7 @@ const catalogoJuegos = [
       },
     },
     imagen: "img/Star war Jedi Fallen Order.png",
-    url: "",
+    url: "https://youtu.be/8V2dTitXClU",
   },
   {
     id: 13,
@@ -287,7 +287,7 @@ const catalogoJuegos = [
       },
     },
     imagen: "img/Dota 2.png",
-    url: "",
+    url: "https://youtu.be/tmn5HXW-3Wk",
   },
   {
     id: 14,
@@ -311,7 +311,7 @@ const catalogoJuegos = [
       },
     },
     imagen: "img/Sekiro Shadows Die Twice.png",
-    url: "",
+    url: "https://youtu.be/e8iGRmFCRQk",
   },
   {
     id: 15,
@@ -335,7 +335,7 @@ const catalogoJuegos = [
       },
     },
     imagen: "img/Fornite.png",
-    url: "",
+    url: "https://youtu.be/YRq7HdDhxjM",
   },
   {
     id: 16,
@@ -359,7 +359,7 @@ const catalogoJuegos = [
       },
     },
     imagen: "img/Final Fantasy xv.png",
-    url: "",
+    url: "https://youtu.be/dPOMkB8Q9aQ",
   },
   {
     id: 17,
@@ -383,7 +383,7 @@ const catalogoJuegos = [
       },
     },
     imagen: "img/Rainbow Six Siege.png",
-    url: "",
+    url: "https://youtu.be/ZH0VC-MTAzE",
   },
   {
     id: 18,
@@ -407,7 +407,7 @@ const catalogoJuegos = [
       },
     },
     imagen: "img/Hollow Knight.png",
-    url: "",
+    url: "https://youtu.be/UAO2urG23S4",
   },
   {
     id: 19,
@@ -431,7 +431,7 @@ const catalogoJuegos = [
       },
     },
     imagen: "img/World of Warcraft.png",
-    url: "",
+    url: "https://youtu.be/askHMKqQJvk",
   },
   {
     id: 20,
@@ -455,6 +455,6 @@ const catalogoJuegos = [
       },
     },
     imagen: "img/Mortal Kombat 11.png",
-    url: "",
+    url: "https://youtu.be/z7f4paq1Fvg",
   },
 ];
