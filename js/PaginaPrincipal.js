@@ -464,23 +464,18 @@ const juegoDestacado =
   catalogoJuegos[Math.floor(Math.random() * catalogoJuegos.length)];
 */
 const cardHTML = `
-<div class="card">
-  <div class="row">
-    <div class="col-md-8">
-      <div class="card-img-container">
-        <img
-          id="imagenJuego"
-          class="card-img-top img-fluid"
-          alt="Imagen del juego"
-        />
-      </div>
+<div class="card mb-3 px-0">
+  <div class="row g-0 px-0">
+    <div class="col-md-8 px-0">
+      <img id="imagenJuego" class="card-img-top" alt="ImagenDelJuego" />
     </div>
-    <div class="col-md-4">
+    <div class="col-md-4 px-0">
       <div class="card-body">
-        <h3 class="card-title">Disponible</h3>
-        <h5 class="card-title" id="tituloJuego"></h5>
+        <h2>Juego Destacado del Día</h2>
+        <h4 class="card-title" id="tituloJuego"></h4>
+        <h6 class="card-title">Disponible</h6>
         <p class="card-text" id="descripcionJuego"></p>
-        <a href="#" class="btn btn-custom d-flex justify-content-center"
+        <a href="#" class="btn btn-custom"
           >Ver más</a
         >
       </div>
