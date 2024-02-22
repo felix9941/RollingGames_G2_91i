@@ -1,0 +1,53 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+body {
+  background-color: RGB(0, 0, 0);
+}
+
+header {
+  display: flex;
+  padding: 20px;
+}
+.container-fluid {
+  width: 1300px;
+  height: 500px;
+  overflow: hidden;
+}
+.card {
+  display: flex;
+}
+.card-title {
+  margin-top: 5%;
+  font: bold;
+}
+.card-text {
+  margin-top: 10%;
+}
+
+.card-body {
+  height: 100%;
+  width: 100%;
+  color: white;
+  background-color: RGB(51, 51, 51);
+}
+
+.card-img-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.card-img-top {
+  width: 50vw;
+  height: 65vh;
+  object-fit: cover;
+}
+.btn-custom {
+  background-color: rgb(228, 161, 2);
+  color: white;
+}
+.btn-custom:hover {
+  background-color: rgb(228, 161, 2);
+  color: white;
+}
