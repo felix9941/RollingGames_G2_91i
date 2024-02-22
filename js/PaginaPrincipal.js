@@ -458,6 +458,7 @@ const catalogoJuegos = [
     url: "https://youtu.be/z7f4paq1Fvg",
   },
   */,
+  ,
 ];
 /*
 const juegoDestacado =
@@ -492,7 +493,7 @@ function mostrarJuego(id) {
 }
 
 window.onload = function () {
-  mostrarJuego(catalogoJuegos[6].id);
+  mostrarJuego(catalogoJuegos[8].id);
 };
 
 document.querySelector(".row").innerHTML = cardHTML;
