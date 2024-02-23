@@ -14,9 +14,7 @@ formRegistro.innerHTML = `
           type="text"
           class="form-control custom-input"
           id="usuario"
-          
         />
-        
       </div>
       <div class="mb-3">
         <label for="exampleInputEmail1" class="form-label"
