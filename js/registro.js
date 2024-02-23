@@ -2,109 +2,150 @@ const formRegistro = document.getElementById("formRegistro");
 formRegistro.innerHTML = ` 
 <div class="col-md-8 imagen-izquierda d-none d-md-block"></div>
 <div class="col-md-4">
-  <div class="text-center mt-5"><h4>Registro</h4></div>
+  <div class="text-center mt-4"><h4>Registro</h4></div>
   
   <div class="d-flex justify-content-center">
-    <form class="mt-5 w-75" id= "registrationForm">
+    <form class="mt-5 w-75" id="registrationForm">
       <div class="mb-3">
-        <label for="exampleInputEmail1" class="form-label"
-          >Usuario</label
-        >
+        <label for="usuario" class="form-label">Usuario</label>
         <input
           type="text"
           class="form-control custom-input"
           id="usuario"
+          minlength="8"
+          maxlength="20" 
+          required
         />
       </div>
-      <div class="mb-3">
-        <label for="exampleInputEmail1" class="form-label"
-          >Correo Electrónico</label
-        >
+      <div id="usuario-mensaje-instructivo" class="form-text text-muted">
+      Debe contener al menos 8 caracteres, letras y números.
+      </div>
+      <div class="mb-3 mt-3">
+        <label for="mail" class="form-label">Correo Electrónico</label>
         <input
           type="email"
           class="form-control custom-input"
           id="mail"
+          maxlength="50"
+          required
         />
         
       </div>
       <div class="mb-3">
-        <label for="exampleInputPassword1" class="form-label"
-          >Contraseña</label
-        >
+        <label for="pass" class="form-label">Contraseña</label>
         <input
           type="password"
           class="form-control custom-input"
           id="pass"
+          minlength="8"
+          maxlength="20" 
+          
         />
       </div>
-      <div class="mb-3">
-        <label for="exampleInputPassword1" class="form-label"
-          >Repetir contraseña</label
-        >
+      <div id="pass-mensaje-instructivo" class="form-text text-muted">
+        Debe contener al menos 8 caracteres, letras y números.
+      </div>
+      <div class="mb-3 mt-3">
+        <label for="rPass" class="form-label">Repetir contraseña</label>
         <input
           type="password"
           class="form-control custom-input"
           id="rPass"
+          minlength="8"
+          maxlength="20"
+          
         />
       </div>
-      <div class="d-flex justify-content-center mt-5">
-        <button type="button" class="slide" onclick="registerUser()">Confirmar</button>
+      
+
+      <div class="d-flex justify-content-center mt-4">
+        <button type="button" class="slide2 w-100" onclick="pag404()">
+         <i class="fab fa-google"></i> Iniciar con Google
+        </button>
+      </div>
+
+      
+      <div class="d-flex justify-content-center mt-3">
+        <button type="button" class="slide w-100" onclick="registerUser()">Confirmar</button>
       </div>
     </form>
   </div>
 </div>`;
 
 const registerUser = () => {
-  let usuarioInput = document.getElementById("usuario");
-  let mailInput = document.getElementById("mail");
-  let passInput = document.getElementById("pass");
-  let rPassInput = document.getElementById("rPass");
+  const usuarioInput = document.getElementById("usuario");
+  const mailInput = document.getElementById("mail");
+  const passInput = document.getElementById("pass");
+  const rPassInput = document.getElementById("rPass");
 
-  function generarID() {
-    let usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
+  const generarID = () => {
+    const usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
     return usuarios.length + 1;
-  }
+  };
 
-  function mostrarMensaje(input, mensaje) {
-    let mensajeElement = document.getElementById(input.id + "-mensaje");
+  const mostrarMensaje = (input, mensaje) => {
+    let mensajeElement = document.getElementById(`${input.id}-mensaje`);
     if (!mensajeElement) {
       mensajeElement = document.createElement("div");
-      mensajeElement.id = input.id + "-mensaje";
+      mensajeElement.id = `${input.id}-mensaje`;
       input.parentNode.appendChild(mensajeElement);
+    }
+
+    // Oculta el mensaje instructivo
+    const instructivoElement = document.getElementById(
+      `${input.id}-mensaje-instructivo`
+    );
+    if (instructivoElement) {
+      instructivoElement.style.display = "none";
     }
     mensajeElement.textContent = mensaje;
     mensajeElement.style.color = "red";
 
     input.classList.add("is-invalid");
-  }
+  };
 
-  function ocultarMensaje(input) {
-    let mensajeElement = document.getElementById(input.id + "-mensaje");
+  const ocultarMensaje = (input) => {
+    const mensajeElement = document.getElementById(`${input.id}-mensaje`);
     if (mensajeElement) {
       mensajeElement.textContent = "";
     }
 
-    input.classList.remove("is-invalid");
-  }
+    const instructivoElement = document.getElementById(
+      `${input.id}-mensaje-instructivo`
+    );
+    if (instructivoElement && !input.value.trim()) {
+      instructivoElement.style.display = "block";
+    }
 
-  function manejarInput(input) {
+    input.classList.remove("is-invalid");
+  };
+
+  const manejarInput = (input) => {
     ocultarMensaje(input);
-  }
+
+    const instructivoElement = document.getElementById(
+      `${input.id}-mensaje-instructivo`
+    );
+    if (!input.value.trim() && instructivoElement) {
+      instructivoElement.style.display = "block";
+    }
+  };
 
   usuarioInput.addEventListener("input", () => manejarInput(usuarioInput));
   mailInput.addEventListener("input", () => manejarInput(mailInput));
   passInput.addEventListener("input", () => manejarInput(passInput));
   rPassInput.addEventListener("input", () => manejarInput(rPassInput));
 
-  let usuario = usuarioInput.value;
-  let mail = mailInput.value;
-  let pass = passInput.value;
-  let rPass = rPassInput.value;
+  const userRegexp = /^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
+  const passwordRegexp = /^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
+  const emailRegexp = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-  const userRegexp = new RegExp("^[a-zA-Z0-9]{8,}$");
-  const passwordRegexp = new RegExp("^[a-zA-Z0-9]{8,}$");
+  const id = generarID();
 
-  let id = generarID();
+  const usuario = usuarioInput.value.trim();
+  const mail = mailInput.value.trim();
+  const pass = passInput.value.trim();
+  const rPass = rPassInput.value.trim();
 
   if (!usuario || !pass || !rPass || !mail) {
     if (!usuario) mostrarMensaje(usuarioInput, "Campo requerido");
@@ -137,8 +178,6 @@ const registerUser = () => {
     return;
   }
 
-  const emailRegexp = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
   if (!emailRegexp.test(mail)) {
     mostrarMensaje(mailInput, "Correo inválido");
     return;
@@ -148,9 +187,9 @@ const registerUser = () => {
   ocultarMensaje(passInput);
 
   const nuevoUsuario = {
-    id: id,
-    usuario: usuario,
-    mail: mail,
+    id,
+    usuario,
+    mail,
     contraseña: pass,
     rol: "usuario",
     favoritos: [],
@@ -160,14 +199,15 @@ const registerUser = () => {
     delete: false,
   };
 
-  let usersList = JSON.parse(localStorage.getItem("usuarios")) || [];
-  if (usersList.find((user) => user.usuario === usuario)) {
+  const usersList = JSON.parse(localStorage.getItem("usuarios")) || [];
+
+  if (usersList.some((user) => user.usuario === usuario)) {
     mostrarMensaje(usuarioInput, "Usuario en uso");
     return;
   }
 
   if (usersList.find((user) => user.mail === mail)) {
-    mostrarMensaje(mailInput, "El correo electronico ya esta en uso");
+    mostrarMensaje(mailInput, "El correo electrónico ya está en uso");
     return;
   }
 
@@ -179,9 +219,15 @@ const registerUser = () => {
 
   document.getElementById("registrationForm").reset();
 
-  alert("Usuario registrado con éxito!");
+  alert(
+    "Registro exitoso, por favor verifique su mail para continuar. En caso de no encontrarlo, revisa la carpeta SPAM"
+  );
 
   enviarMail(mail);
+
+  setTimeout(() => {
+    window.location.href = "./heroPage.html";
+  }, 1000);
 };
 
 const enviarMail = (correo) => {
@@ -194,4 +240,10 @@ const enviarMail = (correo) => {
     Subject: "Bienvenido a Play Gaming",
     Body: "Bienvenido a nuestra plataforma Play Gaming. En 24 horas habilitaremos tu cuenta para que puedas acceder.",
   });
+};
+
+const pag404 = () => {
+  setTimeout(() => {
+    window.location.href = "./error404.html";
+  }, 1000);
 };
