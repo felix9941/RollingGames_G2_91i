@@ -464,7 +464,61 @@ const catalogoJuegos = [
 const juegoDestacado =
   catalogoJuegos[Math.floor(Math.random() * catalogoJuegos.length)];
 */
-const cardHTML = `
+
+const navbarRegistro = document.getElementById("navbar-registro");
+navbarRegistro.innerHTML = `
+<div class="container-fluid">
+<a href="../page/PaginaPrincipal.html" class="d-flex align-items-center enlace-logo">
+  <img class="ms-1 px-2" src="../img/Logo Play Gaming.png" alt="Logo Play Gamming" />
+</a>
+<button
+  class="navbar-toggler"
+  type="button"
+  data-bs-toggle="collapse"
+  data-bs-target="#navbarSupportedContent"
+  aria-controls="navbarSupportedContent"
+  aria-expanded="false"
+  aria-label="Toggle navigation"
+>
+  <span class="navbar-toggler-icon"></span>
+</button>
+<div class="collapse navbar-collapse" id="navbarSupportedContent">
+  <ul class="navbar-nav ms-auto me-5 mb-2 mb-lg-0">
+    <li class="nav-item"></li>
+    <li class="nav-item">
+      <a
+        class="nav-link btn-hover btn-focus text-navbar anta-regular ms-3 px-2"
+        href="./sobreNosotros.html"
+        >Sobre nosotros</a
+      >
+    </li>
+    <li class="nav-item">
+      <a
+        class="nav-link btn-hover btn-focus text-navbar anta-regular ms-3 px-2"
+        href="./contacto.html"
+        >Contacto</a
+      >
+    </li>
+    <li class="nav-item">
+      <a
+        class="nav-link btn-hover btn-focus text-navbar anta-regular ms-3 px-2"
+        href="./login.html"
+        >Iniciar sesion</a
+      >
+    </li>
+    <li class="nav-item">
+      <a
+        class="nav-link btn-hover btn-focus text-navbar anta-regular ms-3 px-2"
+        href="./registro.html"
+        >Registrarse</a
+      >
+    </li>
+  </ul>
+</div>
+</div>`;
+
+const juegosDestacados = document.getElementById("juegosDestacados");
+juegosDestacados.innerHTML = `
 <div class="card mb-3 px-0">
   <div class="row g-0 px-0">
     <div class="col-md-8 px-0">
@@ -493,7 +547,5 @@ function mostrarJuego(id) {
 }
 
 window.onload = function () {
-  mostrarJuego(catalogoJuegos[8].id);
+  mostrarJuego(catalogoJuegos[10].id);
 };
-
-document.querySelector(".row").innerHTML = cardHTML;
