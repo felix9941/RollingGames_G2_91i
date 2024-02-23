@@ -58,14 +58,18 @@ formRegistro.innerHTML = `
       </div>
       
 
-      <div class="d-flex justify-content-center mt-5">
+      <div>
+        <p>Si tienes una cuenta haz click <a href="./login.html">aqui</a></p>
+      </div>
+      
+      <div class="d-flex justify-content-center mt-4">
         <button type="button" class="slide2 w-100 m-0" onclick="pag404()">
-         <i class="fab fa-google"></i> Iniciar con Google
+         <i class="fab fa-google"></i> Registrarse con Gmail
         </button>
       </div>
 
       
-      <div class="d-flex justify-content-center mt-3">
+      <div class="d-flex justify-content-center mt-3 mb-3">
         <button type="button" class="slide w-100 m-0" onclick="registerUser()">Confirmar</button>
       </div>
     </form>
