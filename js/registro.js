@@ -58,18 +58,70 @@ formRegistro.innerHTML = `
       </div>
       
 
-      <div class="d-flex justify-content-center mt-4">
-        <button type="button" class="slide2 w-100" onclick="pag404()">
+      <div class="d-flex justify-content-center mt-5">
+        <button type="button" class="slide2 w-100 m-0" onclick="pag404()">
          <i class="fab fa-google"></i> Iniciar con Google
         </button>
       </div>
 
       
       <div class="d-flex justify-content-center mt-3">
-        <button type="button" class="slide w-100" onclick="registerUser()">Confirmar</button>
+        <button type="button" class="slide w-100 m-0" onclick="registerUser()">Confirmar</button>
       </div>
     </form>
   </div>
+</div>`;
+
+const navbarRegistro = document.getElementById("navbar-registro");
+navbarRegistro.innerHTML = `
+<div class="container-fluid">
+<a href="./heroPage.html" class="d-flex align-items-center enlace-logo">
+  <img class="ms-1 px-2" src="../img/Logo Play Gaming.png" alt="" />
+</a>
+<button
+  class="navbar-toggler"
+  type="button"
+  data-bs-toggle="collapse"
+  data-bs-target="#navbarSupportedContent"
+  aria-controls="navbarSupportedContent"
+  aria-expanded="false"
+  aria-label="Toggle navigation"
+>
+  <span class="navbar-toggler-icon"></span>
+</button>
+<div class="collapse navbar-collapse" id="navbarSupportedContent">
+  <ul class="navbar-nav ms-auto me-5 mb-2 mb-lg-0">
+    <li class="nav-item"></li>
+    <li class="nav-item">
+      <a
+        class="nav-link btn-hover btn-focus text-navbar anta-regular ms-3 px-2"
+        href="./sobreNosotros.html"
+        >Sobre nosotros</a
+      >
+    </li>
+    <li class="nav-item">
+      <a
+        class="nav-link btn-hover btn-focus text-navbar anta-regular ms-3 px-2"
+        href="./contacto.html"
+        >Contacto</a
+      >
+    </li>
+    <li class="nav-item">
+      <a
+        class="nav-link btn-hover btn-focus text-navbar anta-regular ms-3 px-2"
+        href="./login.html"
+        >Iniciar sesion</a
+      >
+    </li>
+    <li class="nav-item">
+      <a
+        class="nav-link btn-hover btn-focus text-navbar anta-regular ms-3 px-2"
+        href="./registro.html"
+        >Registrarse</a
+      >
+    </li>
+  </ul>
+</div>
 </div>`;
 
 const registerUser = () => {
