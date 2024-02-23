@@ -24,7 +24,7 @@
 }
 /* Fin Hamburguesa */
 
-/* Efector hover focus */
+/* Efector hover focus para botones*/
 .btn-hover,
 .btn-focus {
   transition: color 0.2s, box-shadow 0.3s; /* Transición suave de 0.3 segundos */
@@ -68,7 +68,6 @@ img {
   top: 50%;
   left: 40%;
   transform: translate(-50%, -50%);
-  /*background-color: rgba(0, 0, 0, 0.1); /* Fondo semitransparente */
   color: white; /* Color del texto */
   padding: 20px; /* Espaciado interior */
 }
