@@ -161,7 +161,7 @@ const registerUser = () => {
   };
 
   let usersList = JSON.parse(localStorage.getItem("usuarios")) || [];
-  if (usersList.some((user) => user.usuario === usuario)) {
+  if (usersList.find((user) => user.usuario === usuario)) {
     mostrarMensaje(usuarioInput, "Usuario en uso");
     return;
   }
