@@ -8,13 +8,13 @@ body {
 
 header {
   display: flex;
-  padding: 20px;
 }
 
 .container-fluid {
   width: 1100px;
   height: 500px;
   margin-top: 50px;
+  object-fit: cover;
 }
 
 h2 {
@@ -38,8 +38,7 @@ h2 {
 }
 
 .card-img-top {
-  height: 68vh;
-  object-fit: cover;
+  height: 56vh;
 }
 .btn-custom {
   margin-top: 5%;
@@ -50,4 +49,17 @@ h2 {
   border: 2px solid;
   margin-top: 5%;
   background-color: rgb(228, 161, 2);
+}
+
+@media (max-width: 768px) {
+  .card-img-top {
+    height: 86vh;
+    object-fit: cover;
+  }
+}
+@media (min-width: 500px) {
+  .card-img-top {
+    height: 56vh;
+    object-fit: cover;
+  }
 }
