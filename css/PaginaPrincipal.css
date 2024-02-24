@@ -5,7 +5,11 @@
 body {
   background-color: RGB(0, 0, 0);
 }
-
+main {
+  font-family: "Kanit", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+}
 button {
   color: var(--color);
   -webkit-transition: 0.25s;
@@ -72,35 +76,30 @@ img {
 }
 
 .card {
+  width: 90%;
+  height: 50%;
   margin-top: 50px;
+  margin-left: 5%;
   object-fit: cover;
 }
 
 h2 {
-  font-family: "Kanit", sans-serif;
-  font-weight: 300;
-  font-style: normal;
   font: bold;
 }
 
 .card-title {
-  font-family: "Kanit", sans-serif;
-  font-weight: 300;
-  font-style: normal;
   margin-top: 5%;
   font: bold;
 }
 
 .card-text {
-  font-family: "Kanit", sans-serif;
-  font-weight: 300;
-  font-style: normal;
   margin-top: 10%;
+  margin-bottom: 10%;
 }
 
 .card-body {
-  height: 100%;
   width: 100%;
+  height: 100%;
   color: white;
   background-color: RGB(51, 51, 51);
 }
@@ -108,19 +107,26 @@ h2 {
 .card-img-top {
   height: 56vh;
 }
-.btn-custom {
-  font-family: "Kanit", sans-serif;
-  font-weight: 300;
-  font-style: normal;
-  margin-top: 5%;
-  background-color: rgb(228, 161, 2);
-  color: white;
+
+.ver-mas {
+  background-color: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
+  border-color: rgba(26, 26, 46);
+  transition: color 0.2s, box-shadow 0.5s;
+  padding-left: 2em;
+  padding-right: 2em;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  font-weight: 500;
+  display: inline-block;
+  text-decoration: none;
+  border-radius: 5%;
+  margin-left: 30%;
 }
-.btn-custom:hover {
-  font-family: "Kanit", sans-serif;
-  font-weight: 300;
-  font-style: normal;
-  border: 2px solid;
-  margin-top: 5%;
-  background-color: rgb(228, 161, 2);
+.ver-mas:hover,
+.ver-mas:focus {
+  border-color: rgb(255, 184, 20);
+  box-shadow: 0 0 5px rgba(255, 184, 20, 1);
+  background-color: rgba(26, 26, 46);
+  color: white;
 }

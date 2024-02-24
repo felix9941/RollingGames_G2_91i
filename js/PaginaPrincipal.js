@@ -530,9 +530,7 @@ juegosDestacados.innerHTML = `
         <h4 class="card-title" id="tituloJuego"></h4>
         <h6 class="card-title">Disponible</h6>
         <p class="card-text" id="descripcionJuego"></p>
-        <a href="#" class="btn btn-custom"
-          >Ver más</a
-        >
+        <a href="../page/registro.html" class="ver-mas anta-regular">Ver Mas</a>
       </div>
     </div>
   </div>
