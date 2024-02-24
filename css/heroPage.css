@@ -195,7 +195,7 @@ body {
   /* Estilo personalizado para las flechas de navegación del carousel */
   .carousel-control-prev,
   .carousel-control-next {
-    top: 15%; /* Posición vertical al centro */
+    top: 20%; /* Posición vertical al centro */
     transform: translateY(-50%); /* Ajuste fino de la posición vertical */
   }
   .text-alto {
@@ -207,7 +207,7 @@ body {
     width: 80vw;
   }
   .alcance {
-    height: 27vh;
+    height: 18vh;
   }
 }
 /* Fin - Carrucel */
