@@ -408,17 +408,17 @@ const catalogoJuegos = [
     },
     imagen: "../img/Hollow Knight.png",
     url: "https://youtu.be/UAO2urG23S4",
-  } /*
+  },
   {
     id: 19,
     titulo: "World of Warcraft",
     descripcion:
       "Adéntrate en el universo de Azeroth en este juego MMORPG legendario.",
     categoria: "MMORPG",
-    precio: 14.99 / mes,
+    precio: 14.99,
     requisitos: {
       minimos: {
-        sistemaOperativo: "Windows 7/8/10",
+        sistemaOperativo: "Windows 7",
         procesador: "Intel Core i5-3450 o AMD FX 8300",
         memoriaRAM: "4 GB",
         tarjetaGrafica: "NVIDIA GeForce GTX 760 o AMD Radeon RX 560",
@@ -438,7 +438,7 @@ const catalogoJuegos = [
     titulo: "Mortal Kombat 11",
     descripcion:
       "Libra batallas épicas en este juego de lucha con personajes icónicos de Mortal Kombat.",
-    categoria: "Lucha",
+    categoria: "Acción",
     precio: 59.99,
     requisitos: {
       minimos: {
@@ -457,8 +457,6 @@ const catalogoJuegos = [
     imagen: "../img/Mortal Kombat 11.png",
     url: "https://youtu.be/z7f4paq1Fvg",
   },
-  */,
-  ,
 ];
 /*
 const juegoDestacado =
@@ -545,5 +543,5 @@ function mostrarJuego(id) {
 }
 
 window.onload = function () {
-  mostrarJuego(catalogoJuegos[10].id);
+  mostrarJuego(catalogoJuegos[19].id);
 };
