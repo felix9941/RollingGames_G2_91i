@@ -1,0 +1,14 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.container-fluid {
+  background-color: RGB(26, 26, 46);
+  color: white;
+}
+
+.informacion-pag a {
+  text-decoration: none;
+  color: white;
+}
