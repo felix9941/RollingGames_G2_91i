@@ -520,7 +520,7 @@ juegosDestacados.innerHTML = `
 <div class="card mb-3 px-0">
   <div class="row g-0 px-0">
     <div class="col-md-8 px-0">
-      <img id="imagenJuego" class="card-img-top" alt="ImagenDelJuego" />
+    <img id="imagenJuego" class="card-img-top" alt="ImagenDelJuego" />
     </div>
     <div class="col-md-4 px-0">
       <div class="card-body">
@@ -534,62 +534,36 @@ juegosDestacados.innerHTML = `
   </div>
 </div>
 `;
+
 function mostrarJuego(id) {
   const juego = catalogoJuegos.find((juego) => juego.id === id);
+
+  const imagenJuego = document.getElementById("imagenJuego");
+  imagenJuego.style.backgroundImage = `url('${juego.imagen}')`;
+  imagenJuego.style.backgroundSize = "cover";
+  imagenJuego.style.height = "100%";
 
   document.getElementById("imagenJuego").src = juego.imagen;
   document.getElementById("tituloJuego").innerText = juego.titulo;
   document.getElementById("descripcionJuego").innerText = juego.descripcion;
 }
 
-window.onload = function () {
-  mostrarJuego(catalogoJuegos[19].id);
-};
+function inicializarPagina() {
+  mostrarJuego(catalogoJuegos[1].id);
+  inicializarCarrusel();
+}
 
+function inicializarCarrusel() {
+  actualizarCarrusel(catalogoJuegos);
+}
+
+window.onload = inicializarPagina;
 /* Categoria */
 const catalogoJuegosJSON = JSON.stringify(catalogoJuegos);
 
 localStorage.setItem("catalogoJuegos", catalogoJuegosJSON);
 
-// Recupera la cadena JSON del localStorage usando la clave
-const catalogoJuegosGuardado = localStorage.getItem("catalogoJuegos");
-
-// Convierte la cadena JSON de vuelta a un array
-const catalogoJuegosRecuperado = JSON.parse(catalogoJuegosGuardado);
-
-// Ahora, catalogoJuegosRecuperado contiene el array original
-console.log(catalogoJuegosRecuperado);
-
-// Selecciona el contenedor donde se insertarán las tarjetas
-const tarjetasContainer = document.getElementById("tarjetasContainer");
-
-// Función para crear tarjetas y agregarlas al contenedor
-function mostrarTarjetas() {
-  // Limpia el contenedor antes de agregar nuevas tarjetas
-  tarjetasContainer.innerHTML = "";
-
-  // Itera sobre el array de juegos
-  catalogoJuegos.forEach((juego) => {
-    const tarjetaHTML = `
-          <div class="card">
-            <img src="${juego.imagen}" class="card-img-top" alt="${juego.titulo}">
-            <div class="card-body">
-              <h5 class="card-title">${juego.titulo}</h5>
-              <p class="card-text">${juego.descripcion}</p>
-              <a href="../page/detalleProducto.html" class="btn btn-primary">Ver más</a>
-            </div>
-          </div>
-        `;
-
-    // Agrega la tarjeta al contenedor
-    tarjetasContainer.innerHTML += tarjetaHTML;
-  });
-}
-
-// Llama a la función para mostrar las tarjetas al cargar la página
-mostrarTarjetas();
-
-/*BOTONES DE CATEGORIAS*/
+/*BOTONES DE CATEGORIAS
 
 // Selecciona los botones
 const loadCardsBtn = document.getElementById("load-cards-btn");
@@ -615,16 +589,18 @@ function mostrarTarjetas(categoria) {
   juegosFiltrados.forEach((juego) => {
     // Crea una tarjeta para cada juego
     const tarjetaHTML = `
-      <div class="card">
-        <img src="${juego.imagen}" class="card-img-top" alt="${juego.titulo}">
+      <div class="col-12 col-md-4 col-lg-3">
+      <div class="card mb-2 m-2">
+      <div class="card-img-top-container cardContainer">
+          <img src="${juego.imagen}" class="card-img-top" alt="${juego.titulo}">
+      </div>
         <div class="card-body">
           <h5 class="card-title">${juego.titulo}</h5>
-          <p class="card-text">${juego.descripcion}</p>
-          <a href="${juego.url}" class="btn btn-primary">Ver más</a>
+          <a href="../page/detalleProducto.html" class="btn btn-primary">Ver más</a>
         </div>
       </div>
+      </div>
     `;
-
     // Agrega la tarjeta al contenedor
     tarjetasContainer.innerHTML += tarjetaHTML;
   });
@@ -642,5 +618,82 @@ loadCardsBtnEstrategia.addEventListener("click", () =>
   mostrarTarjetas("Estrategia")
 );
 loadAllCardsBtn.addEventListener("click", () => mostrarTarjetas("Todas"));
+*/
+const createCard = (juego) => `
+  <div class="col-12 col-md-4 col-lg-3">
+    <div class="card mb-2 m-2">
+      <img src="${juego.imagen}" class="card-img-top" alt="${juego.titulo}">
+      <div class="card-body">
+        <h5 class="card-title">${juego.titulo}</h5>
+        <a href="../page/detalleProducto.html" class="btn btn-primary">Ver más</a>
+      </div>
+    </div>
+  </div>
+`;
 
-//
+const createCarouselItem = (cards, isActive) => `
+  <div class="carousel-item ${isActive ? "active" : ""}">
+    <div class="row no-gutters justify-content-center">
+      ${cards}
+    </div>
+  </div>
+`;
+
+const actualizarCarrusel = (datos) => {
+  let cardsHTML = "";
+  let carouselItems = "";
+
+  datos.forEach((juego, index) => {
+    cardsHTML += createCard(juego);
+    if ((index + 1) % 3 === 0 || index === datos.length - 1) {
+      carouselItems += createCarouselItem(cardsHTML, index < 3);
+      cardsHTML = "";
+    }
+  });
+
+  carruselCards.innerHTML = carouselItems;
+};
+
+document.getElementById("load-cards-btn").addEventListener("click", () => {
+  const juegosAccion = catalogoJuegos.filter(
+    (juego) => juego.categoria === "Acción"
+  );
+  actualizarCarrusel(juegosAccion);
+});
+
+document
+  .getElementById("load-cards-btn-aventura")
+  .addEventListener("click", () => {
+    const juegosAventura = catalogoJuegos.filter(
+      (juego) => juego.categoria === "Aventura"
+    );
+    actualizarCarrusel(juegosAventura);
+  });
+
+document
+  .getElementById("load-cards-btn-deportes")
+  .addEventListener("click", () => {
+    const juegosDeportes = catalogoJuegos.filter(
+      (juego) => juego.categoria === "Deportes"
+    );
+    actualizarCarrusel(juegosDeportes);
+  });
+
+document
+  .getElementById("load-cards-btn-estrategia")
+  .addEventListener("click", () => {
+    const juegosEstrategia = catalogoJuegos.filter(
+      (juego) => juego.categoria === "Estrategia"
+    );
+    actualizarCarrusel(juegosEstrategia);
+  });
+
+document.getElementById("load-all-cards-btn").addEventListener("click", () => {
+  actualizarCarrusel(catalogoJuegos);
+});
+
+const carruselCards = document.getElementById("carruselCards");
+
+window.onresize = () => {
+  actualizarCarrusel(catalogoJuegos);
+};
