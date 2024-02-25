@@ -408,17 +408,17 @@ const catalogoJuegos = [
     },
     imagen: "../img/Hollow Knight.png",
     url: "https://youtu.be/UAO2urG23S4",
-  } /*
+  },
   {
     id: 19,
     titulo: "World of Warcraft",
     descripcion:
       "Adéntrate en el universo de Azeroth en este juego MMORPG legendario.",
     categoria: "MMORPG",
-    precio: 14.99 / mes,
+    precio: 14.99,
     requisitos: {
       minimos: {
-        sistemaOperativo: "Windows 7/8/10",
+        sistemaOperativo: "Windows 7",
         procesador: "Intel Core i5-3450 o AMD FX 8300",
         memoriaRAM: "4 GB",
         tarjetaGrafica: "NVIDIA GeForce GTX 760 o AMD Radeon RX 560",
@@ -438,7 +438,7 @@ const catalogoJuegos = [
     titulo: "Mortal Kombat 11",
     descripcion:
       "Libra batallas épicas en este juego de lucha con personajes icónicos de Mortal Kombat.",
-    categoria: "Lucha",
+    categoria: "Acción",
     precio: 59.99,
     requisitos: {
       minimos: {
@@ -457,14 +457,66 @@ const catalogoJuegos = [
     imagen: "../img/Mortal Kombat 11.png",
     url: "https://youtu.be/z7f4paq1Fvg",
   },
-  */,
-  ,
 ];
 /*
 const juegoDestacado =
   catalogoJuegos[Math.floor(Math.random() * catalogoJuegos.length)];
 */
-const cardHTML = `
+
+const navbarRegistro = document.getElementById("navbar-registro");
+navbarRegistro.innerHTML = `
+<div class="container-fluid">
+<a href="../page/PaginaPrincipal.html" class="d-flex align-items-center enlace-logo">
+  <img class="ms-1 px-2" src="../img/Logo Play Gaming.png" alt="Logo Play Gamming" />
+</a>
+<button
+  class="navbar-toggler"
+  type="button"
+  data-bs-toggle="collapse"
+  data-bs-target="#navbarSupportedContent"
+  aria-controls="navbarSupportedContent"
+  aria-expanded="false"
+  aria-label="Toggle navigation"
+>
+  <span class="navbar-toggler-icon"></span>
+</button>
+<div class="collapse navbar-collapse" id="navbarSupportedContent">
+  <ul class="navbar-nav ms-auto me-5 mb-2 mb-lg-0">
+    <li class="nav-item"></li>
+    <li class="nav-item">
+      <a
+        class="nav-link btn-hover btn-focus text-navbar anta-regular ms-3 px-2"
+        href="./sobreNosotros.html"
+        >Sobre nosotros</a
+      >
+    </li>
+    <li class="nav-item">
+      <a
+        class="nav-link btn-hover btn-focus text-navbar anta-regular ms-3 px-2"
+        href="./contacto.html"
+        >Contacto</a
+      >
+    </li>
+    <li class="nav-item">
+      <a
+        class="nav-link btn-hover btn-focus text-navbar anta-regular ms-3 px-2"
+        href="./login.html"
+        >Iniciar sesion</a
+      >
+    </li>
+    <li class="nav-item">
+      <a
+        class="nav-link btn-hover btn-focus text-navbar anta-regular ms-3 px-2"
+        href="./registro.html"
+        >Registrarse</a
+      >
+    </li>
+  </ul>
+</div>
+</div>`;
+
+const juegosDestacados = document.getElementById("juegosDestacados");
+juegosDestacados.innerHTML = `
 <div class="card mb-3 px-0">
   <div class="row g-0 px-0">
     <div class="col-md-8 px-0">
@@ -476,9 +528,7 @@ const cardHTML = `
         <h4 class="card-title" id="tituloJuego"></h4>
         <h6 class="card-title">Disponible</h6>
         <p class="card-text" id="descripcionJuego"></p>
-        <a href="#" class="btn btn-custom"
-          >Ver más</a
-        >
+        <a href="../page/registro.html" class="ver-mas anta-regular">Ver Mas</a>
       </div>
     </div>
   </div>
@@ -493,7 +543,5 @@ function mostrarJuego(id) {
 }
 
 window.onload = function () {
-  mostrarJuego(catalogoJuegos[8].id);
+  mostrarJuego(catalogoJuegos[19].id);
 };
-
-document.querySelector(".row").innerHTML = cardHTML;
