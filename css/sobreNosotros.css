@@ -1,0 +1,14 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.container-QS {
+  background-color: RGB(51, 51, 51);
+  color: black;
+}
+
+.QN {
+  background-color: white;
+  text-align: center;
+}
