@@ -79,7 +79,7 @@ formRegistro.innerHTML = `
 const navbarRegistro = document.getElementById("navbar-registro");
 navbarRegistro.innerHTML = `
 <div class="container-fluid">
-<a href="./heroPage.html" class="d-flex align-items-center enlace-logo">
+<a href="/index.html" class="d-flex align-items-center enlace-logo">
   <img class="ms-1 px-2" src="../img/Logo Play Gaming.png" alt="" />
 </a>
 <button
@@ -136,7 +136,7 @@ const registerUser = () => {
 
   const generarID = () => {
     const usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
-    return usuarios.length + 1;
+    return usuarios[usuarios.length - 1].id + 1;
   };
 
   const mostrarMensaje = (input, mensaje) => {
@@ -246,7 +246,7 @@ const registerUser = () => {
     id,
     usuario,
     mail,
-    contraseña: pass,
+    contrasena: pass,
     rol: "usuario",
     favoritos: [],
     carrito: [],
@@ -257,7 +257,7 @@ const registerUser = () => {
 
   const usersList = JSON.parse(localStorage.getItem("usuarios")) || [];
 
-  if (usersList.some((user) => user.usuario === usuario)) {
+  if (usersList.find((user) => user.usuario === usuario)) {
     mostrarMensaje(usuarioInput, "Usuario en uso");
     return;
   }
@@ -282,7 +282,7 @@ const registerUser = () => {
   enviarMail(mail);
 
   setTimeout(() => {
-    window.location.href = "./heroPage.html";
+    window.location.href = "/index.html";
   }, 1000);
 };
 
