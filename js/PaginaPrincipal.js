@@ -17,7 +17,7 @@ const catalogoJuegos = [
     id: 2,
     titulo: "Cyberpunk 2077",
     descripcion: "Un RPG de mundo abierto ambientado en un futuro distópico.",
-    categoria: "RPG",
+    categoria: "Acción",
     precio: 49.99,
     requisitos: {
       minimos: {
@@ -112,7 +112,7 @@ const catalogoJuegos = [
     id: 6,
     titulo: "Call of Duty: Warzone",
     descripcion: "Battle royale con acción intensa y modos de juego variados.",
-    categoria: "Shooter",
+    categoria: "Estrategia",
     precio: 0, // Gratis
     requisitos: {
       minimos: {
@@ -136,7 +136,7 @@ const catalogoJuegos = [
     titulo: "The Witcher 3: Wild Hunt",
     descripcion:
       "RPG de acción con un mundo abierto lleno de monstruos y misterios.",
-    categoria: "RPG",
+    categoria: "Aventura",
     precio: 39.99,
     requisitos: {
       minimos: {
@@ -160,7 +160,7 @@ const catalogoJuegos = [
     titulo: "Overwatch",
     descripcion:
       "Juego de disparos en equipo con héroes únicos y habilidades especiales.",
-    categoria: "Shooter",
+    categoria: "Estrategia",
     precio: 39.99,
     requisitos: {
       minimos: {
@@ -318,7 +318,7 @@ const catalogoJuegos = [
     titulo: "Fortnite",
     descripcion:
       "Únete a la batalla en línea y sé el último en pie en este juego battle royale.",
-    categoria: "Shooter",
+    categoria: "Aventura",
     precio: 0, // Gratis
     requisitos: {
       minimos: {
@@ -342,7 +342,7 @@ const catalogoJuegos = [
     titulo: "Final Fantasy XV",
     descripcion:
       "Embárcate en un viaje épico en este RPG de acción de la serie Final Fantasy.",
-    categoria: "RPG",
+    categoria: "Estrategia",
     precio: 49.99,
     requisitos: {
       minimos: {
@@ -414,7 +414,7 @@ const catalogoJuegos = [
     titulo: "World of Warcraft",
     descripcion:
       "Adéntrate en el universo de Azeroth en este juego MMORPG legendario.",
-    categoria: "MMORPG",
+    categoria: "Aventura",
     precio: 14.99,
     requisitos: {
       minimos: {
@@ -545,3 +545,102 @@ function mostrarJuego(id) {
 window.onload = function () {
   mostrarJuego(catalogoJuegos[19].id);
 };
+
+/* Categoria */
+const catalogoJuegosJSON = JSON.stringify(catalogoJuegos);
+
+localStorage.setItem("catalogoJuegos", catalogoJuegosJSON);
+
+// Recupera la cadena JSON del localStorage usando la clave
+const catalogoJuegosGuardado = localStorage.getItem("catalogoJuegos");
+
+// Convierte la cadena JSON de vuelta a un array
+const catalogoJuegosRecuperado = JSON.parse(catalogoJuegosGuardado);
+
+// Ahora, catalogoJuegosRecuperado contiene el array original
+console.log(catalogoJuegosRecuperado);
+
+// Selecciona el contenedor donde se insertarán las tarjetas
+const tarjetasContainer = document.getElementById("tarjetasContainer");
+
+// Función para crear tarjetas y agregarlas al contenedor
+function mostrarTarjetas() {
+  // Limpia el contenedor antes de agregar nuevas tarjetas
+  tarjetasContainer.innerHTML = "";
+
+  // Itera sobre el array de juegos
+  catalogoJuegos.forEach((juego) => {
+    const tarjetaHTML = `
+          <div class="card">
+            <img src="${juego.imagen}" class="card-img-top" alt="${juego.titulo}">
+            <div class="card-body">
+              <h5 class="card-title">${juego.titulo}</h5>
+              <p class="card-text">${juego.descripcion}</p>
+              <a href="../page/detalleProducto.html" class="btn btn-primary">Ver más</a>
+            </div>
+          </div>
+        `;
+
+    // Agrega la tarjeta al contenedor
+    tarjetasContainer.innerHTML += tarjetaHTML;
+  });
+}
+
+// Llama a la función para mostrar las tarjetas al cargar la página
+mostrarTarjetas();
+
+/*BOTONES DE CATEGORIAS*/
+
+// Selecciona los botones
+const loadCardsBtn = document.getElementById("load-cards-btn");
+const loadCardsBtnAventura = document.getElementById("load-cards-btn-aventura");
+const loadCardsBtnDeportes = document.getElementById("load-cards-btn-deportes");
+const loadCardsBtnEstrategia = document.getElementById(
+  "load-cards-btn-estrategia"
+);
+const loadAllCardsBtn = document.getElementById("load-all-cards-btn");
+
+// Función para crear tarjetas y agregarlas al contenedor
+function mostrarTarjetas(categoria) {
+  // Limpia el contenedor antes de agregar nuevas tarjetas
+  tarjetasContainer.innerHTML = "";
+
+  // Filtra el array de juegos por categoría
+  const juegosFiltrados =
+    categoria === "Todas"
+      ? catalogoJuegos
+      : catalogoJuegos.filter((juego) => juego.categoria === categoria);
+
+  // Itera sobre el array de juegos filtrados
+  juegosFiltrados.forEach((juego) => {
+    // Crea una tarjeta para cada juego
+    const tarjetaHTML = `
+      <div class="card">
+        <img src="${juego.imagen}" class="card-img-top" alt="${juego.titulo}">
+        <div class="card-body">
+          <h5 class="card-title">${juego.titulo}</h5>
+          <p class="card-text">${juego.descripcion}</p>
+          <a href="${juego.url}" class="btn btn-primary">Ver más</a>
+        </div>
+      </div>
+    `;
+
+    // Agrega la tarjeta al contenedor
+    tarjetasContainer.innerHTML += tarjetaHTML;
+  });
+}
+
+// Agrega event listeners a los botones
+loadCardsBtn.addEventListener("click", () => mostrarTarjetas("Acción"));
+loadCardsBtnAventura.addEventListener("click", () =>
+  mostrarTarjetas("Aventura")
+);
+loadCardsBtnDeportes.addEventListener("click", () =>
+  mostrarTarjetas("Deportes")
+);
+loadCardsBtnEstrategia.addEventListener("click", () =>
+  mostrarTarjetas("Estrategia")
+);
+loadAllCardsBtn.addEventListener("click", () => mostrarTarjetas("Todas"));
+
+//
