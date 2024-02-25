@@ -106,9 +106,9 @@ navbarLogin.innerHTML = `
 
 (() => {
   const generarID = () => {
-    const usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
-    return usuarios[usuarios.length - 1].id + 1;
-  };
+  const usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
+  return usuarios.length > 0 ? usuarios[usuarios.length - 1].id + 1 : 1;
+};
 
   const newUser = {
     id: generarID(),
