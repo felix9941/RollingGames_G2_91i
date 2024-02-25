@@ -145,8 +145,7 @@ const loginUser = () => {
 
   const userExists = usersList.find(
     (user) =>
-      (user.mail === inputMail && user.contrasena === inputPass) ||
-      (user.usuario === inputMail && user.contrasena)
+      (user.mail === inputMail && user.contrasena === inputPass) || (user.usuario === inputMail && user.contrasena === inputPass)
   );
 
   const isUserInhabilitado = userExists && userExists.delete === true;
