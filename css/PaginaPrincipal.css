@@ -2,6 +2,31 @@
   margin: 0;
   padding: 0;
 }
+
+.container-fluid {
+  background-color: RGB(26, 26, 46);
+  color: white;
+}
+
+.informacion-pag a {
+  text-decoration: none;
+  color: white;
+}
+
+.icons a {
+  text-decoration: none;
+  color: white;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+footer {
+  margin-top: auto;
+}
+
 body {
   background-color: RGB(0, 0, 0);
 }
