@@ -12,3 +12,17 @@
   text-decoration: none;
   color: white;
 }
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+footer {
+  margin-top: auto;
+}
+
+.icons a {
+  text-decoration: none;
+  color: white;
+}
