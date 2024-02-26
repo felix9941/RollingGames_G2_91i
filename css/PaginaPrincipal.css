@@ -227,13 +227,14 @@ h2 {
 .carousel-control-prev-icon,
 .visually-hidden,
 .carousel-control-next-icon {
-  background-color: red;
+  background-color: rgba(255, 184, 20, 1);
 }
 .carousel-control-prev-icon:hover,
 .visually-hidden:hover,
 .carousel-control-next-icon:hover {
   background-color: rgba(255, 184, 20, 1);
 }
+
 @media (max-width: 768px) {
   .btn-elearning {
     padding: 10px 14px;
