@@ -563,72 +563,15 @@ const catalogoJuegosJSON = JSON.stringify(catalogoJuegos);
 
 localStorage.setItem("catalogoJuegos", catalogoJuegosJSON);
 
-/*BOTONES DE CATEGORIAS
-
-// Selecciona los botones
-const loadCardsBtn = document.getElementById("load-cards-btn");
-const loadCardsBtnAventura = document.getElementById("load-cards-btn-aventura");
-const loadCardsBtnDeportes = document.getElementById("load-cards-btn-deportes");
-const loadCardsBtnEstrategia = document.getElementById(
-  "load-cards-btn-estrategia"
-);
-const loadAllCardsBtn = document.getElementById("load-all-cards-btn");
-
-// Función para crear tarjetas y agregarlas al contenedor
-function mostrarTarjetas(categoria) {
-  // Limpia el contenedor antes de agregar nuevas tarjetas
-  tarjetasContainer.innerHTML = "";
-
-  // Filtra el array de juegos por categoría
-  const juegosFiltrados =
-    categoria === "Todas"
-      ? catalogoJuegos
-      : catalogoJuegos.filter((juego) => juego.categoria === categoria);
-
-  // Itera sobre el array de juegos filtrados
-  juegosFiltrados.forEach((juego) => {
-    // Crea una tarjeta para cada juego
-    const tarjetaHTML = `
-      <div class="col-12 col-md-4 col-lg-3">
-      <div class="card mb-2 m-2">
-      <div class="card-img-top-container cardContainer">
-          <img src="${juego.imagen}" class="card-img-top" alt="${juego.titulo}">
-      </div>
-        <div class="card-body">
-          <h5 class="card-title">${juego.titulo}</h5>
-          <a href="../page/detalleProducto.html" class="btn btn-primary">Ver más</a>
-        </div>
-      </div>
-      </div>
-    `;
-    // Agrega la tarjeta al contenedor
-    tarjetasContainer.innerHTML += tarjetaHTML;
-  });
-}
-
-// Agrega event listeners a los botones
-loadCardsBtn.addEventListener("click", () => mostrarTarjetas("Acción"));
-loadCardsBtnAventura.addEventListener("click", () =>
-  mostrarTarjetas("Aventura")
-);
-loadCardsBtnDeportes.addEventListener("click", () =>
-  mostrarTarjetas("Deportes")
-);
-loadCardsBtnEstrategia.addEventListener("click", () =>
-  mostrarTarjetas("Estrategia")
-);
-loadAllCardsBtn.addEventListener("click", () => mostrarTarjetas("Todas"));
-*/
-const createCard = (juego) => `
-  <div class="col-12 col-md-4 col-lg-3">
-    <div class="card mb-2 m-2">
-      <img src="${juego.imagen}" class="card-img-top" alt="${juego.titulo}">
-      <div class="card-body">
-        <h5 class="card-title">${juego.titulo}</h5>
-        <a href="../page/detalleProducto.html" class="btn btn-primary">Ver más</a>
-      </div>
-    </div>
+const createCard = (juego, index) => `
+<div class="col-12 col-md-4 col-lg-3 my-3">
+  <p class="card-text" style="text-align: center;">${juego.categoria}</p>
+  <div class="card">
+    <a href="../page/detalleJuego.html" class="card-link">
+      <img src="${juego.imagen}" class="card-img-top1" alt="${juego.titulo}">
+    </a>
   </div>
+</div>
 `;
 
 const createCarouselItem = (cards, isActive) => `
@@ -644,10 +587,17 @@ const actualizarCarrusel = (datos) => {
   let carouselItems = "";
 
   datos.forEach((juego, index) => {
-    cardsHTML += createCard(juego);
-    if ((index + 1) % 3 === 0 || index === datos.length - 1) {
-      carouselItems += createCarouselItem(cardsHTML, index < 3);
-      cardsHTML = "";
+    if (window.innerWidth < 768) {
+      carouselItems += createCarouselItem(
+        createCard(juego, index),
+        index === 0
+      );
+    } else {
+      cardsHTML += createCard(juego);
+      if ((index + 1) % 3 === 0 || index === datos.length - 1) {
+        carouselItems += createCarouselItem(cardsHTML, index < 3);
+        cardsHTML = "";
+      }
     }
   });
 

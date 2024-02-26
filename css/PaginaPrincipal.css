@@ -102,7 +102,7 @@ img {
 
 .card {
   width: 90%;
-  height: 50%; /*afecta a las card del carrusel*/
+  height: 50%;
   margin-top: 50px;
   margin-left: 5%;
   object-fit: cover;
@@ -120,6 +120,7 @@ h2 {
 .card-text {
   margin-top: 10%;
   margin-bottom: 10%;
+  color: white;
 }
 
 .card-body {
@@ -149,7 +150,9 @@ h2 {
   margin-left: 30%;
 }
 .ver-mas:hover,
-.ver-mas:focus {
+.ver-mas:focus,
+.btn:hover,
+.btn:focus {
   border-color: rgb(255, 184, 20);
   box-shadow: 0 0 5px rgba(255, 184, 20, 1);
   background-color: rgba(26, 26, 46);
@@ -165,6 +168,21 @@ h2 {
   background-color: RGB(51, 51, 51);
 }
 
+.btn {
+  background-color: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
+  border-color: rgba(26, 26, 46);
+  transition: color 0.2s, box-shadow 0.5s;
+  padding-left: 2em;
+  padding-right: 2em;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  font-weight: 500;
+  display: inline-block;
+  text-decoration: none;
+  border-radius: 5%;
+  margin-left: 25%;
+}
 .btn-elearning {
   background-color: rgb(255, 255, 255);
   color: rgb(0, 0, 0);
@@ -189,8 +207,42 @@ h2 {
   color: white;
   box-shadow: 0px 6px 12px 0px rgba(0, 0, 0, 0.3);
 }
+.card1 {
+  width: 100%;
+  height: 70%;
+  overflow: hidden;
+}
 
+.card-img-top1 {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 56vh;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease-in-out;
+}
+
+.card:hover .card-img-top1 {
+  transform: scale(1.1);
+}
+
+.card-link {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.carousel-inner {
+  position: relative;
+  width: 95%;
+  overflow: hidden;
+}
+
+.visually-hidden {
+  color: white;
+}
 /* Media queries para dispositivos móviles */
+
 @media (max-width: 768px) {
   .btn-elearning {
     padding: 10px 14px;
