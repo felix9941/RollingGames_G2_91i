@@ -38,7 +38,7 @@
       crossorigin="anonymous"
     ></script>
     <script src="https://smtpjs.com/v3/smtp.js"></script>
-    <link rel="stylesheet" href="/css/PaginaPrincipal.css" />
+    <link rel="stylesheet" href="/css/paginaPrincipal.css" />
     <link
       rel="shortcut icon"
       href="/img/Logo Play Gaming.png"
@@ -56,6 +56,93 @@
     <main>
       <div class="container">
         <div class="row" id="juegosDestacados"></div>
+      </div>
+      <h2 class="title-categoria anta-regular">
+        Contamos con Variedad en VideoJuegos
+      </h2>
+
+      <div class="container-fluid-Categoria my-3">
+        <div class="row justify-content-center">
+          <div class="col-12 mb-2 d-flex justify-content-center mt-4">
+            <div>
+              <button
+                id="load-cards-btn"
+                class="btn btn-elearning anta-regular"
+                data-categoria="Acción"
+              >
+                Acción
+              </button>
+            </div>
+            <div class="px-2">
+              <button
+                id="load-cards-btn-aventura"
+                class="btn btn-elearning anta-regular"
+                data-categoria="Aventura"
+              >
+                Aventura
+              </button>
+            </div>
+            <div>
+              <button
+                id="load-cards-btn-deportes"
+                class="btn btn-elearning anta-regular"
+                data-categoria="Deportes"
+              >
+                Deportes
+              </button>
+            </div>
+            <div class="px-2">
+              <button
+                id="load-cards-btn-estrategia"
+                class="btn btn-elearning anta-regular"
+                data-categoria="Estrategia"
+              >
+                Estrategia
+              </button>
+            </div>
+          </div>
+          <div class="col-12 mb-2 d-flex justify-content-center mb-4">
+            <div>
+              <button
+                id="load-all-cards-btn"
+                class="btn btn-elearning anta-regular"
+                data-categoria="Todas"
+              >
+                Todas las Categorías
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container" id="tarjetasContainer">
+        <div id="carouselExample" class="carousel carousel-dark slide mt-5">
+          <div class="carousel-inner" id="carruselCards"></div>
+          <button
+            class="carousel-control-prev alcance"
+            type="button"
+            data-bs-target="#carouselExample"
+            data-bs-slide="prev"
+          >
+            <span
+              class="carousel-control-prev-icon flecha-izq"
+              aria-hidden="true"
+            ></span>
+            <span class="visually-hidden">Anterior</span>
+          </button>
+          <button
+            class="carousel-control-next"
+            type="button"
+            data-bs-target="#carouselExample"
+            data-bs-slide="next"
+          >
+            <span
+              class="carousel-control-next-icon flecha-der"
+              aria-hidden="true"
+            ></span>
+            <span class="visually-hidden">Siguiente</span>
+          </button>
+        </div>
       </div>
     </main>
     <footer>
