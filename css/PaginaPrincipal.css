@@ -110,6 +110,7 @@ img {
 
 h2 {
   font: bold;
+  font-family: "Kanit", sans-serif;
 }
 
 .card-title {
@@ -168,21 +169,6 @@ h2 {
   background-color: RGB(51, 51, 51);
 }
 
-.btn {
-  background-color: rgb(255, 255, 255);
-  color: rgb(0, 0, 0);
-  border-color: rgba(26, 26, 46);
-  transition: color 0.2s, box-shadow 0.5s;
-  padding-left: 2em;
-  padding-right: 2em;
-  padding-top: 0.5em;
-  padding-bottom: 0.5em;
-  font-weight: 500;
-  display: inline-block;
-  text-decoration: none;
-  border-radius: 5%;
-  margin-left: 25%;
-}
 .btn-elearning {
   background-color: rgb(255, 255, 255);
   color: rgb(0, 0, 0);
@@ -196,7 +182,7 @@ h2 {
   display: inline-block;
   text-decoration: none;
   border-radius: 5%;
-  margin-left: 30%;
+  margin-left: -10%;
 }
 
 .btn-elearning:hover,
@@ -234,15 +220,20 @@ h2 {
 }
 .carousel-inner {
   position: relative;
-  width: 95%;
+  margin-left: 20px;
+  width: 90%;
   overflow: hidden;
 }
-
-.visually-hidden {
-  color: white;
+.carousel-control-prev-icon,
+.visually-hidden,
+.carousel-control-next-icon {
+  background-color: red;
 }
-/* Media queries para dispositivos móviles */
-
+.carousel-control-prev-icon:hover,
+.visually-hidden:hover,
+.carousel-control-next-icon:hover {
+  background-color: rgba(255, 184, 20, 1);
+}
 @media (max-width: 768px) {
   .btn-elearning {
     padding: 10px 14px;
@@ -263,5 +254,9 @@ h2 {
     width: 100%;
     box-sizing: border-box;
     margin: 5px 0;
+  }
+  .carousel-inner {
+    width: 100%;
+    overflow: hidden;
   }
 }
