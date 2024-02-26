@@ -8,7 +8,7 @@ formLogin.innerHTML = `
     <form class="mt-5 w-75" id="loginForm">
 
       <div class="mb-3 mt-4">
-        <label for="mail" class="form-label">Correo Electrónico</label>
+        <label for="mail" class="form-label">Correo Electrónico o Usuario</label>
         <input
           type="email"
           class="form-control custom-input"
@@ -16,7 +16,8 @@ formLogin.innerHTML = `
           maxlength="50"
           required
         />
-        
+        <div class="invalid-feedback" id="mailError"></div>
+        <div class="invalid-feedback" id="instructivoMjeUser"></div>
       </div>
       <div class="mb-3">
         <label for="pass" class="form-label">Contraseña</label>
@@ -28,6 +29,8 @@ formLogin.innerHTML = `
           maxlength="20" 
           
         />
+        <div class="invalid-feedback" id="passError"></div>
+        <div class="invalid-feedback" id="instructivoMjePass"></div>
       </div>
      
       <div class="text-center textD">
@@ -146,7 +149,7 @@ const loginUser = () => {
   const userExists = usersList.find(
     (user) =>
       (user.mail === inputMail && user.contrasena === inputPass) ||
-      (user.usuario === inputMail && user.contrasena)
+      (user.usuario === inputMail && user.contrasena === inputPass)
   );
 
   const isUserInhabilitado = userExists && userExists.delete === true;
@@ -161,7 +164,8 @@ const loginUser = () => {
     const listaUsuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
 
     const indiceUsuario = listaUsuarios.findIndex(
-      (user) => user.mail === inputMail && user.contrasena === inputPass
+      (user.mail === inputMail && user.contrasena === inputPass) ||
+        (user.usuario === inputMail && user.contrasena === inputPass)
     );
 
     if (indiceUsuario !== -1) {
@@ -176,20 +180,67 @@ const loginUser = () => {
     return;
   }
 
-  if (!inputMail || !inputPass) {
-    alert("Por favor, complete todos los campos.");
+  if (!inputMail && !inputPass) {
+    document.getElementById("mailError").innerHTML = "Campo requerido";
+    document.getElementById("mail").classList.add("is-invalid");
+
+    document.getElementById("passError").innerHTML = "Campo requerido";
+    document.getElementById("pass").classList.add("is-invalid");
+
+    document.getElementById("mail").addEventListener("input", () => {
+      document.getElementById("mailError").innerHTML = "";
+      document.getElementById("mail").classList.remove("is-invalid");
+    });
+
+    document.getElementById("pass").addEventListener("input", () => {
+      document.getElementById("passError").innerHTML = "";
+      document.getElementById("pass").classList.remove("is-invalid");
+    });
     return;
+  } else {
+    if (!inputMail) {
+      document.getElementById("mailError").innerHTML = "Campo requerido";
+      document.getElementById("mail").classList.add("is-invalid");
+
+      document.getElementById("mail").addEventListener("input", () => {
+        document.getElementById("mailError").innerHTML = "";
+        document.getElementById("mail").classList.remove("is-invalid");
+      });
+      return;
+    }
+
+    if (!inputPass) {
+      document.getElementById("passError").innerHTML = "Campo requerido";
+      document.getElementById("pass").classList.add("is-invalid");
+
+      document.getElementById("pass").addEventListener("input", () => {
+        document.getElementById("passError").innerHTML = "";
+        document.getElementById("pass").classList.remove("is-invalid");
+      });
+      return;
+    }
   }
 
   if (!combinedRegexp.test(inputMail)) {
-    alert(
-      "Usuario debe tener al menos 8 caracteres y contener letras y números, si no recuerdas el usuario utiliza el mail."
-    );
+    document.getElementById("instructivoMjeUser").innerHTML =
+      "Usuario debe tener al menos 8 caracteres y contener letras y números, si no recuerdas el usuario utiliza el mail.";
+    document.getElementById("mail").classList.add("is-invalid");
+
+    document.getElementById("mail").addEventListener("input", () => {
+      document.getElementById("instructivoMjeUser").innerHTML = "";
+      document.getElementById("mail").classList.remove("is-invalid");
+    });
+
     return;
   } else if (!passwordRegexp.test(inputPass)) {
-    alert(
-      "La contraseña debe tener al menos 8 caracteres y contener solo letras y números."
-    );
+    document.getElementById("instructivoMjePass").innerHTML =
+      "La contraseña debe tener al menos 8 caracteres y contener solo letras y números.";
+    document.getElementById("pass").classList.add("is-invalid");
+
+    document.getElementById("pass").addEventListener("input", () => {
+      document.getElementById("instructivoMjePass").innerHTML = "";
+      document.getElementById("pass").classList.remove("is-invalid");
+    });
     return;
   }
 
@@ -216,7 +267,8 @@ const loginUser = () => {
     const listaUsuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
 
     const indiceUsuario = listaUsuarios.findIndex(
-      (user) => user.mail === inputMail && user.contrasena === inputPass
+      (user.mail === inputMail && user.contrasena === inputPass) ||
+        (user.usuario === inputMail && user.contrasena === inputPass)
     );
 
     if (indiceUsuario !== -1) {
