@@ -647,3 +647,13 @@ const carruselCards = document.getElementById("carruselCards");
 window.onresize = () => {
   actualizarCarrusel(catalogoJuegos);
 };
+//Publicidad
+document.addEventListener("DOMContentLoaded", function () {
+  const scrollerInner = document.querySelector(".scroller_inner");
+  const imgList = document.querySelectorAll(".scroller_inner li");
+
+  imgList.forEach((img) => {
+    const clone = img.cloneNode(true);
+    scrollerInner.appendChild(clone);
+  });
+});
