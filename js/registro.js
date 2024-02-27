@@ -134,10 +134,6 @@ const registerUser = () => {
   const passInput = document.getElementById("pass");
   const rPassInput = document.getElementById("rPass");
 
-  const generarID = () => {
-    const usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
-    return usuarios[usuarios.length - 1].id + 1;
-  };
 
   const mostrarMensaje = (input, mensaje) => {
     let mensajeElement = document.getElementById(`${input.id}-mensaje`);
@@ -195,6 +191,13 @@ const registerUser = () => {
   const userRegexp = /^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
   const passwordRegexp = /^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
   const emailRegexp = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+
+const generarID = () => {
+  const usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
+  return usuarios.length > 0 ? usuarios[usuarios.length - 1].id + 1 : 1;
+};
+  
 
   const id = generarID();
 
