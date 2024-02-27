@@ -134,7 +134,6 @@ const registerUser = () => {
   const passInput = document.getElementById("pass");
   const rPassInput = document.getElementById("rPass");
 
-
   const mostrarMensaje = (input, mensaje) => {
     let mensajeElement = document.getElementById(`${input.id}-mensaje`);
     if (!mensajeElement) {
@@ -192,12 +191,10 @@ const registerUser = () => {
   const passwordRegexp = /^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
   const emailRegexp = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-
-const generarID = () => {
-  const usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
-  return usuarios.length > 0 ? usuarios[usuarios.length - 1].id + 1 : 1;
-};
-  
+  const generarID = () => {
+    const usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
+    return usuarios.length > 0 ? usuarios[usuarios.length - 1].id + 1 : 1;
+  };
 
   const id = generarID();
 
@@ -282,14 +279,14 @@ const generarID = () => {
     "Registro exitoso, por favor verifique su mail para continuar. En caso de no encontrarlo, revisa la carpeta SPAM"
   );
 
-  enviarMail(mail);
+  enviarMail(mail, usuario);
 
   setTimeout(() => {
     window.location.href = "/index.html";
   }, 1000);
 };
 
-const enviarMail = (correo) => {
+const enviarMail = (correo, usuario) => {
   Email.send({
     Host: "smtp.elasticemail.com",
     Username: "martin.fesito@gmail.com",
@@ -297,7 +294,7 @@ const enviarMail = (correo) => {
     To: correo,
     From: "martin.fesito@gmail.com",
     Subject: "Bienvenido a Play Gaming",
-    Body: "Bienvenido a nuestra plataforma Play Gaming. En 24 horas habilitaremos tu cuenta para que puedas acceder.",
+    Body: `Bienvenido ${usuario} a nuestra plataforma Play Gaming . En 24 horas habilitaremos tu cuenta para que puedas acceder.`,
   });
 };
 
