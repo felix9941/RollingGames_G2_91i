@@ -163,7 +163,7 @@ h2 {
   color: white;
 }
 
-/*Categoria*/
+/*Categorias*/
 .title-categoria {
   color: white;
   margin-left: 30px;
@@ -192,6 +192,11 @@ h2 {
   background-color: rgba(26, 26, 46);
   color: white;
   box-shadow: 0px 6px 12px 0px rgba(0, 0, 0, 0.3);
+}
+h5 {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .card1 {
   height: 18vh;
@@ -244,7 +249,6 @@ h2 {
     margin: 3px 1px;
   }
 }
-
 @media (max-width: 480px) {
   .btn-elearning {
     padding: 10px 14px;
@@ -270,10 +274,12 @@ h2 {
     object-fit: cover;
   }
   .card-text-categoria {
-    display: none;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 80%;
   }
 }
-
 /*Publicidad*/
 .scroller {
   overflow: hidden;
