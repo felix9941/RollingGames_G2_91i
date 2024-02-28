@@ -33,12 +33,12 @@ formLogin.innerHTML = `
         <div class="invalid-feedback" id="instructivoMjePass"></div>
       </div>
      
-      <div class="text-center textD">
-      <a href="./recuperarCuenta.html">¿Olvidaste tu contraseña?</a>
+      <div class="text-center">
+      <a href="./recuperarCuenta.html" class="text-black">¿Olvidaste tu contraseña?</a>
       </div>
 
       <div class="text-center mt-2">
-        <p> ¿No tienes una cuenta?, haz click <a href="./registro.html">aqui</a></p>
+        <p> ¿No tienes una cuenta?, haz click <a href="./registro.html" class="text-black">aqui</a></p>
       </div>
       
       <div class="d-flex justify-content-center mt-4">
@@ -247,22 +247,34 @@ const loginUser = () => {
   document.getElementById("loginForm").reset();
 
   if (isUserInhabilitado) {
-    alert("Usuario inhabilitado");
+    Swal.fire({
+      icon: "error",
+      title: "Importante",
+      text: "Usuario inhabilitado",
+    });
     return;
   }
 
   if (isUserPendiente) {
-    alert("Usuario pendiente de aprobacion");
+    Swal.fire({
+      icon: "warning",
+      title: "Estado de tu cuenta",
+      text: "Pendiente de aprobacion",
+    });
 
     setTimeout(() => {
       window.location.href = "/index.html";
-    }, 1000);
+    }, 3000);
 
     return;
   }
 
   if (userExists) {
-    alert("Inicio de sesión exitoso!");
+    Swal.fire({
+      title: "Excelente!",
+      text: "Inicio de sesión exitoso!",
+      icon: "success",
+    });
 
     const listaUsuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
 

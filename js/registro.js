@@ -59,7 +59,7 @@ formRegistro.innerHTML = `
       
 
       <div>
-        <p>Si tienes una cuenta haz click <a href="./login.html">aqui</a></p>
+        <p>Si tienes una cuenta haz click <a href="./login.html" class="text-black">aqui</a></p>
       </div>
       
       <div class="d-flex justify-content-center mt-4">
@@ -275,15 +275,17 @@ const registerUser = () => {
 
   document.getElementById("registrationForm").reset();
 
-  alert(
-    "Registro exitoso, por favor verifique su mail para continuar. En caso de no encontrarlo, revisa la carpeta SPAM"
-  );
+  Swal.fire({
+    title: "Registro exitoso!",
+    text: "por favor verifique su mail para continuar. En caso de no encontrarlo, revisa la carpeta SPAM",
+    icon: "success",
+  });
 
   enviarMail(mail, usuario);
 
   setTimeout(() => {
     window.location.href = "/index.html";
-  }, 1000);
+  }, 3000);
 };
 
 const enviarMail = (correo, usuario) => {

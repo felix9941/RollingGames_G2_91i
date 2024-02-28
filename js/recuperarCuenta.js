@@ -68,11 +68,12 @@ formRecupero.innerHTML = `
                 <div class="invalid-feedback" id="instructivoMjeUser"></div>
               </div>
 
-              <div class="text-center textD">
+              <div class="text-center">
                 <a
                   href=""
                   data-bs-toggle="modal"
                   data-bs-target="#exampleModal"
+                  class="text-black"
                 >
                   Click aqui, si ya tienes el codigo</a
                 >
@@ -135,6 +136,7 @@ formRecupero.innerHTML = `
                               class="form-control"
                               id="passRecupero"
                             />
+                            <div class="invalid-feedback" id="instructivoMjePass"></div>
                           </div>
 
                           <div class="mb-3">
@@ -148,11 +150,13 @@ formRecupero.innerHTML = `
                               class="form-control"
                               id="rPassRecupero"
                             />
+                            <div class="invalid-feedback" id="passError"></div>
+
                           </div>
                           <div class="d-flex justify-content-center">
                             <button
                               type="button"
-                              class="btn btn-primary"
+                              class="slide w-100 mt-3"
                               onclick="validacionRecupero()"
                             >
                               Confirmar
@@ -163,10 +167,10 @@ formRecupero.innerHTML = `
                     </div>
                   </div>
                 </div>
-                <div class="mt-3">
+                <div class="mt-3 d-flex justify-content-center me-0">
                   <button
                     type="button"
-                    class="btn btn-primary"
+                    class="slide w-100"
                     onclick="recuperarContraseña()"
                   >
                     Enviar
@@ -222,7 +226,6 @@ function recuperarContraseña() {
 function generarID() {
   return Math.floor(Math.random() * 9000) + 1000;
 }
-
 const enviarMail = (correo, id) => {
   Email.send({
     Host: "smtp.elasticemail.com",
@@ -231,7 +234,7 @@ const enviarMail = (correo, id) => {
     To: correo,
     From: "martin.fesito@gmail.com",
     Subject: "Recupero de contraseña",
-    Body: `Estimado, para realizar el recupero de cuenta debe ingresar el código ${id} en el siguiente enlace. Luego haz click en "Click aqui, si ya tienes el codigo".`,
+    Body: `Estimado, para realizar el recupero de cuenta debe ingresar el código ${id}. Ingresa a la pagina https://play-gaming.netlify.app/page/recuperarcuenta luego haz click en "Click aqui, si ya tienes el codigo."`,
   });
 };
 
@@ -243,23 +246,41 @@ const validacionRecupero = () => {
 
   const userExists = JSON.parse(localStorage.getItem("usuarios")) || [];
 
+  const passwordRegexp = /^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
+
   const usuarioIndex = userExists.findIndex((user) => {
     return user.mail === mailInput && user.recuperarId == idInput;
   });
 
+  if (!passwordRegexp.test(passRecupero)) {
+    document.getElementById("instructivoMjePass").innerHTML =
+      "La contraseña debe tener al menos 8 caracteres y contener solo letras y números.";
+    document.getElementById("passRecupero").classList.add("is-invalid");
+
+    document.getElementById("passRecupero").addEventListener("input", () => {
+      document.getElementById("instructivoMjePass").innerHTML = "";
+      document.getElementById("passRecupero").classList.remove("is-invalid");
+    });
+    return;
+  }
+
   if (passRecupero !== rPassRecupero) {
-    alert("No coincide la contraseña");
+    document.getElementById("passError").innerHTML =
+      "No coincide la contraseña";
+    document.getElementById("rPassRecupero").classList.add("is-invalid");
+
+    document.getElementById("rPassRecupero").addEventListener("input", () => {
+      document.getElementById("passError").innerHTML = "";
+      document.getElementById("rPassRecupero").classList.remove("is-invalid");
+    });
     return;
   }
 
   if (usuarioIndex !== -1) {
-    // Usuario encontrado, actualiza la contraseña
     userExists[usuarioIndex].contrasena = passRecupero;
 
-    // Remueve recuperarId
     delete userExists[usuarioIndex].recuperarId;
 
-    // Guarda la actualización en el localStorage
     localStorage.setItem("usuarios", JSON.stringify(userExists));
 
     Swal.fire({
@@ -268,11 +289,15 @@ const validacionRecupero = () => {
       icon: "success",
     });
     document.getElementById("formularioRecuperar").reset();
+
+    setTimeout(() => {
+      window.location.href = "./login.html";
+    }, 3000);
   } else {
     Swal.fire({
       icon: "error",
       title: "Importante",
-      text: "El código de recuperación es incorrecto",
+      text: "Por favor ingrese un correo o codigo de recuperacion valido",
     });
     document.getElementById("formularioRecuperar").reset();
   }

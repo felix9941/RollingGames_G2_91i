@@ -3,7 +3,78 @@
   padding: 0;
 }
 
-.textD {
-  text-decoration: none;
-  color: black;
+.slide:hover,
+.slide:focus {
+  box-shadow: inset 40em 0 0 0 var(--hover);
+}
+
+.slide {
+  --color: RGB(26, 26, 46);
+  --hover: RGB(228, 161, 2);
+}
+
+.slide {
+  color: var(--color);
+  -webkit-transition: 0.25s;
+  transition: 0.25s;
+  border-radius: 10px;
+}
+.slide:hover,
+.slide:focus {
+  border-color: var(--hover);
+  color: #fff;
+}
+
+.slide {
+  background: none;
+  border: 2px solid;
+  font: inherit;
+  line-height: 1;
+  padding: 10px;
+}
+
+.anta-regular {
+  font-family: "Anta", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.kanit-light {
+  font-family: "Kanit", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+}
+
+.navbar-color {
+  background-color: rgba(26, 26, 46);
+}
+
+.navbar-toggler .navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.75%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+.navbar-toggler {
+  --bs-navbar-toggler-border-color: rgba(255, 255, 255, 0.75);
+}
+
+.btn-hover,
+.btn-focus {
+  transition: color 0.2s, box-shadow 0.3s;
+}
+.btn-hover:hover,
+.btn-focus:focus {
+  color: rgb(255, 184, 20);
+  box-shadow: 0 0 5px rgba(255, 184, 20, 0.8);
+}
+
+.text-navbar {
+  color: RGB(255, 255, 255);
+  margin-right: 2em;
+  font-size: large;
+}
+
+.enlace-logo {
+  height: 6.5vh;
+}
+img {
+  height: 100%;
 }

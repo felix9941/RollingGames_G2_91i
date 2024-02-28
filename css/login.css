@@ -27,7 +27,7 @@
 
 .slide2:hover,
 .slide2:focus {
-  box-shadow: inset 25em 0 0 0 var(--hover);
+  box-shadow: inset 40em 0 0 0 var(--hover);
 }
 
 .slide2 {
@@ -57,13 +57,9 @@
   padding: 10px;
 }
 
-h1 {
-  font-weight: 400;
-}
-
 .slide:hover,
 .slide:focus {
-  box-shadow: inset 25em 0 0 0 var(--hover);
+  box-shadow: inset 40em 0 0 0 var(--hover);
 }
 
 .slide {
@@ -71,29 +67,25 @@ h1 {
   --hover: RGB(228, 161, 2);
 }
 
-button {
+.slide {
   color: var(--color);
   -webkit-transition: 0.25s;
   transition: 0.25s;
   border-radius: 10px;
 }
-button:hover,
-button:focus {
+.slide:hover,
+.slide:focus {
   border-color: var(--hover);
   color: #fff;
 }
 
-button {
+.slide {
   background: none;
   border: 2px solid;
   font: inherit;
   line-height: 1;
   margin: 0.5em;
   padding: 10px;
-}
-
-h1 {
-  font-weight: 400;
 }
 
 .anta-regular {
@@ -140,9 +132,4 @@ h1 {
 }
 img {
   height: 100%;
-}
-
-.textD a {
-  text-decoration: none;
-  color: black;
 }
