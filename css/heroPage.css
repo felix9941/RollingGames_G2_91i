@@ -37,7 +37,7 @@
 /* Fin - Efector hover focus */
 
 .text-navbar {
-  color: RGB(255, 255, 255);
+  color: rgba(255, 255, 255, 0.75);
   margin-right: 2em;
   font-size: large;
 }
