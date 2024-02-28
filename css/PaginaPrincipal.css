@@ -1,7 +1,35 @@
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
+
+.container-fluid {
+  background-color: RGB(26, 26, 46);
+  color: white;
+}
+
+.informacion-pag a {
+  text-decoration: none;
+  color: white;
+}
+
+.icons a {
+  text-decoration: none;
+  color: white;
+}
+
+html,
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+footer {
+  margin-top: auto;
+}
+
 body {
   background-color: RGB(0, 0, 0);
 }
@@ -85,6 +113,7 @@ img {
 
 h2 {
   font: bold;
+  font-family: "Kanit", sans-serif;
 }
 
 .card-title {
@@ -95,6 +124,7 @@ h2 {
 .card-text {
   margin-top: 10%;
   margin-bottom: 10%;
+  color: white;
 }
 
 .card-body {
@@ -124,9 +154,175 @@ h2 {
   margin-left: 30%;
 }
 .ver-mas:hover,
-.ver-mas:focus {
+.ver-mas:focus,
+.btn:hover,
+.btn:focus {
   border-color: rgb(255, 184, 20);
   box-shadow: 0 0 5px rgba(255, 184, 20, 1);
   background-color: rgba(26, 26, 46);
   color: white;
+}
+
+/*Categorias*/
+.title-categoria {
+  color: white;
+  margin-left: 30px;
+}
+
+.btn-elearning {
+  background-color: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
+  border-color: rgba(26, 26, 46);
+  transition: color 0.2s, box-shadow 0.5s;
+  padding-left: 2em;
+  padding-right: 2em;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  font-weight: 500;
+  display: inline-block;
+  text-decoration: none;
+  border-radius: 5%;
+  margin-left: -10%;
+}
+
+.btn-elearning:hover,
+.btn-elearning:focus {
+  border-color: rgb(255, 184, 20);
+  box-shadow: 0 0 5px rgba(255, 184, 20, 1);
+  background-color: rgba(26, 26, 46);
+  color: white;
+  box-shadow: 0px 6px 12px 0px rgba(0, 0, 0, 0.3);
+}
+.card-text-categoria {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.card-categoria {
+  height: 18vh;
+  margin-left: 5%;
+  margin-bottom: 25px;
+  object-fit: cover;
+}
+.card-categoria:hover .card-img-top-categoria {
+  transform: scale(1.1);
+}
+.card-img-top-categoria {
+  width: 100%;
+  height: 56vh;
+  height: 100%;
+  transition: transform 0.3s ease-in-out;
+}
+
+.card-text-categoria {
+  color: white;
+}
+
+.card-link {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.carousel-inner {
+  position: relative;
+  margin-left: 20px;
+  width: 90%;
+  overflow: hidden;
+}
+.carousel-control-prev-icon,
+.visually-hidden,
+.carousel-control-next-icon {
+  filter: none !important;
+  background-color: rgba(255, 184, 20, 1);
+}
+.carousel-control-prev-icon:hover,
+.visually-hidden:hover,
+.carousel-control-next-icon:hover {
+  filter: none !important;
+  background-color: rgba(255, 184, 20, 1);
+}
+
+@media (max-width: 768px) {
+  .btn-elearning {
+    padding: 10px 14px;
+    font-size: 14px;
+    margin: 3px 1px;
+  }
+}
+@media (max-width: 480px) {
+  .btn-elearning {
+    padding: 10px 14px;
+    font-size: 12px;
+    margin: 2px;
+  }
+
+  .btn-elearning {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    margin: 5px 0;
+  }
+  .carousel-inner {
+    width: 100%;
+    overflow: hidden;
+  }
+  .card-categoria {
+    width: 90%;
+    height: 25vh;
+    margin-top: 35px;
+    margin-left: 0%;
+    object-fit: cover;
+  }
+  .card-text-categoria {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 80%;
+  }
+}
+/*Publicidad*/
+.scroller {
+  overflow: hidden;
+  width: 100%;
+  margin-top: 30px;
+  margin-bottom: 20px;
+}
+
+.scroller_inner {
+  white-space: nowrap;
+  animation: scroll 35s linear infinite;
+  font-size: 0;
+}
+
+.scroller_inner li {
+  display: inline-block;
+  width: 200px;
+  height: 130px;
+  margin-right: 10px;
+}
+
+.scroller_inner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.title-Publicidad {
+  color: white;
+  margin-left: 30px;
+}
+@keyframes scroll {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+@media only screen and (max-width: 768px) {
+  .scroller {
+    display: none;
+  }
+  .title-Publicidad {
+    display: none;
+  }
 }
