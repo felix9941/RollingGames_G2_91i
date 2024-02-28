@@ -1,6 +1,7 @@
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
 .container-fluid {
@@ -18,10 +19,12 @@
   color: white;
 }
 
+html,
 body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  overflow-x: hidden;
 }
 footer {
   margin-top: auto;
@@ -165,9 +168,6 @@ h2 {
   color: white;
   margin-left: 30px;
 }
-.container-fluid-Categoria {
-  background-color: RGB(51, 51, 51);
-}
 
 .btn-elearning {
   background-color: rgb(255, 255, 255);
@@ -194,14 +194,15 @@ h2 {
   box-shadow: 0px 6px 12px 0px rgba(0, 0, 0, 0.3);
 }
 .card1 {
-  width: 100%;
-  height: 70%;
-  overflow: hidden;
+  height: 18vh;
+  margin-left: 5%;
+  margin-bottom: 25px;
+  object-fit: cover;
 }
-
+.card1:hover .card-img-top1 {
+  transform: scale(1.1);
+}
 .card-img-top1 {
-  top: 0;
-  left: 0;
   width: 100%;
   height: 56vh;
   height: 100%;
@@ -209,8 +210,8 @@ h2 {
   transition: transform 0.3s ease-in-out;
 }
 
-.card:hover .card-img-top1 {
-  transform: scale(1.1);
+.card-text-categoria {
+  color: white;
 }
 
 .card-link {
@@ -259,5 +260,62 @@ h2 {
   .carousel-inner {
     width: 100%;
     overflow: hidden;
+  }
+  .card1 {
+    width: 90%;
+    height: 15vh;
+    margin-top: 35px;
+    margin-left: 0%;
+    object-fit: cover;
+  }
+  .card-text-categoria {
+    display: none;
+  }
+}
+
+/*Publicidad*/
+.scroller {
+  overflow: hidden;
+  width: 100%;
+  margin-top: 30px;
+  margin-bottom: 20px;
+}
+
+.scroller_inner {
+  white-space: nowrap;
+  animation: scroll 35s linear infinite;
+  font-size: 0;
+}
+
+.scroller_inner li {
+  display: inline-block;
+  width: 200px;
+  height: 130px;
+  margin-right: 10px;
+}
+
+.scroller_inner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.title-Publicidad {
+  color: white;
+  margin-left: 30px;
+}
+@keyframes scroll {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+@media only screen and (max-width: 768px) {
+  .scroller {
+    display: none;
+  }
+  .title-Publicidad {
+    display: none;
   }
 }
