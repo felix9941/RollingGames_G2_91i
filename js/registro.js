@@ -59,7 +59,7 @@ formRegistro.innerHTML = `
       
 
       <div>
-        <p>Si tienes una cuenta haz click <a href="./login.html">aqui</a></p>
+        <p>Si tienes una cuenta haz click <a href="./login.html" class="text-black">aqui</a></p>
       </div>
       
       <div class="d-flex justify-content-center mt-4">
@@ -134,7 +134,6 @@ const registerUser = () => {
   const passInput = document.getElementById("pass");
   const rPassInput = document.getElementById("rPass");
 
-
   const mostrarMensaje = (input, mensaje) => {
     let mensajeElement = document.getElementById(`${input.id}-mensaje`);
     if (!mensajeElement) {
@@ -143,7 +142,6 @@ const registerUser = () => {
       input.parentNode.appendChild(mensajeElement);
     }
 
-    // Oculta el mensaje instructivo
     const instructivoElement = document.getElementById(
       `${input.id}-mensaje-instructivo`
     );
@@ -192,12 +190,10 @@ const registerUser = () => {
   const passwordRegexp = /^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
   const emailRegexp = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-
-const generarID = () => {
-  const usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
-  return usuarios.length > 0 ? usuarios[usuarios.length - 1].id + 1 : 1;
-};
-  
+  const generarID = () => {
+    const usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
+    return usuarios.length > 0 ? usuarios[usuarios.length - 1].id + 1 : 1;
+  };
 
   const id = generarID();
 
@@ -278,18 +274,20 @@ const generarID = () => {
 
   document.getElementById("registrationForm").reset();
 
-  alert(
-    "Registro exitoso, por favor verifique su mail para continuar. En caso de no encontrarlo, revisa la carpeta SPAM"
-  );
+  Swal.fire({
+    title: "Registro exitoso!",
+    text: "por favor verifique su mail para continuar. En caso de no encontrarlo, revisa la carpeta SPAM",
+    icon: "success",
+  });
 
-  enviarMail(mail);
+  enviarMail(mail, usuario);
 
   setTimeout(() => {
     window.location.href = "/index.html";
-  }, 1000);
+  }, 3000);
 };
 
-const enviarMail = (correo) => {
+const enviarMail = (correo, usuario) => {
   Email.send({
     Host: "smtp.elasticemail.com",
     Username: "martin.fesito@gmail.com",
@@ -297,7 +295,7 @@ const enviarMail = (correo) => {
     To: correo,
     From: "martin.fesito@gmail.com",
     Subject: "Bienvenido a Play Gaming",
-    Body: "Bienvenido a nuestra plataforma Play Gaming. En 24 horas habilitaremos tu cuenta para que puedas acceder.",
+    Body: `Bienvenido ${usuario} a nuestra plataforma Play Gaming . En 24 horas habilitaremos tu cuenta para que puedas acceder.`,
   });
 };
 

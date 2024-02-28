@@ -3,60 +3,6 @@
   padding: 0;
 }
 
-.imagen {
-  background-image: url("/img/League\ of\ Legends.png");
-  background-size: cover;
-  background-position: center;
-  height: 100vh;
-  opacity: 90%;
-  order: 1;
-}
-
-.custom-input {
-  border: 2px solid RGB(26, 26, 46);
-  border-radius: 5px;
-}
-
-.custom-input:focus {
-  outline: none;
-  box-shadow: 0 0 5px #007bff;
-}
-.bg-nav {
-  background-color: RGB(26, 26, 46);
-}
-
-.slide2:hover,
-.slide2:focus {
-  box-shadow: inset 40em 0 0 0 var(--hover);
-}
-
-.slide2 {
-  --color: RGB(26, 26, 46);
-  --hover: #ff0000;
-}
-
-.slide2 {
-  color: var(--color);
-  -webkit-transition: 0.25s;
-  transition: 0.25s;
-  border-radius: 10px;
-}
-
-.slide2:hover,
-.slide2:focus {
-  border-color: var(--hover);
-  color: #fff;
-}
-
-.slide2 {
-  background: none;
-  border: 2px solid;
-  font: inherit;
-  line-height: 1;
-  margin: 0.5em;
-  padding: 10px;
-}
-
 .slide:hover,
 .slide:focus {
   box-shadow: inset 40em 0 0 0 var(--hover);
@@ -84,7 +30,6 @@
   border: 2px solid;
   font: inherit;
   line-height: 1;
-  margin: 0.5em;
   padding: 10px;
 }
 

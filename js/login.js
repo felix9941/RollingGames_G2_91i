@@ -8,7 +8,7 @@ formLogin.innerHTML = `
     <form class="mt-5 w-75" id="loginForm">
 
       <div class="mb-3 mt-4">
-        <label for="mail" class="form-label">Correo Electrónico</label>
+        <label for="mail" class="form-label">Correo Electrónico o Usuario</label>
         <input
           type="email"
           class="form-control custom-input"
@@ -16,7 +16,8 @@ formLogin.innerHTML = `
           maxlength="50"
           required
         />
-        
+        <div class="invalid-feedback" id="mailError"></div>
+        <div class="invalid-feedback" id="instructivoMjeUser"></div>
       </div>
       <div class="mb-3">
         <label for="pass" class="form-label">Contraseña</label>
@@ -28,14 +29,16 @@ formLogin.innerHTML = `
           maxlength="20" 
           
         />
+        <div class="invalid-feedback" id="passError"></div>
+        <div class="invalid-feedback" id="instructivoMjePass"></div>
       </div>
      
-      <div class="text-center textD">
-      <a href="./recuperarCuenta.html">¿Olvidaste tu contraseña?</a>
+      <div class="text-center">
+      <a href="./recuperarCuenta.html" class="text-black">¿Olvidaste tu contraseña?</a>
       </div>
 
       <div class="text-center mt-2">
-        <p> ¿No tienes una cuenta?, haz click <a href="./registro.html">aqui</a></p>
+        <p> ¿No tienes una cuenta?, haz click <a href="./registro.html" class="text-black">aqui</a></p>
       </div>
       
       <div class="d-flex justify-content-center mt-4">
@@ -106,9 +109,9 @@ navbarLogin.innerHTML = `
 
 (() => {
   const generarID = () => {
-  const usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
-  return usuarios.length > 0 ? usuarios[usuarios.length - 1].id + 1 : 1;
-};
+    const usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
+    return usuarios.length > 0 ? usuarios[usuarios.length - 1].id + 1 : 1;
+  };
 
   const newUser = {
     id: generarID(),
@@ -160,8 +163,9 @@ const loginUser = () => {
 
     const listaUsuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
 
-    const indiceUsuario = listaUsuarios.findIndex(
-      (user) => user.mail === inputMail && user.contrasena === inputPass
+    const indiceUsuario = listaUsuarios.findIndex((user) =>
+        (user.mail === inputMail || user.usuario === inputMail) &&
+        user.contrasena === inputPass
     );
 
     if (indiceUsuario !== -1) {
@@ -176,47 +180,107 @@ const loginUser = () => {
     return;
   }
 
-  if (!inputMail || !inputPass) {
-    alert("Por favor, complete todos los campos.");
+  if (!inputMail && !inputPass) {
+    document.getElementById("mailError").innerHTML = "Campo requerido";
+    document.getElementById("mail").classList.add("is-invalid");
+
+    document.getElementById("passError").innerHTML = "Campo requerido";
+    document.getElementById("pass").classList.add("is-invalid");
+
+    document.getElementById("mail").addEventListener("input", () => {
+      document.getElementById("mailError").innerHTML = "";
+      document.getElementById("mail").classList.remove("is-invalid");
+    });
+
+    document.getElementById("pass").addEventListener("input", () => {
+      document.getElementById("passError").innerHTML = "";
+      document.getElementById("pass").classList.remove("is-invalid");
+    });
     return;
+  } else {
+    if (!inputMail) {
+      document.getElementById("mailError").innerHTML = "Campo requerido";
+      document.getElementById("mail").classList.add("is-invalid");
+
+      document.getElementById("mail").addEventListener("input", () => {
+        document.getElementById("mailError").innerHTML = "";
+        document.getElementById("mail").classList.remove("is-invalid");
+      });
+      return;
+    }
+
+    if (!inputPass) {
+      document.getElementById("passError").innerHTML = "Campo requerido";
+      document.getElementById("pass").classList.add("is-invalid");
+
+      document.getElementById("pass").addEventListener("input", () => {
+        document.getElementById("passError").innerHTML = "";
+        document.getElementById("pass").classList.remove("is-invalid");
+      });
+      return;
+    }
   }
 
   if (!combinedRegexp.test(inputMail)) {
-    alert(
-      "Usuario debe tener al menos 8 caracteres y contener letras y números, si no recuerdas el usuario utiliza el mail."
-    );
+    document.getElementById("instructivoMjeUser").innerHTML =
+      "Usuario debe tener al menos 8 caracteres y contener letras y números, si no recuerdas el usuario utiliza el mail.";
+    document.getElementById("mail").classList.add("is-invalid");
+
+    document.getElementById("mail").addEventListener("input", () => {
+      document.getElementById("instructivoMjeUser").innerHTML = "";
+      document.getElementById("mail").classList.remove("is-invalid");
+    });
+
     return;
   } else if (!passwordRegexp.test(inputPass)) {
-    alert(
-      "La contraseña debe tener al menos 8 caracteres y contener solo letras y números."
-    );
+    document.getElementById("instructivoMjePass").innerHTML =
+      "La contraseña debe tener al menos 8 caracteres y contener solo letras y números.";
+    document.getElementById("pass").classList.add("is-invalid");
+
+    document.getElementById("pass").addEventListener("input", () => {
+      document.getElementById("instructivoMjePass").innerHTML = "";
+      document.getElementById("pass").classList.remove("is-invalid");
+    });
     return;
   }
 
   document.getElementById("loginForm").reset();
 
   if (isUserInhabilitado) {
-    alert("Usuario inhabilitado");
+    Swal.fire({
+      icon: "error",
+      title: "Importante",
+      text: "Usuario inhabilitado",
+    });
     return;
   }
 
   if (isUserPendiente) {
-    alert("Usuario pendiente de aprobacion");
+    Swal.fire({
+      icon: "warning",
+      title: "Estado de tu cuenta",
+      text: "Pendiente de aprobacion",
+    });
 
     setTimeout(() => {
       window.location.href = "/index.html";
-    }, 1000);
+    }, 3000);
 
     return;
   }
 
   if (userExists) {
-    alert("Inicio de sesión exitoso!");
+    Swal.fire({
+      title: "Excelente!",
+      text: "Inicio de sesión exitoso!",
+      icon: "success",
+    });
 
     const listaUsuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
 
     const indiceUsuario = listaUsuarios.findIndex(
-      (user) => user.mail === inputMail && user.contrasena === inputPass
+      (user.mail === inputMail && user.contrasena === inputPass) ||
+        (user.usuario === inputMail && user.contrasena === inputPass)
     );
 
     if (indiceUsuario !== -1) {
