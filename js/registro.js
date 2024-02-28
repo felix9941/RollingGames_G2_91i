@@ -142,7 +142,6 @@ const registerUser = () => {
       input.parentNode.appendChild(mensajeElement);
     }
 
-    // Oculta el mensaje instructivo
     const instructivoElement = document.getElementById(
       `${input.id}-mensaje-instructivo`
     );

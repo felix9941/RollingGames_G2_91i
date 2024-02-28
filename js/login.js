@@ -149,7 +149,7 @@ const loginUser = () => {
   const userExists = usersList.find(
     (user) =>
       (user.mail === inputMail && user.contrasena === inputPass) ||
-      (user.usuario === inputMail && user.contrasena === inputPass)
+      (user.usuario === inputMail && user.contrasena)
   );
 
   const isUserInhabilitado = userExists && userExists.delete === true;
@@ -163,9 +163,9 @@ const loginUser = () => {
 
     const listaUsuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
 
-    const indiceUsuario = listaUsuarios.findIndex(
-      (user.mail === inputMail && user.contrasena === inputPass) ||
-        (user.usuario === inputMail && user.contrasena === inputPass)
+    const indiceUsuario = listaUsuarios.findIndex((user) =>
+        (user.mail === inputMail || user.usuario === inputMail) &&
+        user.contrasena === inputPass
     );
 
     if (indiceUsuario !== -1) {
