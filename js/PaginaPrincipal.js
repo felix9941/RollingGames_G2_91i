@@ -565,7 +565,7 @@ localStorage.setItem("catalogoJuegos", catalogoJuegosJSON);
 
 const createCard = (juego, index) => `
 <div class="col-12 col-md-4 col-lg-3 my-3">
-  <p class="card-text-categoria anta-regular" style="text-align: center;">${juego.categoria}</p>
+<h5 class="card-text-categoria anta-regular" style="text-align: center;">${juego.titulo}</h5>
   <div class="card1">
     <a href="../page/detalleJuego.html" class="card-link">
       <img src="${juego.imagen}" class="card-img-top1" alt="${juego.titulo}">
