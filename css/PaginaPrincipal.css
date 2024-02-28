@@ -206,7 +206,6 @@ h2 {
   width: 100%;
   height: 56vh;
   height: 100%;
-  object-fit: cover;
   transition: transform 0.3s ease-in-out;
 }
 
@@ -228,11 +227,13 @@ h2 {
 .carousel-control-prev-icon,
 .visually-hidden,
 .carousel-control-next-icon {
+  filter: none !important;
   background-color: rgba(255, 184, 20, 1);
 }
 .carousel-control-prev-icon:hover,
 .visually-hidden:hover,
 .carousel-control-next-icon:hover {
+  filter: none !important;
   background-color: rgba(255, 184, 20, 1);
 }
 
@@ -263,7 +264,7 @@ h2 {
   }
   .card1 {
     width: 90%;
-    height: 15vh;
+    height: 25vh;
     margin-top: 35px;
     margin-left: 0%;
     object-fit: cover;
