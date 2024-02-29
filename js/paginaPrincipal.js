@@ -466,7 +466,7 @@ const juegoDestacado =
 const navbarRegistro = document.getElementById("navbar-registro");
 navbarRegistro.innerHTML = `
 <div class="container-fluid">
-<a href="../page/PaginaPrincipal.html" class="d-flex align-items-center enlace-logo">
+<a href="../page/paginaPrincipal.html" class="d-flex align-items-center enlace-logo">
   <img class="ms-1 px-2" src="../img/Logo Play Gaming.png" alt="Logo Play Gamming" />
 </a>
 <button
@@ -486,28 +486,28 @@ navbarRegistro.innerHTML = `
     <li class="nav-item">
       <a
         class="nav-link btn-hover btn-focus text-navbar anta-regular ms-3 px-2"
-        href="./sobreNosotros.html"
+        href="../page/sobreNosotros.html"
         >Sobre nosotros</a
       >
     </li>
     <li class="nav-item">
       <a
         class="nav-link btn-hover btn-focus text-navbar anta-regular ms-3 px-2"
-        href="./contacto.html"
+        href="../page/contacto.html"
         >Contacto</a
       >
     </li>
     <li class="nav-item">
       <a
         class="nav-link btn-hover btn-focus text-navbar anta-regular ms-3 px-2"
-        href="./login.html"
+        href="../page/login.html"
         >Iniciar sesion</a
       >
     </li>
     <li class="nav-item">
       <a
         class="nav-link btn-hover btn-focus text-navbar anta-regular ms-3 px-2"
-        href="./registro.html"
+        href="../page/registro.html"
         >Registrarse</a
       >
     </li>
