@@ -304,6 +304,8 @@ const validacionRecupero = () => {
     return user.mail === mailInput && user.recuperarId == idInput;
   });
 
+  const contrasenaActual = userExists[usuarioIndex].contrasena;
+
   if (!passwordRegexp.test(passRecupero)) {
     document.getElementById("instructivoMjePass").innerHTML =
       "La contraseña debe tener al menos 8 caracteres y contener solo letras y números.";
@@ -325,6 +327,16 @@ const validacionRecupero = () => {
       document.getElementById("passError").innerHTML = "";
       document.getElementById("rPassRecupero").classList.remove("is-invalid");
     });
+    return;
+  }
+
+  if (passRecupero === contrasenaActual) {
+    Swal.fire({
+      icon: "warning",
+      title: "Atencion! error al actualizar tu contraseña",
+      text: "Utilice una contraseña distinta a la anterior.",
+    });
+
     return;
   }
 
