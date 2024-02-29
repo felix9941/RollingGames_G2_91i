@@ -4,21 +4,6 @@
   box-sizing: border-box;
 }
 
-.container-fluid {
-  background-color: RGB(26, 26, 46);
-  color: white;
-}
-
-.informacion-pag a {
-  text-decoration: none;
-  color: white;
-}
-
-.icons a {
-  text-decoration: none;
-  color: white;
-}
-
 html,
 body {
   display: flex;
@@ -325,4 +310,32 @@ h2 {
   .title-Publicidad {
     display: none;
   }
+}
+
+.containerFooter {
+  background-color: RGB(26, 26, 46);
+  color: white;
+}
+
+.informacion-pag a {
+  text-decoration: none;
+  color: white;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+footer {
+  margin-top: auto;
+}
+
+.icons a {
+  text-decoration: none;
+  color: white;
+}
+
+.listNone {
+  list-style: none;
 }
