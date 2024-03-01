@@ -116,19 +116,25 @@ tablaJuegos.innerHTML = juegos
                         juego.titulo
                       }" aria-describedby="emailHelp" >
                     </div>
-    
+                    
                     <div class="mb-3">
-                      <label for="disabledSelect" class="form-label">Categoria</label>
-                      <select id="disabledSelect" class="form-select">
-                        <option>Seleccionar categoria</option>
-                        <option value="Aventura" ${
-                          juego.categoria === "Aventura" ? "checked" : ""
-                        }>Aventura</option>
-                        <option value="Acción">Acción</option>
-                        <option value="Estrategia">Estrategia</option>
-                        <option value="Deportes">Deportes</option>
-                      </select>
-                    </div>
+                    <label for="categoriaSelect" class="form-label">Categoria</label>
+                    <select id="categoriaSelect" class="form-select">
+                      <option value="">Seleccionar categoria</option>
+                      <option value="Aventura" ${
+                        juego.categoria === "Aventura" ? "selected" : ""
+                      }>Aventura</option>
+                      <option value="Acción" ${
+                        juego.categoria === "Acción" ? "selected" : ""
+                      }>Acción</option>
+                      <option value="Estrategia" ${
+                        juego.categoria === "Estrategia" ? "selected" : ""
+                      }>Estrategia</option>
+                      <option value="Deportes" ${
+                        juego.categoria === "Deportes" ? "selected" : ""
+                      }>Deportes</option>
+                    </select>
+                  </div>
     
                     <div class="mb-3">
                       <label for="exampleInputPassword1" class="form-label">Descripcion</label>
