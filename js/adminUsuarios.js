@@ -1,7 +1,7 @@
 const navbarAdmin = document.getElementById("navbar-admin");
 navbarAdmin.innerHTML = `
 <div class="container-fluid">
-<a href="/index.html" class="d-flex align-items-center enlace-logo">
+<a href="./paginaPrincipalAdmin.html" class="d-flex align-items-center enlace-logo">
   <img class="ms-1 px-2" src="../img/Logo Play Gaming.png" alt="" />
 </a>
 <button
@@ -21,7 +21,7 @@ navbarAdmin.innerHTML = `
     <li class="nav-item">
       <a
         class="nav-link btn-hover btn-focus text-navbar anta-regular ms-3 px-2"
-        href="./paginaPrincipal.html"
+        href="./paginaPrincipalAdmin.html"
         >Inicio</a
       >
     </li>
@@ -81,7 +81,7 @@ footerGeneral.innerHTML = ` <div class="col-12 col-md-6 col-lg-4 d-flex justify-
     class="informacion-pag text-center mt-4 mb-3 listNone"
     
   >
-    <li><a href="/index.html">Inicio</a></li>
+    <li><a href="./paginaPrincipalAdmin.html">Inicio</a></li>
     <li><a href="sobreNosotros.html">Sobre nosotros</a></li>
     <li><a href="contacto.html">Contacto</a></li>
     <li>
