@@ -5,3 +5,9 @@
 .unchecked {
   color: gray; /* Color por defecto cuando no está seleccionado */
 }
+
+.boton {
+  width: 0.5em;
+  height: 100%;
+  margin-right: 1;
+}

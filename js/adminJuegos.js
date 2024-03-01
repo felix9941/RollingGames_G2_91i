@@ -4,9 +4,9 @@ const juegos = JSON.parse(localStorage.getItem("catalogoDeJuegos")) || [];
 
 console.log(juegos);
 
-function toggleCheck(event) {
+/* function destacado(event) {
   event.preventDefault();
-  var check = document.getElementById("check");
+  var check = document.getElementById("checkDestacado");
   var starIcon = document.getElementById("starIcon");
 
   if (check.classList.contains("checked")) {
@@ -20,6 +20,10 @@ function toggleCheck(event) {
     starIcon.classList.remove("text-secondary");
     starIcon.classList.add("text-warning");
   }
+} */
+
+function eliminar(event, nombreJuego) {
+  alert("Desea borrar: " + nombreJuego);
 }
 
 const nuevoJuego = document.getElementById("idBotonNuevoJuego");
@@ -85,11 +89,7 @@ nuevoJuego.innerHTML = `
 
   
 
-<div class="btn-group" role="group" aria-label="Basic example">
-  <button type="button" class="btn btn-primary"><i class="fas fa-star fa-2x text-secondary ms-4"></i></button>
-  <button type="button" class="btn btn-primary">Middle</button>
-  <button type="button" class="btn btn-primary">Right</button>
-</div>
+
 `;
 /* Tablas de juego */
 tablaJuegos.innerHTML = juegos
@@ -109,8 +109,19 @@ tablaJuegos.innerHTML = juegos
   </td>
   <td>
     <div class="container d-flex">
+
+    <a href="#" id="check" class="unchecked" onclick="eliminar(event, '${
+      juego.titulo
+    }')">
+      <i class="fa-solid fa-trash fa-2x  ms-2 text-dark"></i>
+    </a>
+
+
+
+
+
           <!-- Button trigger modal -->
-          <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal-${
+          <button type="button" class="btn  btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal-${
             juego.id
           }">
                 <i class="fas fa-edit"></i>
@@ -120,7 +131,7 @@ tablaJuegos.innerHTML = juegos
             <div class="modal  fade" id="exampleModal-${
               juego.id
             }" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-              <div class="modal-dialog">
+              <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                   <div class="modal-header">
                       <h5 class="modal-title w-100 text-center">Editar Juego: ${
@@ -187,8 +198,43 @@ tablaJuegos.innerHTML = juegos
             </div>
 
 
-          <i class="fas fa-star fa-2x text-secondary ms-4"></i>
 
+
+
+
+
+          <!-- Button trigger modal -->
+          <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#destacar-${
+            juego.id
+          }">
+          <i class="fas fa-star text-secondary"></i>
+          </button>
+          
+          <!-- Vertically centered modal -->
+          <div class="modal fade" id="destacar-${
+            juego.id
+          }" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Destacar</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                Esta seguro de querer destacar ${juego.titulo}?
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+
+
+  
     </div>
   </td> 
 </tr>
