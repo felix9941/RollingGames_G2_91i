@@ -1,6 +1,6 @@
 const navbarSobreNosotros = document.getElementById("navbarSobreNosotros");
-navbarSobreNosotros.innerHTML = `<a href="/index.html" class="d-flex align-items-center enlace-logo">
-<img class="ms-1 px-2" src="../img/Logo Play Gaming.png" alt="" />
+navbarSobreNosotros.innerHTML = `<a class="d-flex align-items-center enlace-logo" onclick="logoPaginaPrincipal()" id="loginP">
+<img class="ms-1 px-2" src="../img/Logo Play Gaming.png" alt="logo de la empresa"/>
 </a>
 <button
 class="navbar-toggler"
@@ -34,17 +34,28 @@ aria-label="Toggle navigation"
   <li class="nav-item">
     <a
       class="nav-link btn-hover btn-focus text-navbar anta-regular ms-3 px-2"
-      href="login.html"
-      >Iniciar sesion</a
+      href="login.html" id="loginItem">Iniciar sesion</a
     >
   </li>
   <li class="nav-item">
     <a
       class="nav-link btn-hover btn-focus text-navbar anta-regular ms-3 px-2"
-      href="registro.html"
-      >Registrarse</a
+      href="registro.html" id="registerItem">Registrarse</a
     >
   </li>
+  <li class="nav-item" id="micuenta">
+  <div class="dropdown">
+     <a class="dropdown-toggle nav-link btn-hover btn-focus text-navbar anta-regular ms-3 px-2" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+     Mi cuenta
+    </a>
+    <ul class="dropdown-menu">
+      <li><a class="dropdown-item" href="favoritos.html">Favoritos</a></li>
+      <li><a class="dropdown-item" href="carrito.html">Carrito</a></li>
+      <li><a class="dropdown-item" href="error404.html"">Mis datos</a></li>
+      <li><a class="dropdown-item" href="#" onclick="cerrarSesion()">Cerrar Sesion</a></li>
+    </ul>
+  </div>
+</li>
 </ul>
 </div>`;
 
@@ -207,3 +218,51 @@ footerGeneral.innerHTML = ` <div class="col-12 col-md-6 col-lg-4 d-flex justify-
   </div>
 </div>
 </div>`;
+
+(() => {
+  const usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
+  const botonInicio = document.getElementById("loginItem");
+  const botonRegistro = document.getElementById("registerItem");
+  const botonLogin = document.getElementById("micuenta");
+
+  const userLogin = usuarios.find((u) => u.login === true);
+
+  if (userLogin) {
+    botonInicio.classList.add("d-none");
+    botonRegistro.classList.add("d-none");
+    botonLogin.classList.add("d-block");
+  } else {
+    botonInicio.classList.add("d-block");
+    botonRegistro.classList.add("d-block");
+    botonLogin.classList.add("d-none");
+  }
+})();
+
+function logoPaginaPrincipal() {
+  const usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
+  const logoPrincipal = document.getElementById("loginP");
+
+  const userLogin = usuarios.find((u) => u.login === true);
+
+  if (userLogin) {
+    logoPrincipal = window.location.href = "paginaPrincipal.html";
+  } else {
+    logoPrincipal = window.location.href = "/index.html";
+  }
+}
+
+function cerrarSesion() {
+  const usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
+
+  const userLogin = usuarios.find((u) => u.id && u.login === true);
+
+  if (userLogin) {
+    userLogin.login = false;
+
+    localStorage.setItem("usuarios", JSON.stringify(usuarios));
+  }
+
+  setTimeout(() => {
+    window.location.href = "/index.html";
+  }, 1000);
+}
