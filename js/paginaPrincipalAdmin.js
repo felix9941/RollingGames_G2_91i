@@ -1,57 +1,48 @@
 const catalogoJuegos =
   JSON.parse(localStorage.getItem("catalogoDeJuegos")) || [];
 
-const navbarUsuario = document.getElementById("navbar-usuario");
-navbarUsuario.innerHTML = `
-<div class="container-fluid">
-<a href="../index.html" class="d-flex align-items-center enlace-logo">
-  <img class="ms-1 px-2" src="../img/Logo Play Gaming.png" alt="Logo Play Gamming" />
-</a>
-<button
-  class="navbar-toggler"
-  type="button"
-  data-bs-toggle="collapse"
-  data-bs-target="#navbarSupportedContent"
-  aria-controls="navbarSupportedContent"
-  aria-expanded="false"
-  aria-label="Toggle navigation"
->
-  <span class="navbar-toggler-icon"></span>
-</button>
-<div class="collapse navbar-collapse" id="navbarSupportedContent">
-  <ul class="navbar-nav ms-auto me-5 mb-2 mb-lg-0">
-    <li class="nav-item"></li>
-    <li class="nav-item">
-      <a
-        class="nav-link btn-hover btn-focus text-navbar anta-regular ms-3 px-2"
-        href="../page/sobreNosotros.html"
-        >Sobre nosotros</a
-      >
-    </li>
-    <li class="nav-item">
-      <a
-        class="nav-link btn-hover btn-focus text-navbar anta-regular ms-3 px-2"
-        href="../page/contacto.html"
-        >Contacto</a
-      >
-    </li>
-    <li class="nav-item">
+const navbarAdmin = document.getElementById("navbar-admin");
+navbarAdmin.innerHTML = `
+  <div class="container-fluid">
+  <a href="./paginaPrincipalAdmin.html" class="d-flex align-items-center enlace-logo">
+    <img class="ms-1 px-2" src="../img/Logo Play Gaming.png" alt="" />
+  </a>
+  <button
+    class="navbar-toggler"
+    type="button"
+    data-bs-toggle="collapse"
+    data-bs-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+  >
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav ms-auto me-5 mb-2 mb-lg-0">
+      <li class="nav-item"></li>
+      <li class="nav-item">
+        <a
+          class="nav-link btn-hover btn-focus text-navbar anta-regular ms-3 px-2"
+          href="./paginaPrincipalAdmin.html"
+          >Inicio</a
+        >
+      </li>
+      <li class="nav-item">
         <div class="dropdown">
            <a class="dropdown-toggle nav-link btn-hover btn-focus text-navbar anta-regular ms-3 px-2" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
            Mi cuenta
           </a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="favoritos.html">Favoritos</a></li>
-            <li><a class="dropdown-item" href="carrito.html">Carrito</a></li>
-            <li><a class="dropdown-item" href="error404.html"">Mis datos</a></li>
+            <li><a class="dropdown-item" href="./adminUsuarios.html">Admin. Usuarios</a></li>
+            <li><a class="dropdown-item" href="#">Admin. Productos</a></li>
             <li><a class="dropdown-item" href="#" onclick="cerrarSesion()">Cerrar Sesion</a></li>
           </ul>
         </div>
       </li>
-  </ul>
-</div>
-</div>`;
-
+    </ul>
+  </div>
+  </div>`;
 const juegosDestacados = document.getElementById("juegosDestacados");
 juegosDestacados.innerHTML = `
 <div class="card mb-3 px-0">
@@ -72,9 +63,36 @@ juegosDestacados.innerHTML = `
 </div>
 `;
 
+const publicidadSección = document.getElementById("publicidadSección");
+publicidadSección.innerHTML = `
+<ul class="img-list scroller_inner">
+          <li>
+            <img src="../img/Activision-logo.png" alt="Activision Logo" />
+          </li>
+          <li>
+            <img src="../img/Nintendo-logo.png" alt="Nintendo-logo" />
+          </li>
+          <li>
+            <img src="../img/Riot-games-logo.png" alt="RiotGames-logo" />
+          </li>
+          <li>
+            <img src="../img/Blizzard-logo.png" alt="Blizzard-logo" />
+          </li>
+          <li>
+            <img src="../img/Ubisoft-Logo.png" alt="Ubisoft-Logo" />
+          </li>
+          <li>
+            <img src="../img/Rockstar-Logo.png" alt="Rockstar-Logo" />
+          </li>
+          <li>
+            <img src="../img/Sony_games_logo.png" alt="SonyGames-logo" />
+          </li>
+        </ul>
+`;
+
 const footerGeneral = document.getElementById("footerGeneral");
 footerGeneral.innerHTML = ` <div class="col-12 col-md-6 col-lg-4 d-flex justify-content-center">
-<a href="paginaPrincipal.html"
+<a href="paginaPrincipalAdmin.html"
   ><img
     src="../img/Logo Play Gaming.png"
     alt="Logo-PlayGaming"
@@ -112,7 +130,7 @@ footerGeneral.innerHTML = ` <div class="col-12 col-md-6 col-lg-4 d-flex justify-
     class="informacion-pag text-center mt-4 mb-3 listNone"
     
   >
-    <li><a href="paginaPrincipal.html">Inicio</a></li>
+    <li><a href="paginaPrincipalAdmin.html">Inicio</a></li>
     <li><a href="sobreNosotros.html">Sobre nosotros</a></li>
     <li><a href="contacto.html">Contacto</a></li>
     <li>
@@ -323,32 +341,7 @@ window.onresize = () => {
   actualizarCarrusel(catalogoJuegos);
 };
 //Publicidad
-const publicidadSección = document.getElementById("publicidadSección");
-publicidadSección.innerHTML = `
-<ul class="img-list scroller_inner">
-          <li>
-            <img src="../img/Activision-logo.png" alt="Activision Logo" />
-          </li>
-          <li>
-            <img src="../img/Nintendo-logo.png" alt="Nintendo-logo" />
-          </li>
-          <li>
-            <img src="../img/Riot-games-logo.png" alt="RiotGames-logo" />
-          </li>
-          <li>
-            <img src="../img/Blizzard-logo.png" alt="Blizzard-logo" />
-          </li>
-          <li>
-            <img src="../img/Ubisoft-Logo.png" alt="Ubisoft-Logo" />
-          </li>
-          <li>
-            <img src="../img/Rockstar-Logo.png" alt="Rockstar-Logo" />
-          </li>
-          <li>
-            <img src="../img/Sony_games_logo.png" alt="SonyGames-logo" />
-          </li>
-        </ul>
-`;
+
 document.addEventListener("DOMContentLoaded", function () {
   const scrollerInner = document.querySelector(".scroller_inner");
   const imgList = document.querySelectorAll(".scroller_inner li");
@@ -366,10 +359,8 @@ function cerrarSesion() {
 
   if (userLogin) {
     userLogin.login = false;
-
     localStorage.setItem("usuarios", JSON.stringify(usuarios));
   }
-
   setTimeout(() => {
     window.location.href = "/index.html";
   }, 1000);
