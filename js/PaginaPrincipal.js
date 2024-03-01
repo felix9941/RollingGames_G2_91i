@@ -17,7 +17,7 @@ const catalogoJuegos = [
     id: 2,
     titulo: "Cyberpunk 2077",
     descripcion: "Un RPG de mundo abierto ambientado en un futuro distópico.",
-    categoria: "RPG",
+    categoria: "Acción",
     precio: 49.99,
     requisitos: {
       minimos: {
@@ -112,7 +112,7 @@ const catalogoJuegos = [
     id: 6,
     titulo: "Call of Duty: Warzone",
     descripcion: "Battle royale con acción intensa y modos de juego variados.",
-    categoria: "Shooter",
+    categoria: "Estrategia",
     precio: 0, // Gratis
     requisitos: {
       minimos: {
@@ -136,7 +136,7 @@ const catalogoJuegos = [
     titulo: "The Witcher 3: Wild Hunt",
     descripcion:
       "RPG de acción con un mundo abierto lleno de monstruos y misterios.",
-    categoria: "RPG",
+    categoria: "Aventura",
     precio: 39.99,
     requisitos: {
       minimos: {
@@ -160,7 +160,7 @@ const catalogoJuegos = [
     titulo: "Overwatch",
     descripcion:
       "Juego de disparos en equipo con héroes únicos y habilidades especiales.",
-    categoria: "Shooter",
+    categoria: "Estrategia",
     precio: 39.99,
     requisitos: {
       minimos: {
@@ -318,7 +318,7 @@ const catalogoJuegos = [
     titulo: "Fortnite",
     descripcion:
       "Únete a la batalla en línea y sé el último en pie en este juego battle royale.",
-    categoria: "Shooter",
+    categoria: "Aventura",
     precio: 0, // Gratis
     requisitos: {
       minimos: {
@@ -342,7 +342,7 @@ const catalogoJuegos = [
     titulo: "Final Fantasy XV",
     descripcion:
       "Embárcate en un viaje épico en este RPG de acción de la serie Final Fantasy.",
-    categoria: "RPG",
+    categoria: "Estrategia",
     precio: 49.99,
     requisitos: {
       minimos: {
@@ -408,17 +408,17 @@ const catalogoJuegos = [
     },
     imagen: "../img/Hollow Knight.png",
     url: "https://youtu.be/UAO2urG23S4",
-  } /*
+  },
   {
     id: 19,
     titulo: "World of Warcraft",
     descripcion:
       "Adéntrate en el universo de Azeroth en este juego MMORPG legendario.",
-    categoria: "MMORPG",
-    precio: 14.99 / mes,
+    categoria: "Aventura",
+    precio: 14.99,
     requisitos: {
       minimos: {
-        sistemaOperativo: "Windows 7/8/10",
+        sistemaOperativo: "Windows 7",
         procesador: "Intel Core i5-3450 o AMD FX 8300",
         memoriaRAM: "4 GB",
         tarjetaGrafica: "NVIDIA GeForce GTX 760 o AMD Radeon RX 560",
@@ -438,7 +438,7 @@ const catalogoJuegos = [
     titulo: "Mortal Kombat 11",
     descripcion:
       "Libra batallas épicas en este juego de lucha con personajes icónicos de Mortal Kombat.",
-    categoria: "Lucha",
+    categoria: "Acción",
     precio: 59.99,
     requisitos: {
       minimos: {
@@ -457,8 +457,6 @@ const catalogoJuegos = [
     imagen: "../img/Mortal Kombat 11.png",
     url: "https://youtu.be/z7f4paq1Fvg",
   },
-  */,
-  ,
 ];
 /*
 const juegoDestacado =
@@ -522,7 +520,7 @@ juegosDestacados.innerHTML = `
 <div class="card mb-3 px-0">
   <div class="row g-0 px-0">
     <div class="col-md-8 px-0">
-      <img id="imagenJuego" class="card-img-top" alt="ImagenDelJuego" />
+    <img id="imagenJuego" class="card-img-top" alt="ImagenDelJuego" />
     </div>
     <div class="col-md-4 px-0">
       <div class="card-body">
@@ -536,14 +534,126 @@ juegosDestacados.innerHTML = `
   </div>
 </div>
 `;
+
 function mostrarJuego(id) {
   const juego = catalogoJuegos.find((juego) => juego.id === id);
+
+  const imagenJuego = document.getElementById("imagenJuego");
+  imagenJuego.style.backgroundImage = `url('${juego.imagen}')`;
+  imagenJuego.style.backgroundSize = "cover";
+  imagenJuego.style.height = "100%";
 
   document.getElementById("imagenJuego").src = juego.imagen;
   document.getElementById("tituloJuego").innerText = juego.titulo;
   document.getElementById("descripcionJuego").innerText = juego.descripcion;
 }
 
-window.onload = function () {
-  mostrarJuego(catalogoJuegos[10].id);
+function inicializarPagina() {
+  mostrarJuego(catalogoJuegos[1].id);
+  inicializarCarrusel();
+}
+
+function inicializarCarrusel() {
+  actualizarCarrusel(catalogoJuegos);
+}
+
+window.onload = inicializarPagina;
+/* Categoria */
+const catalogoJuegosJSON = JSON.stringify(catalogoJuegos);
+
+localStorage.setItem("catalogoJuegos", catalogoJuegosJSON);
+
+const createCard = (juego, index) => `
+<div class="col-12 col-md-4 col-lg-3 my-3">
+<h5 class="card-text-categoria anta-regular" style="text-align: center;">${juego.titulo}</h5>
+  <div class="card-categoria">
+    <a href="../page/detalleJuego.html" class="card-link">
+      <img src="${juego.imagen}" class="card-img-top-categoria" alt="${juego.titulo}">
+    </a>
+  </div>
+</div>
+`;
+
+const createCarouselItem = (cards, isActive) => `
+  <div class="carousel-item ${isActive ? "active" : ""}">
+    <div class="row no-gutters justify-content-center">
+      ${cards}
+    </div>
+  </div>
+`;
+
+const actualizarCarrusel = (datos) => {
+  let cardsHTML = "";
+  let carouselItems = "";
+
+  datos.forEach((juego, index) => {
+    if (window.innerWidth < 768) {
+      carouselItems += createCarouselItem(
+        createCard(juego, index),
+        index === 0
+      );
+    } else {
+      cardsHTML += createCard(juego);
+      if ((index + 1) % 3 === 0 || index === datos.length - 1) {
+        carouselItems += createCarouselItem(cardsHTML, index < 3);
+        cardsHTML = "";
+      }
+    }
+  });
+
+  carruselCards.innerHTML = carouselItems;
 };
+
+document.getElementById("load-cards-btn").addEventListener("click", () => {
+  const juegosAccion = catalogoJuegos.filter(
+    (juego) => juego.categoria === "Acción"
+  );
+  actualizarCarrusel(juegosAccion);
+});
+
+document
+  .getElementById("load-cards-btn-aventura")
+  .addEventListener("click", () => {
+    const juegosAventura = catalogoJuegos.filter(
+      (juego) => juego.categoria === "Aventura"
+    );
+    actualizarCarrusel(juegosAventura);
+  });
+
+document
+  .getElementById("load-cards-btn-deportes")
+  .addEventListener("click", () => {
+    const juegosDeportes = catalogoJuegos.filter(
+      (juego) => juego.categoria === "Deportes"
+    );
+    actualizarCarrusel(juegosDeportes);
+  });
+
+document
+  .getElementById("load-cards-btn-estrategia")
+  .addEventListener("click", () => {
+    const juegosEstrategia = catalogoJuegos.filter(
+      (juego) => juego.categoria === "Estrategia"
+    );
+    actualizarCarrusel(juegosEstrategia);
+  });
+
+document.getElementById("load-all-cards-btn").addEventListener("click", () => {
+  actualizarCarrusel(catalogoJuegos);
+});
+
+const carruselCards = document.getElementById("carruselCards");
+
+window.onresize = () => {
+  actualizarCarrusel(catalogoJuegos);
+};
+//Publicidad
+document.addEventListener("DOMContentLoaded", function () {
+  const scrollerInner = document.querySelector(".scroller_inner");
+  const imgList = document.querySelectorAll(".scroller_inner li");
+
+  imgList.forEach((img) => {
+    const clone = img.cloneNode(true);
+    scrollerInner.appendChild(clone);
+  });
+});
