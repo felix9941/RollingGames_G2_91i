@@ -222,7 +222,7 @@ filtroJuegos.innerHTML = `
 `;
 const catalogoJuegosJSON = JSON.stringify(catalogoJuegos);
 
-localStorage.setItem("catalogoJuegos", catalogoJuegosJSON);
+localStorage.setItem("catalogoDeJuegos", catalogoJuegosJSON);
 
 const tarjetasCarrousel = document.getElementById("tarjetasCarrousel");
 tarjetasCarrousel.innerHTML = `
