@@ -279,9 +279,8 @@ function confirmarAutorizacion(usuarioId) {
       usuario.estado = true;
       localStorage.setItem("usuarios", JSON.stringify(adminUsuarios));
       renderizarTablaAdmin();
-
-      enviarMail(usuario.correo, usuario);
     }
+    enviarMail(usuario.correo, usuario);
   }
 }
 
