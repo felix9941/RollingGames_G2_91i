@@ -1,5 +1,5 @@
 const navbarSobreNosotros = document.getElementById("navbarSobreNosotros");
-navbarSobreNosotros.innerHTML = `<a class="d-flex align-items-center enlace-logo" onclick="logoPaginaPrincipal()" id="loginP">
+navbarSobreNosotros.innerHTML = `<a class="d-flex align-items-center enlace-logo" onclick="PaginaPrincipal()" id="loginP">
 <img class="ms-1 px-2" src="../img/Logo Play Gaming.png" alt="logo de la empresa"/>
 </a>
 <button
@@ -169,12 +169,13 @@ class="col-12 col-md-3 d-flex flex-column align-items-center px-3"
 
 const footerGeneral = document.getElementById("footerGeneral");
 footerGeneral.innerHTML = ` <div class="col-12 col-md-6 col-lg-4 d-flex justify-content-center">
-<a href="/index.html"
+<a 
   ><img
     src="../img/Logo Play Gaming.png"
     alt="Logo-PlayGaming"
     width="150vw"
     class="pb-3"
+    onclick="PaginaPrincipal()"
 /></a>
 </div>
 
@@ -207,7 +208,7 @@ footerGeneral.innerHTML = ` <div class="col-12 col-md-6 col-lg-4 d-flex justify-
     class="informacion-pag text-center mt-4 mb-3 listNone"
     
   >
-    <li><a href="/index.html">Inicio</a></li>
+    <li><a onclick="PaginaPrincipal()">Inicio</a></li>
     <li><a href="sobreNosotros.html">Sobre nosotros</a></li>
     <li><a href="contacto.html">Contacto</a></li>
     <li>
@@ -238,7 +239,7 @@ footerGeneral.innerHTML = ` <div class="col-12 col-md-6 col-lg-4 d-flex justify-
   }
 })();
 
-function logoPaginaPrincipal() {
+function PaginaPrincipal() {
   const usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
   const logoPrincipal = document.getElementById("loginP");
 

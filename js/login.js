@@ -233,7 +233,7 @@ const loginUser = () => {
     }
 
     setTimeout(() => {
-      window.location.href = "adminUsuarios.html";
+      window.location.href = "paginaPrincipalAdmin.html";
     }, 3000);
     return;
   }
@@ -352,7 +352,11 @@ const loginUser = () => {
       window.location.href = "paginaPrincipal.html";
     }, 1000);
   } else {
-    alert("Nombre de usuario o contraseña incorrectos.");
+    Swal.fire({
+      icon: "error",
+      title: "Importante",
+      text: "Usuario o contraseña incorrectos.",
+    });
   }
 };
 

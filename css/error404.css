@@ -3,6 +3,18 @@
   padding: 0;
 }
 
+.nav-item .dropdown .nav-link:focus {
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.mb {
+  margin-bottom: 10px;
+}
+
+.mbT {
+  margin-bottom: 40px;
+}
+
 .anta-regular {
   font-family: "Anta", sans-serif;
   font-weight: 400;
@@ -131,4 +143,13 @@ body {
   margin: 4px 4px;
   cursor: pointer;
   border-radius: 5px;
+  color: white;
+}
+
+.boton2 {
+  background: none;
+  border: none;
+  padding: 0;
+  color: rgb(0, 179, 255);
+  cursor: pointer;
 }
