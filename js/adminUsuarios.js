@@ -279,6 +279,8 @@ function confirmarAutorizacion(usuarioId) {
       usuario.estado = true;
       localStorage.setItem("usuarios", JSON.stringify(adminUsuarios));
       renderizarTablaAdmin();
+
+      enviarMail(usuario.correo, usuario);
     }
   }
 }
@@ -297,3 +299,15 @@ function borrarUsuario(usuarioId) {
     }
   }
 }
+
+const enviarMail = (correo, usuario) => {
+  Email.send({
+    Host: "smtp.elasticemail.com",
+    Username: "martin.fesito@gmail.com",
+    Password: "D52D5DF04EAF1430F1A6BA108E1ADA8E4BF6",
+    To: correo,
+    From: "martin.fesito@gmail.com",
+    Subject: "Bienvenido a Play Gaming",
+    Body: `Estimado ${usuario.usuario} a nuestra plataforma Play Gaming. Su usuario fue aprobado.`,
+  });
+};
