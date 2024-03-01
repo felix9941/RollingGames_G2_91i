@@ -499,3 +499,11 @@ const catalogoJuegos = [
     destacado: false,
   },
 ];
+
+//  Inicializacion de localStorage
+
+const catalogoDeJuegos = localStorage.getItem("catalogoDeJuegos") || [];
+
+if (!catalogoDeJuegos.length) {
+  localStorage.setItem("catalogoDeJuegos", JSON.stringify(catalogoJuegos));
+}
