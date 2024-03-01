@@ -1,0 +1,7 @@
+.checked {
+  color: yellow; /* Cambia el color a amarillo cuando está seleccionado */
+}
+
+.unchecked {
+  color: gray; /* Color por defecto cuando no está seleccionado */
+}
