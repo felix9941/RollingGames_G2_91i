@@ -307,6 +307,6 @@ const enviarMail = (correo, usuario) => {
     To: correo,
     From: "martin.fesito@gmail.com",
     Subject: "Bienvenido a Play Gaming",
-    Body: `Estimado ${usuario.usuario} a nuestra plataforma Play Gaming. Su usuario fue aprobado.`,
+    Body: `Estimado ${usuario.usuario} a nuestra plataforma Play Gaming. Su usuario fue aprobado ya puedes ingresar.`,
   });
 };
