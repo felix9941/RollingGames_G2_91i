@@ -10,14 +10,16 @@ const catalogoJuegos = [
       minimos: "No disponible (exclusivo de consola)",
       recomendados: "No disponible (exclusivo de consola)",
     },
-    imagen: "img/The Legend of Zelda  Breath of the Wild.png",
+    imagen: "../img/The Legend of Zelda  Breath of the Wild.png",
     url: "https://youtu.be/1rPxiXXxftE",
+    publicado: true,
+    destacado: false,
   },
   {
     id: 2,
     titulo: "Cyberpunk 2077",
     descripcion: "Un RPG de mundo abierto ambientado en un futuro distópico.",
-    categoria: "RPG",
+    categoria: "Acción",
     precio: 49.99,
     requisitos: {
       minimos: {
@@ -33,8 +35,10 @@ const catalogoJuegos = [
         tarjetaGrafica: "NVIDIA GTX 1060 6GB o AMD Radeon RX 5700 XT",
       },
     },
-    imagen: "img/Cyber Punk 2077.png",
+    imagen: "../img/Cyber Punk 2077.png",
     url: "https://youtu.be/8X2kIfS6fb8",
+    publicado: true,
+    destacado: true,
   },
   {
     id: 3,
@@ -57,8 +61,10 @@ const catalogoJuegos = [
         tarjetaGrafica: "NVIDIA GTX 660 o AMD Radeon HD 7850",
       },
     },
-    imagen: "img/FIFA 22.png",
+    imagen: "../img/FIFA 22.png",
     url: "https://youtu.be/o1igaMv46SY",
+    publicado: true,
+    destacado: false,
   },
   {
     id: 4,
@@ -81,8 +87,10 @@ const catalogoJuegos = [
         tarjetaGrafica: "NVIDIA GTX 1080 o AMD RX Vega 64",
       },
     },
-    imagen: "img/Assassins Creed Valhalla.png",
+    imagen: "../img/Assassins Creed Valhalla.png",
     url: "https://youtu.be/1Z7mIKGzowQ",
+    publicado: true,
+    destacado: false,
   },
   {
     id: 5,
@@ -105,14 +113,16 @@ const catalogoJuegos = [
         tarjetaGrafica: "NVIDIA GeForce 940M o AMD Radeon HD 8570",
       },
     },
-    imagen: "img/Minecraft.png",
+    imagen: "../img/Minecraft.png",
     url: "https://youtu.be/MmB9b5njVbA",
+    publicado: true,
+    destacado: false,
   },
   {
     id: 6,
     titulo: "Call of Duty: Warzone",
     descripcion: "Battle royale con acción intensa y modos de juego variados.",
-    categoria: "Shooter",
+    categoria: "Estrategia",
     precio: 0, // Gratis
     requisitos: {
       minimos: {
@@ -128,15 +138,17 @@ const catalogoJuegos = [
         tarjetaGrafica: "NVIDIA GTX 1660 o AMD Radeon RX 580",
       },
     },
-    imagen: "img/Call Of Duty Warzone.png",
+    imagen: "../img/Call Of Duty Warzone.png",
     url: "https://youtu.be/0E44DClsX5Q",
+    publicado: true,
+    destacado: false,
   },
   {
     id: 7,
     titulo: "The Witcher 3: Wild Hunt",
     descripcion:
       "RPG de acción con un mundo abierto lleno de monstruos y misterios.",
-    categoria: "RPG",
+    categoria: "Aventura",
     precio: 39.99,
     requisitos: {
       minimos: {
@@ -152,15 +164,17 @@ const catalogoJuegos = [
         tarjetaGrafica: "NVIDIA GTX 770 o AMD Radeon R9 290",
       },
     },
-    imagen: "img/The witcher 3 Wild Hunt.png",
+    imagen: "../img/The witcher 3 Wild Hunt.png",
     url: "https://youtu.be/6qpf3YWbCcE",
+    publicado: true,
+    destacado: false,
   },
   {
     id: 8,
     titulo: "Overwatch",
     descripcion:
       "Juego de disparos en equipo con héroes únicos y habilidades especiales.",
-    categoria: "Shooter",
+    categoria: "Estrategia",
     precio: 39.99,
     requisitos: {
       minimos: {
@@ -176,8 +190,10 @@ const catalogoJuegos = [
         tarjetaGrafica: "NVIDIA GTX 1060 o AMD Radeon RX 480",
       },
     },
-    imagen: "img/Overwatch.png",
+    imagen: "../img/Overwatch.png",
     url: "https://youtu.be/Eu7_o0g4n3U",
+    publicado: true,
+    destacado: false,
   },
   {
     id: 9,
@@ -200,8 +216,10 @@ const catalogoJuegos = [
         tarjetaGrafica: "NVIDIA GTX 1060 o AMD Radeon RX 480",
       },
     },
-    imagen: "img/RED DEAD 2.png",
+    imagen: "../img/RED DEAD 2.png",
     url: "https://youtu.be/tx8BPmTMS_o",
+    publicado: true,
+    destacado: false,
   },
   {
     id: 10,
@@ -224,8 +242,10 @@ const catalogoJuegos = [
         tarjetaGrafica: "NVIDIA GeForce GT 730 o AMD Radeon R7 240",
       },
     },
-    imagen: "img/League of Legends.png",
+    imagen: "../img/League of Legends.png",
     url: "https://youtu.be/ZHhqwBwmRkI",
+    publicado: true,
+    destacado: false,
   },
   {
     id: 11,
@@ -238,8 +258,10 @@ const catalogoJuegos = [
       minimos: "No disponible (exclusivo de consola)",
       recomendados: "No disponible (exclusivo de consola)",
     },
-    imagen: "img/Super Mario odyssey.png",
+    imagen: "../img/Super Mario odyssey.png",
     url: "https://youtu.be/5kcdRBHM7kM",
+    publicado: true,
+    destacado: false,
   },
   {
     id: 12,
@@ -262,8 +284,10 @@ const catalogoJuegos = [
         tarjetaGrafica: "NVIDIA GTX 1070 o AMD RX Vega 56",
       },
     },
-    imagen: "img/Star war Jedi Fallen Order.png",
+    imagen: "../img/Star war Jedi Fallen Order.png",
     url: "https://youtu.be/8V2dTitXClU",
+    publicado: true,
+    destacado: false,
   },
   {
     id: 13,
@@ -286,8 +310,10 @@ const catalogoJuegos = [
         tarjetaGrafica: "NVIDIA GeForce GTX 960 o AMD Radeon R9 280",
       },
     },
-    imagen: "img/Dota 2.png",
+    imagen: "../img/Dota 2.png",
     url: "https://youtu.be/tmn5HXW-3Wk",
+    publicado: true,
+    destacado: false,
   },
   {
     id: 14,
@@ -310,15 +336,17 @@ const catalogoJuegos = [
         tarjetaGrafica: "NVIDIA GTX 970 o AMD Radeon RX 570",
       },
     },
-    imagen: "img/Sekiro Shadows Die Twice.png",
+    imagen: "../img/Sekiro Shadows Die Twice.png",
     url: "https://youtu.be/e8iGRmFCRQk",
+    publicado: true,
+    destacado: false,
   },
   {
     id: 15,
     titulo: "Fortnite",
     descripcion:
       "Únete a la batalla en línea y sé el último en pie en este juego battle royale.",
-    categoria: "Shooter",
+    categoria: "Aventura",
     precio: 0, // Gratis
     requisitos: {
       minimos: {
@@ -334,15 +362,18 @@ const catalogoJuegos = [
         tarjetaGrafica: "NVIDIA GTX 960 o AMD Radeon R9 280",
       },
     },
-    imagen: "img/Fornite.png",
+    imagen: "../img/Fornite.png",
     url: "https://youtu.be/YRq7HdDhxjM",
+    publicado: true,
+    destacado: false,
   },
+
   {
     id: 16,
     titulo: "Final Fantasy XV",
     descripcion:
       "Embárcate en un viaje épico en este RPG de acción de la serie Final Fantasy.",
-    categoria: "RPG",
+    categoria: "Estrategia",
     precio: 49.99,
     requisitos: {
       minimos: {
@@ -358,8 +389,10 @@ const catalogoJuegos = [
         tarjetaGrafica: "NVIDIA GTX 1060 o AMD Radeon RX 480",
       },
     },
-    imagen: "img/Final Fantasy xv.png",
+    imagen: "../img/Final Fantasy xv.png",
     url: "https://youtu.be/dPOMkB8Q9aQ",
+    publicado: true,
+    destacado: false,
   },
   {
     id: 17,
@@ -382,8 +415,10 @@ const catalogoJuegos = [
         tarjetaGrafica: "NVIDIA GTX 670 o AMD Radeon HD 7970",
       },
     },
-    imagen: "img/Rainbow Six Siege.png",
+    imagen: "../img/Rainbow Six Siege.png",
     url: "https://youtu.be/ZH0VC-MTAzE",
+    publicado: true,
+    destacado: false,
   },
   {
     id: 18,
@@ -406,19 +441,21 @@ const catalogoJuegos = [
         tarjetaGrafica: "GeForce GTX 560 o equivalente AMD",
       },
     },
-    imagen: "img/Hollow Knight.png",
+    imagen: "../img/Hollow Knight.png",
     url: "https://youtu.be/UAO2urG23S4",
+    publicado: true,
+    destacado: false,
   },
   {
     id: 19,
     titulo: "World of Warcraft",
     descripcion:
       "Adéntrate en el universo de Azeroth en este juego MMORPG legendario.",
-    categoria: "MMORPG",
-    precio: 14.99 / mes,
+    categoria: "Aventura",
+    precio: 14.99,
     requisitos: {
       minimos: {
-        sistemaOperativo: "Windows 7/8/10",
+        sistemaOperativo: "Windows 7",
         procesador: "Intel Core i5-3450 o AMD FX 8300",
         memoriaRAM: "4 GB",
         tarjetaGrafica: "NVIDIA GeForce GTX 760 o AMD Radeon RX 560",
@@ -430,15 +467,17 @@ const catalogoJuegos = [
         tarjetaGrafica: "NVIDIA GeForce GTX 1080 o AMD Radeon RX Vega 64",
       },
     },
-    imagen: "img/World of Warcraft.png",
+    imagen: "../img/World of Warcraft.png",
     url: "https://youtu.be/askHMKqQJvk",
+    publicado: true,
+    destacado: false,
   },
   {
     id: 20,
     titulo: "Mortal Kombat 11",
     descripcion:
       "Libra batallas épicas en este juego de lucha con personajes icónicos de Mortal Kombat.",
-    categoria: "Lucha",
+    categoria: "Acción",
     precio: 59.99,
     requisitos: {
       minimos: {
@@ -454,7 +493,17 @@ const catalogoJuegos = [
         tarjetaGrafica: "NVIDIA GTX 970 o AMD Radeon RX 570",
       },
     },
-    imagen: "img/Mortal Kombat 11.png",
+    imagen: "../img/Mortal Kombat 11.png",
     url: "https://youtu.be/z7f4paq1Fvg",
+    publicado: true,
+    destacado: false,
   },
 ];
+
+//  Inicializacion de localStorage
+
+const catalogoDeJuegos = localStorage.getItem("catalogoDeJuegos") || [];
+
+if (!catalogoDeJuegos.length) {
+  localStorage.setItem("catalogoDeJuegos", JSON.stringify(catalogoJuegos));
+}
