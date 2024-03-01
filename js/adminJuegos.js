@@ -66,7 +66,7 @@ nuevoJuego.innerHTML = `
   </div>
 </div>
 `;
-
+/* Tablas de juego */
 tablaJuegos.innerHTML = juegos
   .map(
     (juego) => `
@@ -86,7 +86,6 @@ tablaJuegos.innerHTML = juegos
     <div class="container">
       <div class="row">
         <div class="col-sm-4">
-
 
 
           <!-- Button trigger modal -->
@@ -155,16 +154,6 @@ tablaJuegos.innerHTML = juegos
               </div>
             </div>
           </div>
-
-
-
-
-
-
-
-
-
-
         <div class="col-sm-6">
         <style>
         .text-yellow {
