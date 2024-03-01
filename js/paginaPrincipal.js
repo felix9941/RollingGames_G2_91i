@@ -24,8 +24,7 @@ navbarUsuario.innerHTML = `
     <li class="nav-item">
       <a
         class="nav-link btn-hover btn-focus text-navbar anta-regular ms-3 px-2"
-        href="../page/sobreNosotros.html"
-        >Sobre nosotros</a
+        href="../page/sobreNosotros.html">Sobre nosotros</a
       >
     </li>
     <li class="nav-item">
