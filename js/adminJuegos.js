@@ -97,9 +97,9 @@ tablaJuegos.innerHTML = juegos
     (juego) => `
 <tr>
   <th scope="row">${juego.id}</th>
-  <td>${juego.titulo}</td>
-  <td>${juego.categoria}</td>
-  <td>${juego.descripcion}</td> 
+  <td class="letraPequeña">${juego.titulo}</td>
+  <td class="letraPequeña">${juego.categoria}</td>
+  <td class="letraPequeña">${juego.descripcion}</td> 
   <td>
     <div class="form-check form-switch">
       <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" ${
@@ -108,20 +108,49 @@ tablaJuegos.innerHTML = juegos
     </div>
   </td>
   <td>
-    <div class="container d-flex">
+    <div class="d-flex d-flex justify-content-center align-items-center">
 
     <a href="#" id="check" class="unchecked" onclick="eliminar(event, '${
       juego.titulo
     }')">
-      <i class="fa-solid fa-trash fa-2x  ms-2 text-dark"></i>
+
     </a>
 
 
 
-
-
+          <!-- Eliminar -->
           <!-- Button trigger modal -->
-          <button type="button" class="btn  btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal-${
+          <button type="button" class="btn btn-warning " data-bs-toggle="modal" data-bs-target="#eliminar-${
+            juego.id
+          }">
+          <i class="fa-solid fa-trash  text-dark"></i>
+          </button>
+          
+          <!-- Vertically centered modal -->
+          <div class="modal fade" id="eliminar-${
+            juego.id
+          }" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Eliminar</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                Esta seguro de querer eliminar: ${juego.titulo}?
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                  <button type="button" class="btn btn-primary">Si</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+          <!-- Editar -->
+          <!-- Button trigger modal -->
+          <button type="button" class="btn  btn-warning m-1" data-bs-toggle="modal" data-bs-target="#exampleModal-${
             juego.id
           }">
                 <i class="fas fa-edit"></i>
@@ -198,17 +227,13 @@ tablaJuegos.innerHTML = juegos
             </div>
 
 
-
-
-
-
-
+          <!-- Destacar -->
           <!-- Button trigger modal -->
-          <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#destacar-${
+          <button type="button" class="btn btn-dark botonSmall" data-bs-toggle="modal" data-bs-target="#destacar-${
             juego.id
           }">
-          <i class="fas fa-star text-secondary"></i>
-          </button>
+            <i class="fas fa-star text-secondary"></i>
+        </button>
           
           <!-- Vertically centered modal -->
           <div class="modal fade" id="destacar-${
@@ -224,16 +249,12 @@ tablaJuegos.innerHTML = juegos
                 Esta seguro de querer destacar ${juego.titulo}?
                 </div>
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                  <button type="button" class="btn btn-primary">Save changes</button>
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                  <button type="button" class="btn btn-primary">Si</button>
                 </div>
               </div>
             </div>
           </div>
-
-
-
-
   
     </div>
   </td> 
