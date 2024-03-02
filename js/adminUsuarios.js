@@ -33,7 +33,7 @@ navbarAdmin.innerHTML = `
         <ul class="dropdown-menu">
           <li><a class="dropdown-item" href="./adminUsuarios.html">Admin. Usuarios</a></li>
           <li><a class="dropdown-item" href="#">Admin. Productos</a></li>
-          <li><a class="dropdown-item" href="#">Cerrar Sesion</a></li>
+          <li><a class="dropdown-item" onclick="cerrarSesion()">Cerrar Sesion</a></li>
         </ul>
       </div>
     </li>
@@ -43,7 +43,7 @@ navbarAdmin.innerHTML = `
 
 const footerGeneral = document.getElementById("footerGeneral");
 footerGeneral.innerHTML = ` <div class="col-12 col-md-6 col-lg-4 d-flex justify-content-center">
-<a href="/index.html"
+<a href="./paginaPrincipalAdmin.html"
   ><img
     src="../img/Logo Play Gaming.png"
     alt="Logo-PlayGaming"
@@ -310,3 +310,17 @@ const enviarMail = (correo, usuario) => {
     Body: `Estimado ${usuario.usuario} a nuestra plataforma Play Gaming. Su usuario fue aprobado.`,
   });
 };
+
+function cerrarSesion() {
+  const usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
+
+  const userLogin = usuarios.find((u) => u.id && u.login === true);
+
+  if (userLogin) {
+    userLogin.login = false;
+    localStorage.setItem("usuarios", JSON.stringify(usuarios));
+  }
+  setTimeout(() => {
+    window.location.href = "/index.html";
+  }, 1000);
+}

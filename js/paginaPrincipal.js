@@ -4,7 +4,7 @@ const catalogoJuegos =
 const navbarUsuario = document.getElementById("navbar-usuario");
 navbarUsuario.innerHTML = `
 <div class="container-fluid">
-<a href="../index.html" class="d-flex align-items-center enlace-logo">
+<a href="./paginaPrincipal.html" class="d-flex align-items-center enlace-logo">
   <img class="ms-1 px-2" src="../img/Logo Play Gaming.png" alt="Logo Play Gamming" />
 </a>
 <button
