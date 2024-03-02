@@ -217,7 +217,7 @@ tablaJuegos.innerHTML = juegos
           )} " data-bs-toggle="modal"  id="botonEstrellaDestacar" data-bs-target="#destacar-${
       juego.id
     }">
-            <i class="fas fa-star text-secondary"></i>
+            <i class="fas fa-star text-dark"></i>
         </button>
           
           <!-- Vertically centered modal -->
@@ -237,7 +237,7 @@ tablaJuegos.innerHTML = juegos
                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
                   <button type="button" class="btn btn-primary" id="confirmacionDestacar" onclick="cambiarDestacado(${
                     juego.id
-                  }, true)">Si</button>
+                  })">Si</button>
 
                 </div>
               </div>
@@ -251,16 +251,44 @@ tablaJuegos.innerHTML = juegos
   )
   .join("");
 
-function cambiarDestacado(id, nuevoValor) {
+function nuevoValorDeDestacado(valorActual) {
+  const juegos = JSON.parse(localStorage.getItem("catalogoDeJuegos")) || [];
+  if (valorActual) {
+    return false;
+  } else {
+    return true;
+  }
+}
+
+function cambiarDestacado(id) {
   const juegos = JSON.parse(localStorage.getItem("catalogoDeJuegos")) || [];
   const index = juegos.findIndex((juego) => juego.id === id);
-
   if (index !== -1) {
-    juegos[index].destacado = nuevoValor;
+    const juegosDestacados = juegos.filter((juego) => juego.destacado === true);
+    if (juegosDestacados.length > 1) {
+      nuevoValor = false;
+      juegos[index].destacado = nuevoValor;
+    } else {
+      if (juegosDestacados.length == 1) {
+        if (juegosDestacados[0].id === id) {
+          nuevoValor = nuevoValorDeDestacado(juegos[index].destacado);
+          juegos[index].destacado = nuevoValor;
+        } else {
+          const indexViejo = juegos.findIndex(
+            (juego) => juego.destacado === true
+          );
+          console.log(indexViejo);
+          console.log(juegosDestacados[0].id);
+          console.log(juegos[index].id);
+          juegos[indexViejo].destacado = false;
+          juegos[index].destacado = true;
+        }
+      } else {
+        nuevoValor = nuevoValorDeDestacado(juegos[index].destacado);
+        juegos[index].destacado = nuevoValor;
+      }
+    }
     localStorage.setItem("catalogoDeJuegos", JSON.stringify(juegos));
-    console.log(
-      `Se cambió el destacado del juego con ID ${id} a ${nuevoValor}`
-    );
     window.location.reload(); // Recargar la página
   } else {
     console.log(`No se encontró ningún juego con ID ${id}`);
@@ -270,13 +298,10 @@ function cambiarDestacado(id, nuevoValor) {
 function colorBotonDestacar(id) {
   const juegos = JSON.parse(localStorage.getItem("catalogoDeJuegos")) || [];
   const juego = juegos.find((juego) => juego.id === id);
-
   // Devolver la clase del botón según el estado del juego
   if (juego && juego.destacado) {
-    return "btn-primary"; // Si el juego está destacado, usar la clase 'btn-primary'
+    return "btn-warning"; // Si el juego está destacado, usar la clase 'btn-primary'
   } else {
-    return "btn-dark"; // Si el juego no está destacado, usar la clase 'btn-dark'
+    return "btn-secondary"; // Si el juego no está destacado, usar la clase 'btn-dark'
   }
 }
-// Uso de la función para cambiar el destacado a false
-/* cambiarDestacado(1, false); */
