@@ -2,7 +2,7 @@ const tablaJuegos = document.getElementById("idTablaJuegos");
 
 const juegos = JSON.parse(localStorage.getItem("catalogoDeJuegos")) || [];
 
-const deletedProd = (idProd) => {
+/* const deletedProd = (idProd) => {
   const modal = new bootstrap.Modal(document.getElementById("exampleModal"));
   modal.show();
 
@@ -16,7 +16,7 @@ const deletedProd = (idProd) => {
     location.reload();
   });
 };
-
+ */
 const nuevoJuego = document.getElementById("idBotonNuevoJuego");
 nuevoJuego.innerHTML = `  
   <div class="">  
@@ -206,10 +206,6 @@ tablaJuegos.innerHTML = juegos
             </div>
 
 
-
-          
-
-
           <!-- Destacar -->
           <!-- Button trigger modal -->
           <button type="button" class="btn ${colorBotonDestacar(
@@ -217,9 +213,9 @@ tablaJuegos.innerHTML = juegos
           )} " data-bs-toggle="modal"  id="botonEstrellaDestacar" data-bs-target="#destacar-${
       juego.id
     }">
-            <i class="fas fa-star text-dark"></i>
-        </button>
-          
+              <i class="fas fa-star text-dark"></i>
+          </button>
+            
           <!-- Vertically centered modal -->
           <div class="modal fade" id="destacar-${
             juego.id
@@ -231,7 +227,7 @@ tablaJuegos.innerHTML = juegos
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                Esta seguro de querer destacar ${juego.titulo}?
+                Esta seguro de querer destacar el juego ${juego.titulo}?
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
@@ -243,7 +239,6 @@ tablaJuegos.innerHTML = juegos
               </div>
             </div>
           </div>
-  
     </div>
   </td> 
 </tr>
@@ -270,10 +265,7 @@ function cambiarDestacado(id) {
       juegos[index].destacado = nuevoValor;
     } else {
       if (juegosDestacados.length == 1) {
-        if (juegosDestacados[0].id === id) {
-          nuevoValor = nuevoValorDeDestacado(juegos[index].destacado);
-          juegos[index].destacado = nuevoValor;
-        } else {
+        if (juegosDestacados[0].id != id) {
           const indexViejo = juegos.findIndex(
             (juego) => juego.destacado === true
           );
