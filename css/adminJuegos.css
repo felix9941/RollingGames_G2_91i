@@ -12,12 +12,15 @@
   color: gray; /* Color por defecto cuando no está seleccionado */
 }
 
-.boton {
-  width: 0.5em;
-  /*   height: 100%; */
-  margin-right: 1;
+@media (max-width: 640px) {
+  .letraPequeña {
+    font-size: 0.8em;
+  }
 }
 
-.letraPequeña {
-  font-size: 0.8em;
+@media (min-width: 641px) {
+  .contenedor {
+    width: 80vw;
+    margin: auto;
+  }
 }

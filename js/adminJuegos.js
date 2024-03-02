@@ -2,33 +2,23 @@ const tablaJuegos = document.getElementById("idTablaJuegos");
 
 const juegos = JSON.parse(localStorage.getItem("catalogoDeJuegos")) || [];
 
-console.log(juegos);
+const deletedProd = (idProd) => {
+  const modal = new bootstrap.Modal(document.getElementById("exampleModal"));
+  modal.show();
 
-/* function destacado(event) {
-  event.preventDefault();
-  var check = document.getElementById("checkDestacado");
-  var starIcon = document.getElementById("starIcon");
-
-  if (check.classList.contains("checked")) {
-    check.classList.remove("checked");
-    check.classList.add("unchecked");
-    starIcon.classList.remove("text-warning");
-    starIcon.classList.add("text-secondary");
-  } else {
-    check.classList.remove("unchecked");
-    check.classList.add("checked");
-    starIcon.classList.remove("text-secondary");
-    starIcon.classList.add("text-warning");
-  }
-} */
-
-function eliminar(event, nombreJuego) {
-  alert("Desea borrar: " + nombreJuego);
-}
+  const confirmDeleteBtn = document.getElementById("confirmDeleteBtn");
+  confirmDeleteBtn.addEventListener("click", () => {
+    const indexProduct = productos.findIndex(
+      (product) => product.id === idProd
+    );
+    productos[indexProduct].delete = true;
+    localStorage.setItem("productos", JSON.stringify(productos));
+    location.reload();
+  });
+};
 
 const nuevoJuego = document.getElementById("idBotonNuevoJuego");
 nuevoJuego.innerHTML = `  
-
   <div class="">  
       <!-- Button trigger modal -->
       <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">
@@ -86,11 +76,8 @@ nuevoJuego.innerHTML = `
         </div>
       </div>
   </div>
-
-  
-
-
 `;
+
 /* Tablas de juego */
 tablaJuegos.innerHTML = juegos
   .map(
@@ -110,17 +97,9 @@ tablaJuegos.innerHTML = juegos
   <td>
     <div class="d-flex d-flex justify-content-center align-items-center">
 
-    <a href="#" id="check" class="unchecked" onclick="eliminar(event, '${
-      juego.titulo
-    }')">
 
-    </a>
-
-
-
-          <!-- Eliminar -->
-          <!-- Button trigger modal -->
-          <button type="button" class="btn btn-warning " data-bs-toggle="modal" data-bs-target="#eliminar-${
+          <!-- Botón de Eliminar -->
+          <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#eliminar-${
             juego.id
           }">
           <i class="fa-solid fa-trash  text-dark"></i>
@@ -227,11 +206,17 @@ tablaJuegos.innerHTML = juegos
             </div>
 
 
+
+          
+
+
           <!-- Destacar -->
           <!-- Button trigger modal -->
-          <button type="button" class="btn btn-dark botonSmall" data-bs-toggle="modal" data-bs-target="#destacar-${
+          <button type="button" class="btn ${colorBotonDestacar(
             juego.id
-          }">
+          )} " data-bs-toggle="modal"  id="botonEstrellaDestacar" data-bs-target="#destacar-${
+      juego.id
+    }">
             <i class="fas fa-star text-secondary"></i>
         </button>
           
@@ -250,7 +235,10 @@ tablaJuegos.innerHTML = juegos
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
-                  <button type="button" class="btn btn-primary">Si</button>
+                  <button type="button" class="btn btn-primary" id="confirmacionDestacar" onclick="cambiarDestacado(${
+                    juego.id
+                  }, true)">Si</button>
+
                 </div>
               </div>
             </div>
@@ -262,3 +250,33 @@ tablaJuegos.innerHTML = juegos
 `
   )
   .join("");
+
+function cambiarDestacado(id, nuevoValor) {
+  const juegos = JSON.parse(localStorage.getItem("catalogoDeJuegos")) || [];
+  const index = juegos.findIndex((juego) => juego.id === id);
+
+  if (index !== -1) {
+    juegos[index].destacado = nuevoValor;
+    localStorage.setItem("catalogoDeJuegos", JSON.stringify(juegos));
+    console.log(
+      `Se cambió el destacado del juego con ID ${id} a ${nuevoValor}`
+    );
+    window.location.reload(); // Recargar la página
+  } else {
+    console.log(`No se encontró ningún juego con ID ${id}`);
+  }
+}
+
+function colorBotonDestacar(id) {
+  const juegos = JSON.parse(localStorage.getItem("catalogoDeJuegos")) || [];
+  const juego = juegos.find((juego) => juego.id === id);
+
+  // Devolver la clase del botón según el estado del juego
+  if (juego && juego.destacado) {
+    return "btn-primary"; // Si el juego está destacado, usar la clase 'btn-primary'
+  } else {
+    return "btn-dark"; // Si el juego no está destacado, usar la clase 'btn-dark'
+  }
+}
+// Uso de la función para cambiar el destacado a false
+/* cambiarDestacado(1, false); */
