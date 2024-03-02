@@ -87,9 +87,38 @@ h2 {
 img {
   height: 100%;
 }
+.icons a {
+  text-decoration: none;
+  color: white;
+}
 
+.listNone {
+  list-style: none;
+}
 .title-Carrito {
   color: white;
   margin-left: 30px;
   margin-top: 30px;
+}
+
+.pagar {
+  width: 150px;
+  background-color: rgb(255, 184, 20);
+  color: rgb(0, 0, 0);
+  border-color: rgba(26, 26, 46);
+  transition: color 0.2s, box-shadow 0.5s;
+  padding-left: 2em;
+  padding-right: 2em;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  font-weight: 500;
+  display: inline-block;
+  text-decoration: none;
+  border-radius: 5%;
+}
+.pagar:hover {
+  border-color: rgb(255, 184, 20);
+  box-shadow: 0 0 5px rgba(255, 184, 20, 1);
+  background-color: rgba(26, 26, 46);
+  color: white;
 }
