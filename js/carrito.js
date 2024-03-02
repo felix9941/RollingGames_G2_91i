@@ -98,45 +98,41 @@ footerGeneral.innerHTML = ` <div class="col-12 col-md-6 col-lg-4 d-flex justify-
   </div>
 </div>
 </div>`;
-
 const carritoJuegos = document.getElementById("carritoJuegos");
-
 const usersList = JSON.parse(localStorage.getItem("usuarios")) || [];
-const userCarrito = usersList.find((u) => u.carrito.length && u.login === true);
+const carritoBody = document.getElementById("carritoBody"); // Asegúrate de tener un elemento con este id
 
-if (userCarrito) {
-  if (userCarrito.length) {
-    carritoJuegos.innerHTML = userCarrito.juego.map(
-      (juego) => `
-    <div class="row">
-        <tbody>       
-          <tr>
-            <th scope="row">${juego.id}</th>
-            <td>${juego.imagen}</td>
-            <td>${juego.titulo}</td>
-            <td>${juego.precio}</td>
-            <td>
-              <button type="button" class="btn btn-danger" onclick="eliminarJuego">Eliminar</button>
-            </td>
-          </tr> 
-        </tbody>
-        <tbody>
-        <tr id="filaTotal">
-          <th colspan="3">Total($)</th>
-          <td id="total" colspan="1">0</td>
-        </tr>
-      </tbody>
-      </table>
-      <div style="text-align: right;">
-        <a href="../page/error404.html" class="pagar anta-regular">Pagar</a>
-      </div>
-    </div>
-`
-    );
+// Encuentra al usuario que ha iniciado sesión
+const usuarioLogueado = usersList.find((u) => u.login);
+
+if (usuarioLogueado) {
+  // Muestra el carrito del usuario que ha iniciado sesión
+  if (
+    usuarioLogueado.carrito &&
+    Array.isArray(usuarioLogueado.carrito) &&
+    usuarioLogueado.carrito.length > 0
+  ) {
+    usuarioLogueado.carrito.forEach((carritoItem) => {
+      const row = document.createElement("tr");
+      row.innerHTML = `
+        <td>${carritoItem.id}</td>
+        <td>${carritoItem.imagen}</td>
+        <td>${carritoItem.titulo}</td>
+        <td>${carritoItem.precio}</td>
+        <td>
+        <button type="button" class="btn btn-danger" onclick="eliminarJuego">Eliminar</button>
+      </td>
+      `;
+
+      carritoBody.appendChild(row);
+    });
   } else {
-    userCarrito.innerHTML =
-      "<h3 class= 'text-center my-5'>No hay nada en Carrito</h3>";
+    // Muestra una alerta si no hay nada en el carrito
+    alert("No tienes ningun juego en el carrito.");
   }
+} else {
+  // Muestra una alerta si no hay usuario logueado
+  alert("No hay usuario logueado.");
 }
 
 function cerrarSesion() {
