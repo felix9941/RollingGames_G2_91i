@@ -2,21 +2,6 @@ const tablaJuegos = document.getElementById("idTablaJuegos");
 
 const juegos = JSON.parse(localStorage.getItem("catalogoDeJuegos")) || [];
 
-/* const deletedProd = (idProd) => {
-  const modal = new bootstrap.Modal(document.getElementById("exampleModal"));
-  modal.show();
-
-  const confirmDeleteBtn = document.getElementById("confirmDeleteBtn");
-  confirmDeleteBtn.addEventListener("click", () => {
-    const indexProduct = productos.findIndex(
-      (product) => product.id === idProd
-    );
-    productos[indexProduct].delete = true;
-    localStorage.setItem("productos", JSON.stringify(productos));
-    location.reload();
-  });
-};
- */
 const nuevoJuego = document.getElementById("idBotonNuevoJuego");
 nuevoJuego.innerHTML = `  
   <div class="">  
@@ -91,13 +76,13 @@ tablaJuegos.innerHTML = juegos
     <div class="form-check form-switch">
       <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" ${
         juego.publicado ? "checked" : ""
-      }>
+      } onclick="estadoDePublicacion(${juego.publicado},${juego.id})">
     </div>
   </td>
   <td>
     <div class="d-flex d-flex justify-content-center align-items-center">
 
-          <!-- Botón de Eliminar -->
+          <!-- Botón de Eliminacio Fisica -->
           <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#eliminar-${
             juego.id
           }">
@@ -115,7 +100,7 @@ tablaJuegos.innerHTML = juegos
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                Esta seguro de querer eliminar: ${juego.titulo}?
+                Esta seguro de querer eliminar ${juego.titulo}?
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
@@ -304,6 +289,32 @@ function eliminacionFisica(id) {
   if (index !== -1) {
     juegos.splice(index, 1); // Eliminar el juego del array
     localStorage.setItem("catalogoDeJuegos", JSON.stringify(juegos));
-    location.reload(); // Actualizar el localStorage
+    location.reload();
   }
+}
+
+function estadoDePublicacion(estado, id) {
+  if (estado) {
+    despublicar(id);
+  } else {
+    publicar(id);
+  }
+}
+
+function publicar(id) {
+  const juegos = JSON.parse(localStorage.getItem("catalogoDeJuegos")) || [];
+  const indexJuego = juegos.findIndex((juego) => juego.id === id);
+  juegos[indexJuego].publicado = true;
+  localStorage.setItem("catalogoDeJuegos", JSON.stringify(juegos));
+  console.log("Publicar");
+  location.reload();
+}
+
+function despublicar(id) {
+  const juegos = JSON.parse(localStorage.getItem("catalogoDeJuegos")) || [];
+  const indexJuego = juegos.findIndex((juego) => juego.id === id);
+  juegos[indexJuego].publicado = false;
+  localStorage.setItem("catalogoDeJuegos", JSON.stringify(juegos));
+  console.log("Despublicar");
+  location.reload();
 }
