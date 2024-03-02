@@ -97,7 +97,6 @@ tablaJuegos.innerHTML = juegos
   <td>
     <div class="d-flex d-flex justify-content-center align-items-center">
 
-
           <!-- Botón de Eliminar -->
           <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#eliminar-${
             juego.id
@@ -120,7 +119,9 @@ tablaJuegos.innerHTML = juegos
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
-                  <button type="button" class="btn btn-primary">Si</button>
+                  <button type="button" class="btn btn-primary" onclick="eliminacionFisica(${
+                    juego.id
+                  })">Si</button>
                 </div>
               </div>
             </div>
@@ -204,7 +205,6 @@ tablaJuegos.innerHTML = juegos
                 </div>
               </div>
             </div>
-
 
           <!-- Destacar -->
           <!-- Button trigger modal -->
@@ -295,5 +295,15 @@ function colorBotonDestacar(id) {
     return "btn-warning"; // Si el juego está destacado, usar la clase 'btn-primary'
   } else {
     return "btn-secondary"; // Si el juego no está destacado, usar la clase 'btn-dark'
+  }
+}
+
+function eliminacionFisica(id) {
+  const juegos = JSON.parse(localStorage.getItem("catalogoDeJuegos")) || [];
+  const index = juegos.findIndex((juegaso) => juegaso.id === id);
+  if (index !== -1) {
+    juegos.splice(index, 1); // Eliminar el juego del array
+    localStorage.setItem("catalogoDeJuegos", JSON.stringify(juegos));
+    location.reload(); // Actualizar el localStorage
   }
 }
