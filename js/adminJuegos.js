@@ -11,64 +11,79 @@ nuevoJuego.innerHTML = `
       </button>
       
       <!-- Modal -->
-      <div class="modal  fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog ">
-          <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title w-100 text-center">Nuevo Juego</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-              <form id="formularioNuevoJuego">
-                <div class="mb-3">
-                  <label for="exampleInputEmail1" class="form-label">Nombre</label>
-                  <input type="text" class="form-control" id="idInputUser" name="user" value="" aria-describedby="emailHelp" >
-                </div>
+      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog ">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title w-100 text-center">Nuevo Juego</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form id="formularioNuevoJuego">
+          <div class="mb-1">
+            <label for="exampleInputEmail1" class="form-label">Nombre</label>
+            <input type="text" class="form-control" id="idInputTitulo" name="user" value="" aria-describedby="emailHelp">
+          </div>
 
-                <div class="mb-3">
-                  <label for="disabledSelect" class="form-label">Categoria</label>
-                  <select id="disabledSelect" class="form-select">
-                    <option value="Aventura">Aventura</option>
-                    <option value="Acción">Acción</option>
-                    <option value="Estrategia">Estrategia</option>
-                    <option value="Deportes">Deportes</option>
-                  </select>
-                </div>
+          <div class="mb-1">
+            <label for="disabledSelect" class="form-label">Categoria</label>
+            <select id="idSeleccionCategoria" class="form-select">
+              <option value="">Seleccionar categoria</option>
+              <option value="Aventura">Aventura</option>
+              <option value="Acción">Acción</option>
+              <option value="Estrategia">Estrategia</option>
+              <option value="Deportes">Deportes</option>
+            </select>
+            <div id="categoriaError" style="color: red; display: none;">Por favor, selecciona una categoría</div>
+          </div>
 
-                <div class="mb-3">
+                <div class="mb-1">
                 <label for="exampleFormControlTextarea1" class="form-label">Descripcion</label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>   
+                <textarea class="form-control" id="idDescripcion" rows="2"></textarea>   
               </div>
 
-                <div class="mb-3">
+              <div class="mb-1">
+              <label for="exampleFormControlTextarea1" class="form-label">Requisitos de sistema Minimos</label>
+              <textarea class="form-control" id="idRequisitosMinimos" rows="2"></textarea>   
+            </div>
+
+            <div class="mb-1">
+            <label for="exampleFormControlTextarea1" class="form-label">Requisitos de sistema recomendados</label>
+            <textarea class="form-control" id="idRequisitosRecomendados" rows="2"></textarea>   
+          </div>
+
+                <div class="mb-1">
                   <label for="disabledSelect" class="form-label">Publicar</label>
-                  <select id="disabledSelect" class="form-select">
+                  <select id="idPublicar" class="form-select">
                     <option value="Si" selected>Si</option>
                     <option value="No">No</option>
                   </select>
                 </div>
 
-                <div class="mb-3">
+                <div class="mb-1">
+                <label for="exampleInputPassword1" class="form-label">Link de imagen</label>
+                <input type="text" class="form-control" id="idInputLinkImagen" name="link" value="">
+              </div>
+
+                <div class="mb-1">
                   <label for="exampleInputPassword1" class="form-label">Link trailer de juego</label>
                   <input type="text" class="form-control" id="idInputLink" name="link" value="">
                 </div>
 
-                <div class="mb-3">
+                <div class="mb-2">
                 <label for="exampleInputEmail1" class="form-label">Precio</label>
                 <input type="number" step="any" class="form-control" id="idInputPrecio" name="precio" value="" aria-describedby="emailHelp" >
               </div>
                 
-
-                <button type="submit" class="btn btn-primary" id="idBotonGuardar">Guardar Cambios</button>
+              <button type="button" class="btn btn-primary" id="idBotonGuardar" onclick="validacionJuego(event)">Guardar Cambios</button>
               </form>
             </div>
           </div>
         </div>
-      </div>
   </div>
 `;
 
-/* document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", function () {
   const formularioNuevoJuego = document.getElementById("formularioNuevoJuego");
   const categoriaSelect = document.getElementById("disabledSelect");
   const categoriaError = document.getElementById("categoriaError");
@@ -81,7 +96,7 @@ nuevoJuego.innerHTML = `
       categoriaError.style.display = "none"; // Ocultar mensaje de error si se selecciona una categoría
     }
   });
-}); */
+});
 
 /* Tablas de juego */
 tablaJuegos.innerHTML = juegos
@@ -297,6 +312,13 @@ function cambiarDestacado(id) {
   }
 }
 
+//BORRAR
+/* const imagenDePrueba = document.getElementById("idImagenP");
+const juegoss = JSON.parse(localStorage.getItem("catalogoDeJuegos")) || [];
+const juego = juegoss.find((juego) => juego.id === 2);
+console.log(juego.imagen);
+imagenDePrueba.innerHTML = `<img src="${juego.imagen}" alt="">`; */
+
 function colorBotonDestacar(id) {
   const juegos = JSON.parse(localStorage.getItem("catalogoDeJuegos")) || [];
   const juego = juegos.find((juego) => juego.id === id);
@@ -344,45 +366,102 @@ function despublicar(id) {
   location.reload();
 }
 
-console.log(juegos[juegos.length - 1].id);
-
-document.addEventListener("DOMContentLoaded", function () {
-  var form = document.querySelector("#exampleModal form");
-
-  form.addEventListener("submit", function (event) {
-    event.preventDefault(); // Evitar que el formulario se envíe
-
-    var nombreJuego = document.querySelector("#idInputUser").value;
-    var categoriaJuego = document.querySelector("#disabledSelect").value;
-    var descripcionJuego = document.querySelector(
-      "#exampleFormControlTextarea1"
-    ).value;
-    var publicarJuego = document.querySelector("#disabledSelect").value;
-    var linkJuego = document.querySelector("#idInputLink").value;
-    var precioJuego = document.querySelector("#idInputPrecio").value;
-
-    const juegos = JSON.parse(localStorage.getItem("catalogoDeJuegos")) || [];
-    let idNuevoJuego = juegos[juegos.length - 1].id + 1;
-
-    let nuevoJuego = {
-      id: idNuevoJuego,
-      titulo: nombreJuego,
-      descripcion: descripcionJuego,
-      categoria: categoriaJuego,
-      precio: precioJuego,
-      requisitos: {
-        minimos: "No disponible (exclusivo de consola)",
-        recomendados: "No disponible (exclusivo de consola)",
-      },
-      imagen: "../img/The Legend of Zelda  Breath of the Wild.png",
-      url: linkJuego,
-      publicado: publicarJuego,
-      destacado: false,
-    };
-
-    juegos.push(nuevoJuego);
-    localStorage.setItem("catalogoDeJuegos", JSON.stringify(juegos));
-    console.log("Nuevo juego agregado:", nuevoJuego);
-    location.reload();
+function colorInput(idInput) {
+  document.getElementById(idInput).addEventListener("input", function () {
+    var valorInput = this.value;
+    if (valorInput.trim() === "") {
+      this.classList.add("is-invalid");
+    } else {
+      this.classList.remove("is-invalid");
+    }
   });
-});
+}
+
+//Validaciones para nuevo Juego
+const validacionJuego = (event) => {
+  event.preventDefault();
+  colorInput("idInputTitulo");
+  colorInput("idSeleccionCategoria");
+  colorInput("idDescripcion");
+  colorInput("idRequisitosMinimos");
+  colorInput("idRequisitosRecomendados");
+  colorInput("idInputLinkImagen");
+  colorInput("idInputLink");
+  colorInput("idInputPrecio");
+  var nombreJuego = document.getElementById("idInputTitulo").value;
+  var categoriaJuego = document.getElementById("idSeleccionCategoria").value;
+  var descripcionJuego = document.getElementById("idDescripcion").value;
+  var requisitoMinimo = document.getElementById("idRequisitosMinimos").value;
+  var requisitoRecomendado = document.getElementById(
+    "idRequisitosRecomendados"
+  ).value;
+  var publicarJuego = document.getElementById("idPublicar").value;
+  var linkImagenJuego = document.getElementById("idInputLinkImagen").value;
+  var linkJuego = document.getElementById("idInputLink").value;
+  var precioJuego = document.getElementById("idInputPrecio").value;
+  const juegos = JSON.parse(localStorage.getItem("catalogoDeJuegos")) || [];
+  let idNuevoJuego = juegos.length > 0 ? juegos[juegos.length - 1].id + 1 : 1;
+
+  if (nombreJuego.trim() === "") {
+    alert("Por favor, ingresa un título para el juego.");
+    document.getElementById("idInputTitulo").classList.add("is-invalid");
+    return;
+  }
+  if (categoriaJuego.trim() === "") {
+    alert("Por favor, seleccione una categoría para el juego.");
+    document.getElementById("idSeleccionCategoria").classList.add("is-invalid");
+    return;
+  }
+  if (descripcionJuego.trim() === "") {
+    alert("Por favor, ingrese descripcion de juego");
+    document.getElementById("idDescripcion").classList.add("is-invalid");
+    return;
+  }
+  if (requisitoMinimo.trim() === "") {
+    alert("Por favor, ingrese requisito de sistema minimo para el juego");
+    document.getElementById("idRequisitosMinimos").classList.add("is-invalid");
+    return;
+  }
+  if (requisitoRecomendado.trim() === "") {
+    alert("Por favor, ingrese requisito de sistema recomendado para el juego");
+    document
+      .getElementById("idRequisitosRecomendados")
+      .classList.add("is-invalid");
+    return;
+  }
+  linkImagenJuego;
+  if (linkImagenJuego.trim() === "") {
+    alert("Por favor, ingrese link de la imagen del juego");
+    document.getElementById("idInputLinkImagen").classList.add("is-invalid");
+    return;
+  }
+  if (linkJuego.trim() === "") {
+    alert("Por favor, ingrese link del trailer del juego");
+    document.getElementById("idInputLink").classList.add("is-invalid");
+    return;
+  }
+  if (precioJuego.trim() === "") {
+    alert("Por favor, ingrese precio del juego");
+    document.getElementById("idInputPrecio").classList.add("is-invalid");
+    return;
+  }
+  let nuevoJuego = {
+    id: idNuevoJuego,
+    titulo: nombreJuego,
+    descripcion: descripcionJuego,
+    categoria: categoriaJuego,
+    precio: precioJuego,
+    requisitos: {
+      minimos: requisitoMinimo,
+      recomendados: requisitoRecomendado,
+    },
+    imagen: linkImagenJuego,
+    url: linkJuego,
+    publicado: publicarJuego,
+    destacado: false,
+  };
+  juegos.push(nuevoJuego);
+  localStorage.setItem("catalogoDeJuegos", JSON.stringify(juegos));
+  console.log("Nuevo juego agregado:", nuevoJuego);
+  location.reload();
+};
