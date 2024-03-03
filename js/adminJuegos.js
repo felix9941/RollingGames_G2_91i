@@ -231,6 +231,11 @@ tablaJuegos.innerHTML = juegos
   )
   .join("");
 
+function editar(id) {
+  const juegos = JSON.parse(localStorage.getItem("catalogoDeJuegos")) || [];
+  const index = juegos.findIndex((juego) => juego.id === id);
+}
+
 function nuevoValorDeDestacado(valorActual) {
   const juegos = JSON.parse(localStorage.getItem("catalogoDeJuegos")) || [];
   if (valorActual) {
@@ -318,3 +323,27 @@ function despublicar(id) {
   console.log("Despublicar");
   location.reload();
 }
+
+document.addEventListener("DOMContentLoaded", function () {
+  var form = document.querySelector("#exampleModal form");
+
+  form.addEventListener("submit", function (event) {
+    event.preventDefault(); // Evitar que el formulario se envíe
+
+    var nombre = document.querySelector("#idInputUser").value;
+    var categoria = document.querySelector("#disabledSelect").value;
+    var descripcion = document.querySelector(
+      "#exampleFormControlTextarea1"
+    ).value;
+    var publicar = document.querySelector("#disabledSelect").value;
+    var link = document.querySelector("#idInputRol").value;
+
+    console.log("Nombre:", nombre);
+    console.log("Categoria:", categoria);
+    console.log("Descripcion:", descripcion);
+    console.log("Publicar:", publicar);
+    console.log("Link:", link);
+
+    // Aquí puedes guardar los valores en localStorage u otra parte según tu necesidad
+  });
+});
