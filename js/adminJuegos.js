@@ -1,8 +1,8 @@
 const tablaJuegos = document.getElementById("idTablaJuegos");
-
 const juegos = JSON.parse(localStorage.getItem("catalogoDeJuegos")) || [];
-
 const nuevoJuego = document.getElementById("idBotonNuevoJuego");
+
+//Nuevo Juego
 nuevoJuego.innerHTML = `  
   <div class="">  
       <!-- Button trigger modal -->
@@ -83,22 +83,7 @@ nuevoJuego.innerHTML = `
   </div>
 `;
 
-document.addEventListener("DOMContentLoaded", function () {
-  const formularioNuevoJuego = document.getElementById("formularioNuevoJuego");
-  const categoriaSelect = document.getElementById("disabledSelect");
-  const categoriaError = document.getElementById("categoriaError");
-
-  formularioNuevoJuego.addEventListener("submit", function (event) {
-    if (categoriaSelect.value === "") {
-      event.preventDefault(); // Evitar que se envíe el formulario
-      categoriaError.style.display = "block"; // Mostrar mensaje de error
-    } else {
-      categoriaError.style.display = "none"; // Ocultar mensaje de error si se selecciona una categoría
-    }
-  });
-});
-
-/* Tablas de juego */
+// Tabla de juegos
 tablaJuegos.innerHTML = juegos
   .map(
     (juego) => `
@@ -110,7 +95,7 @@ tablaJuegos.innerHTML = juegos
   <td>
     <div class="form-check form-switch">
       <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" ${
-        juego.publicado ? "checked" : ""
+        juego.publicado === true ? "checked" : ""
       } onclick="estadoDePublicacion(${juego.publicado},${juego.id})">
     </div>
   </td>
@@ -366,6 +351,7 @@ function despublicar(id) {
   location.reload();
 }
 
+//Validaciones para nuevo Juego OK
 function colorInput(idInput) {
   document.getElementById(idInput).addEventListener("input", function () {
     var valorInput = this.value;
@@ -377,7 +363,6 @@ function colorInput(idInput) {
   });
 }
 
-//Validaciones para nuevo Juego
 const validacionJuego = (event) => {
   event.preventDefault();
   colorInput("idInputTitulo");
@@ -445,6 +430,13 @@ const validacionJuego = (event) => {
     document.getElementById("idInputPrecio").classList.add("is-invalid");
     return;
   }
+
+  if (publicarJuego === "Si") {
+    estadoDeJuego = true;
+  } else {
+    estadoDeJuego = false;
+  }
+
   let nuevoJuego = {
     id: idNuevoJuego,
     titulo: nombreJuego,
@@ -457,7 +449,7 @@ const validacionJuego = (event) => {
     },
     imagen: linkImagenJuego,
     url: linkJuego,
-    publicado: publicarJuego,
+    publicado: estadoDeJuego,
     destacado: false,
   };
   juegos.push(nuevoJuego);
