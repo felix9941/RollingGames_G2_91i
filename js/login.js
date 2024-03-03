@@ -233,7 +233,7 @@ const loginUser = () => {
     }
 
     setTimeout(() => {
-      window.location.href = "paginaPrincipalAdmin.html";
+      window.location.href = "paginaPrincipal.html";
     }, 3000);
     return;
   }
@@ -365,3 +365,4 @@ const pag404 = () => {
     window.location.href = "./error404.html";
   }, 1000);
 };
+

@@ -1,10 +1,8 @@
-const navbarAdmin = document.getElementById("navbar-admin");
-navbarAdmin.innerHTML = `
-<div class="container-fluid">
-<a href="./paginaPrincipalAdmin.html" class="d-flex align-items-center enlace-logo">
-  <img class="ms-1 px-2" src="../img/Logo Play Gaming.png" alt="" />
-</a>
-<button
+const navbarAdminUsuarios = document.getElementById("navbar-admin");
+navbarAdminUsuarios.innerHTML = `<a href="paginaPrincipal.html" class="d-flex align-items-center enlace-logo">
+  <img class="ms-1 px-2" src="../img/Logo Play Gaming.png" alt="logo de la empresa"/>
+  </a>
+  <button
   class="navbar-toggler"
   type="button"
   data-bs-toggle="collapse"
@@ -12,34 +10,65 @@ navbarAdmin.innerHTML = `
   aria-controls="navbarSupportedContent"
   aria-expanded="false"
   aria-label="Toggle navigation"
->
+  >
   <span class="navbar-toggler-icon"></span>
-</button>
-<div class="collapse navbar-collapse" id="navbarSupportedContent">
+  </button>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
   <ul class="navbar-nav ms-auto me-5 mb-2 mb-lg-0">
     <li class="nav-item"></li>
+  
     <li class="nav-item">
       <a
         class="nav-link btn-hover btn-focus text-navbar anta-regular ms-3 px-2"
-        href="./paginaPrincipalAdmin.html"
-        >Inicio</a
+        href="sobreNosotros.html"
+        >Sobre nosotros</a
       >
     </li>
     <li class="nav-item">
-      <div class="dropdown">
-         <a class="dropdown-toggle nav-link btn-hover btn-focus text-navbar anta-regular ms-3 px-2" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-         Mi cuenta
-        </a>
-        <ul class="dropdown-menu">
-          <li><a class="dropdown-item" href="./adminUsuarios.html">Admin. Usuarios</a></li>
-          <li><a class="dropdown-item" href="#">Admin. Productos</a></li>
-          <li><a class="dropdown-item" onclick="cerrarSesion()">Cerrar Sesion</a></li>
-        </ul>
-      </div>
+      <a
+        class="nav-link btn-hover btn-focus text-navbar anta-regular ms-3 px-2"
+        href="contacto.html"
+        >Contacto</a
+      >
     </li>
+    <li class="nav-item">
+      <a
+        class="nav-link btn-hover btn-focus text-navbar anta-regular ms-3 px-2"
+        href="login.html" id="loginItem">Iniciar sesion</a
+      >
+    </li>
+    <li class="nav-item">
+      <a
+        class="nav-link btn-hover btn-focus text-navbar anta-regular ms-3 px-2"
+        href="registro.html" id="registerItem">Registrarse</a
+      >
+    </li>
+    <li class="nav-item" id="administracion">
+          <div class="dropdown">
+             <a class="dropdown-toggle nav-link btn-hover btn-focus text-navbar anta-regular ms-3 px-2" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+             Administracion
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="adminUsuarios.html">Admin Usuarios</a></li>
+              <li><a class="dropdown-item" href="adminProductos.html">Admin Productos</a></li>
+            </ul>
+          </div>
+        </li>
+    <li class="nav-item" id="micuenta">
+    <div class="dropdown">
+       <a class="dropdown-toggle nav-link btn-hover btn-focus text-navbar anta-regular ms-3 px-2" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+       Mi cuenta
+      </a>
+      <ul class="dropdown-menu">
+        <li><a class="dropdown-item" href="favoritos.html">Favoritos</a></li>
+        <li><a class="dropdown-item" href="carrito.html">Carrito</a></li>
+        <li><a class="dropdown-item" href="error404.html"">Mis datos</a></li>
+        <li><a class="dropdown-item" href="#" onclick="cerrarSesion()">Cerrar Sesion</a></li>
+      </ul>
+    </div>
+  </li>
   </ul>
-</div>
-</div>`;
+  </div>`;
 
 const footerGeneral = document.getElementById("footerGeneral");
 footerGeneral.innerHTML = ` <div class="col-12 col-md-6 col-lg-4 d-flex justify-content-center">
@@ -94,16 +123,20 @@ footerGeneral.innerHTML = ` <div class="col-12 col-md-6 col-lg-4 d-flex justify-
 </div>`;
 
 const tableAdmin = document.getElementById("tableAdmin");
-
 const adminUsuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
 let tableContent = "";
+
+const usuarioAdminLogueado = adminUsuarios.find((usuario) => {
+  return usuario.rol === "admin" && usuario.login === true;
+});
 
 adminUsuarios.forEach((usuario) => {
   let accionesHTML = "";
 
   if (usuario.rol !== "admin") {
-    if (!usuario.estado) {
-      accionesHTML = `
+    if (usuarioAdminLogueado) {
+      if (!usuario.estado) {
+        accionesHTML = `
           <div class="btn-group" role="group">
             <button type="button" class="btn btn-success" onclick="confirmarAutorizacion(${
               usuario.id
@@ -116,19 +149,20 @@ adminUsuarios.forEach((usuario) => {
             })"><i class="fa-solid fa-trash-can"></i></button>
           </div>
         `;
-    } else {
-      accionesHTML = `
+      } else {
+        accionesHTML = `
           <div class="btn-group" role="group">
             <button type="button" class="btn ${
               usuario.delete ? "btn-success" : "btn-warning text-white"
             }" onclick="cambiarEstadoUsuario(${usuario.id})">${
-        usuario.delete ? "Habilitar" : "Deshabilitar"
-      }</button>
+          usuario.delete ? "Habilitar" : "Deshabilitar"
+        }</button>
             <button type="button" class="btn btn-danger" onclick="borrarUsuario(${
               usuario.id
             })"><i class="fa-solid fa-trash-can"></i></button>
           </div>
         `;
+      }
     }
   }
 
@@ -148,7 +182,7 @@ adminUsuarios.forEach((usuario) => {
 });
 
 tableAdmin.innerHTML = `
-    <div class="col-12 col-md-6 col-lg-12">
+    <div class="col-12">
       <div class="table-responsive">
         <table class="table mt-5 shadow p-3 mb-5 bg-body-tertiary rounded">
           <thead>
@@ -173,7 +207,6 @@ tableAdmin.innerHTML = `
 function renderizarTablaAdmin() {
   const adminUsuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
   let tableContent = "";
-
   adminUsuarios.forEach((usuario) => {
     let accionesHTML = "";
 
@@ -324,3 +357,33 @@ function cerrarSesion() {
     window.location.href = "/index.html";
   }, 1000);
 }
+
+(() => {
+  const usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
+  const botonInicio = document.getElementById("loginItem");
+  const botonRegistro = document.getElementById("registerItem");
+  const botonLogin = document.getElementById("micuenta");
+  const botonLoginAdmin = document.getElementById("administracion");
+
+  const userLogin = usuarios.find(
+    (u) => u.login === true && u.rol === "usuario"
+  );
+  const userLoginAdmin = usuarios.find(
+    (u) => u.login === true && u.rol === "admin"
+  );
+
+  if (userLoginAdmin) {
+    botonInicio.classList.add("d-none");
+    botonRegistro.classList.add("d-none");
+    botonLoginAdmin.classList.add("d-block");
+  } else if (userLogin) {
+    botonInicio.classList.add("d-none");
+    botonRegistro.classList.add("d-none");
+    botonLoginAdmin.classList.add("d-none");
+  } else {
+    botonInicio.classList.add("d-block");
+    botonRegistro.classList.add("d-block");
+    botonLogin.classList.add("d-none");
+    botonLoginAdmin.classList.add("d-none");
+  }
+})();
