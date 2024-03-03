@@ -12,14 +12,14 @@ nuevoJuego.innerHTML = `
       
       <!-- Modal -->
       <div class="modal  fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
+        <div class="modal-dialog ">
           <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title w-100 text-center">Nuevo Juego</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-              <form>
+              <form id="formularioNuevoJuego">
                 <div class="mb-3">
                   <label for="exampleInputEmail1" class="form-label">Nombre</label>
                   <input type="text" class="form-control" id="idInputUser" name="user" value="" aria-describedby="emailHelp" >
@@ -28,7 +28,6 @@ nuevoJuego.innerHTML = `
                 <div class="mb-3">
                   <label for="disabledSelect" class="form-label">Categoria</label>
                   <select id="disabledSelect" class="form-select">
-                    <option>Seleccionar categoria</option>
                     <option value="Aventura">Aventura</option>
                     <option value="Acción">Acción</option>
                     <option value="Estrategia">Estrategia</option>
@@ -51,8 +50,14 @@ nuevoJuego.innerHTML = `
 
                 <div class="mb-3">
                   <label for="exampleInputPassword1" class="form-label">Link trailer de juego</label>
-                  <input type="text" class="form-control" id="idInputRol" name="rol" value="">
+                  <input type="text" class="form-control" id="idInputLink" name="link" value="">
                 </div>
+
+                <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Precio</label>
+                <input type="number" step="any" class="form-control" id="idInputPrecio" name="precio" value="" aria-describedby="emailHelp" >
+              </div>
+                
 
                 <button type="submit" class="btn btn-primary" id="idBotonGuardar">Guardar Cambios</button>
               </form>
@@ -62,6 +67,21 @@ nuevoJuego.innerHTML = `
       </div>
   </div>
 `;
+
+/* document.addEventListener("DOMContentLoaded", function () {
+  const formularioNuevoJuego = document.getElementById("formularioNuevoJuego");
+  const categoriaSelect = document.getElementById("disabledSelect");
+  const categoriaError = document.getElementById("categoriaError");
+
+  formularioNuevoJuego.addEventListener("submit", function (event) {
+    if (categoriaSelect.value === "") {
+      event.preventDefault(); // Evitar que se envíe el formulario
+      categoriaError.style.display = "block"; // Mostrar mensaje de error
+    } else {
+      categoriaError.style.display = "none"; // Ocultar mensaje de error si se selecciona una categoría
+    }
+  });
+}); */
 
 /* Tablas de juego */
 tablaJuegos.innerHTML = juegos
@@ -324,26 +344,45 @@ function despublicar(id) {
   location.reload();
 }
 
+console.log(juegos[juegos.length - 1].id);
+
 document.addEventListener("DOMContentLoaded", function () {
   var form = document.querySelector("#exampleModal form");
 
   form.addEventListener("submit", function (event) {
     event.preventDefault(); // Evitar que el formulario se envíe
 
-    var nombre = document.querySelector("#idInputUser").value;
-    var categoria = document.querySelector("#disabledSelect").value;
-    var descripcion = document.querySelector(
+    var nombreJuego = document.querySelector("#idInputUser").value;
+    var categoriaJuego = document.querySelector("#disabledSelect").value;
+    var descripcionJuego = document.querySelector(
       "#exampleFormControlTextarea1"
     ).value;
-    var publicar = document.querySelector("#disabledSelect").value;
-    var link = document.querySelector("#idInputRol").value;
+    var publicarJuego = document.querySelector("#disabledSelect").value;
+    var linkJuego = document.querySelector("#idInputLink").value;
+    var precioJuego = document.querySelector("#idInputPrecio").value;
 
-    console.log("Nombre:", nombre);
-    console.log("Categoria:", categoria);
-    console.log("Descripcion:", descripcion);
-    console.log("Publicar:", publicar);
-    console.log("Link:", link);
+    const juegos = JSON.parse(localStorage.getItem("catalogoDeJuegos")) || [];
+    let idNuevoJuego = juegos[juegos.length - 1].id + 1;
 
-    // Aquí puedes guardar los valores en localStorage u otra parte según tu necesidad
+    let nuevoJuego = {
+      id: idNuevoJuego,
+      titulo: nombreJuego,
+      descripcion: descripcionJuego,
+      categoria: categoriaJuego,
+      precio: precioJuego,
+      requisitos: {
+        minimos: "No disponible (exclusivo de consola)",
+        recomendados: "No disponible (exclusivo de consola)",
+      },
+      imagen: "../img/The Legend of Zelda  Breath of the Wild.png",
+      url: linkJuego,
+      publicado: publicarJuego,
+      destacado: false,
+    };
+
+    juegos.push(nuevoJuego);
+    localStorage.setItem("catalogoDeJuegos", JSON.stringify(juegos));
+    console.log("Nuevo juego agregado:", nuevoJuego);
+    location.reload();
   });
 });
