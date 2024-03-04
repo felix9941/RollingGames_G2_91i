@@ -98,41 +98,82 @@ footerGeneral.innerHTML = ` <div class="col-12 col-md-6 col-lg-4 d-flex justify-
   </div>
 </div>
 </div>`;
-const carritoJuegos = document.getElementById("carritoJuegos");
-const usersList = JSON.parse(localStorage.getItem("usuarios")) || [];
-const carritoBody = document.getElementById("carritoBody"); // Asegúrate de tener un elemento con este id
+const usuarios = JSON.parse(localStorage.getItem("usuarios"));
+const usuario = usuarios.find((usu) => usu.login === true);
+const indexUsuario = usuarios.findIndex((user) => user.id === usuario.id);
+let usuarioCarrito = [];
 
-// Encuentra al usuario que ha iniciado sesión
-const usuarioLogueado = usersList.find((u) => u.login);
+const juegos = JSON.parse(localStorage.getItem("catalogoDeJuegos"));
+let indice;
 
-if (usuarioLogueado) {
-  // Muestra el carrito del usuario que ha iniciado sesión
-  if (
-    usuarioLogueado.carrito &&
-    Array.isArray(usuarioLogueado.carrito) &&
-    usuarioLogueado.carrito.length > 0
-  ) {
-    usuarioLogueado.carrito.forEach((carritoItem) => {
-      const row = document.createElement("tr");
-      row.innerHTML = `
-        <td>${carritoItem.id}</td>
-        <td>${carritoItem.imagen}</td>
-        <td>${carritoItem.titulo}</td>
-        <td>${carritoItem.precio}</td>
-        <td>
-        <button type="button" class="btn btn-danger" onclick="eliminarJuego">Eliminar</button>
-      </td>
-      `;
+//Descomentar el if unicamente para cargar carrito, una vez ejecutado volver a comentar
 
-      carritoBody.appendChild(row);
+// INICIO -carga de juego en el usuario Borrar en un futuro
+/*if (indexUsuario !== -1) {
+  usuarios[indexUsuario].carrito = [5, 3];
+  //usuarios[indexUsuario].carrito.push(5, 6, 7); // Cargar los elementos 5, 6 y 7 al carrito
+  console.log(usuarios[indexUsuario].carrito);
+
+  localStorage.setItem("usuarios", JSON.stringify(usuarios));
+} else {
+  console.log("Usuario no encontrado");
+}
+// FIN - carga de juego en el usuario Borrar en un futuro */
+const carritoBody = document.getElementById("carritoBody");
+
+if (usuario) {
+  console.log("Esta logueado");
+  if (indexUsuario != -1) {
+    console.log("Se encontro posicion de usuario");
+    idDeJuegos = usuarios[indexUsuario].carrito;
+    cantDeJuegos = idDeJuegos.length;
+
+    let total = 0;
+
+    if (cantDeJuegos) {
+      console.log("Los juegos a comprar son:");
+      for (let index = 0; index < cantDeJuegos; index++) {
+        indice = juegos.findIndex((juego) => juego.id == idDeJuegos[index]);
+        console.log(juegos[indice].titulo);
+        const row = document.createElement("tr");
+        row.innerHTML = `
+          <td>${juegos[indice].id}</td>
+          <td><img src="${juegos[indice].imagen}" alt="${juegos[indice].titulo}" style="max-width: 70px; max-height: 50px;"></td>
+          <td>${juegos[indice].titulo}</td>
+          <td>${juegos[indice].precio}</td>
+          <td>
+            <button type="button" class="btn btn-danger" onclick="eliminarJuego()">Eliminar</button>
+          </td>
+        `;
+        total += parseFloat(juegos[indice].precio);
+        console.log(total);
+
+        carritoBody.appendChild(row);
+      }
+    } else {
+      console.log("Carrito vacío");
+    }
+    const totalRow = document.createElement("tr");
+    totalRow.innerHTML = `
+      <th colspan="3">Total($)</th>
+      <td id="total" colspan="1">${total.toFixed(2)}</td>
+    `;
+    carritoBody.appendChild(totalRow);
+
+    const contenedor = document.getElementById("botonCarrito");
+    const botonPagar = document.createElement("button");
+    botonPagar.type = "button";
+    botonPagar.className = "pagar anta-regular";
+    botonPagar.textContent = "Pagar";
+    botonCarrito.appendChild(botonPagar);
+    botonPagar.addEventListener("click", function () {
+      window.location.href = "../page/error404.html";
     });
   } else {
-    // Muestra una alerta si no hay nada en el carrito
-    alert("No tienes ningun juego en el carrito.");
+    console.log("Posición de usuario no encontrada");
   }
 } else {
-  // Muestra una alerta si no hay usuario logueado
-  alert("No hay usuario logueado.");
+  console.log("No está logueado");
 }
 
 function cerrarSesion() {

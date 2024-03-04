@@ -115,6 +115,7 @@ img {
   display: inline-block;
   text-decoration: none;
   border-radius: 5%;
+  position: static;
 }
 .pagar:hover {
   border-color: rgb(255, 184, 20);
