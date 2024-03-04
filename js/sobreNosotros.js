@@ -43,6 +43,17 @@ aria-label="Toggle navigation"
       href="registro.html" id="registerItem">Registrarse</a
     >
   </li>
+  <li class="nav-item" id="administracion">
+        <div class="dropdown">
+           <a class="dropdown-toggle nav-link btn-hover btn-focus text-navbar anta-regular ms-3 px-2" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+           Administracion
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="adminUsuarios.html">Admin Usuarios</a></li>
+            <li><a class="dropdown-item" href="adminProductos.html">Admin Productos</a></li>
+          </ul>
+        </div>
+      </li>
   <li class="nav-item" id="micuenta">
   <div class="dropdown">
      <a class="dropdown-toggle nav-link btn-hover btn-focus text-navbar anta-regular ms-3 px-2" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -225,17 +236,28 @@ footerGeneral.innerHTML = ` <div class="col-12 col-md-6 col-lg-4 d-flex justify-
   const botonInicio = document.getElementById("loginItem");
   const botonRegistro = document.getElementById("registerItem");
   const botonLogin = document.getElementById("micuenta");
+  const botonLoginAdmin = document.getElementById("administracion");
 
-  const userLogin = usuarios.find((u) => u.login === true);
+  const userLogin = usuarios.find(
+    (u) => u.login === true && u.rol === "usuario"
+  );
+  const userLoginAdmin = usuarios.find(
+    (u) => u.login === true && u.rol === "admin"
+  );
 
-  if (userLogin) {
+  if (userLoginAdmin) {
     botonInicio.classList.add("d-none");
     botonRegistro.classList.add("d-none");
-    botonLogin.classList.add("d-block");
+    botonLoginAdmin.classList.add("d-block");
+  } else if (userLogin) {
+    botonInicio.classList.add("d-none");
+    botonRegistro.classList.add("d-none");
+    botonLoginAdmin.classList.add("d-none");
   } else {
     botonInicio.classList.add("d-block");
     botonRegistro.classList.add("d-block");
     botonLogin.classList.add("d-none");
+    botonLoginAdmin.classList.add("d-none");
   }
 })();
 
