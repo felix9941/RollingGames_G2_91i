@@ -143,13 +143,10 @@ function eliminarJuego(juegoId, event) {
         totalElement.textContent = (totalActual - precio).toFixed(2);
       }
     } else {
-      console.error(
-        `No se encontró el juego con ID ${juegoId} en el carrito del usuario`
-      );
+      console.error(`No se encontró el juego con ID ${juegoId} en su carrito`);
     }
   }
 }
-
 if (usuario) {
   if (indexUsuario !== -1) {
     usuarioCarrito = usuarios[indexUsuario].carrito || [];
