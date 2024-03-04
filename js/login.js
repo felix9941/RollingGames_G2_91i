@@ -172,6 +172,8 @@ footerGeneral.innerHTML = ` <div class="col-12 col-md-6 col-lg-4 d-flex justify-
     contrasena: "playgaming24",
     login: false,
     rol: "admin",
+    favoritos: [],
+    carrito: [],
     delete: false,
   };
 
@@ -210,6 +212,16 @@ const loginUser = () => {
   const isUserPendiente = userExists && userExists.estado === false;
 
   const admin = userExists && userExists.rol === "admin";
+
+  const usuarioLogueado = usersList.find(
+    (userLogin) => userLogin.id && userLogin.login === true
+  );
+
+  if (usuarioLogueado) {
+    usuarioLogueado.login = false;
+
+    localStorage.setItem("usuarios", JSON.stringify(usersList));
+  }
 
   if (admin) {
     Swal.fire({
@@ -365,4 +377,3 @@ const pag404 = () => {
     window.location.href = "./error404.html";
   }, 1000);
 };
-

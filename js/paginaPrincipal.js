@@ -145,6 +145,20 @@ footerGeneral.innerHTML = ` <div class="col-12 col-md-6 col-lg-4 d-flex justify-
 </div>
 </div>`;
 
+(() => {
+  const validacionUsuario = JSON.parse(localStorage.getItem("usuarios")) || [];
+
+  const usuario = validacionUsuario.find(
+    (validacion) => validacion.id && validacion.login === true
+  );
+
+  if (usuario) {
+  } else {
+    window.location.href = "login.html";
+    return;
+  }
+})();
+
 function mostrarJuego(id) {
   const juego = catalogoJuegos.find((juego) => juego.destacado === true);
 

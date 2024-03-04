@@ -72,7 +72,7 @@ navbarAdminUsuarios.innerHTML = `<a href="paginaPrincipal.html" class="d-flex al
 
 const footerGeneral = document.getElementById("footerGeneral");
 footerGeneral.innerHTML = ` <div class="col-12 col-md-6 col-lg-4 d-flex justify-content-center">
-<a href="./paginaPrincipalAdmin.html"
+<a href="paginaPrincipal.html"
   ><img
     src="../img/Logo Play Gaming.png"
     alt="Logo-PlayGaming"
@@ -110,7 +110,7 @@ footerGeneral.innerHTML = ` <div class="col-12 col-md-6 col-lg-4 d-flex justify-
     class="informacion-pag text-center mt-4 mb-3 listNone"
     
   >
-    <li><a href="./paginaPrincipalAdmin.html">Inicio</a></li>
+    <li><a href="paginaPrincipal.html">Inicio</a></li>
     <li><a href="sobreNosotros.html">Sobre nosotros</a></li>
     <li><a href="contacto.html">Contacto</a></li>
     <li>
@@ -121,6 +121,32 @@ footerGeneral.innerHTML = ` <div class="col-12 col-md-6 col-lg-4 d-flex justify-
   </div>
 </div>
 </div>`;
+
+(() => {
+  const validacionUsuario = JSON.parse(localStorage.getItem("usuarios")) || [];
+
+  const usuario = validacionUsuario.find(
+    (validacion) =>
+      validacion.id && validacion.login === true && validacion.rol === "admin"
+  );
+
+  const usuarioAdmin = validacionUsuario.find(
+    (validacion) =>
+      validacion.id && validacion.login === true && validacion.rol === "admin"
+  );
+
+  if (usuarioAdmin) {
+  } else {
+    window.location.href = "paginaPrincipal.html";
+    return;
+  }
+
+  if (usuario) {
+  } else {
+    window.location.href = "login.html";
+    return;
+  }
+})();
 
 const tableAdmin = document.getElementById("tableAdmin");
 const adminUsuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
