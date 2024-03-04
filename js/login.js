@@ -172,6 +172,8 @@ footerGeneral.innerHTML = ` <div class="col-12 col-md-6 col-lg-4 d-flex justify-
     contrasena: "playgaming24",
     login: false,
     rol: "admin",
+    favoritos: [],
+    carrito: [],
     delete: false,
   };
 
@@ -211,6 +213,16 @@ const loginUser = () => {
 
   const admin = userExists && userExists.rol === "admin";
 
+  const usuarioLogueado = usersList.find(
+    (userLogin) => userLogin.id && userLogin.login === true
+  );
+
+  if (usuarioLogueado) {
+    usuarioLogueado.login = false;
+
+    localStorage.setItem("usuarios", JSON.stringify(usersList));
+  }
+
   if (admin) {
     Swal.fire({
       title: "Bienvenido Administrador",
@@ -233,7 +245,7 @@ const loginUser = () => {
     }
 
     setTimeout(() => {
-      window.location.href = "adminUsuarios.html";
+      window.location.href = "paginaPrincipal.html";
     }, 3000);
     return;
   }
@@ -352,7 +364,11 @@ const loginUser = () => {
       window.location.href = "paginaPrincipal.html";
     }, 1000);
   } else {
-    alert("Nombre de usuario o contraseña incorrectos.");
+    Swal.fire({
+      icon: "error",
+      title: "Importante",
+      text: "Usuario o contraseña incorrectos.",
+    });
   }
 };
 
