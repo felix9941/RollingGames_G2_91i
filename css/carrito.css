@@ -97,10 +97,9 @@ img {
 }
 .title-Carrito {
   color: white;
-  margin-left: 30px;
-  margin-top: 30px;
+  margin: 30px;
+  text-align: center;
 }
-
 .pagar {
   width: 150px;
   background-color: rgb(255, 184, 20);
@@ -111,6 +110,7 @@ img {
   padding-right: 2em;
   padding-top: 0.5em;
   padding-bottom: 0.5em;
+  margin: 10px;
   font-weight: 500;
   display: inline-block;
   text-decoration: none;

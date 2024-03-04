@@ -98,6 +98,7 @@ footerGeneral.innerHTML = ` <div class="col-12 col-md-6 col-lg-4 d-flex justify-
   </div>
 </div>
 </div>`;
+
 const usuarios = JSON.parse(localStorage.getItem("usuarios"));
 const usuario = usuarios.find((usu) => usu.login === true);
 const indexUsuario = usuarios.findIndex((user) => user.id === usuario.id);
@@ -105,54 +106,90 @@ let usuarioCarrito = [];
 
 const juegos = JSON.parse(localStorage.getItem("catalogoDeJuegos"));
 let indice;
-
-//Descomentar el if unicamente para cargar carrito, una vez ejecutado volver a comentar
-
-// INICIO -carga de juego en el usuario Borrar en un futuro
 /*if (indexUsuario !== -1) {
-  usuarios[indexUsuario].carrito = [5, 3];
-  //usuarios[indexUsuario].carrito.push(5, 6, 7); // Cargar los elementos 5, 6 y 7 al carrito
+  usuarios[indexUsuario].carrito = [1, 4, 3];
   console.log(usuarios[indexUsuario].carrito);
 
   localStorage.setItem("usuarios", JSON.stringify(usuarios));
 } else {
   console.log("Usuario no encontrado");
-}
-// FIN - carga de juego en el usuario Borrar en un futuro */
+}*/
+// FIN - carga de juego en el usuario Borrar en un futuro
 const carritoBody = document.getElementById("carritoBody");
 
+function eliminarJuego(juegoId, event) {
+  event.stopPropagation();
+  const confirmarEliminar = window.confirm(
+    `¿Estás seguro de eliminar el juego con ID ${juegoId}?`
+  );
+
+  if (confirmarEliminar) {
+    const juegoIndex = usuarioCarrito.findIndex((id) => id === juegoId);
+    if (juegoIndex !== -1) {
+      usuarioCarrito.splice(juegoIndex, 1);
+      localStorage.setItem("usuarios", JSON.stringify(usuarios));
+      const fila = document.getElementById(`fila-${juegoId}`);
+      fila.remove();
+      const totalElement = document.getElementById("total");
+      const juego = juegos.find((juego) => juego.id === juegoId);
+      if (juego) {
+        const precio = parseFloat(juego.precio);
+        const totalActual = parseFloat(totalElement.textContent);
+        totalElement.textContent = (totalActual - precio).toFixed(2);
+      }
+    } else {
+      console.error(
+        `No se encontró el juego con ID ${juegoId} en el carrito del usuario`
+      );
+    }
+  }
+}
+
 if (usuario) {
-  console.log("Esta logueado");
-  if (indexUsuario != -1) {
-    console.log("Se encontro posicion de usuario");
-    idDeJuegos = usuarios[indexUsuario].carrito;
-    cantDeJuegos = idDeJuegos.length;
+  if (indexUsuario !== -1) {
+    usuarioCarrito = usuarios[indexUsuario].carrito || [];
+    cantDeJuegos = usuarioCarrito.length;
 
     let total = 0;
 
     if (cantDeJuegos) {
-      console.log("Los juegos a comprar son:");
       for (let index = 0; index < cantDeJuegos; index++) {
-        indice = juegos.findIndex((juego) => juego.id == idDeJuegos[index]);
-        console.log(juegos[indice].titulo);
-        const row = document.createElement("tr");
-        row.innerHTML = `
-          <td>${juegos[indice].id}</td>
-          <td><img src="${juegos[indice].imagen}" alt="${juegos[indice].titulo}" style="max-width: 70px; max-height: 50px;"></td>
-          <td>${juegos[indice].titulo}</td>
-          <td>${juegos[indice].precio}</td>
-          <td>
-            <button type="button" class="btn btn-danger" onclick="eliminarJuego()">Eliminar</button>
-          </td>
-        `;
-        total += parseFloat(juegos[indice].precio);
-        console.log(total);
+        indice = juegos.findIndex((juego) => juego.id == usuarioCarrito[index]);
+        if (indice !== -1 && juegos[indice]) {
+          const row = document.createElement("tr");
+          row.id = `fila-${juegos[indice].id}`;
+          row.innerHTML = `
+            <td>${juegos[indice].id}</td>
+            <td><img src="${juegos[indice].imagen}" alt="${juegos[indice].titulo}" style="max-width: 70px; max-height: 50px;"></td>
+            <td>${juegos[indice].titulo}</td>
+            <td>${juegos[indice].precio}</td>
+            <td>
+              <button type="button" class="btn btn-danger" onclick="eliminarJuego(${juegos[indice].id})">Eliminar</button>
+            </td>
+          `;
+          total += parseFloat(juegos[indice].precio);
+          console.log(total);
 
-        carritoBody.appendChild(row);
+          carritoBody.appendChild(row);
+        } else {
+          console.error(
+            `No se encontró el juego con ID ${usuarioCarrito[index]}`
+          );
+        }
       }
     } else {
       console.log("Carrito vacío");
+      const filaCarritoVacio = document.createElement("tr");
+      const cell = document.createElement("td");
+      cell.colSpan = "6";
+      cell.style.textAlign = "center";
+      const carritoVacioMensaje = document.createElement("h3");
+      carritoVacioMensaje.textContent = "Carrito vacío";
+      cell.appendChild(carritoVacioMensaje);
+      filaCarritoVacio.appendChild(cell);
+      carritoBody.appendChild(filaCarritoVacio);
     }
+
     const totalRow = document.createElement("tr");
     totalRow.innerHTML = `
       <th colspan="3">Total($)</th>
@@ -169,11 +206,22 @@ if (usuario) {
     botonPagar.addEventListener("click", function () {
       window.location.href = "../page/error404.html";
     });
+
+    const botonesEliminar = document.querySelectorAll(".btn-danger");
+    botonesEliminar.forEach((boton) => {
+      boton.addEventListener("click", function (event) {
+        const juegoId = parseInt(
+          this.closest("tr").querySelector("td:first-child").textContent,
+          10
+        );
+        eliminarJuego(juegoId, event);
+      });
+    });
   } else {
-    console.log("Posición de usuario no encontrada");
+    alert("Usuario no encontrada");
   }
 } else {
-  console.log("No está logueado");
+  alert("No está logueado");
 }
 
 function cerrarSesion() {
