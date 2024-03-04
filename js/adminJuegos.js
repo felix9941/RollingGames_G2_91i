@@ -100,7 +100,7 @@ tablaJuegos.innerHTML = juegos
     </div>
   </td>
   <td>
-    <div class="d-flex d-flex justify-content-center align-items-center">
+    <div class="d-flex d-flex  align-items-center">
 
           <!-- Botón de Eliminacio Fisica -->
           <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#eliminar-${
@@ -133,117 +133,153 @@ tablaJuegos.innerHTML = juegos
           </div>
 
 
-          <!-- Editar -->
+          <!-- EDITAR JUEGO -->
           <!-- Button trigger modal -->
-          <button type="button" class="btn  btn-warning m-1" data-bs-toggle="modal" data-bs-target="#exampleModal-${
+          <button type="button" class="btn btn-warning m-1" data-bs-toggle="modal" data-bs-target="#exampleModalEditar-${
             juego.id
           }">
-                <i class="fas fa-edit"></i>
+          <i class="fas fa-edit"></i>
           </button>
           
           <!-- Modal -->
-            <div class="modal  fade" id="exampleModal-${
-              juego.id
-            }" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-              <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                  <div class="modal-header">
-                      <h5 class="modal-title w-100 text-center">Editar Juego: ${
-                        juego.titulo
-                      }</h5>
-                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                  </div>
-
-                  <div class="modal-body">
-                    <form>
-                      <div class="mb-3">
-                        <label for="exampleInputEmail1" class="form-label">Nombre</label>
-                        <input type="text" class="form-control" id="idInputUser" name="user" value="${
-                          juego.titulo
-                        }" aria-describedby="emailHelp" >
-                      </div>
-                    
-                      <div class="mb-3">
-                        <label for="categoriaSelect" class="form-label">Categoria</label>
-                        <select id="categoriaSelect" class="form-select">
-                          <option value="">Seleccionar categoria</option>
-                          <option value="Aventura" ${
-                            juego.categoria === "Aventura" ? "selected" : ""
-                          }>Aventura</option>
-                          <option value="Acción" ${
-                            juego.categoria === "Acción" ? "selected" : ""
-                          }>Acción</option>
-                          <option value="Estrategia" ${
-                            juego.categoria === "Estrategia" ? "selected" : ""
-                          }>Estrategia</option>
-                          <option value="Deportes" ${
-                            juego.categoria === "Deportes" ? "selected" : ""
-                          }>Deportes</option>
-                        </select>
-                      </div>
-    
-                      <div class="mb-3">
-                        <label for="exampleFormControlTextarea1" class="form-label">Descripcion</label>
-                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3">${
-                          juego.descripcion
-                        }</textarea>   
-                      </div>
-    
-                      <div class="mb-3">
-                        <label for="disabledSelect" class="form-label">Publicar</label>
-                        <select id="disabledSelect" class="form-select">
-                          <option value="Si" selected>Si</option>
-                          <option value="No">No</option>
-                        </select>
-                      </div>
-      
-                      <div class="mb-3">
-                        <label for="exampleInputPassword1" class="form-label">Link trailer de juego</label>
-                        <input type="text" class="form-control" id="idInputRol" name="rol" value="${
-                          juego.url
-                        }">
-                      </div>
-      
-                      <button type="submit" class="btn btn-primary" id="idBotonGuardar">Guardar Cambios</button>
-                    </form>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-          <!-- Destacar -->
-          <!-- Button trigger modal -->
-          <button type="button" class="btn ${colorBotonDestacar(
-            juego.id
-          )} " data-bs-toggle="modal"  id="botonEstrellaDestacar" data-bs-target="#destacar-${
-      juego.id
-    }">
-              <i class="fas fa-star text-dark"></i>
-          </button>
-            
-          <!-- Vertically centered modal -->
-          <div class="modal fade" id="destacar-${
+          <div class="modal fade" id="exampleModalEditar-${
             juego.id
           }" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLabel">Destacar</h5>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      <div class="modal-dialog ">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title w-100 text-center">Editar juego: ${
+              juego.titulo
+            }</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form id="formularioNuevoJuego">
+              <div class="mb-1">
+                <label for="exampleInputEmail1" class="form-label">Nombre</label>
+                <input type="text" class="form-control" id="idInputTituloEdit" name="user" value="${
+                  juego.titulo
+                }" aria-describedby="emailHelp">
+              </div>
+    
+              <div class="mb-1">
+                <label for="disabledSelect" class="form-label">Categoria</label>
+                <select id="idSeleccionCategoriaEdit" class="form-select">
+                  <option value="">Seleccionar categoria</option>
+                  <option value="Aventura" ${
+                    juego.categoria === "Aventura" ? "selected" : ""
+                  }>Aventura</option>
+                  <option value="Acción" ${
+                    juego.categoria === "Acción" ? "selected" : ""
+                  }>Acción</option>
+                  <option value="Estrategia" ${
+                    juego.categoria === "Estrategia" ? "selected" : ""
+                  }>Estrategia</option>
+                  <option value="Deportes" ${
+                    juego.categoria === "Deportes" ? "selected" : ""
+                  }>Deportes</option>
+                </select>
+              </div>
+    
+                    <div class="mb-1">
+                    <label for="exampleFormControlTextarea1" class="form-label">Descripcion</label>
+                    <textarea class="form-control" id="idDescripcionEdit" rows="2" value="">${
+                      juego.descripcion
+                    }</textarea>   
+                  </div>
+    
+                  <div class="mb-1">
+                  <label for="exampleFormControlTextarea1" class="form-label">Requisitos de sistema Minimos</label>
+                  <textarea class="form-control" id="idRequisitosMinimosEdit" rows="2">${JSON.stringify(
+                    juego.requisitos.minimos
+                  )}</textarea>   
                 </div>
-                <div class="modal-body">
-                Esta seguro de querer destacar el juego ${juego.titulo}?
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
-                  <button type="button" class="btn btn-primary" id="confirmacionDestacar" onclick="cambiarDestacado(${
+    
+                <div class="mb-1">
+                <label for="exampleFormControlTextarea1" class="form-label">Requisitos de sistema recomendados</label>
+                <textarea class="form-control" id="idRequisitosRecomendadosEdit" rows="2">${JSON.stringify(
+                  juego.requisitos.recomendados
+                )}</textarea>   
+              </div>
+    
+                    <div class="mb-1">
+                      <label for="disabledSelect" class="form-label">Publicar</label>
+                      <select id="idPublicarEdit" class="form-select">
+                        <option value="Si" selected>Si</option>
+                        <option value="No">No</option>
+                      </select>
+                    </div>
+    
+                    <div class="mb-1">
+                    <label for="exampleInputPassword1" class="form-label">Link de imagen</label>
+                    <input type="text" class="form-control" id="idInputLinkImagenEdit" name="link" value="${
+                      juego.imagen
+                    }">
+                  </div>
+    
+                    <div class="mb-1">
+                      <label for="exampleInputPassword1" class="form-label">Link trailer de juego</label>
+                      <input type="text" class="form-control" id="idInputLinkEdit" name="link" value="${
+                        juego.url
+                      }">
+                    </div>
+    
+                    <div class="mb-2">
+                    <label for="exampleInputEmail1" class="form-label">Precio</label>
+                    <input type="number" step="any" class="form-control" id="idInputPrecioEdit" name="precio" value="${
+                      juego.precio
+                    }" aria-describedby="emailHelp" >
+                  </div>
+                    
+                  <button type="button" class="btn btn-primary" id="idBotonGuardar" onclick="validacionJuegoEditado(event,${
                     juego.id
-                  })">Si</button>
-
+                  })">Guardar Cambios</button>
+                  </form>
                 </div>
               </div>
             </div>
-          </div>
+      </div>
+
+
+
+
+
+
+
+
+              <!-- Destacar -->
+              <!-- Button trigger modal -->
+              <button type="button" class="btn ${colorBotonDestacar(
+                juego.id
+              )} " data-bs-toggle="modal"  id="botonEstrellaDestacar" data-bs-target="#destacar-${
+      juego.id
+    }">
+                  <i class="fas fa-star text-dark"></i>
+              </button>
+                
+              <!-- Vertically centered modal -->
+              <div class="modal fade" id="destacar-${
+                juego.id
+              }" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">Destacar</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                    Esta seguro de querer destacar el juego ${juego.titulo}?
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                      <button type="button" class="btn btn-primary" id="confirmacionDestacar" onclick="cambiarDestacado(${
+                        juego.id
+                      })">Si</button>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
     </div>
   </td> 
 </tr>
@@ -251,11 +287,7 @@ tablaJuegos.innerHTML = juegos
   )
   .join("");
 
-function editar(id) {
-  const juegos = JSON.parse(localStorage.getItem("catalogoDeJuegos")) || [];
-  const index = juegos.findIndex((juego) => juego.id === id);
-}
-
+// Boton de Destacado OK
 function nuevoValorDeDestacado(valorActual) {
   const juegos = JSON.parse(localStorage.getItem("catalogoDeJuegos")) || [];
   if (valorActual) {
@@ -297,13 +329,6 @@ function cambiarDestacado(id) {
   }
 }
 
-//BORRAR
-/* const imagenDePrueba = document.getElementById("idImagenP");
-const juegoss = JSON.parse(localStorage.getItem("catalogoDeJuegos")) || [];
-const juego = juegoss.find((juego) => juego.id === 2);
-console.log(juego.imagen);
-imagenDePrueba.innerHTML = `<img src="${juego.imagen}" alt="">`; */
-
 function colorBotonDestacar(id) {
   const juegos = JSON.parse(localStorage.getItem("catalogoDeJuegos")) || [];
   const juego = juegos.find((juego) => juego.id === id);
@@ -325,6 +350,7 @@ function eliminacionFisica(id) {
   }
 }
 
+//Logica para boton de publicar OK
 function estadoDePublicacion(estado, id) {
   if (estado) {
     despublicar(id);
@@ -351,7 +377,7 @@ function despublicar(id) {
   location.reload();
 }
 
-//Validaciones para nuevo Juego OK
+//Validaciones colores de input
 function colorInput(idInput) {
   document.getElementById(idInput).addEventListener("input", function () {
     var valorInput = this.value;
@@ -363,6 +389,7 @@ function colorInput(idInput) {
   });
 }
 
+//Validaciones para nuevo Juego
 const validacionJuego = (event) => {
   event.preventDefault();
   colorInput("idInputTitulo");
@@ -373,17 +400,17 @@ const validacionJuego = (event) => {
   colorInput("idInputLinkImagen");
   colorInput("idInputLink");
   colorInput("idInputPrecio");
-  var nombreJuego = document.getElementById("idInputTitulo").value;
-  var categoriaJuego = document.getElementById("idSeleccionCategoria").value;
-  var descripcionJuego = document.getElementById("idDescripcion").value;
-  var requisitoMinimo = document.getElementById("idRequisitosMinimos").value;
-  var requisitoRecomendado = document.getElementById(
+  let nombreJuego = document.getElementById("idInputTitulo").value;
+  let categoriaJuego = document.getElementById("idSeleccionCategoria").value;
+  let descripcionJuego = document.getElementById("idDescripcion").value;
+  let requisitoMinimo = document.getElementById("idRequisitosMinimos").value;
+  let requisitoRecomendado = document.getElementById(
     "idRequisitosRecomendados"
   ).value;
-  var publicarJuego = document.getElementById("idPublicar").value;
-  var linkImagenJuego = document.getElementById("idInputLinkImagen").value;
-  var linkJuego = document.getElementById("idInputLink").value;
-  var precioJuego = document.getElementById("idInputPrecio").value;
+  let publicarJuego = document.getElementById("idPublicar").value;
+  let linkImagenJuego = document.getElementById("idInputLinkImagen").value;
+  let linkJuego = document.getElementById("idInputLink").value;
+  let precioJuego = document.getElementById("idInputPrecio").value;
   const juegos = JSON.parse(localStorage.getItem("catalogoDeJuegos")) || [];
   let idNuevoJuego = juegos.length > 0 ? juegos[juegos.length - 1].id + 1 : 1;
 
@@ -414,7 +441,7 @@ const validacionJuego = (event) => {
       .classList.add("is-invalid");
     return;
   }
-  linkImagenJuego;
+
   if (linkImagenJuego.trim() === "") {
     alert("Por favor, ingrese link de la imagen del juego");
     document.getElementById("idInputLinkImagen").classList.add("is-invalid");
@@ -431,6 +458,7 @@ const validacionJuego = (event) => {
     return;
   }
 
+  let estadoDeJuego;
   if (publicarJuego === "Si") {
     estadoDeJuego = true;
   } else {
@@ -455,5 +483,111 @@ const validacionJuego = (event) => {
   juegos.push(nuevoJuego);
   localStorage.setItem("catalogoDeJuegos", JSON.stringify(juegos));
   console.log("Nuevo juego agregado:", nuevoJuego);
+  location.reload();
+};
+
+//  Validacion para Editar Juego
+const validacionJuegoEditado = (event, identificadorDeJuego) => {
+  event.preventDefault();
+  colorInput("idInputTituloEdit");
+  colorInput("idSeleccionCategoriaEdit");
+  colorInput("idDescripcionEdit");
+  colorInput("idRequisitosMinimosEdit");
+  colorInput("idRequisitosRecomendadosEdit");
+  colorInput("idInputLinkImagenEdit");
+  colorInput("idInputLinkEdit");
+  colorInput("idInputPrecioEdit");
+  let nombreJuegoE = document.getElementById("idInputTituloEdit").value;
+  let categoriaJuegoE = document.getElementById(
+    "idSeleccionCategoriaEdit"
+  ).value;
+  let descripcionJuegoE = document.getElementById("idDescripcionEdit").value;
+  let requisitoMinimoE = document.getElementById(
+    "idRequisitosMinimosEdit"
+  ).value;
+  let requisitoRecomendadoE = document.getElementById(
+    "idRequisitosRecomendadosEdit"
+  ).value;
+  let publicarJuegoE = document.getElementById("idPublicarEdit").value;
+  let linkImagenJuegoE = document.getElementById("idInputLinkImagenEdit").value;
+  let linkJuegoE = document.getElementById("idInputLinkEdit").value;
+  let precioJuegoE = document.getElementById("idInputPrecioEdit").value;
+
+  if (nombreJuegoE.trim() === "") {
+    alert("Por favor, ingresa un título para el juego.");
+    document.getElementById("idInputTituloEdit").classList.add("is-invalid");
+    return;
+  }
+  if (categoriaJuegoE.trim() === "") {
+    alert("Por favor, seleccione una categoría para el juego.");
+    document
+      .getElementById("idSeleccionCategoriaEdit")
+      .classList.add("is-invalid");
+    return;
+  }
+  if (descripcionJuegoE.trim() === "") {
+    alert("Por favor, ingrese descripcion de juego");
+    document.getElementById("idDescripcionEdit").classList.add("is-invalid");
+    return;
+  }
+  if (requisitoMinimoE.trim() === "") {
+    alert("Por favor, ingrese requisito de sistema minimo para el juego");
+    document
+      .getElementById("idRequisitosMinimosEdit")
+      .classList.add("is-invalid");
+    return;
+  }
+  if (requisitoRecomendadoE.trim() === "") {
+    alert("Por favor, ingrese requisito de sistema recomendado para el juego");
+    document
+      .getElementById("idRequisitosRecomendadosEdit")
+      .classList.add("is-invalid");
+    return;
+  }
+
+  if (linkImagenJuegoE.trim() === "") {
+    alert("Por favor, ingrese link de la imagen del juego");
+    document
+      .getElementById("idInputLinkImagenEdit")
+      .classList.add("is-invalid");
+    return;
+  }
+  if (linkJuegoE.trim() === "") {
+    alert("Por favor, ingrese link del trailer del juego");
+    document.getElementById("idInputLinkEdit").classList.add("is-invalid");
+    return;
+  }
+  if (precioJuegoE.trim() === "") {
+    alert("Por favor, ingrese precio del juego");
+    document.getElementById("idInputPrecioEdit").classList.add("is-invalid");
+    return;
+  }
+
+  let estadoDeJuegoE;
+  if (publicarJuegoE === "Si") {
+    estadoDeJuegoE = true;
+  } else {
+    estadoDeJuegoE = false;
+  }
+
+  const indexJuegoEditar = juegos.findIndex(
+    (game) => game.id === identificadorDeJuego
+  );
+  juegoEditar = juegos[indexJuegoEditar];
+
+  juegoEditar.id = identificadorDeJuego;
+  juegoEditar.titulo = nombreJuegoE;
+  juegoEditar.descripcion = descripcionJuegoE;
+  juegoEditar.categoria = categoriaJuegoE;
+  juegoEditar.precio = precioJuegoE;
+  juegoEditar.requisitos.minimos = requisitoMinimoE;
+  juegoEditar.requisitos.recomendados = requisitoRecomendadoE;
+  juegoEditar.imagen = linkImagenJuegoE;
+  juegoEditar.url = linkJuegoE;
+  juegoEditar.publicado = estadoDeJuegoE;
+  juegoEditar.destacado = false;
+
+  juegos[indexJuegoEditar] = juegoEditar;
+  localStorage.setItem("catalogoDeJuegos", JSON.stringify(juegos));
   location.reload();
 };
