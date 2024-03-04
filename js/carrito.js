@@ -98,7 +98,20 @@ footerGeneral.innerHTML = ` <div class="col-12 col-md-6 col-lg-4 d-flex justify-
   </div>
 </div>
 </div>`;
+(() => {
+  const validacionUsuario = JSON.parse(localStorage.getItem("usuarios")) || [];
 
+  const usuario = validacionUsuario.find(
+    (validacion) =>
+      validacion.id && validacion.login === true && validacion.rol === "usuario"
+  );
+
+  if (usuario) {
+  } else {
+    window.location.href = "login.html";
+    return;
+  }
+})();
 const usuarios = JSON.parse(localStorage.getItem("usuarios"));
 const usuario = usuarios.find((usu) => usu.login === true);
 const indexUsuario = usuarios.findIndex((user) => user.id === usuario.id);
@@ -106,15 +119,7 @@ let usuarioCarrito = [];
 
 const juegos = JSON.parse(localStorage.getItem("catalogoDeJuegos"));
 let indice;
-/*if (indexUsuario !== -1) {
-  usuarios[indexUsuario].carrito = [1, 4, 3];
-  console.log(usuarios[indexUsuario].carrito);
 
-  localStorage.setItem("usuarios", JSON.stringify(usuarios));
-} else {
-  console.log("Usuario no encontrado");
-}*/
-// FIN - carga de juego en el usuario Borrar en un futuro
 const carritoBody = document.getElementById("carritoBody");
 
 function eliminarJuego(juegoId, event) {
@@ -217,11 +222,7 @@ if (usuario) {
         eliminarJuego(juegoId, event);
       });
     });
-  } else {
-    alert("Usuario no encontrada");
   }
-} else {
-  alert("No está logueado");
 }
 
 function cerrarSesion() {
