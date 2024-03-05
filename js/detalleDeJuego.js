@@ -1,31 +1,5 @@
 //redireccion - control de acceso.
 
-(() => {
-  const validacionUsuario = JSON.parse(localStorage.getItem("usuarios")) || [];
-
-  const usuario = validacionUsuario.find(
-    (validacion) =>
-      validacion.id && validacion.login === true && validacion.rol === "admin"
-  );
-
-  const usuarioAdmin = validacionUsuario.find(
-    (validacion) =>
-      validacion.id && validacion.login === true && validacion.rol === "admin"
-  );
-
-  if (usuarioAdmin) {
-  } else {
-    window.location.href = "paginaPrincipal.html";
-    return;
-  }
-
-  if (usuario) {
-  } else {
-    window.location.href = "login.html";
-    return;
-  }
-})();
-
 //Navbar
 const navbarAdminUsuarios = document.getElementById("navbar-admin");
 navbarAdminUsuarios.innerHTML = `<a href="paginaPrincipal.html" class="d-flex align-items-center enlace-logo">
@@ -184,9 +158,7 @@ footerGeneral.innerHTML = ` <div class="col-12 col-md-6 col-lg-4 d-flex justify-
 
 function cerrarSesion() {
   const usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
-
   const userLogin = usuarios.find((u) => u.id && u.login === true);
-
   if (userLogin) {
     userLogin.login = false;
     localStorage.setItem("usuarios", JSON.stringify(usuarios));
@@ -196,11 +168,196 @@ function cerrarSesion() {
   }, 1000);
 }
 
-/* ************* Contenido de la pagina del juego ************************* */
+/* *************************** Contenido de la pagina del juego ************************* */
 
-const tablaJuegos = document.getElementById("idTablaJuegos");
+/* //"https://youtu.be/1rPxiXXxftE"
+const url = location.search.split("/")[2];
+ */
+
+//obtengo juego
 const juegos = JSON.parse(localStorage.getItem("catalogoDeJuegos")) || [];
-const nuevoJuego = document.getElementById("idBotonNuevoJuego");
+const idJuego = location.search.split("=")[1];
+const juego = juegos.find((game) => game.id === Number(idJuego));
+
+const fotoComprar = document.getElementById("idFotoComprar");
+fotoComprar.innerHTML = `<div class="col-md-8 pe-0 ps-2">
+<img src="${juego.imagen}" alt="" style="width: 100%" />
+</div>
+<div class="col-md-4 fondoParaComprar">
+<div class="ms-3 me-3 ">
+
+  <h3 class="mt-2">${juego.titulo}</h3>
+  <h5>Categoria: ${juego.categoria}</h5>
+  <h5>Precio: $ ${juego.precio}</h5>
+
+
+    <div class="container">
+      <div class="row">
+        <div class="col-12 mt-1 mb-1 p-0">
+          <button
+            class="btn btn-warning" onclick="comprar(${juego.id})"
+            style="width: 100%; max-width: 10em"
+          >
+            Comprar
+          </button>
+        </div>
+        <div class="col-12 mt-1 mb-1 p-0">
+          <button
+            class="btn btn-warning"  onclick="carrito(${juego.id})"
+            style="width: 100%; max-width: 10em"
+          >
+            Añadir al carrito
+          </button>
+        </div>
+        <div class="col-12 mt-1 mb-3 mb-2 p-0">
+          <button id="botonFavorito" class="btn btn-primary" onclick="favorito(${juego.id})">Agregar a Favoritos</button>
+        </div>
+      </div>
+    </div>
+
+</div>
+</div>`;
+
+function mostrarMensaje(mensaje, tiempo) {
+  const mensajeDiv = document.createElement("div");
+  mensajeDiv.textContent = mensaje;
+  mensajeDiv.classList.add("mensaje");
+  document.body.appendChild(mensajeDiv);
+
+  setTimeout(() => {
+    mensajeDiv.remove();
+  }, tiempo);
+}
+
+function incluido(array, elemento) {
+  for (let i = 0; i < array.length; i++) {
+    if (array[i] === elemento) {
+      return true;
+    }
+  }
+  return false;
+}
+
+function comprar(id) {
+  const usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
+  const posicionUsuario = usuarios.findIndex((usu) => usu.login === true);
+  const usuarioLogueado = usuarios[posicionUsuario];
+  if (incluido(usuarioLogueado.carrito, id)) {
+    window.location.href = "carrito.html";
+  } else {
+    usuarioLogueado.carrito.push(id);
+    usuarios[posicionUsuario] = usuarioLogueado;
+    localStorage.setItem("usuarios", JSON.stringify(usuarios));
+    console.log(usuarioLogueado);
+    window.location.href = "carrito.html";
+  }
+}
+
+function carrito(id) {
+  const usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
+  const posicionUsuario = usuarios.findIndex((usu) => usu.login === true);
+  const usuarioLogueado = usuarios[posicionUsuario];
+  if (incluido(usuarioLogueado.carrito, id)) {
+    alert("El juego ya esta en el carrito");
+  } else {
+    usuarioLogueado.carrito.push(id);
+    usuarios[posicionUsuario] = usuarioLogueado;
+    localStorage.setItem("usuarios", JSON.stringify(usuarios));
+    console.log(usuarioLogueado);
+    mostrarMensaje("El juego se agrego al carrito", 6000);
+  }
+}
+
+function favorito(idJuego) {
+  //const idJuego = 1; // ID del juego, usar el ID correcto aquí
+  const usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
+  const posicionUsuario = usuarios.findIndex((usu) => usu.login === true);
+  const usuarioLogueado = usuarios[posicionUsuario];
+
+  if (incluido(usuarioLogueado.favoritos, idJuego)) {
+    usuarioLogueado.favoritos = usuarioLogueado.favoritos.filter(
+      (id) => id !== idJuego
+    );
+    document.getElementById("botonFavorito").textContent =
+      "Agregar a Favoritos";
+    document.getElementById("botonFavorito").classList.remove("btn-danger");
+    document.getElementById("botonFavorito").classList.add("btn-primary");
+  } else {
+    usuarioLogueado.favoritos.push(idJuego);
+    document.getElementById("botonFavorito").textContent =
+      "Quitar de Favoritos";
+    document.getElementById("botonFavorito").classList.remove("btn-primary");
+    document.getElementById("botonFavorito").classList.add("btn-danger");
+  }
+
+  usuarios[posicionUsuario] = usuarioLogueado;
+  localStorage.setItem("usuarios", JSON.stringify(usuarios));
+}
+
+/* function favorito(id) {
+  const usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
+  const posicionUsuario = usuarios.findIndex((usu) => usu.login === true);
+  const usuarioLogueado = usuarios[posicionUsuario];
+  console.log("No esta");
+  if (incluido(usuarioLogueado.favoritos, id)) {
+    mostrarMensaje("El juego ya está en favoritos", 6000);
+  } else {
+    console.log("No esta");
+    usuarioLogueado.favoritos.push(id);
+    usuarios[posicionUsuario] = usuarioLogueado;
+    localStorage.setItem("usuarios", JSON.stringify(usuarios));
+    console.log(usuarioLogueado);
+    mostrarMensaje("El juego se agregó a favoritos", 6000);
+  }
+} */
+
+function identificadorVideo(link) {
+  const url = "https://youtu.be/1rPxiXXxftE";
+  const parts = url.split("/");
+  const videoId = parts[parts.length - 1];
+  return videoId;
+}
+
+const descripcionVideo = document.getElementById("idDescripcionVideo");
+descripcionVideo.innerHTML = `<div class="col-md-8">
+<h2>Descripcion</h2>
+<p>
+
+${juego.descripcion}
+</p>
+</div>
+<div class="col-md-4">
+<iframe
+  width="560"
+  height="315"
+  src="https://www.youtube.com/embed/${identificadorVideo(juego.url)}?"
+  title="YouTube video player"
+  frameborder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+  allowfullscreen
+  style="width: 100%"
+></iframe>
+</div>`;
+
+const requisitoSisteme = document.getElementById("idRequisitoSistema");
+requisitoSisteme.innerHTML = ` <div class="col-md-6">
+<h3>Minimos</h3>
+<p>
+  Lorem ipsum dolor sit amet consectetur adipisicing elit. Et nobis
+  eum nihil illo, dolorem eos fugit aut, ad modi voluptate est
+  aspernatur autem earum assumenda doloremque natus blanditiis.
+  Aspernatur, hic!
+</p>
+</div>
+<div class="col-md-6">
+<h3>Recomendados</h3>
+<p>
+  Lorem ipsum dolor sit amet consectetur adipisicing elit. Et nobis
+  eum nihil illo, dolorem eos fugit aut, ad modi voluptate est
+  aspernatur autem earum assumenda doloremque natus blanditiis.
+  Aspernatur, hic!
+</p>
+</div>`;
 
 /* //Logica de carrito aplicar al boton de carrito juego
 
