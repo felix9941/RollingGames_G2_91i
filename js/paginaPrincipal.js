@@ -295,8 +295,17 @@ const createCarouselItem = (cards, isActive) => `
 const actualizarCarrusel = (datos) => {
   let cardsHTML = "";
   let carouselItems = "";
+  const juegosPublicados = datos.filter((juego) => juego.publicado === true);
 
-  datos.forEach((juego, index) => {
+  if (juegosPublicados.length === 0) {
+    carruselCards.innerHTML = `
+      <div class="d-flex align-items-center justify-content-center h-100 text-white anta-regular">
+       <h3>No hay juegos disponibles en esta categoría.</h3> 
+      </div>
+    `;
+    return;
+  }
+  juegosPublicados.forEach((juego, index) => {
     if (window.innerWidth < 768) {
       carouselItems += createCarouselItem(
         createCard(juego, index),
@@ -304,7 +313,7 @@ const actualizarCarrusel = (datos) => {
       );
     } else {
       cardsHTML += createCard(juego);
-      if ((index + 1) % 3 === 0 || index === datos.length - 1) {
+      if ((index + 1) % 3 === 0 || index === juegosPublicados.length - 1) {
         carouselItems += createCarouselItem(cardsHTML, index < 3);
         cardsHTML = "";
       }
@@ -313,6 +322,8 @@ const actualizarCarrusel = (datos) => {
 
   carruselCards.innerHTML = carouselItems;
 };
+
+actualizarCarrusel(catalogoJuegos);
 
 document.getElementById("load-cards-btn").addEventListener("click", () => {
   const juegosAccion = catalogoJuegos.filter(
@@ -351,8 +362,6 @@ document
 document.getElementById("load-all-cards-btn").addEventListener("click", () => {
   actualizarCarrusel(catalogoJuegos);
 });
-
-const carruselCards = document.getElementById("carruselCards");
 
 window.onresize = () => {
   actualizarCarrusel(catalogoJuegos);
