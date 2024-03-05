@@ -230,86 +230,8 @@ tableAdmin.innerHTML = `
     </div>
   `;
 
-function renderizarTablaAdmin() {
-  const adminUsuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
-  let tableContent = "";
-  adminUsuarios.forEach((usuario) => {
-    let accionesHTML = "";
-
-    if (usuario.rol !== "admin") {
-      if (!usuario.estado) {
-        // Botón "Autorizar" cuando el usuario no está autorizado
-        accionesHTML = `
-          <div class="btn-group" role="group">
-            <button type="button" class="btn btn-success" onclick="confirmarAutorizacion(${
-              usuario.id
-            })">Autorizar</button>
-            <button type="button" class="btn btn-warning text-white" onclick="cambiarEstadoUsuario(${
-              usuario.id
-            })">${usuario.delete ? "Habilitar" : "Deshabilitar"}</button>
-            <button type="button" class="btn btn-danger" onclick="borrarUsuario(${
-              usuario.id
-            })"><i class="fa-solid fa-trash-can"></i></button>
-          </div>
-        `;
-      } else {
-        // Botón "Deshabilitar/Habilitar" cuando el usuario está autorizado
-        accionesHTML = `
-          <div class="btn-group" role="group">
-            <button type="button" class="btn ${
-              usuario.delete ? "btn-success" : "btn-warning text-white"
-            }" onclick="cambiarEstadoUsuario(${usuario.id})">${
-          usuario.delete ? "Habilitar" : "Deshabilitar"
-        }</button>
-            <button type="button" class="btn btn-danger" onclick="borrarUsuario(${
-              usuario.id
-            })"><i class="fa-solid fa-trash-can"></i></button>
-          </div>
-        `;
-      }
-    }
-
-    tableContent += `
-      <tr class="text-center">
-        <th scope="row">${usuario.id}</th>
-        <td>${usuario.usuario}</td>
-        <td>${usuario.mail}</td>
-        <td>${
-          usuario.estado === false ? "Pendiente de aprobación" : "Permitido"
-        }</td>
-        <td>${usuario.delete === false ? "Habilitado" : "Inhabilitado"}</td>
-        <td>${usuario.rol}</td>
-        <td>${accionesHTML}</td>
-      </tr>
-    `;
-  });
-
-  tableAdmin.innerHTML = `
-    <div class="col-12 col-md-6 col-lg-12">
-      <div class="table-responsive">
-        <table class="table mt-5 shadow p-3 mb-5 bg-body-tertiary rounded">
-          <thead>
-            <tr class="text-center">
-              <th scope="col">ID</th>
-              <th scope="col">Usuario</th>
-              <th scope="col">Mail</th>
-              <th scope="col">Acceso</th>
-              <th scope="col">Estado</th>
-              <th scope="col">Rol</th>
-              <th scope="col">Acciones</th>
-            </tr>
-          </thead>
-          <tbody>
-            ${tableContent}
-          </tbody>
-        </table>
-      </div>
-    </div>
-  `;
-}
-
 function cambiarEstadoUsuario(usuarioId) {
-  const usuario = adminUsuarios.find((u) => u.id === usuarioId);
+  const usuario = adminUsuarios.find((usuario) => usuario.id === usuarioId);
 
   if (usuario) {
     const confirmacion = window.confirm(
@@ -321,14 +243,14 @@ function cambiarEstadoUsuario(usuarioId) {
     if (confirmacion) {
       usuario.delete = !usuario.delete; // Cambiar el estado (true a false o viceversa)
       localStorage.setItem("usuarios", JSON.stringify(adminUsuarios));
-      renderizarTablaAdmin();
+      location.reload();
     }
   }
 }
 
 function confirmarAutorizacion(usuarioId) {
-  const usuario = adminUsuarios.find((u) => u.id === usuarioId);
-
+  const usuario = adminUsuarios.find((usuario) => usuario.id === usuarioId);
+  console.log(usuario);
   if (usuario) {
     const confirmacion = window.confirm(
       `¿Estás seguro de autorizar al usuario ${usuario.usuario}?`
@@ -336,10 +258,12 @@ function confirmarAutorizacion(usuarioId) {
 
     if (confirmacion) {
       usuario.estado = true;
+      enviarMail(usuario.mail, usuario.usuario);
       localStorage.setItem("usuarios", JSON.stringify(adminUsuarios));
-      renderizarTablaAdmin();
+      setTimeout(function () {
+        location.reload();
+      }, 100);
     }
-    enviarMail(usuario.correo, usuario);
   }
 }
 
@@ -349,11 +273,13 @@ function borrarUsuario(usuarioId) {
   );
 
   if (confirmacion) {
-    const index = adminUsuarios.findIndex((u) => u.id === usuarioId);
+    const index = adminUsuarios.findIndex(
+      (usuario) => usuario.id === usuarioId
+    );
     if (index !== -1) {
       adminUsuarios.splice(index, 1);
       localStorage.setItem("usuarios", JSON.stringify(adminUsuarios));
-      renderizarTablaAdmin();
+      location.reload();
     }
   }
 }
@@ -366,14 +292,16 @@ const enviarMail = (correo, usuario) => {
     To: correo,
     From: "martin.fesito@gmail.com",
     Subject: "Bienvenido a Play Gaming",
-    Body: `Estimado ${usuario.usuario} a nuestra plataforma Play Gaming. Su usuario fue aprobado.`,
+    Body: `Estimado ${usuario} a nuestra plataforma Play Gaming. Su usuario fue aprobado.`,
   });
 };
 
 function cerrarSesion() {
   const usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
 
-  const userLogin = usuarios.find((u) => u.id && u.login === true);
+  const userLogin = usuarios.find(
+    (usuario) => usuario.id && usuario.login === true
+  );
 
   if (userLogin) {
     userLogin.login = false;
@@ -392,10 +320,10 @@ function cerrarSesion() {
   const botonLoginAdmin = document.getElementById("administracion");
 
   const userLogin = usuarios.find(
-    (u) => u.login === true && u.rol === "usuario"
+    (usuario) => usuario.login === true && usuario.rol === "usuario"
   );
   const userLoginAdmin = usuarios.find(
-    (u) => u.login === true && u.rol === "admin"
+    (usuario) => usuario.login === true && usuario.rol === "admin"
   );
 
   if (userLoginAdmin) {
