@@ -231,7 +231,7 @@ tableAdmin.innerHTML = `
   `;
 
 function cambiarEstadoUsuario(usuarioId) {
-  const usuario = adminUsuarios.find((u) => u.id === usuarioId);
+  const usuario = adminUsuarios.find((usuario) => usuario.id === usuarioId);
 
   if (usuario) {
     const confirmacion = window.confirm(
@@ -249,8 +249,8 @@ function cambiarEstadoUsuario(usuarioId) {
 }
 
 function confirmarAutorizacion(usuarioId) {
-  const usuario = adminUsuarios.find((u) => u.id === usuarioId);
-
+  const usuario = adminUsuarios.find((usuario) => usuario.id === usuarioId);
+  console.log(usuario);
   if (usuario) {
     const confirmacion = window.confirm(
       `¿Estás seguro de autorizar al usuario ${usuario.usuario}?`
@@ -258,10 +258,12 @@ function confirmarAutorizacion(usuarioId) {
 
     if (confirmacion) {
       usuario.estado = true;
+      enviarMail(usuario.mail, usuario.usuario);
       localStorage.setItem("usuarios", JSON.stringify(adminUsuarios));
-      location.reload();
+      setTimeout(function () {
+        location.reload();
+      }, 100);
     }
-    enviarMail(usuario.correo, usuario);
   }
 }
 
@@ -271,7 +273,9 @@ function borrarUsuario(usuarioId) {
   );
 
   if (confirmacion) {
-    const index = adminUsuarios.findIndex((u) => u.id === usuarioId);
+    const index = adminUsuarios.findIndex(
+      (usuario) => usuario.id === usuarioId
+    );
     if (index !== -1) {
       adminUsuarios.splice(index, 1);
       localStorage.setItem("usuarios", JSON.stringify(adminUsuarios));
@@ -288,14 +292,16 @@ const enviarMail = (correo, usuario) => {
     To: correo,
     From: "martin.fesito@gmail.com",
     Subject: "Bienvenido a Play Gaming",
-    Body: `Estimado ${usuario.usuario} a nuestra plataforma Play Gaming. Su usuario fue aprobado.`,
+    Body: `Estimado ${usuario} a nuestra plataforma Play Gaming. Su usuario fue aprobado.`,
   });
 };
 
 function cerrarSesion() {
   const usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
 
-  const userLogin = usuarios.find((u) => u.id && u.login === true);
+  const userLogin = usuarios.find(
+    (usuario) => usuario.id && usuario.login === true
+  );
 
   if (userLogin) {
     userLogin.login = false;
@@ -314,10 +320,10 @@ function cerrarSesion() {
   const botonLoginAdmin = document.getElementById("administracion");
 
   const userLogin = usuarios.find(
-    (u) => u.login === true && u.rol === "usuario"
+    (usuario) => usuario.login === true && usuario.rol === "usuario"
   );
   const userLoginAdmin = usuarios.find(
-    (u) => u.login === true && u.rol === "admin"
+    (usuario) => usuario.login === true && usuario.rol === "admin"
   );
 
   if (userLoginAdmin) {
