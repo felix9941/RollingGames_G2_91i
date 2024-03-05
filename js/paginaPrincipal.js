@@ -305,7 +305,6 @@ const actualizarCarrusel = (datos) => {
     `;
     return;
   }
-
   juegosPublicados.forEach((juego, index) => {
     if (window.innerWidth < 768) {
       carouselItems += createCarouselItem(
