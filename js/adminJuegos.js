@@ -1,9 +1,3 @@
-/* const usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
-const usuario = usuarios.filter((usu) => usu.login === true);
-console.log(usuario.length);
-if (usuario.length === 1) { */
-//Esta logueado
-
 //Navbar
 const navbarAdminUsuarios = document.getElementById("navbar-admin");
 navbarAdminUsuarios.innerHTML = `<a href="paginaPrincipal.html" class="d-flex align-items-center enlace-logo">
@@ -399,10 +393,6 @@ tablaJuegos.innerHTML = juegos
 
 
 
-
-
-
-
               <!-- Destacar -->
               <!-- Button trigger modal -->
               <button type="button" class="btn ${colorBotonDestacar(
@@ -760,111 +750,6 @@ const validacionJuego = (event) => {
   localStorage.setItem("catalogoDeJuegos", JSON.stringify(juegos));
   location.reload();
 };
-
-/* //  Validacion para Editar Juego
-const validacionJuegoEditado = (event, identificadorDeJuego) => {
-  event.preventDefault();
-  const juegos = JSON.parse(localStorage.getItem("catalogoDeJuegos")) || [];
-  colorInput("idInputTituloEdit");
-  colorInput("idSeleccionCategoriaEdit");
-  colorInput("idDescripcionEdit");
-  colorInput("idRequisitosMinimosEdit");
-  colorInput("idRequisitosRecomendadosEdit");
-  colorInput("idInputLinkImagenEdit");
-  colorInput("idInputLinkEdit");
-  colorInput("idInputPrecioEdit");
-  let nombreJuegoE = document.getElementById("idInputTituloEdit").value;
-  let categoriaJuegoE = document.getElementById(
-    "idSeleccionCategoriaEdit"
-  ).value;
-  let descripcionJuegoE = document.getElementById("idDescripcionEdit").value;
-  let requisitoMinimoE = document.getElementById(
-    "idRequisitosMinimosEdit"
-  ).value;
-  let requisitoRecomendadoE = document.getElementById(
-    "idRequisitosRecomendadosEdit"
-  ).value;
-  let linkImagenJuegoE = document.getElementById("idInputLinkImagenEdit").value;
-  let linkJuegoE = document.getElementById("idInputLinkEdit").value;
-  let precioJuegoE = document.getElementById("idInputPrecioEdit").value;
-
-  if (nombreJuegoE.trim() === "") {
-    alert("Por favor, ingresa un título para el juego.");
-    document.getElementById("idInputTituloEdit").classList.add("is-invalid");
-    return;
-  }
-  if (categoriaJuegoE.trim() === "") {
-    alert("Por favor, seleccione una categoría para el juego.");
-    document
-      .getElementById("idSeleccionCategoriaEdit")
-      .classList.add("is-invalid");
-    return;
-  }
-  if (descripcionJuegoE.trim() === "") {
-    alert("Por favor, ingrese descripcion de juego");
-    document.getElementById("idDescripcionEdit").classList.add("is-invalid");
-    return;
-  }
-  if (requisitoMinimoE.trim() === "") {
-    alert("Por favor, ingrese requisito de sistema minimo para el juego");
-    document
-      .getElementById("idRequisitosMinimosEdit")
-      .classList.add("is-invalid");
-    return;
-  }
-  if (requisitoRecomendadoE.trim() === "") {
-    alert("Por favor, ingrese requisito de sistema recomendado para el juego");
-    document
-      .getElementById("idRequisitosRecomendadosEdit")
-      .classList.add("is-invalid");
-    return;
-  }
-
-  if (linkImagenJuegoE.trim() === "") {
-    alert("Por favor, ingrese link de la imagen del juego");
-    document
-      .getElementById("idInputLinkImagenEdit")
-      .classList.add("is-invalid");
-    return;
-  }
-  if (linkJuegoE.trim() === "") {
-    alert("Por favor, ingrese link del trailer del juego");
-    document.getElementById("idInputLinkEdit").classList.add("is-invalid");
-    return;
-  }
-  if (precioJuegoE.trim() === "") {
-    alert("Por favor, ingrese precio del juego");
-    document.getElementById("idInputPrecioEdit").classList.add("is-invalid");
-    return;
-  }
-
-  //Encuestro la posicion del juego
-  const indexJuegoEditar = juegos.findIndex(
-    (game) => game.id === identificadorDeJuego
-  );
-
-  juegoEditar = juegos[indexJuegoEditar];
-
-  juegoEditar, (juegoEditar.titulo = nombreJuegoE);
-  juegoEditar.descripcion = descripcionJuegoE;
-  juegoEditar.categoria = categoriaJuegoE;
-  juegoEditar.precio = precioJuegoE;
-  juegoEditar.requisitos = {}; // Asegúrate de que requisitos sea un objeto
-  juegoEditar.requisitos.minimos = requisitoMinimoE;
-  juegoEditar.requisitos.recomendados = requisitoRecomendadoE;
-  juegoEditar.imagen = linkImagenJuegoE;
-  juegoEditar.url = linkJuegoE;
-
-  //juegoEditar = juegos[indexJuegoEditar];
-
-  console.log("juego editar", juegoEditar);
-
-  juegos[indexJuegoEditar] = juegoEditar;
-  // localStorage.setItem("catalogoDeJuegos", JSON.stringify(juegos));
-  //console.log("Editado");
-  //location.reload();
-};
- */
 
 function cerrarSesion() {
   const usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
