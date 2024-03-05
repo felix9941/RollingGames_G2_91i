@@ -1,0 +1,26 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.checked {
+  color: yellow; /* Cambia el color a amarillo cuando está seleccionado */
+}
+
+.unchecked {
+  color: gray; /* Color por defecto cuando no está seleccionado */
+}
+
+@media (max-width: 640px) {
+  .letraPequeña {
+    font-size: 0.8em;
+  }
+}
+
+@media (min-width: 641px) {
+  .contenedor {
+    width: 80vw;
+    margin: auto;
+  }
+}
