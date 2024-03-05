@@ -34,55 +34,59 @@
       integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="../css/adminJuegos.css" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
-    />
-
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
-    />
-
+    <script
+      src="https://kit.fontawesome.com/cc73719364.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="../css/carrito.css" />
     <link
       rel="shortcut icon"
-      href="../img/Logo Play Gaming.png"
+      href="/img/Logo Play Gaming.png"
       type="image/x-icon"
     />
-    <title>Administracion de Juegos</title>
+    <title>Carrito</title>
   </head>
   <body>
-    <header>Navbar</header>
+    <header>
+      <nav
+        class="navbar navbar-expand-lg navbar-color"
+        id="navbar-usuario"
+      ></nav>
+    </header>
     <main>
-      <div class="contenedor">
-        <h2 class="ms-1 mb-3 mt-5">Administracion de Juegos</h2>
-        <div class="ms-1" id="idBotonNuevoJuego"></div>
-        <div class="mt-3 m-1">
-          <div class="table-responsive">
-            <table class="table table-hover table-sm">
-              <thead>
-                <tr>
-                  <th scope="col" class="letraPequeña">Cod.</th>
-                  <th scope="col" class="letraPequeña">Nombre</th>
-                  <th scope="col" class="letraPequeña">Categoria</th>
-                  <th scope="col" class="letraPequeña">Descripcion</th>
-                  <th scope="col" class="letraPequeña">Publicado</th>
-                  <th scope="col" class="letraPequeña">Opciones</th>
-                </tr>
-              </thead>
-              <tbody id="idTablaJuegos"></tbody>
-            </table>
-          </div>
+      <h2 class="title-Carrito anta-regular">RESUMEN DE TU PEDIDO</h2>
+      <div class="container">
+        <div class="table-responsive">
+          <table
+            class="table shadow p-3 bg-body-tertiary rounded mt-5 text-center"
+          >
+            <thead>
+              <tr>
+                <th scope="col-12">ID Juego</th>
+                <th scope="col-12">Imagen del juego</th>
+                <th scope="col-12">Nombre Juego</th>
+                <th scope="col-12">Precio ($)</th>
+                <th scope="col-12">Acciones</th>
+              </tr>
+            </thead>
+            <tbody id="carritoBody"></tbody>
+          </table>
         </div>
       </div>
+      <div class="container">
+        <div id="botonCarrito"></div>
+      </div>
     </main>
-    <footer>Footer</footer>
+    <footer>
+      <div class="container-fluid containerFooter">
+        <div class="row" id="footerGeneral"></div>
+      </div>
+    </footer>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
       crossorigin="anonymous"
     ></script>
-    <script src="../js/adminJuegos.js"></script>
+    <script src="../js/carrito.js"></script>
   </body>
 </html>

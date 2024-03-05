@@ -1,9 +1,8 @@
-const navbar404 = document.getElementById("navbar-404");
-navbar404.innerHTML = `<div class="container-fluid">
-<a onclick="atras ()" class="d-flex align-items-center enlace-logo">
-  <img class="ms-1 px-2" src="../img/Logo Play Gaming.png" alt="" />
-</a>
-<button
+const navbarAdminUsuarios = document.getElementById("navbar-404");
+navbarAdminUsuarios.innerHTML = `<a href="paginaPrincipal.html" class="d-flex align-items-center enlace-logo">
+  <img class="ms-1 px-2" src="../img/Logo Play Gaming.png" alt="logo de la empresa"/>
+  </a>
+  <button
   class="navbar-toggler"
   type="button"
   data-bs-toggle="collapse"
@@ -11,57 +10,65 @@ navbar404.innerHTML = `<div class="container-fluid">
   aria-controls="navbarSupportedContent"
   aria-expanded="false"
   aria-label="Toggle navigation"
->
+  >
   <span class="navbar-toggler-icon"></span>
-</button>
-<div class="collapse navbar-collapse" id="navbarSupportedContent">
+  </button>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
   <ul class="navbar-nav ms-auto me-5 mb-2 mb-lg-0">
     <li class="nav-item"></li>
-
+  
     <li class="nav-item">
       <a
         class="nav-link btn-hover btn-focus text-navbar anta-regular ms-3 px-2"
-        href="./sobreNosotros.html"
+        href="sobreNosotros.html"
         >Sobre nosotros</a
       >
     </li>
     <li class="nav-item">
       <a
         class="nav-link btn-hover btn-focus text-navbar anta-regular ms-3 px-2"
-        href="./contacto.html"
+        href="contacto.html"
         >Contacto</a
       >
     </li>
     <li class="nav-item">
       <a
         class="nav-link btn-hover btn-focus text-navbar anta-regular ms-3 px-2"
-        href="./login.html" id="loginItem"
-        >Iniciar sesion</a
+        href="login.html" id="loginItem">Iniciar sesion</a
       >
     </li>
     <li class="nav-item">
       <a
         class="nav-link btn-hover btn-focus text-navbar anta-regular ms-3 px-2"
-        href="./registro.html" id="registerItem"
-        >Registrarse</a
+        href="registro.html" id="registerItem">Registrarse</a
       >
     </li>
+    <li class="nav-item" id="administracion">
+          <div class="dropdown">
+             <a class="dropdown-toggle nav-link btn-hover btn-focus text-navbar anta-regular ms-3 px-2" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+             Administracion
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="adminUsuarios.html">Admin Usuarios</a></li>
+              <li><a class="dropdown-item" href="adminProductos.html">Admin Productos</a></li>
+            </ul>
+          </div>
+        </li>
     <li class="nav-item" id="micuenta">
     <div class="dropdown">
-     <a class="dropdown-toggle nav-link btn-hover btn-focus text-navbar anta-regular ms-3 px-2" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-     Mi cuenta
-    </a>
-    <ul class="dropdown-menu">
-      <li><a class="dropdown-item" href="favoritos.html">Favoritos</a></li>
-      <li><a class="dropdown-item" href="carrito.html">Carrito</a></li>
-      <li><a class="dropdown-item" href="error404.html"">Mis datos</a></li>
-      <li><a class="dropdown-item" href="#" onclick="cerrarSesion()">Cerrar Sesion</a></li>
-    </ul>
+       <a class="dropdown-toggle nav-link btn-hover btn-focus text-navbar anta-regular ms-3 px-2" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+       Mi cuenta
+      </a>
+      <ul class="dropdown-menu">
+        <li><a class="dropdown-item" href="favoritos.html">Favoritos</a></li>
+        <li><a class="dropdown-item" href="carrito.html">Carrito</a></li>
+        <li><a class="dropdown-item" href="error404.html"">Mis datos</a></li>
+        <li><a class="dropdown-item" href="#" onclick="cerrarSesion()">Cerrar Sesion</a></li>
+      </ul>
     </div>
-</li>
+  </li>
   </ul>
-</div>
-</div>`;
+  </div>`;
 
 const main404 = document.getElementById("main404");
 main404.innerHTML = `<h1>404</h1>
@@ -144,17 +151,28 @@ function atras() {
   const botonInicio = document.getElementById("loginItem");
   const botonRegistro = document.getElementById("registerItem");
   const botonLogin = document.getElementById("micuenta");
+  const botonLoginAdmin = document.getElementById("administracion");
 
-  const userLogin = usuarios.find((u) => u.login === true);
+  const userLogin = usuarios.find(
+    (u) => u.login === true && u.rol === "usuario"
+  );
+  const userLoginAdmin = usuarios.find(
+    (u) => u.login === true && u.rol === "admin"
+  );
 
-  if (userLogin) {
+  if (userLoginAdmin) {
     botonInicio.classList.add("d-none");
     botonRegistro.classList.add("d-none");
-    botonLogin.classList.add("d-block");
+    botonLoginAdmin.classList.add("d-block");
+  } else if (userLogin) {
+    botonInicio.classList.add("d-none");
+    botonRegistro.classList.add("d-none");
+    botonLoginAdmin.classList.add("d-none");
   } else {
     botonInicio.classList.add("d-block");
     botonRegistro.classList.add("d-block");
     botonLogin.classList.add("d-none");
+    botonLoginAdmin.classList.add("d-none");
   }
 })();
 
