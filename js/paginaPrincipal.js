@@ -145,7 +145,7 @@ footerGeneral.innerHTML = ` <div class="col-12 col-md-6 col-lg-4 d-flex justify-
 </div>
 </div>`;
 
-(() => {
+/* (() => {
   const validacionUsuario = JSON.parse(localStorage.getItem("usuarios")) || [];
 
   const usuario = validacionUsuario.find(
@@ -157,7 +157,7 @@ footerGeneral.innerHTML = ` <div class="col-12 col-md-6 col-lg-4 d-flex justify-
     window.location.href = "login.html";
     return;
   }
-})();
+})(); */
 
 function mostrarJuego() {
   const juego = catalogoJuegos.find((juego) => juego.destacado === true);
@@ -280,7 +280,7 @@ const createCard = (juego, index) => `
 <div class="col-12 col-md-4 col-lg-3 my-3">
 <h5 class="card-text-categoria anta-regular" style="text-align: center;">${juego.titulo}</h5>
   <div class="card-categoria">
-    <a href="../page/detalleJuego.html" class="card-link">
+    <a href="../page/detalleDeJuego.html?id=${juego.id}" class="card-link">
       <img src="${juego.imagen}" class="card-img-top-categoria" alt="${juego.titulo}">
     </a>
   </div>
