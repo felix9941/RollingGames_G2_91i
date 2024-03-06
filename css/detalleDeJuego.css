@@ -39,3 +39,12 @@ body {
     opacity: 0;
   }
 }
+
+.botones {
+  width: 100%;
+  max-width: 10em;
+}
+
+.imagenAlCien {
+  width: 100%;
+}

@@ -199,22 +199,22 @@ const juego = juegos.find((game) => game.id === Number(idJuego));
 
 const fotoComprar = document.getElementById("idFotoComprar");
 fotoComprar.innerHTML = `<div class="col-md-8 pe-0 ps-2">
-<img src="${juego.imagen}" alt="" style="width: 100%" />
+<img src="${juego.imagen}" class="imagenAlCien" alt=""  />
 </div>
 <div class="col-md-4 fondoParaComprar  d-flex flex-column  align-items-center justify-content-center ">
 <div class="ms-3 me-3">
 
-  <h3 class=" text-center mb-4">${juego.titulo}</h3>
-  <h5 class=" text-center mb-3">Categoria: ${juego.categoria}</h5>
+  <h3 class=" text-center mt-3 mb-2">${juego.titulo}</h3>
+  <h5 class=" text-center mb-2">Categoria: ${juego.categoria}</h5>
   <h4 class=" text-center mb-4">Precio: $ ${juego.precio}</h4>
 
     <div class="container">
       <div class="row">
-        <div class="col-12 mt-1 mb-1 p-0  text-center">
+        <div class="col-12 mt-1 mb-1 p-0 text-center">
 
         <button
-            class="btn btn-warning" onclick="comprar(${juego.id})"
-            style="width: 100%; max-width: 10em"
+            class="btn btn-warning botones" onclick="comprar(${juego.id})"
+          
           >
             Comprar
           </button>
@@ -222,17 +222,17 @@ fotoComprar.innerHTML = `<div class="col-md-8 pe-0 ps-2">
         <div class="col-12 mt-1 mb-1 p-0">
 
         <div class="col-12 mt-1 mb-3 mb-2 p-0 text-center">
-        <button id="botonFavorito" class="btn ${
+        <button id="botonFavorito" class="btn botones ${
           tieneJuegos(juego.id) ? "btn-warning" : "bg-light text-dark "
-        }" style="width: 100%; max-width: 10em" onclick="carrito(${
+        }"  onclick="carrito(${
   juego.id
 })">Carrito <i class="fas fa-cart-shopping ms-2"></i></button>
     </div>
 
-        <div class="col-12 mt-1 mb-3 mb-2 p-0 text-center">
-        <button id="botonFavorito" class="btn ${
+        <div class="col-12 mt-1 mb-3 mb-4 p-0  text-center">
+        <button id="botonFavorito" class="btn botones ${
           tieneFavoritos(juego.id) ? "btn-warning" : "bg-light text-dark "
-        }" style="width: 100%; max-width: 10em" onclick="favorito(${
+        }"  onclick="favorito(${
   juego.id
 })">Favorito <i class="fas fa-star text-dark ms-2"></i></button>
     </div>
@@ -355,7 +355,7 @@ ${textConSaltosDeLinea(juego.descripcion)}
   frameborder="0"
   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
   allowfullscreen
-  style="width: 100%"
+  class="imagenAlCien"
 ></iframe>
 </div>`;
 
