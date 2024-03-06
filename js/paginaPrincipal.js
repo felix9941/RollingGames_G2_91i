@@ -451,24 +451,9 @@ function cerrarSesion() {
     botonLoginAdmin.classList.add("d-none");
   }
 })();
-
-const inputFiltro = document.getElementById("inputFiltro");
 const inputBusqueda = document.getElementById("inputBusqueda");
 const resultadosContainer = document.getElementById("resultadosContainer");
 const destacado = document.getElementById("juegosDestacados");
-
-inputFiltro.innerHTML = ` <div class="col-12 d-flex justify-content-end">
-<form class="d-flex mt-5" role="search">
-  <input
-    class="form-control me-2"
-    type="search"
-    placeholder="Busca un juego"
-    aria-label="Search"
-    id="inputBusqueda"
-  />
-</form>
-</div>`;
-
 const juegos = JSON.parse(localStorage.getItem("catalogoDeJuegos")) || [];
 
 inputBusqueda.addEventListener("input", () => {
