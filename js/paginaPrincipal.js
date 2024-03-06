@@ -451,7 +451,6 @@ function cerrarSesion() {
     botonLoginAdmin.classList.add("d-none");
   }
 })();
-
 const inputBusqueda = document.getElementById("inputBusqueda");
 const resultadosContainer = document.getElementById("resultadosContainer");
 const destacado = document.getElementById("juegosDestacados");
