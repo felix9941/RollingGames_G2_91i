@@ -10,12 +10,12 @@ body {
 }
 
 .colorRequisitos {
-  background-color: rgb(151, 151, 151);
+  background-color: RGB(51, 51, 51);
 }
 
 .fondoParaComprar {
   padding: 0;
-  background-color: rgb(151, 151, 151);
+  background-color: RGB(51, 51, 51);
 }
 
 .mensaje {

@@ -183,17 +183,16 @@ const fotoComprar = document.getElementById("idFotoComprar");
 fotoComprar.innerHTML = `<div class="col-md-8 pe-0 ps-2">
 <img src="${juego.imagen}" alt="" style="width: 100%" />
 </div>
-<div class="col-md-4 fondoParaComprar">
-<div class="ms-3 me-3 ">
+<div class="col-md-4 fondoParaComprar  d-flex flex-column  align-items-center justify-content-center ">
+<div class="ms-3 me-3">
 
-  <h3 class="mt-2">${juego.titulo}</h3>
-  <h5>Categoria: ${juego.categoria}</h5>
-  <h5>Precio: $ ${juego.precio}</h5>
-
+  <h3 class=" text-center mb-4">${juego.titulo}</h3>
+  <h5 class=" text-center mb-3">Categoria: ${juego.categoria}</h5>
+  <h4 class=" text-center mb-4">Precio: $ ${juego.precio}</h4>
 
     <div class="container">
       <div class="row">
-        <div class="col-12 mt-1 mb-1 p-0">
+        <div class="col-12 mt-1 mb-1 p-0  text-center">
 
         <button
             class="btn btn-warning" onclick="comprar(${juego.id})"
@@ -204,7 +203,7 @@ fotoComprar.innerHTML = `<div class="col-md-8 pe-0 ps-2">
         </div>
         <div class="col-12 mt-1 mb-1 p-0">
 
-        <div class="col-12 mt-1 mb-3 mb-2 p-0">
+        <div class="col-12 mt-1 mb-3 mb-2 p-0 text-center">
         <button id="botonFavorito" class="btn ${
           tieneJuegos(juego.id) ? "btn-warning" : "bg-light text-dark "
         }" style="width: 100%; max-width: 10em" onclick="carrito(${
@@ -212,21 +211,15 @@ fotoComprar.innerHTML = `<div class="col-md-8 pe-0 ps-2">
 })">Carrito <i class="fas fa-cart-shopping ms-2"></i></button>
     </div>
 
-        <div class="col-12 mt-1 mb-3 mb-2 p-0">
+        <div class="col-12 mt-1 mb-3 mb-2 p-0 text-center">
         <button id="botonFavorito" class="btn ${
           tieneFavoritos(juego.id) ? "btn-warning" : "bg-light text-dark "
         }" style="width: 100%; max-width: 10em" onclick="favorito(${
   juego.id
 })">Favorito <i class="fas fa-star text-dark ms-2"></i></button>
     </div>
-
       </div>
     </div>
-
-
-    
-
-
 </div>
 </div>`;
 
@@ -235,10 +228,8 @@ function tieneJuegos(idJuego) {
   const usuario = usuarios.find((usu) => usu.login === true);
   const identificadores = usuario.carrito;
   if (incluido(identificadores, idJuego)) {
-    console.log("Tiene favoritossss");
     return true;
   } else {
-    console.log("No Tiene  favoritossss");
     return false;
   }
 }
@@ -248,15 +239,11 @@ function tieneFavoritos(idJuego) {
   const usuario = usuarios.find((usu) => usu.login === true);
   const identificadores = usuario.favoritos;
   if (incluido(identificadores, idJuego)) {
-    console.log("Tiene favoritossss");
     return true;
   } else {
-    console.log("No Tiene  favoritossss");
     return false;
   }
 }
-
-//tieneFavoritos(juego.id);
 
 function mostrarMensaje(mensaje, tiempo) {
   const mensajeDiv = document.createElement("div");
@@ -271,11 +258,9 @@ function mostrarMensaje(mensaje, tiempo) {
 function incluido(array, elemento) {
   for (let i = 0; i < array.length; i++) {
     if (array[i] === elemento) {
-      console.log("Esta incluido True");
       return true;
     }
   }
-  console.log("No esta incluido false");
   return false;
 }
 
@@ -312,28 +297,12 @@ function carrito(id) {
   location.reload();
 }
 
-function identificadorVideo(link) {
-  const url = "https://youtu.be/1rPxiXXxftE";
+function identificadorVideo(url) {
   const parts = url.split("/");
   const videoId = parts[parts.length - 1];
   return videoId;
 }
 
-/* function carrito(id) {
-  const usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
-  const posicionUsuario = usuarios.findIndex((usu) => usu.login === true);
-  const usuarioLogueado = usuarios[posicionUsuario];
-  if (incluido(usuarioLogueado.carrito, id)) {
-    alert("El juego ya esta en el carrito");
-  } else {
-    usuarioLogueado.carrito.push(id);
-    usuarios[posicionUsuario] = usuarioLogueado;
-    localStorage.setItem("usuarios", JSON.stringify(usuarios));
-    console.log(usuarioLogueado);
-    mostrarMensaje("El juego se agrego al carrito", 6000);
-  }
-}
- */
 function favorito(id) {
   const usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
   const posicionUsuario = usuarios.findIndex((usu) => usu.login === true);
@@ -344,29 +313,19 @@ function favorito(id) {
     );
     usuarios[posicionUsuario] = usuarioLogueado;
     localStorage.setItem("usuarios", JSON.stringify(usuarios));
-    //mostrarMensaje("El juego ya está en favoritos", 6000);
   } else {
     usuarioLogueado.favoritos.push(id);
     usuarios[posicionUsuario] = usuarioLogueado;
     localStorage.setItem("usuarios", JSON.stringify(usuarios));
-    //mostrarMensaje("El juego se agregó a favoritos", 6000);
   }
   location.reload();
 }
 
-function identificadorVideo(link) {
-  const url = "https://youtu.be/1rPxiXXxftE";
-  const parts = url.split("/");
-  const videoId = parts[parts.length - 1];
-  return videoId;
-}
-
 const descripcionVideo = document.getElementById("idDescripcionVideo");
 descripcionVideo.innerHTML = `<div class="col-md-8">
-<h2>Descripcion</h2>
-<p>
-
-${juego.descripcion}
+<h2  class="mt-1">Descripcion</h2>
+<p class="me-4 mt-3">
+${textConSaltosDeLinea(juego.descripcion)}
 </p>
 </div>
 <div class="col-md-4 p-0">
@@ -382,22 +341,29 @@ ${juego.descripcion}
 ></iframe>
 </div>`;
 
-const requisitoSisteme = document.getElementById("idRequisitoSistema");
-requisitoSisteme.innerHTML = ` <div class="col-md-6">
-<h3>Minimos</h3>
+const requisitoSistema = document.getElementById("idRequisitoSistema");
+requisitoSistema.innerHTML = ` <div class="col-md-6">
+<h3 class="pt-4 ps-2">Minimos</h3>
 <p>
-${juego.requisitosMinimos}
+<p class="pb-4 ps-2">
+${textConSaltosDeLinea(juego.requisitosMinimos)}
+</p>
 </p>
 </div>
 <div class="col-md-6">
-<h3>Recomendados</h3>
-<p>
-  Lorem ipsum dolor sit amet consectetur adipisicing elit. Et nobis
-  eum nihil illo, dolorem eos fugit aut, ad modi voluptate est
-  aspernatur autem earum assumenda doloremque natus blanditiis.
-  Aspernatur, hic!
-</p>
-</div>`;
+<h3 class="pt-4 ps-2">Recomendados</h3>
+<div>
+<p class="pb-4 ps-2">
+    ${textConSaltosDeLinea(juego.requisitosRecomendados)}
+  </p>
+</div>
+`;
+
+function textConSaltosDeLinea(contenido) {
+  const contenidoConSaltosDeLinea = contenido.replace(/\n/g, "<br>");
+  //const contenidoConSaltosDeLinea = contenido.replace(/\. /g, "<br>");
+  return contenidoConSaltosDeLinea;
+}
 
 /* //Logica de carrito aplicar al boton de carrito juego
 
