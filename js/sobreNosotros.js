@@ -1,6 +1,6 @@
 const navbarSobreNosotros = document.getElementById("navbarSobreNosotros");
-navbarSobreNosotros.innerHTML = `<a href="/index.html" class="d-flex align-items-center enlace-logo">
-<img class="ms-1 px-2" src="../img/Logo Play Gaming.png" alt="" />
+navbarSobreNosotros.innerHTML = `<a class="d-flex align-items-center enlace-logo" onclick="PaginaPrincipal()" id="loginP">
+<img class="ms-1 px-2" src="../img/Logo Play Gaming.png" alt="logo de la empresa"/>
 </a>
 <button
 class="navbar-toggler"
@@ -34,17 +34,39 @@ aria-label="Toggle navigation"
   <li class="nav-item">
     <a
       class="nav-link btn-hover btn-focus text-navbar anta-regular ms-3 px-2"
-      href="login.html"
-      >Iniciar sesion</a
+      href="login.html" id="loginItem">Iniciar sesion</a
     >
   </li>
   <li class="nav-item">
     <a
       class="nav-link btn-hover btn-focus text-navbar anta-regular ms-3 px-2"
-      href="registro.html"
-      >Registrarse</a
+      href="registro.html" id="registerItem">Registrarse</a
     >
   </li>
+  <li class="nav-item" id="administracion">
+        <div class="dropdown">
+           <a class="dropdown-toggle nav-link btn-hover btn-focus text-navbar anta-regular ms-3 px-2" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+           Administracion
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="adminUsuarios.html">Admin Usuarios</a></li>
+            <li><a class="dropdown-item" href="adminProductos.html">Admin Productos</a></li>
+          </ul>
+        </div>
+      </li>
+  <li class="nav-item" id="micuenta">
+  <div class="dropdown">
+     <a class="dropdown-toggle nav-link btn-hover btn-focus text-navbar anta-regular ms-3 px-2" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+     Mi cuenta
+    </a>
+    <ul class="dropdown-menu">
+      <li><a class="dropdown-item" href="favoritos.html">Favoritos</a></li>
+      <li><a class="dropdown-item" href="carrito.html">Carrito</a></li>
+      <li><a class="dropdown-item" href="error404.html"">Mis datos</a></li>
+      <li><a class="dropdown-item" href="#" onclick="cerrarSesion()">Cerrar Sesion</a></li>
+    </ul>
+  </div>
+</li>
 </ul>
 </div>`;
 
@@ -158,12 +180,13 @@ class="col-12 col-md-3 d-flex flex-column align-items-center px-3"
 
 const footerGeneral = document.getElementById("footerGeneral");
 footerGeneral.innerHTML = ` <div class="col-12 col-md-6 col-lg-4 d-flex justify-content-center">
-<a href="/index.html"
+<a 
   ><img
     src="../img/Logo Play Gaming.png"
     alt="Logo-PlayGaming"
     width="150vw"
     class="pb-3"
+    onclick="PaginaPrincipal()"
 /></a>
 </div>
 
@@ -196,7 +219,7 @@ footerGeneral.innerHTML = ` <div class="col-12 col-md-6 col-lg-4 d-flex justify-
     class="informacion-pag text-center mt-4 mb-3 listNone"
     
   >
-    <li><a href="/index.html">Inicio</a></li>
+    <li><a onclick="PaginaPrincipal()">Inicio</a></li>
     <li><a href="sobreNosotros.html">Sobre nosotros</a></li>
     <li><a href="contacto.html">Contacto</a></li>
     <li>
@@ -207,3 +230,64 @@ footerGeneral.innerHTML = ` <div class="col-12 col-md-6 col-lg-4 d-flex justify-
   </div>
 </div>
 </div>`;
+
+(() => {
+  const usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
+  const botonInicio = document.getElementById("loginItem");
+  const botonRegistro = document.getElementById("registerItem");
+  const botonLogin = document.getElementById("micuenta");
+  const botonLoginAdmin = document.getElementById("administracion");
+
+  const userLogin = usuarios.find(
+    (u) => usuario.login === true && usuario.rol === "usuario"
+  );
+  const userLoginAdmin = usuarios.find(
+    (usuario) => usuario.login === true && usuario.rol === "admin"
+  );
+
+  if (userLoginAdmin) {
+    botonInicio.classList.add("d-none");
+    botonRegistro.classList.add("d-none");
+    botonLoginAdmin.classList.add("d-block");
+  } else if (userLogin) {
+    botonInicio.classList.add("d-none");
+    botonRegistro.classList.add("d-none");
+    botonLoginAdmin.classList.add("d-none");
+  } else {
+    botonInicio.classList.add("d-block");
+    botonRegistro.classList.add("d-block");
+    botonLogin.classList.add("d-none");
+    botonLoginAdmin.classList.add("d-none");
+  }
+})();
+
+function PaginaPrincipal() {
+  const usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
+  const logoPrincipal = document.getElementById("loginP");
+
+  const userLogin = usuarios.find((usuario) => usuario.login === true);
+
+  if (userLogin) {
+    logoPrincipal = window.location.href = "paginaPrincipal.html";
+  } else {
+    logoPrincipal = window.location.href = "/index.html";
+  }
+}
+
+function cerrarSesion() {
+  const usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
+
+  const userLogin = usuarios.find(
+    (usuario) => usuario.id && usuario.login === true
+  );
+
+  if (userLogin) {
+    userLogin.login = false;
+
+    localStorage.setItem("usuarios", JSON.stringify(usuarios));
+  }
+
+  setTimeout(() => {
+    window.location.href = "/index.html";
+  }, 1000);
+}

@@ -172,6 +172,9 @@ footerGeneral.innerHTML = ` <div class="col-12 col-md-6 col-lg-4 d-flex justify-
     contrasena: "playgaming24",
     login: false,
     rol: "admin",
+    favoritos: [],
+    carrito: [],
+    delete: false,
   };
 
   const usersList = JSON.parse(localStorage.getItem("usuarios")) || [];
@@ -201,7 +204,7 @@ const loginUser = () => {
   const userExists = usersList.find(
     (user) =>
       (user.mail === inputMail && user.contrasena === inputPass) ||
-      (user.usuario === inputMail && user.contrasena)
+      (user.usuario === inputMail && user.contrasena === inputPass)
   );
 
   const isUserInhabilitado = userExists && userExists.delete === true;
@@ -210,8 +213,22 @@ const loginUser = () => {
 
   const admin = userExists && userExists.rol === "admin";
 
+  const usuarioLogueado = usersList.find(
+    (userLogin) => userLogin.id && userLogin.login === true
+  );
+
+  if (usuarioLogueado) {
+    usuarioLogueado.login = false;
+
+    localStorage.setItem("usuarios", JSON.stringify(usersList));
+  }
+
   if (admin) {
-    alert("Bienvenido administrador");
+    Swal.fire({
+      title: "Bienvenido Administrador",
+      text: "Inicio de sesión exitoso!",
+      icon: "success",
+    });
 
     const listaUsuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
 
@@ -228,8 +245,8 @@ const loginUser = () => {
     }
 
     setTimeout(() => {
-      window.location.href = "/page/admin.html";
-    }, 1000);
+      window.location.href = "paginaPrincipal.html";
+    }, 3000);
     return;
   }
 
@@ -332,8 +349,9 @@ const loginUser = () => {
     const listaUsuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
 
     const indiceUsuario = listaUsuarios.findIndex(
-      (user.mail === inputMail && user.contrasena === inputPass) ||
-        (user.usuario === inputMail && user.contrasena === inputPass)
+      (user) =>
+        (user.mail === inputMail || user.usuario === inputMail) &&
+        user.contrasena === inputPass
     );
 
     if (indiceUsuario !== -1) {
@@ -343,10 +361,14 @@ const loginUser = () => {
     }
 
     setTimeout(() => {
-      window.location.href = "/page/paginaPrincipal.html";
+      window.location.href = "paginaPrincipal.html";
     }, 1000);
   } else {
-    alert("Nombre de usuario o contraseña incorrectos.");
+    Swal.fire({
+      icon: "error",
+      title: "Importante",
+      text: "Usuario o contraseña incorrectos.",
+    });
   }
 };
 

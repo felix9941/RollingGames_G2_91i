@@ -7,14 +7,6 @@
   color: rgba(255, 255, 255, 0.75);
 }
 
-.mb {
-  margin-bottom: 10px;
-}
-
-.mbT {
-  margin-bottom: 40px;
-}
-
 .anta-regular {
   font-family: "Anta", sans-serif;
   font-weight: 400;
@@ -49,7 +41,7 @@
 }
 
 .text-navbar {
-  color: rgba(255, 255, 255, 0.75);
+  color: RGB(255, 255, 255);
   margin-right: 2em;
   font-size: large;
 }
@@ -61,45 +53,21 @@ img {
   height: 100%;
 }
 
+.containerFooter {
+  background-color: RGB(26, 26, 46);
+  color: white;
+}
+
 .informacion-pag a {
   text-decoration: none;
   color: white;
 }
 
-.listNone {
-  list-style: none;
-}
-
-main {
-  background-image: url(../img/ERROR\ 404.png);
-  background-size: cover;
-  background-position: center;
-  height: 78vh;
+body {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
+  flex-direction: column;
+  min-height: 100vh;
 }
-h1 {
-  color: white;
-  font-size: 100px;
-}
-
-h2 {
-  color: white;
-  font-size: 45px;
-}
-
-h3 {
-  color: white;
-}
-
-h4 {
-  color: rgb(0, 0, 0);
-  font-size: 30px;
-  text-align: center;
-}
-
 footer {
   margin-top: auto;
 }
@@ -109,47 +77,6 @@ footer {
   color: white;
 }
 
-.container-fluid {
-  background-color: RGB(26, 26, 46);
-  color: white;
-}
-
-body {
-  overflow: auto;
-}
-
-.linea {
-  top: 50%;
-  width: 50%;
-  border-top: 2px solid rgb(255, 255, 255);
-  transform: translateY(-50%);
-}
-
-.container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.boton {
-  background-color: RGB(228, 161, 2);
-  border: none;
-  color: rgb(0, 0, 0);
-  padding: 10px 70px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 25px;
-  margin: 4px 4px;
-  cursor: pointer;
-  border-radius: 5px;
-  color: white;
-}
-
-.boton2 {
-  background: none;
-  border: none;
-  padding: 0;
-  color: rgb(0, 179, 255);
-  cursor: pointer;
+.listNone {
+  list-style: none;
 }

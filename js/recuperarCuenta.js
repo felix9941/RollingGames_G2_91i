@@ -304,7 +304,9 @@ const validacionRecupero = () => {
     return user.mail === mailInput && user.recuperarId == idInput;
   });
 
-  const contrasenaActual = userExists[usuarioIndex].contrasena;
+  const passIndex = userExists.findIndex((user) => {
+    return user.contrasena === passRecupero;
+  });
 
   if (!passwordRegexp.test(passRecupero)) {
     document.getElementById("instructivoMjePass").innerHTML =
@@ -330,7 +332,7 @@ const validacionRecupero = () => {
     return;
   }
 
-  if (passRecupero === contrasenaActual) {
+  if (passRecupero === userExists[passIndex]?.contrasena) {
     Swal.fire({
       icon: "warning",
       title: "Atencion! error al actualizar tu contraseña",
