@@ -1,5 +1,5 @@
-const navbarAdminUsuarios = document.getElementById("navbar-admin");
-navbarAdminUsuarios.innerHTML = `<a href="paginaPrincipal.html" class="d-flex align-items-center enlace-logo">
+const navbarAdminProductos = document.getElementById("navbar-admin");
+navbarAdminProductos.innerHTML = `<a href="paginaPrincipal.html" class="d-flex align-items-center enlace-logo">
   <img class="ms-1 px-2" src="../img/Logo Play Gaming.png" alt="logo de la empresa"/>
   </a>
   <button
