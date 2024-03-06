@@ -23,9 +23,9 @@ const catalogoJuegos = [
     categoria: "Acción",
     precio: 49.99,
     requisitosMinimos:
-      "Sistema Operativo: Windows 10\n Procesador: Intel Core i5-3570K o AMD FX-8310\n Memoria RAM: 8 GB\nTarjeta Grafica: NVIDIA GTX 780 o AMD Radeon RX 470",
+      "Sistema Operativo: Windows 10 \nProcesador: Intel Core i5-3570K o AMD FX-8310\n Memoria RAM: 8 GB\nTarjeta Grafica: NVIDIA GTX 780 o AMD Radeon RX 470",
     requisitosRecomendados:
-      "Sistema Operativo: Windows 10\n Procesador:Intel Core i7-4790 o AMD Ryzen 5 3600\n Memoria RAM: 16 GB\nTarjeta Grafica: NVIDIA GTX 1050 6GB",
+      "Sistema Operativo: Windows 10 \nProcesador:Intel Core i7-4790 o AMD Ryzen 5 3600\n Memoria RAM: 16 GB\nTarjeta Grafica: NVIDIA GTX 1050 6GB",
 
     imagen: "../img/Cyber Punk 2077.png",
     url: "https://youtu.be/8X2kIfS6fb8",

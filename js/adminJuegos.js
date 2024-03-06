@@ -348,15 +348,15 @@ tablaJuegos.innerHTML = juegos
     
                   <div class="mb-1">
                   <label for="exampleFormControlTextarea1" class="form-label">Requisitos de sistema Minimos</label>
-                  <textarea class="form-control" id="idRequisitosMinimosEdit" onChange="cargaJuegoEditado(event)" name="requisitos.minimos" rows="2">${JSON.stringify(
-                    juego.requisitos.minimos
+                  <textarea class="form-control" id="idRequisitosMinimosEdit" onChange="cargaJuegoEditado(event)" name="requisitosMinimos" rows="2">${JSON.stringify(
+                    juego.requisitosMinimos
                   )}</textarea>   
                 </div>
     
                 <div class="mb-1">
                 <label for="exampleFormControlTextarea1" class="form-label">Requisitos de sistema recomendados</label>
-                <textarea class="form-control" id="idRequisitosRecomendadosEdit" onChange="cargaJuegoEditado(event)" name="requisitos.recomendados" rows="2">${JSON.stringify(
-                  juego.requisitos.recomendados
+                <textarea class="form-control" id="idRequisitosRecomendadosEdit" onChange="cargaJuegoEditado(event)" name="requisitosRecomendados" rows="2">${JSON.stringify(
+                  juego.requisitosRecomendados
                 )}</textarea>   
               </div>
     
@@ -720,10 +720,8 @@ const validacionJuego = (event) => {
       descripcion: descripcionJuego,
       categoria: categoriaJuego,
       precio: precioJuego,
-      requisitos: {
-        minimos: requisitoMinimo,
-        recomendados: requisitoRecomendado,
-      },
+      requisitosMinimos: requisitoMinimo,
+      requisitosMinimos: requisitoRecomendado,
       imagen: linkImagenJuego,
       url: linkJuego,
       publicado: estadoDeJuego,
@@ -736,10 +734,8 @@ const validacionJuego = (event) => {
       descripcion: descripcionJuego,
       categoria: categoriaJuego,
       precio: precioJuego,
-      requisitos: {
-        minimos: requisitoMinimo,
-        recomendados: requisitoRecomendado,
-      },
+      requisitosMinimos: requisitoMinimo,
+      requisitosMinimos: requisitoRecomendado,
       imagen: linkImagenJuego,
       url: linkJuego,
       publicado: estadoDeJuego,

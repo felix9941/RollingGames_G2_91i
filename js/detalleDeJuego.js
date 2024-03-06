@@ -1,4 +1,22 @@
-//redireccion - control de acceso.
+// Pegar al comienzo del js
+//Redireccion - control de acceso.
+function redireccion() {
+  const usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
+  const usuario = usuarios.find((usu) => usu.login === true);
+  if (!usuario) {
+    alert("Ups aun no te logueaste. Inicia sesion");
+    setTimeout(() => {
+      window.location.href = "login.html";
+    }, 1000);
+  }
+  if (usuario.id == "") {
+    alert("Contactanos para ingresar");
+    setTimeout(() => {
+      window.location.href = "contacto.html";
+    }, 1000);
+  }
+}
+redireccion();
 
 //Navbar
 const navbarAdminUsuarios = document.getElementById("navbar-admin");
