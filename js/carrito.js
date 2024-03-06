@@ -121,31 +121,31 @@ footerGeneral.innerHTML = ` <div class="col-12 col-md-6 col-lg-4 d-flex justify-
   </div>
 </div>
 </div>`;
-(() => {
-  const validacionUsuario = JSON.parse(localStorage.getItem("usuarios")) || [];
 
-  const usuario = validacionUsuario.find(
-    (validacion) =>
-      validacion.id && validacion.login === true && validacion.rol === "admin"
-  );
-
-  const usuarioAdmin = validacionUsuario.find(
-    (validacion) =>
-      validacion.id && validacion.login === true && validacion.rol === "admin"
-  );
-
-  if (usuarioAdmin) {
-  } else {
-    window.location.href = "paginaPrincipal.html";
-    return;
-  }
-
+function redireccion() {
+  const usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
+  const usuario = usuarios.find((usu) => usu.login === true);
   if (usuario) {
+    if (usuario.rol === "admin") {
+      alert("Admin no puede acceder");
+      setTimeout(() => {
+        window.location.href = "paginaPrincipal.html";
+      }, 1000);
+    }
   } else {
-    window.location.href = "login.html";
-    return;
+    alert("Ups aun no te logueaste. Inicia sesion");
+    setTimeout(() => {
+      window.location.href = "login.html";
+    }, 1000);
   }
-})();
+  if (usuario.id == "") {
+    alert("Contactanos para ingresar");
+    setTimeout(() => {
+      window.location.href = "contacto.html";
+    }, 1000);
+  }
+}
+redireccion();
 
 const usuarios = JSON.parse(localStorage.getItem("usuarios"));
 const usuario = usuarios.find((usu) => usu.login === true);
@@ -260,7 +260,9 @@ if (usuario) {
 function cerrarSesion() {
   const usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
 
-  const userLogin = usuarios.find((usuario) => usuario.id && usuario.login === true);
+  const userLogin = usuarios.find(
+    (usuario) => usuario.id && usuario.login === true
+  );
 
   if (userLogin) {
     userLogin.login = false;
