@@ -275,9 +275,9 @@ tarjetasCarrousel.innerHTML = `
 `;
 const createCard = (juego, index) => `
 <div class="col-12 col-md-4 col-lg-3 my-3">
-<h5 class="card-text-categoria anta-regular" style="text-align: center;">${juego.titulo}</h5>
+<h5 class="card-text-categoria anta-regular textCenter">${juego.titulo}</h5>
   <div class="card-categoria">
-    <a href="../page/detalleJuego.html" class="card-link">
+    <a href="${juego.id}" class="card-link">
       <img src="${juego.imagen}" class="card-img-top-categoria" alt="${juego.titulo}">
     </a>
   </div>
@@ -477,7 +477,7 @@ inputBusqueda.addEventListener("input", () => {
         <div class="col-12 col-md-4 col-lg-2 mt-4">
           <div class="card-categoria mx-3">
           <h5 class="card-text-categoria anta-regular textCenter">${juego.titulo}</h5>
-            <a href="../page/detalleJuego.html" class="card-link">
+            <a href="${juego.id}" class="card-link">
               <img src="${juego.imagen}" class="card-img-top-categoria" alt="${juego.titulo}">
             </a>
           </div>
