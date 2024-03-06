@@ -1,11 +1,90 @@
-<!DOCTYPE html>
-<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta
+    name="description"
+    content="Paguina de venta de videojuegos 'Play Gaming'"
+  />
+  <meta
+    name="author"
+    content="Felix Figueroa, Javier Isasmendi, Jose Martin Fe, Rodrigo Paz"
+  />
+  <meta
+    name="keywords"
+    content="Compra, gaming, lol, juegos, rockstar games"
+  />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Anta&display=swap"
+    rel="stylesheet"
+  />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Kanit:wght@300&display=swap"
+    rel="stylesheet"
+  />
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+    crossorigin="anonymous"
+  />
+  <script
+    src="https://kit.fontawesome.com/cc73719364.js"
+    crossorigin="anonymous"
+  ></script>
+  <link rel="stylesheet" href="../css/favoritos.css" />
+  <link
+    rel="shortcut icon"
+    href="/img/Logo Play Gaming.png"
+    type="image/x-icon"
+  />
+  <title>Carrito</title>
 </head>
 <body>
-  
+  <header>
+    <nav
+      class="navbar navbar-expand-lg navbar-color"
+      id="navbar-Carrito"
+    ></nav>
+  </header>
+  <main>
+    <h2 class="title-Carrito anta-regular">RESUMEN DE TU PEDIDO</h2>
+    <div class="container">
+      <div class="table-responsive">
+        <table
+          class="table shadow p-3 bg-body-tertiary rounded mt-5 text-center"
+        >
+          <thead>
+            <tr>
+              <th scope="col-12">ID Juego</th>
+              <th scope="col-12">Imagen del juego</th>
+              <th scope="col-12">Nombre Juego</th>
+              <th scope="col-12">Precio ($)</th>
+              <th scope="col-12">Acciones</th>
+            </tr>
+          </thead>
+          <tbody id="carritoBody"></tbody>
+        </table>
+      </div>
+    </div>
+    <div class="container">
+      <div id="botonCarrito"></div>
+    </div>
+  </main>
+  <footer>
+    <div class="container-fluid containerFooter">
+      <div class="row" id="footerGeneral"></div>
+    </div>
+  </footer>
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous"
+  ></script>
+  <script src="../js/favoritos.js"></script>
 </body>
 </html>
