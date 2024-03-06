@@ -145,7 +145,7 @@ footerGeneral.innerHTML = ` <div class="col-12 col-md-6 col-lg-4 d-flex justify-
 </div>
 </div>`;
 
-(() => {
+/* (() => {
   const validacionUsuario = JSON.parse(localStorage.getItem("usuarios")) || [];
 
   const usuario = validacionUsuario.find(
@@ -157,7 +157,7 @@ footerGeneral.innerHTML = ` <div class="col-12 col-md-6 col-lg-4 d-flex justify-
     window.location.href = "login.html";
     return;
   }
-})();
+})(); */
 
 function mostrarJuego() {
   const juego = catalogoJuegos.find((juego) => juego.destacado === true);
