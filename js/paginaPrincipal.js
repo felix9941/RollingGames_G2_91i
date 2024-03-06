@@ -279,11 +279,11 @@ data-bs-slide="next"
 const createCard = (juego, index) => `
 <div class="col-12 col-md-4 col-lg-3 my-3">
 <h5 class="card-text-categoria anta-regular" style="text-align: center;">${juego.titulo}</h5>
-<div class="card-categoria">
-  <a href="../page/detalleDeJuego.html?id=${juego.id}" class="card-link">
-    <img src="${juego.imagen}" class="card-img-top-categoria" alt="${juego.titulo}">
-  </a>
-</div>
+  <div class="card-categoria">
+    <a href="../page/detalleJuego.html" class="card-link">
+      <img src="${juego.imagen}" class="card-img-top-categoria" alt="${juego.titulo}">
+    </a>
+  </div>
 </div>
 `;
 
@@ -451,24 +451,9 @@ function cerrarSesion() {
     botonLoginAdmin.classList.add("d-none");
   }
 })();
-
-const inputFiltro = document.getElementById("inputFiltro");
 const inputBusqueda = document.getElementById("inputBusqueda");
 const resultadosContainer = document.getElementById("resultadosContainer");
 const destacado = document.getElementById("juegosDestacados");
-
-inputFiltro.innerHTML = ` <div class="col-12 d-flex justify-content-end">
-<form class="d-flex mt-5" role="search">
-  <input
-    class="form-control me-2"
-    type="search"
-    placeholder="Busca un juego"
-    aria-label="Search"
-    id="inputBusqueda"
-  />
-</form>
-</div>`;
-
 const juegos = JSON.parse(localStorage.getItem("catalogoDeJuegos")) || [];
 
 inputBusqueda.addEventListener("input", () => {
@@ -491,15 +476,15 @@ inputBusqueda.addEventListener("input", () => {
   if (resultados.length > 0) {
     resultados.forEach((juego) => {
       const cardHTML = `
-      <div class="col-12 col-md-4 col-lg-2 mt-4">
-        <div class="card-categoria mx-3">
-        <h5 class="card-text-categoria anta-regular textCenter">${juego.titulo}</h5>
-          <a href="../page/detalleDeJuego.html?id=${juego.id}" class="card-link">
-            <img src="${juego.imagen}" class="card-img-top-categoria" alt="${juego.titulo}">
-          </a>
+        <div class="col-12 col-md-4 col-lg-2 mt-4">
+          <div class="card-categoria mx-3">
+          <h5 class="card-text-categoria anta-regular textCenter">${juego.titulo}</h5>
+            <a href="../page/detalleJuego.html" class="card-link">
+              <img src="${juego.imagen}" class="card-img-top-categoria" alt="${juego.titulo}">
+            </a>
+          </div>
         </div>
-      </div>
-    `;
+      `;
       resultadosContainer.innerHTML += cardHTML;
       destacado.classList.add("d-none");
     });

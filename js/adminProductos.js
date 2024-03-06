@@ -1,5 +1,5 @@
-const navbarAdminUsuarios = document.getElementById("navbar-admin");
-navbarAdminUsuarios.innerHTML = `<a href="paginaPrincipal.html" class="d-flex align-items-center enlace-logo">
+const navbarAdminProductos = document.getElementById("navbar-admin");
+navbarAdminProductos.innerHTML = `<a href="paginaPrincipal.html" class="d-flex align-items-center enlace-logo">
   <img class="ms-1 px-2" src="../img/Logo Play Gaming.png" alt="logo de la empresa"/>
   </a>
   <button
@@ -74,7 +74,7 @@ navbarAdminUsuarios.innerHTML = `<a href="paginaPrincipal.html" class="d-flex al
   const validacionUsuario = JSON.parse(localStorage.getItem("usuarios")) || [];
 
   const usuario = validacionUsuario.find(
-    (validacion) => validacion.id && validacion.login === false
+    (validacion) => validacion.id && validacion.login === true
   );
 
   const usuarioAdmin = validacionUsuario.find(

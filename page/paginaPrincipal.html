@@ -55,12 +55,23 @@
     </header>
     <main>
       <div class="container">
-        <div class="row" id="inputFiltro"></div>
+        <div class="row" id="inputFiltro">
+          <div class="col-12 d-flex justify-content-end">
+            <form class="d-flex mt-5" role="search">
+              <input
+                class="form-control me-2"
+                type="search"
+                placeholder="Busca un juego"
+                aria-label="Search"
+                id="inputBusqueda"
+              />
+            </form>
+          </div>
+        </div>
       </div>
       <div class="container">
         <div id="resultadosContainer" class="d-flex flex-wrap"></div>
       </div>
-
       <div class="container">
         <div class="row" id="juegosDestacados"></div>
       </div>
@@ -78,7 +89,6 @@
       <h2 class="title-Publicidad anta-regular">
         Juegos de los desarrolladores que puedes encontrar aquí:
       </h2>
-
       <div class="scroller" id="publicidadSección"></div>
     </main>
     <footer>
