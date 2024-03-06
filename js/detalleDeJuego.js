@@ -194,7 +194,8 @@ fotoComprar.innerHTML = `<div class="col-md-8 pe-0 ps-2">
     <div class="container">
       <div class="row">
         <div class="col-12 mt-1 mb-1 p-0">
-          <button
+
+        <button
             class="btn btn-warning" onclick="comprar(${juego.id})"
             style="width: 100%; max-width: 10em"
           >
@@ -202,28 +203,66 @@ fotoComprar.innerHTML = `<div class="col-md-8 pe-0 ps-2">
           </button>
         </div>
         <div class="col-12 mt-1 mb-1 p-0">
-          <button
-            class="btn btn-warning"  onclick="carrito(${juego.id})"
-            style="width: 100%; max-width: 10em"
-          >
-            Añadir al carrito
-          </button>
-        </div>
+
         <div class="col-12 mt-1 mb-3 mb-2 p-0">
-          <button id="botonFavorito" class="btn btn-primary" onclick="favorito(${juego.id})">Agregar a Favoritos</button>
-        </div>
+        <button id="botonFavorito" class="btn ${
+          tieneJuegos(juego.id) ? "btn-warning" : "bg-light text-dark "
+        }" style="width: 100%; max-width: 10em" onclick="carrito(${
+  juego.id
+})">Carrito <i class="fas fa-cart-shopping ms-2"></i></button>
+    </div>
+
+        <div class="col-12 mt-1 mb-3 mb-2 p-0">
+        <button id="botonFavorito" class="btn ${
+          tieneFavoritos(juego.id) ? "btn-warning" : "bg-light text-dark "
+        }" style="width: 100%; max-width: 10em" onclick="favorito(${
+  juego.id
+})">Favorito <i class="fas fa-star text-dark ms-2"></i></button>
+    </div>
+
       </div>
     </div>
 
+
+    
+
+
 </div>
 </div>`;
+
+function tieneJuegos(idJuego) {
+  const usuarios = JSON.parse(localStorage.getItem("usuarios"));
+  const usuario = usuarios.find((usu) => usu.login === true);
+  const identificadores = usuario.carrito;
+  if (incluido(identificadores, idJuego)) {
+    console.log("Tiene favoritossss");
+    return true;
+  } else {
+    console.log("No Tiene  favoritossss");
+    return false;
+  }
+}
+
+function tieneFavoritos(idJuego) {
+  const usuarios = JSON.parse(localStorage.getItem("usuarios"));
+  const usuario = usuarios.find((usu) => usu.login === true);
+  const identificadores = usuario.favoritos;
+  if (incluido(identificadores, idJuego)) {
+    console.log("Tiene favoritossss");
+    return true;
+  } else {
+    console.log("No Tiene  favoritossss");
+    return false;
+  }
+}
+
+//tieneFavoritos(juego.id);
 
 function mostrarMensaje(mensaje, tiempo) {
   const mensajeDiv = document.createElement("div");
   mensajeDiv.textContent = mensaje;
   mensajeDiv.classList.add("mensaje");
   document.body.appendChild(mensajeDiv);
-
   setTimeout(() => {
     mensajeDiv.remove();
   }, tiempo);
@@ -232,9 +271,11 @@ function mostrarMensaje(mensaje, tiempo) {
 function incluido(array, elemento) {
   for (let i = 0; i < array.length; i++) {
     if (array[i] === elemento) {
+      console.log("Esta incluido True");
       return true;
     }
   }
+  console.log("No esta incluido false");
   return false;
 }
 
@@ -258,6 +299,31 @@ function carrito(id) {
   const posicionUsuario = usuarios.findIndex((usu) => usu.login === true);
   const usuarioLogueado = usuarios[posicionUsuario];
   if (incluido(usuarioLogueado.carrito, id)) {
+    usuarioLogueado.carrito = usuarioLogueado.carrito.filter(
+      (iden) => iden !== id
+    );
+    usuarios[posicionUsuario] = usuarioLogueado;
+    localStorage.setItem("usuarios", JSON.stringify(usuarios));
+  } else {
+    usuarioLogueado.carrito.push(id);
+    usuarios[posicionUsuario] = usuarioLogueado;
+    localStorage.setItem("usuarios", JSON.stringify(usuarios));
+  }
+  location.reload();
+}
+
+function identificadorVideo(link) {
+  const url = "https://youtu.be/1rPxiXXxftE";
+  const parts = url.split("/");
+  const videoId = parts[parts.length - 1];
+  return videoId;
+}
+
+/* function carrito(id) {
+  const usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
+  const posicionUsuario = usuarios.findIndex((usu) => usu.login === true);
+  const usuarioLogueado = usuarios[posicionUsuario];
+  if (incluido(usuarioLogueado.carrito, id)) {
     alert("El juego ya esta en el carrito");
   } else {
     usuarioLogueado.carrito.push(id);
@@ -267,49 +333,26 @@ function carrito(id) {
     mostrarMensaje("El juego se agrego al carrito", 6000);
   }
 }
-
-function favorito(idJuego) {
-  //const idJuego = 1; // ID del juego, usar el ID correcto aquí
+ */
+function favorito(id) {
   const usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
   const posicionUsuario = usuarios.findIndex((usu) => usu.login === true);
   const usuarioLogueado = usuarios[posicionUsuario];
-
-  if (incluido(usuarioLogueado.favoritos, idJuego)) {
-    usuarioLogueado.favoritos = usuarioLogueado.favoritos.filter(
-      (id) => id !== idJuego
-    );
-    document.getElementById("botonFavorito").textContent =
-      "Agregar a Favoritos";
-    document.getElementById("botonFavorito").classList.remove("btn-danger");
-    document.getElementById("botonFavorito").classList.add("btn-primary");
-  } else {
-    usuarioLogueado.favoritos.push(idJuego);
-    document.getElementById("botonFavorito").textContent =
-      "Quitar de Favoritos";
-    document.getElementById("botonFavorito").classList.remove("btn-primary");
-    document.getElementById("botonFavorito").classList.add("btn-danger");
-  }
-
-  usuarios[posicionUsuario] = usuarioLogueado;
-  localStorage.setItem("usuarios", JSON.stringify(usuarios));
-}
-
-/* function favorito(id) {
-  const usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
-  const posicionUsuario = usuarios.findIndex((usu) => usu.login === true);
-  const usuarioLogueado = usuarios[posicionUsuario];
-  console.log("No esta");
   if (incluido(usuarioLogueado.favoritos, id)) {
-    mostrarMensaje("El juego ya está en favoritos", 6000);
+    usuarioLogueado.favoritos = usuarioLogueado.favoritos.filter(
+      (iden) => iden !== id
+    );
+    usuarios[posicionUsuario] = usuarioLogueado;
+    localStorage.setItem("usuarios", JSON.stringify(usuarios));
+    //mostrarMensaje("El juego ya está en favoritos", 6000);
   } else {
-    console.log("No esta");
     usuarioLogueado.favoritos.push(id);
     usuarios[posicionUsuario] = usuarioLogueado;
     localStorage.setItem("usuarios", JSON.stringify(usuarios));
-    console.log(usuarioLogueado);
-    mostrarMensaje("El juego se agregó a favoritos", 6000);
+    //mostrarMensaje("El juego se agregó a favoritos", 6000);
   }
-} */
+  location.reload();
+}
 
 function identificadorVideo(link) {
   const url = "https://youtu.be/1rPxiXXxftE";
@@ -326,7 +369,7 @@ descripcionVideo.innerHTML = `<div class="col-md-8">
 ${juego.descripcion}
 </p>
 </div>
-<div class="col-md-4">
+<div class="col-md-4 p-0">
 <iframe
   width="560"
   height="315"
@@ -343,10 +386,7 @@ const requisitoSisteme = document.getElementById("idRequisitoSistema");
 requisitoSisteme.innerHTML = ` <div class="col-md-6">
 <h3>Minimos</h3>
 <p>
-  Lorem ipsum dolor sit amet consectetur adipisicing elit. Et nobis
-  eum nihil illo, dolorem eos fugit aut, ad modi voluptate est
-  aspernatur autem earum assumenda doloremque natus blanditiis.
-  Aspernatur, hic!
+${juego.requisitosMinimos}
 </p>
 </div>
 <div class="col-md-6">

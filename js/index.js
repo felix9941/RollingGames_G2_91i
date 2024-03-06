@@ -6,10 +6,11 @@ const catalogoJuegos = [
       "Un juego de acción y aventuras ambientado en un vasto mundo abierto.",
     categoria: "Aventura",
     precio: 59.99,
-    requisitos: {
-      minimos: "No disponible (exclusivo de consola)",
-      recomendados: "No disponible (exclusivo de consola)",
-    },
+    requisitosMinimos:
+      "Windows 10\nIntel Core i5-3570K o AMD FX-8310\n8 GB\nNVIDIA GTX 780 o AMD Radeon RX 470",
+    requisitosRecomendados:
+      "Windows 10\nIntel Core i7-3570K o AMD FX-8310\n16 GB\nNVIDIA GTX 780 o AMD Radeon RX 470",
+
     imagen: "../img/The Legend of Zelda  Breath of the Wild.png",
     url: "https://youtu.be/1rPxiXXxftE",
     publicado: true,
