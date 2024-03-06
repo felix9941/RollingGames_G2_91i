@@ -4,13 +4,6 @@ function redireccion() {
   const usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
   const usuario = usuarios.find((usu) => usu.login === true);
   if (usuario) {
-    if (usuario.rol === "admin") {
-      console.log("Admin");
-      alert("Admin no puede acceder");
-      setTimeout(() => {
-        window.location.href = "paginaPrincipal.html";
-      }, 1000);
-    }
     if (usuario.id == "") {
       alert("Contactanos para ingresar");
       setTimeout(() => {
@@ -26,25 +19,59 @@ function redireccion() {
 }
 redireccion();
 
-/* // Pegar al comienzo del js
-//Redireccion - control de acceso.
-function redireccion() {
+function tieneJuegos() {
   const usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
   const usuario = usuarios.find((usu) => usu.login === true);
-  if (!usuario) {
-    alert("Ups aun no te logueaste. Inicia sesion");
-    setTimeout(() => {
-      window.location.href = "login.html";
-    }, 1000);
-  }
-  if (usuario.id == "") {
-    alert("Contactanos para ingresar");
-    setTimeout(() => {
-      window.location.href = "contacto.html";
-    }, 1000);
+  const arregloFavoritos = usuario.favoritos;
+  const juegosFavoritos = document.getElementById("juegosFavoritos");
+  const juegos = JSON.parse(localStorage.getItem("catalogoDeJuegos"));
+  console.log(arregloFavoritos.lengt);
+  if (arregloFavoritos.length !== 0) {
+    arregloFavoritos.forEach(function (elemento) {
+      const juego = juegos.find((game) => game.id === elemento);
+      const nuevoJuego = document.createElement("div");
+      nuevoJuego.innerHTML = `
+    <div class="card mb-3 tarjetaDeJuego" >
+      <div class="row g-0">
+        <div class="col-md-7" >
+        <a href="detalleDeJuego.html?id=${juego.id}"><img src="${juego.imagen}" style="width:100%; height: 100%;" class=" rounded-start" alt="${juego.titulo}"></a>
+          
+        </div>
+        <div class="col-md-5 d-flex justify-content-around">
+          <div class="card-body centrarContTarjeta">
+  
+          <h4 class="card-title mt-2">${juego.titulo}</h4>
+          <h4 class="card-title mt-2">Precio: $ ${juego.precio}</h4>
+          <button
+          class="btn btn-danger mt-2 mb-2 botones" onclick="eliminarFavorito(${juego.id})"
+        
+        >
+          Eliminar
+        </button>
+      </div>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="p-4"></div>
+      `;
+      // Agregar el nuevo elemento div al contenedor juegosFavoritos
+      juegosFavoritos.appendChild(nuevoJuego);
+    });
+  } else {
+    juegosFavoritos.innerHTML = `<h3 class="mt-3 text-efecto-sombra">Aun no tiene Juegos favoritos</h3>`;
   }
 }
-redireccion(); */
+tieneJuegos();
+
+function eliminarFavorito(idJuego) {
+  const usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
+  const usuario = usuarios.find((usu) => usu.login === true);
+  usuario.favoritos = usuario.favoritos.filter((id) => id !== idJuego);
+  localStorage.setItem("usuarios", JSON.stringify(usuarios));
+  location.reload();
+}
 
 //Navbar
 const navbarAdminUsuarios = document.getElementById("navbar-admin");

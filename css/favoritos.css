@@ -127,3 +127,27 @@ img {
   background-color: rgba(26, 26, 46);
   color: white;
 }
+
+/* ****************************************************************** */
+.fondoFavoritos {
+  background-image: url("../img/Fondo\ Favoritos.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+.text-efecto-sombra {
+  color: rgb(255, 255, 255);
+  text-shadow: 2px 2px 12px #000000;
+}
+
+.tarjetaDeJuego {
+  max-width: 700px;
+}
+
+@media (max-width: 766px) {
+  .centrarContTarjeta {
+    text-align: center;
+  }
+}
