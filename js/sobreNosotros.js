@@ -239,7 +239,7 @@ footerGeneral.innerHTML = ` <div class="col-12 col-md-6 col-lg-4 d-flex justify-
   const botonLoginAdmin = document.getElementById("administracion");
 
   const userLogin = usuarios.find(
-    (u) => usuario.login === true && usuario.rol === "usuario"
+    (usuario) => usuario.login === true && usuario.rol === "usuario"
   );
   const userLoginAdmin = usuarios.find(
     (usuario) => usuario.login === true && usuario.rol === "admin"
