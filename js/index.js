@@ -3,13 +3,13 @@ const catalogoJuegos = [
     id: 1,
     titulo: "The Legend of Zelda: Breath of the Wild",
     descripcion:
-      "Un juego de acción y aventuras ambientado en un vasto mundo abierto.",
+      "¡Sumérgete en una épica aventura en el galardonado mundo de Hyrule con The Legend of Zelda: Breath of the Wild! En este juego de acción y aventuras de mundo abierto, te embarcarás en un viaje inolvidable como Link, el valiente héroe destinado a salvar el reino de Hyrule de la oscuridad. \nCon una historia profunda y conmovedora, gráficos impresionantes y una banda sonora que te sumerge en la aventura, The Legend of Zelda: Breath of the Wild es un juego imprescindible para cualquier amante de los videojuegos.",
     categoria: "Aventura",
     precio: 59.99,
-    requisitos: {
-      minimos: "No disponible (exclusivo de consola)",
-      recomendados: "No disponible (exclusivo de consola)",
-    },
+    requisitosMinimos:
+      "Sistema Operativo: Windows 10\n Procesador: Intel Core i5-3570K o AMD FX-8310\n Memoria RAM: 8 GB\nTarjeta Grafica: NVIDIA GTX 780 o AMD Radeon RX 470",
+    requisitosRecomendados:
+      "Sistema Operativo: Windows 10\n Procesador:Intel Core i7-4790 o AMD Ryzen 5 3600\n Memoria RAM: 16 GB\nTarjeta Grafica: NVIDIA GTX 1060 6GB",
     imagen: "../img/The Legend of Zelda  Breath of the Wild.png",
     url: "https://youtu.be/1rPxiXXxftE",
     publicado: true,
@@ -18,23 +18,15 @@ const catalogoJuegos = [
   {
     id: 2,
     titulo: "Cyberpunk 2077",
-    descripcion: "Un RPG de mundo abierto ambientado en un futuro distópico.",
+    descripcion:
+      "El impresionante mundo de Cyberpunk 2077, un juego de rol de acción en un futuro distópico lleno de emocionantes aventuras y peligrosas intrigas! Ambientado en la vibrante y peligrosa ciudad de Night City, eres V, un mercenario con un trasfondo único y habilidades especiales que te permitirán forjar tu propio camino en esta metrópolis obsesionada con el poder, el glamour y la modificación corporal.\nExplora una ciudad llena de vida y color, donde cada decisión que tomes afectará el curso de la historia y el destino de sus habitantes. Personaliza tu personaje, mejora tus habilidades y equipamiento cibernético, y enfréntate a enemigos despiadados en intensos combates en primera persona.",
     categoria: "Acción",
     precio: 49.99,
-    requisitos: {
-      minimos: {
-        sistemaOperativo: "Windows 10",
-        procesador: "Intel Core i5-3570K o AMD FX-8310",
-        memoriaRAM: "8 GB",
-        tarjetaGrafica: "NVIDIA GTX 780 o AMD Radeon RX 470",
-      },
-      recomendados: {
-        sistemaOperativo: "Windows 10",
-        procesador: "Intel Core i7-4790 o AMD Ryzen 5 3600",
-        memoriaRAM: "16 GB",
-        tarjetaGrafica: "NVIDIA GTX 1060 6GB o AMD Radeon RX 5700 XT",
-      },
-    },
+    requisitosMinimos:
+      "Sistema Operativo: Windows 10 \nProcesador: Intel Core i5-3570K o AMD FX-8310\n Memoria RAM: 8 GB\nTarjeta Grafica: NVIDIA GTX 780 o AMD Radeon RX 470",
+    requisitosRecomendados:
+      "Sistema Operativo: Windows 10 \nProcesador:Intel Core i7-4790 o AMD Ryzen 5 3600\n Memoria RAM: 16 GB\nTarjeta Grafica: NVIDIA GTX 1050 6GB",
+
     imagen: "../img/Cyber Punk 2077.png",
     url: "https://youtu.be/8X2kIfS6fb8",
     publicado: true,
@@ -44,23 +36,13 @@ const catalogoJuegos = [
     id: 3,
     titulo: "FIFA 22",
     descripcion:
-      "Simulador de fútbol con las últimas actualizaciones de equipos y jugadores.",
+      "¡Experimenta la emoción del fútbol como nunca antes con FIFA 22, el último título de la aclamada serie de videojuegos de EA Sports! Con una jugabilidad mejorada, gráficos realistas y nuevas características emocionantes, FIFA 22 te sumerge en la pasión y la intensidad del deporte más popular del mundo.\nDomina el campo con movimientos más fluidos y realistas, gracias a la tecnología HyperMotion, que ofrece animaciones más auténticas y un nivel de realismo sin precedentes. Además, disfruta de una inteligencia artificial mejorada que hace que los jugadores se comporten de manera más realista, tomando decisiones más inteligentes tanto en ataque como en defensa.",
     categoria: "Deportes",
     precio: 54.99,
-    requisitos: {
-      minimos: {
-        sistemaOperativo: "Windows 10",
-        procesador: "Intel Core i3-6100 o AMD Athlon X4 880K",
-        memoriaRAM: "8 GB",
-        tarjetaGrafica: "NVIDIA GTX 660 o AMD Radeon HD 7850",
-      },
-      recomendados: {
-        sistemaOperativo: "Windows 10",
-        procesador: "Intel Core i5-3550 o AMD FX-8350",
-        memoriaRAM: "8 GB",
-        tarjetaGrafica: "NVIDIA GTX 660 o AMD Radeon HD 7850",
-      },
-    },
+    requisitosMinimos:
+      "Sistema Operativo: Windows 10\n Procesador: Intel Core i5-3570K o AMD FX-8310\n Memoria RAM: 8 GB\nTarjeta Grafica: NVIDIA GTX 780 o AMD Radeon RX 470",
+    requisitosRecomendados:
+      "Sistema Operativo: Windows 10\n Procesador:Intel Core i7-4790 o AMD Ryzen 5 3600\n Memoria RAM: 16 GB\nTarjeta Grafica: NVIDIA GTX 1060 6GB",
     imagen: "../img/FIFA 22.png",
     url: "https://youtu.be/o1igaMv46SY",
     publicado: true,
@@ -70,23 +52,14 @@ const catalogoJuegos = [
     id: 4,
     titulo: "Assassin's Creed Valhalla",
     descripcion:
-      "Viaja a la era vikinga y vive la epopeya de saqueos y conquistas.",
+      "La última entrega de la icónica serie de juegos de Ubisoft! En este juego de acción y aventuras, te convertirás en Eivor, un feroz guerrero vikingo que lidera su clan en busca de un nuevo hogar en las exuberantes tierras de Inglaterra del siglo IX.\nExplora un vasto mundo abierto lleno de misterios por descubrir, batallas épicas por librar y decisiones morales que determinarán el destino de tu clan y de toda Inglaterra. Conviértete en un legendario saqueador, construye y mejora tu asentamiento, forja alianzas estratégicas y haz frente a poderosos enemigos en combates intensos y emocionantes.",
     categoria: "Acción",
     precio: 59.99,
-    requisitos: {
-      minimos: {
-        sistemaOperativo: "Windows 10",
-        procesador: "Intel Core i5-4460 o AMD Ryzen 3 1200",
-        memoriaRAM: "8 GB",
-        tarjetaGrafica: "NVIDIA GTX 960 o AMD Radeon R9 380",
-      },
-      recomendados: {
-        sistemaOperativo: "Windows 10",
-        procesador: "Intel Core i7-6700 o AMD Ryzen 7 1700",
-        memoriaRAM: "8 GB",
-        tarjetaGrafica: "NVIDIA GTX 1080 o AMD RX Vega 64",
-      },
-    },
+    requisitosMinimos:
+      "Sistema Operativo: Windows 10\n Procesador: Intel Core i5-4460 o AMD Ryzen 3 1200\n Memoria RAM: 8 GB\nTarjeta Grafica: NVIDIA GTX 780 o AMD Radeon RX 470",
+    requisitosRecomendados:
+      "Sistema Operativo: Windows 10\n Procesador:Intel Intel Core i7-6700 o AMD Ryzen 7 1700\n Memoria RAM: 8 GB\nTarjeta Grafica: NVIDIA GTX 1060 6GB o AMD Radeon RX 5700 XT",
+
     imagen: "../img/Assassins Creed Valhalla.png",
     url: "https://youtu.be/1Z7mIKGzowQ",
     publicado: true,
@@ -96,23 +69,14 @@ const catalogoJuegos = [
     id: 5,
     titulo: "Minecraft",
     descripcion:
-      "Juego de construcción y aventuras con un mundo infinito de bloques.",
+      "El juego de construcción y aventuras que ha cautivado a millones de jugadores en todo el mundo! En Minecraft, te sumerges en un mundo abierto generado procedimentalmente, lleno de bloques que puedes recolectar, combinar y colocar para crear casi cualquier cosa que puedas imaginar.\nExplora vastas tierras, desde exuberantes praderas hasta oscuras cuevas subterráneas, y enfrenta los peligros del mundo, como monstruos hostiles y terrenos inhóspitos. Construye estructuras impresionantes, desde simples cabañas hasta ciudades enteras, utilizando tu creatividad y habilidades para dar vida a tus ideas.",
     categoria: "Aventura",
     precio: 26.95,
-    requisitos: {
-      minimos: {
-        sistemaOperativo: "Windows 10",
-        procesador: "Intel Core i5-4690 o AMD A10-7800",
-        memoriaRAM: "8 GB",
-        tarjetaGrafica: "NVIDIA GTX 960 o AMD Radeon R9 290",
-      },
-      recomendados: {
-        sistemaOperativo: "Windows 10",
-        procesador: "Intel Core i7-6500U o AMD A8-6600K",
-        memoriaRAM: "8 GB",
-        tarjetaGrafica: "NVIDIA GeForce 940M o AMD Radeon HD 8570",
-      },
-    },
+    requisitosMinimos:
+      "Sistema Operativo: Windows 10\n Procesador: Intel Core i5-3570K o AMD FX-8310\n Memoria RAM: 8 GB\nTarjeta Grafica: NVIDIA GTX 780 o AMD Radeon RX 470",
+    requisitosRecomendados:
+      "Sistema Operativo: Windows 10\n Procesador:Intel Core i7-4790 o AMD Ryzen 5 3600\n Memoria RAM: 16 GB\nTarjeta Grafica: NVIDIA GTX 1060 6GB",
+
     imagen: "../img/Minecraft.png",
     url: "https://youtu.be/MmB9b5njVbA",
     publicado: true,
@@ -121,23 +85,15 @@ const catalogoJuegos = [
   {
     id: 6,
     titulo: "Call of Duty: Warzone",
-    descripcion: "Battle royale con acción intensa y modos de juego variados.",
+    descripcion:
+      "El galardonado juego de disparos en primera persona que te sumerge en un campo de batalla épico y lleno de acción! En Warzone, te unirás a un escuadrón de operadores y te lanzarás en paracaídas sobre Verdansk, un vasto y detallado campo de batalla donde la estrategia y la habilidad son clave para la supervivencia.\nEscoge entre una variedad de modos de juego, incluido el popular Battle Royale, donde lucharás contra otros jugadores en una frenética batalla por ser el último en pie, o Plunder, donde el objetivo es recolectar la mayor cantidad de efectivo posible para ganar la partida. Con un arsenal de armas realistas y letales, vehículos para desplazarte rápidamente por el mapa y un sistema de juego emocionante, Warzone te ofrece una experiencia de combate inigualable.",
     categoria: "Estrategia",
-    precio: 0, // Gratis
-    requisitos: {
-      minimos: {
-        sistemaOperativo: "Windows 10",
-        procesador: "Intel Core i5-2500K o AMD Ryzen R5 1600X",
-        memoriaRAM: "12 GB",
-        tarjetaGrafica: "NVIDIA GTX 970 o AMD Radeon RX 590",
-      },
-      recomendados: {
-        sistemaOperativo: "Windows 10",
-        procesador: "Intel Core i7-4770K o AMD Ryzen 5 1600",
-        memoriaRAM: "16 GB",
-        tarjetaGrafica: "NVIDIA GTX 1660 o AMD Radeon RX 580",
-      },
-    },
+    precio: 10,
+    requisitosMinimos:
+      "Sistema Operativo: Windows 10\n Procesador: Intel Core i5-2500K o AMD Ryzen R5 1600X\n Memoria RAM: 12 GB\nTarjeta Grafica: NVIDIA GTX 780 o AMD Radeon RX 470",
+    requisitosRecomendados:
+      "Sistema Operativo: Windows 10\n Procesador:Intel Core i7-4770K o AMD Ryzen 5 1600\n Memoria RAM: 16 GB\nTarjeta Grafica: NVIDIA GTX 1060 6GB",
+
     imagen: "../img/Call Of Duty Warzone.png",
     url: "https://youtu.be/0E44DClsX5Q",
     publicado: true,
@@ -147,23 +103,13 @@ const catalogoJuegos = [
     id: 7,
     titulo: "The Witcher 3: Wild Hunt",
     descripcion:
-      "RPG de acción con un mundo abierto lleno de monstruos y misterios.",
+      "Explora un vasto y detallado mundo abierto, desde pintorescos paisajes hasta ciudades bulliciosas y misteriosos bosques, mientras te enfrentas a peligrosos enemigos y completas misiones épicas. Con un sistema de combate fluido y táctico, una narrativa rica y ramificada, y decisiones morales que afectan el curso de la historia, The Witcher 3 te sumerge en una experiencia de juego inmersiva y emocionante.\nPersonaliza a Geralt con habilidades y equipo únicos, forja alianzas con personajes memorables y enfréntate a monstruos legendarios en combates emocionantes y desafiantes. Con una historia emocionante que te mantendrá enganchado desde el principio hasta el final, The Witcher 3: Wild Hunt es un juego imprescindible para los amantes de los juegos de rol y la fantasía.",
     categoria: "Aventura",
     precio: 39.99,
-    requisitos: {
-      minimos: {
-        sistemaOperativo: "Windows 7/8/10",
-        procesador: "Intel Core i5-2500K o AMD Phenom II X4 940",
-        memoriaRAM: "6 GB",
-        tarjetaGrafica: "NVIDIA GTX 660 o AMD Radeon HD 7870",
-      },
-      recomendados: {
-        sistemaOperativo: "Windows 7/8/10",
-        procesador: "Intel Core i7-3770 o AMD FX-8350",
-        memoriaRAM: "8 GB",
-        tarjetaGrafica: "NVIDIA GTX 770 o AMD Radeon R9 290",
-      },
-    },
+    requisitosMinimos:
+      "Sistema Operativo: Windows 10\n Procesador: Intel Core i5-2500K o AMD Ryzen R5 1600X\n Memoria RAM: 6 GB\nTarjeta Grafica: NVIDIA GTX 780 o AMD Radeon RX 470",
+    requisitosRecomendados:
+      "Sistema Operativo: Windows 10\n Procesador:Intel Core i7-3770 o AMD FX-8350\n Memoria RAM: 8 GB\nTarjeta Grafica: NVIDIA GTX 1060 6GB ",
     imagen: "../img/The witcher 3 Wild Hunt.png",
     url: "https://youtu.be/6qpf3YWbCcE",
     publicado: true,
@@ -173,23 +119,14 @@ const catalogoJuegos = [
     id: 8,
     titulo: "Overwatch",
     descripcion:
-      "Juego de disparos en equipo con héroes únicos y habilidades especiales.",
+      "Elige entre una variedad de héroes, desde valientes tanques hasta ágiles sanadores y mortales tiradores, y combina tus habilidades con las de tus compañeros de equipo para lograr la victoria. Con un enfoque en la estrategia y la cooperación, Overwatch te desafía a trabajar en equipo para cumplir objetivos y derrotar al equipo rival en una variedad de modos de juego dinámicos.\nCon un estilo artístico vibrante y único, personajes carismáticos y una jugabilidad accesible pero profunda, Overwatch ofrece una experiencia de juego emocionante y adictiva que te mantendrá regresando por más. Únete a la comunidad de Overwatch y descubre por qué es uno de los juegos de disparos más populares y aclamados por la crítica de la actualidad.",
     categoria: "Estrategia",
     precio: 39.99,
-    requisitos: {
-      minimos: {
-        sistemaOperativo: "Windows 10",
-        procesador: "Intel Core i3-4150 o AMD Phenom II X4 945",
-        memoriaRAM: "4 GB",
-        tarjetaGrafica: "NVIDIA GTX 660 o AMD Radeon HD 7950",
-      },
-      recomendados: {
-        sistemaOperativo: "Windows 10",
-        procesador: "Intel Core i5-4670K o AMD Ryzen 5 1500X",
-        memoriaRAM: "8 GB",
-        tarjetaGrafica: "NVIDIA GTX 1060 o AMD Radeon RX 480",
-      },
-    },
+    requisitosMinimos:
+      "Sistema Operativo: Windows 7\n Procesador:Intel Core i3-2100 o AMD FX-6300 \n Memoria RAM: 8 GB\nTarjeta Grafica: NVIDIA GTX 670 o AMD Radeon HD 7950",
+    requisitosRecomendados:
+      "Sistema Operativo: Windows 10\n Procesador:Intel Core i5-750Intel Core i3-2100 o AMD Phenom II X4 965\n Memoria RAM: 16 GB\nTarjeta Grafica: NVIDIA GTX 970",
+
     imagen: "../img/Overwatch.png",
     url: "https://youtu.be/Eu7_o0g4n3U",
     publicado: true,
@@ -199,23 +136,14 @@ const catalogoJuegos = [
     id: 9,
     titulo: "Red Dead Redemption 2",
     descripcion:
-      "Explora el Salvaje Oeste en este épico juego de acción y aventuras.",
+      "Red Dead Redemption 2 es un juego de acción y aventuras desarrollado por Rockstar Games. Sumérgete en el salvaje oeste y vive la vida de un forajido en una época en la que la ley y el orden eran un lujo raro. Explora un vasto y desgarrador mundo lleno de personajes memorables y emocionantes misiones. \n Con un realismo impresionante y una narrativa envolvente, Red Dead Redemption 2 te llevará en un viaje emocionante a través de paisajes impresionantes y peligrosos. \n Caza, pesca, juega al póquer y vive como un verdadero vaquero en este juego épico que redefine el género de mundo abierto. ¡Descubre por qué Red Dead Redemption 2 es uno de los juegos más aclamados por la crítica y los jugadores de todo el mundo!",
     categoria: "Acción",
     precio: 49.99,
-    requisitos: {
-      minimos: {
-        sistemaOperativo: "Windows 7",
-        procesador: "Intel Core i5-2500K o AMD FX-6300",
-        memoriaRAM: "8 GB",
-        tarjetaGrafica: "NVIDIA GTX 770 o AMD Radeon R9 280",
-      },
-      recomendados: {
-        sistemaOperativo: "Windows 10",
-        procesador: "Intel Core i7-4770K o AMD Ryzen 5 1500X",
-        memoriaRAM: "12 GB",
-        tarjetaGrafica: "NVIDIA GTX 1060 o AMD Radeon RX 480",
-      },
-    },
+    requisitosMinimos:
+      "Sistema Operativo: Windows 10\n Procesador: Intel Core i5-3570K o AMD FX-8310\n Memoria RAM: 8 GB\nTarjeta Grafica: NVIDIA GTX 780 o AMD Radeon RX 470",
+    requisitosRecomendados:
+      "Sistema Operativo: Windows 10\n Procesador:Intel Core i7-4790 o AMD Ryzen 5 3600\n Memoria RAM: 16 GB\nTarjeta Grafica: NVIDIA GTX 1050 6GB",
+
     imagen: "../img/RED DEAD 2.png",
     url: "https://youtu.be/tx8BPmTMS_o",
     publicado: true,
@@ -225,23 +153,13 @@ const catalogoJuegos = [
     id: 10,
     titulo: "League of Legends",
     descripcion:
-      "Participa en batallas multijugador online con personajes únicos y estrategias de equipo.",
+      "League of Legends es un juego multijugador en línea de arena de batalla en línea (MOBA) desarrollado y publicado por Riot Games. Sumérgete en un mundo de fantasía donde dos equipos de campeones poderosos se enfrentan en emocionantes batallas para destruir la base enemiga. \n Con una amplia variedad de campeones para elegir, cada uno con habilidades únicas y estilos de juego distintivos, League of Legends ofrece una experiencia de juego estratégica y competitiva que desafiará tus habilidades y tu ingenio. \n Únete a millones de jugadores de todo el mundo en partidas rápidas y emocionantes o en competiciones a gran escala en el escenario profesional. ",
     categoria: "Estrategia",
-    precio: 0, // Gratis
-    requisitos: {
-      minimos: {
-        sistemaOperativo: "Windows 7",
-        procesador: "Intel Core 2 Duo E8400",
-        memoriaRAM: "4 GB",
-        tarjetaGrafica: "NVIDIA GeForce 8800 o AMD Radeon HD 5670",
-      },
-      recomendados: {
-        sistemaOperativo: "Windows 10",
-        procesador: "Intel i3-4150 o AMD A10-8700P",
-        memoriaRAM: "8 GB",
-        tarjetaGrafica: "NVIDIA GeForce GT 730 o AMD Radeon R7 240",
-      },
-    },
+    precio: 13,
+    requisitosMinimos:
+      "Sistema Operativo: Windows 10\n Procesador: Intel Core i5-2500K o AMD Ryzen R5 1600X\n Memoria RAM: 6 GB\nTarjeta Grafica: NVIDIA GTX 780 o AMD Radeon RX 470",
+    requisitosRecomendados:
+      "Sistema Operativo: Windows 10\n Procesador:Intel Core i7-3770 o AMD FX-8350\n Memoria RAM: 8 GB\nTarjeta Grafica: NVIDIA GTX 1060 6GB",
     imagen: "../img/League of Legends.png",
     url: "https://youtu.be/ZHhqwBwmRkI",
     publicado: true,
@@ -251,13 +169,14 @@ const catalogoJuegos = [
     id: 11,
     titulo: "Super Mario Odyssey",
     descripcion:
-      "Acompaña a Mario en una emocionante aventura para salvar a la princesa Peach.",
+      "Super Mario Odyssey es un juego de plataformas en 3D desarrollado y publicado por Nintendo para la consola Nintendo Switch. En este juego, te unes a Mario en una emocionante aventura a través de varios reinos en un intento de rescatar a la Princesa Peach de Bowser, quien planea casarse con ella. \n Explora mundos expansivos y coloridos llenos de secretos y desafíos mientras recolectas Power Moons para alimentar tu nave, el Odyssey, y seguir persiguiendo a Bowser a través de diferentes dimensiones.",
     categoria: "Aventura",
     precio: 49.99,
-    requisitos: {
-      minimos: "No disponible (exclusivo de consola)",
-      recomendados: "No disponible (exclusivo de consola)",
-    },
+    requisitosMinimos:
+      "Sistema Operativo: Windows 7\n Procesador:Intel Core i3-2100 o AMD FX-6300 \n Memoria RAM: 8 GB\nTarjeta Grafica: NVIDIA GTX 670 o AMD Radeon HD 7950",
+    requisitosRecomendados:
+      "Sistema Operativo: Windows 10\n Procesador:Intel Core i5-750Intel Core i3-2100 o AMD Phenom II X4 965\n Memoria RAM: 16 GB\nTarjeta Grafica: NVIDIA GTX 970 o AMD Radeon RX 570",
+
     imagen: "../img/Super Mario odyssey.png",
     url: "https://youtu.be/5kcdRBHM7kM",
     publicado: true,
@@ -267,23 +186,14 @@ const catalogoJuegos = [
     id: 12,
     titulo: "Star Wars Jedi: Fallen Order",
     descripcion:
-      "Vive la historia de un joven Jedi en este juego de acción basado en el universo Star Wars.",
+      "Star Wars Jedi: Fallen Order es un juego de acción y aventuras desarrollado por Respawn Entertainment y publicado por Electronic Arts. Ambientado en el universo de Star Wars, el juego te pone en el papel de Cal Kestis, un joven padawan que sobrevivió a la Orden 66 y ahora se encuentra huyendo del Imperio Galáctico. \n A lo largo de la historia, Cal descubre que tiene habilidades con la Fuerza y emprende un viaje para completar su entrenamiento Jedi y restaurar la Orden Jedi.",
     categoria: "Acción",
     precio: 39.99,
-    requisitos: {
-      minimos: {
-        sistemaOperativo: "Windows 7/8.1/10",
-        procesador: "AMD FX-6100 o Intel i3-3220",
-        memoriaRAM: "8 GB",
-        tarjetaGrafica: "NVIDIA GTX 650 o AMD Radeon HD 7750",
-      },
-      recomendados: {
-        sistemaOperativo: "Windows 7/8.1/10",
-        procesador: "AMD Ryzen 7 1700 o Intel i7-6700K",
-        memoriaRAM: "16 GB",
-        tarjetaGrafica: "NVIDIA GTX 1070 o AMD RX Vega 56",
-      },
-    },
+    requisitosMinimos:
+      "Sistema Operativo: Windows 10\n Procesador: Intel Core i5-3570K o AMD FX-8310\n Memoria RAM: 8 GB\nTarjeta Grafica: NVIDIA GTX 780 o AMD Radeon RX 470",
+    requisitosRecomendados:
+      "Sistema Operativo: Windows 10\n Procesador:Intel Core i7-4790 o AMD Ryzen 5 3600\n Memoria RAM: 16 GB\nTarjeta Grafica: NVIDIA GTX 1030 4GB",
+
     imagen: "../img/Star war Jedi Fallen Order.png",
     url: "https://youtu.be/8V2dTitXClU",
     publicado: true,
@@ -293,23 +203,14 @@ const catalogoJuegos = [
     id: 13,
     titulo: "Dota 2",
     descripcion:
-      "Enfréntate en intensas batallas estratégicas en este juego MOBA.",
+      "Dota 2 es un juego multijugador en línea de arena de batalla en línea (MOBA) desarrollado y publicado por Valve Corporation. En Dota 2, dos equipos de cinco jugadores se enfrentan en un campo de batalla virtual con el objetivo de destruir la antigua estructura enemiga conocida como Ancient mientras defienden la suya propia. \n Cada jugador controla un héroe con habilidades únicas y roles específicos, como asesinos, soportes, tanques y magos, entre otros. Trabaja en equipo para coordinar ataques, defender torres y asegurar objetivos clave en el mapa para obtener ventaja sobre el equipo enemigo.",
     categoria: "Estrategia",
-    precio: 0, // Gratis
-    requisitos: {
-      minimos: {
-        sistemaOperativo: "Windows 7",
-        procesador: "Dual-core de Intel o AMD a 2.8 GHz",
-        memoriaRAM: "4 GB",
-        tarjetaGrafica: "NVIDIA GeForce 8600/9600GT o AMD Radeon HD 2600/3600",
-      },
-      recomendados: {
-        sistemaOperativo: "Windows 10",
-        procesador: "Quad-core de Intel o AMD a 3.0 GHz",
-        memoriaRAM: "8 GB",
-        tarjetaGrafica: "NVIDIA GeForce GTX 960 o AMD Radeon R9 280",
-      },
-    },
+    precio: 12.99, // Gratis
+    requisitosMinimos:
+      "Sistema Operativo: Windows 10\n Procesador: Intel Core i5-2500K o AMD Ryzen R5 1600X\n Memoria RAM: 6 GB\nTarjeta Grafica: NVIDIA GTX 780 o AMD Radeon RX 470",
+    requisitosRecomendados:
+      "Sistema Operativo: Windows 10\n Procesador:Intel Core i7-3770 o AMD FX-8350\n Memoria RAM: 8 GB\nTarjeta Grafica: NVIDIA GTX 1060 6GB",
+
     imagen: "../img/Dota 2.png",
     url: "https://youtu.be/tmn5HXW-3Wk",
     publicado: true,
@@ -319,23 +220,14 @@ const catalogoJuegos = [
     id: 14,
     titulo: "Sekiro: Shadows Die Twice",
     descripcion:
-      "Embárcate en una aventura brutal en el Japón feudal como un shinobi.",
+      "Sekiro: Shadows Die Twice es un juego de acción y aventuras desarrollado por FromSoftware y publicado por Activision. Ambientado en el Japón feudal, el juego te pone en la piel de un guerrero shinobi conocido como Sekiro en su búsqueda por vengarse de un samurái que secuestró a su señor y lo dejó por muerto. \n Con una jugabilidad desafiante y táctica, Sekiro: Shadows Die Twice te desafía a dominar el combate con espadas, la furtividad y el uso estratégico de habilidades especiales para enfrentarte a enemigos poderosos y jefes desafiantes.",
     categoria: "Acción",
     precio: 59.99,
-    requisitos: {
-      minimos: {
-        sistemaOperativo: "Windows 7",
-        procesador: "Intel Core i3-2100 o AMD FX-6300",
-        memoriaRAM: "4 GB",
-        tarjetaGrafica: "NVIDIA GTX 760 o AMD Radeon HD 7950",
-      },
-      recomendados: {
-        sistemaOperativo: "Windows 10",
-        procesador: "Intel Core i5-2500K o AMD Ryzen 5 1400",
-        memoriaRAM: "8 GB",
-        tarjetaGrafica: "NVIDIA GTX 970 o AMD Radeon RX 570",
-      },
-    },
+    requisitosMinimos:
+      "Sistema Operativo: Windows 7\n Procesador:Intel Core i3-2100 o AMD FX-6300 \n Memoria RAM: 8 GB\nTarjeta Grafica: NVIDIA GTX 670 o AMD Radeon HD 7950",
+    requisitosRecomendados:
+      "Sistema Operativo: Windows 10\n Procesador:Intel Core i5-750Intel Core i3-2100 o AMD Phenom II X4 965\n Memoria RAM: 16 GB\nTarjeta Grafica: NVIDIA GTX 970 o AMD Radeon RX 570",
+
     imagen: "../img/Sekiro Shadows Die Twice.png",
     url: "https://youtu.be/e8iGRmFCRQk",
     publicado: true,
@@ -345,23 +237,14 @@ const catalogoJuegos = [
     id: 15,
     titulo: "Fortnite",
     descripcion:
-      "Únete a la batalla en línea y sé el último en pie en este juego battle royale.",
+      "Fortnite es un juego en línea desarrollado por Epic Games que ha ganado una enorme popularidad en todo el mundo. \n En Fortnite, los jugadores se enfrentan en emocionantes batallas de estilo Battle Royale donde el último jugador o equipo en pie gana. \n El juego se destaca por su estilo artístico único, que combina gráficos coloridos y caricaturescos con mecánicas de juego accesibles pero profundas.",
     categoria: "Aventura",
     precio: 0, // Gratis
-    requisitos: {
-      minimos: {
-        sistemaOperativo: "Windows 7/8/10",
-        procesador: "Intel Core i3-3225 o AMD FX-6350",
-        memoriaRAM: "4 GB",
-        tarjetaGrafica: "NVIDIA GTX 660 o AMD Radeon HD 7870",
-      },
-      recomendados: {
-        sistemaOperativo: "Windows 7/8/10",
-        procesador: "Intel Core i5-7300U o equivalente",
-        memoriaRAM: "8 GB",
-        tarjetaGrafica: "NVIDIA GTX 960 o AMD Radeon R9 280",
-      },
-    },
+    requisitosMinimos:
+      "Sistema Operativo: Windows 10\n Procesador: Intel Core i5-3570K o AMD FX-8310\n Memoria RAM: 8 GB\nTarjeta Grafica: NVIDIA GTX 780 o AMD Radeon RX 470",
+    requisitosRecomendados:
+      "Sistema Operativo: Windows 10\n Procesador:Intel Core i7-4790 o AMD Ryzen 5 3600\n Memoria RAM: 16 GB\nTarjeta Grafica: NVIDIA GTX 1060 6GB o AMD Radeon RX 5700 XT",
+
     imagen: "../img/Fornite.png",
     url: "https://youtu.be/YRq7HdDhxjM",
     publicado: true,
@@ -372,23 +255,14 @@ const catalogoJuegos = [
     id: 16,
     titulo: "Final Fantasy XV",
     descripcion:
-      "Embárcate en un viaje épico en este RPG de acción de la serie Final Fantasy.",
+      "Final Fantasy XV es un juego de rol de acción desarrollado y publicado por Square Enix. \n En este juego, los jugadores asumen el papel de Noctis Lucis Caelum, el príncipe heredero de Lucis, en su viaje para recuperar su reino de las garras del Imperio de Niflheim. \n Acompañado por sus amigos leales, Noctis emprende un viaje épico a través de un mundo abierto expansivo lleno de peligros y maravillas.",
     categoria: "Estrategia",
     precio: 49.99,
-    requisitos: {
-      minimos: {
-        sistemaOperativo: "Windows 7",
-        procesador: "Intel Core i5-2500 o AMD FX-6100",
-        memoriaRAM: "8 GB",
-        tarjetaGrafica: "NVIDIA GTX 760 o AMD Radeon R9 280",
-      },
-      recomendados: {
-        sistemaOperativo: "Windows 10",
-        procesador: "Intel Core i7-3770 o AMD FX-8350",
-        memoriaRAM: "16 GB",
-        tarjetaGrafica: "NVIDIA GTX 1060 o AMD Radeon RX 480",
-      },
-    },
+    requisitosMinimos:
+      "Sistema Operativo: Windows 10\n Procesador: Intel Core i5-2500K o AMD Ryzen R5 1600X\n Memoria RAM: 6 GB\nTarjeta Grafica: NVIDIA GTX 780 o AMD Radeon RX 470",
+    requisitosRecomendados:
+      "Sistema Operativo: Windows 10\n Procesador:Intel Core i7-3770 o AMD FX-8350\n Memoria RAM: 8 GB\nTarjeta Grafica: NVIDIA GTX 1060 6GB o AMD Radeon RX 5700 XT",
+
     imagen: "../img/Final Fantasy xv.png",
     url: "https://youtu.be/dPOMkB8Q9aQ",
     publicado: true,
@@ -398,23 +272,14 @@ const catalogoJuegos = [
     id: 17,
     titulo: "Rainbow Six Siege",
     descripcion:
-      "Participa en operaciones tácticas intensas en este juego de disparos en equipo.",
+      "Rainbow Six Siege es un juego de disparos táctico en primera persona desarrollado por Ubisoft. \n En este juego, los jugadores asumen el papel de operadores de fuerzas especiales de diferentes países, cada uno con habilidades únicas, y participan en emocionantes enfrentamientos PvP (jugador contra jugador) o PvE (jugador contra entorno) en partidas 5v5. \n El juego se centra en la estrategia, la coordinación en equipo y el uso inteligente de habilidades y recursos para alcanzar la victoria. ",
     categoria: "Shooter",
     precio: 29.99,
-    requisitos: {
-      minimos: {
-        sistemaOperativo: "Windows 7",
-        procesador: "Intel Core i3-560 o AMD Phenom II X4 945",
-        memoriaRAM: "6 GB",
-        tarjetaGrafica: "NVIDIA GTX 460 o AMD Radeon HD 5870",
-      },
-      recomendados: {
-        sistemaOperativo: "Windows 10",
-        procesador: "Intel Core i5-2500K o AMD Ryzen R5 1500X",
-        memoriaRAM: "8 GB",
-        tarjetaGrafica: "NVIDIA GTX 670 o AMD Radeon HD 7970",
-      },
-    },
+    requisitosMinimos:
+      "Sistema Operativo: Windows 10\n Procesador: Intel Core i5-3570K o AMD FX-8310\n Memoria RAM: 8 GB\nTarjeta Grafica: NVIDIA GTX 780 o AMD Radeon RX 470",
+    requisitosRecomendados:
+      "Sistema Operativo: Windows 10\n Procesador:Intel Core i7-4790 o AMD Ryzen 5 3600\n Memoria RAM: 16 GB\nTarjeta Grafica: NVIDIA GTX 1060 6GB",
+
     imagen: "../img/Rainbow Six Siege.png",
     url: "https://youtu.be/ZH0VC-MTAzE",
     publicado: true,
@@ -424,23 +289,14 @@ const catalogoJuegos = [
     id: 18,
     titulo: "Hollow Knight",
     descripcion:
-      "Sumérgete en un mundo oscuro y misterioso en este juego de acción y plataformas.",
+      "Hollow Knight es un juego de aventuras y plataformas desarrollado y publicado por Team Cherry. En este juego, los jugadores controlan a un personaje llamado El Caballero mientras exploran un vasto mundo subterráneo conocido como Hallownest. El juego presenta un estilo de arte único dibujado a mano y una atmósfera oscura y misteriosa que sumerge a los jugadores en su cautivador mundo. Con un sistema de combate desafiante, una exploración gratificante y jefes memorables, Hollow Knight ha sido elogiado por su jugabilidad sólida y su profunda narrativa ambiental. ",
     categoria: "Aventura",
     precio: 14.99,
-    requisitos: {
-      minimos: {
-        sistemaOperativo: "Windows 7",
-        procesador: "Intel Core 2 Duo E5200",
-        memoriaRAM: "4 GB",
-        tarjetaGrafica: "GeForce 9800GTX+ o AMD Radeon HD 5770",
-      },
-      recomendados: {
-        sistemaOperativo: "Windows 10",
-        procesador: "Intel Core i5",
-        memoriaRAM: "8 GB",
-        tarjetaGrafica: "GeForce GTX 560 o equivalente AMD",
-      },
-    },
+    requisitosMinimos:
+      "Sistema Operativo: Windows 10\n Procesador: Intel Core i5-2500K o AMD Ryzen R5 1600X\n Memoria RAM: 6 GB\nTarjeta Grafica: NVIDIA GTX 780 o AMD Radeon RX 470",
+    requisitosRecomendados:
+      "Sistema Operativo: Windows 10\n Procesador:Intel Core i7-3770 o AMD FX-8350\n Memoria RAM: 8 GB\nTarjeta Grafica: NVIDIA GTX 1060 6GB",
+
     imagen: "../img/Hollow Knight.png",
     url: "https://youtu.be/UAO2urG23S4",
     publicado: true,
@@ -450,23 +306,14 @@ const catalogoJuegos = [
     id: 19,
     titulo: "World of Warcraft",
     descripcion:
-      "Adéntrate en el universo de Azeroth en este juego MMORPG legendario.",
+      "World of Warcraft es un juego de rol multijugador en línea (MMORPG) desarrollado y publicado por Blizzard Entertainment. \n En World of Warcraft, los jugadores asumen el papel de un personaje dentro del mundo de fantasía de Azeroth, donde pueden explorar paisajes vastos, completar misiones, luchar contra monstruos y otros jugadores, y participar en actividades como mazmorras y campos de batalla PvP. ",
     categoria: "Aventura",
     precio: 14.99,
-    requisitos: {
-      minimos: {
-        sistemaOperativo: "Windows 7",
-        procesador: "Intel Core i5-3450 o AMD FX 8300",
-        memoriaRAM: "4 GB",
-        tarjetaGrafica: "NVIDIA GeForce GTX 760 o AMD Radeon RX 560",
-      },
-      recomendados: {
-        sistemaOperativo: "Windows 10",
-        procesador: "Intel Core i7-6700 o AMD Ryzen 7 2700X",
-        memoriaRAM: "8 GB",
-        tarjetaGrafica: "NVIDIA GeForce GTX 1080 o AMD Radeon RX Vega 64",
-      },
-    },
+    requisitosMinimos:
+      "Sistema Operativo: Windows 10\n Procesador: Intel Core i5-3570K o AMD FX-8310\n Memoria RAM: 8 GB\nTarjeta Grafica: NVIDIA GTX 780 o AMD Radeon RX 470",
+    requisitosRecomendados:
+      "Sistema Operativo: Windows 10\n Procesador:Intel Core i7-4790 o AMD Ryzen 5 3600\n Memoria RAM: 16 GB\nTarjeta Grafica: NVIDIA GTX 1060 6GB",
+
     imagen: "../img/World of Warcraft.png",
     url: "https://youtu.be/askHMKqQJvk",
     publicado: true,
@@ -476,23 +323,13 @@ const catalogoJuegos = [
     id: 20,
     titulo: "Mortal Kombat 11",
     descripcion:
-      "Libra batallas épicas en este juego de lucha con personajes icónicos de Mortal Kombat.",
+      "Mortal Kombat 11 es un juego de lucha desarrollado por NetherRealm Studios y publicado por Warner Bros. Interactive Entertainment. \n En Mortal Kombat 11, los jugadores participan en combates uno contra uno con una amplia variedad de personajes, cada uno con sus propios movimientos y habilidades únicas. El juego presenta un sistema de combate profundo y satisfactorio, con una mezcla de ataques cuerpo a cuerpo, movimientos especiales y combos elaborados. ",
     categoria: "Acción",
     precio: 59.99,
-    requisitos: {
-      minimos: {
-        sistemaOperativo: "Windows 7",
-        procesador: "Intel Core i5-750 o AMD Phenom II X4 965",
-        memoriaRAM: "8 GB",
-        tarjetaGrafica: "NVIDIA GTX 670 o AMD Radeon HD 7950",
-      },
-      recomendados: {
-        sistemaOperativo: "Windows 10",
-        procesador: "Intel Core i3-2100 o AMD FX-6300",
-        memoriaRAM: "16 GB",
-        tarjetaGrafica: "NVIDIA GTX 970 o AMD Radeon RX 570",
-      },
-    },
+    requisitosMinimos:
+      "Sistema Operativo: Windows 7\n Procesador: Intel Core i5-750 o AMD Phenom II X4 965\n Memoria RAM: 8 GB\nTarjeta Grafica: NVIDIA GTX 670 o AMD Radeon HD 7950",
+    requisitosRecomendados:
+      "Sistema Operativo: Windows 10\n Procesador:Intel Core i3-2100 o AMD FX-6300\n Memoria RAM: 16 GB\nTarjeta Grafica: NVIDIA GTX 970 o AMD Radeon RX 570",
     imagen: "../img/Mortal Kombat 11.png",
     url: "https://youtu.be/z7f4paq1Fvg",
     publicado: true,
