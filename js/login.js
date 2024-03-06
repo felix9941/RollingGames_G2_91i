@@ -167,7 +167,7 @@ footerGeneral.innerHTML = ` <div class="col-12 col-md-6 col-lg-4 d-flex justify-
 
   const newUser = {
     id: generarID(),
-    usuario: "admin",
+    usuario: "admin2024",
     mail: "playgaming@gaming.com.ar",
     contrasena: "playgaming24",
     login: false,
