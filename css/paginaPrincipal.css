@@ -345,3 +345,13 @@ footer {
 .listNone {
   list-style: none;
 }
+
+.textCenter {
+  text-align: center;
+}
+
+@media (max-width: 767px) {
+  .textCenter {
+    text-align: left;
+  }
+}

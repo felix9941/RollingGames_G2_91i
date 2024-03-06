@@ -239,10 +239,10 @@ footerGeneral.innerHTML = ` <div class="col-12 col-md-6 col-lg-4 d-flex justify-
   const botonLoginAdmin = document.getElementById("administracion");
 
   const userLogin = usuarios.find(
-    (u) => u.login === true && u.rol === "usuario"
+    (u) => usuario.login === true && usuario.rol === "usuario"
   );
   const userLoginAdmin = usuarios.find(
-    (u) => u.login === true && u.rol === "admin"
+    (usuario) => usuario.login === true && usuario.rol === "admin"
   );
 
   if (userLoginAdmin) {
@@ -265,7 +265,7 @@ function PaginaPrincipal() {
   const usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
   const logoPrincipal = document.getElementById("loginP");
 
-  const userLogin = usuarios.find((u) => u.login === true);
+  const userLogin = usuarios.find((usuario) => usuario.login === true);
 
   if (userLogin) {
     logoPrincipal = window.location.href = "paginaPrincipal.html";
@@ -277,7 +277,9 @@ function PaginaPrincipal() {
 function cerrarSesion() {
   const usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
 
-  const userLogin = usuarios.find((u) => u.id && u.login === true);
+  const userLogin = usuarios.find(
+    (usuario) => usuario.id && usuario.login === true
+  );
 
   if (userLogin) {
     userLogin.login = false;
