@@ -126,8 +126,7 @@ footerGeneral.innerHTML = ` <div class="col-12 col-md-6 col-lg-4 d-flex justify-
   const validacionUsuario = JSON.parse(localStorage.getItem("usuarios")) || [];
 
   const usuario = validacionUsuario.find(
-    (validacion) =>
-      validacion.id && validacion.login === true && validacion.rol === "admin"
+    (validacion) => validacion.id && validacion.login === false
   );
 
   const usuarioAdmin = validacionUsuario.find(
