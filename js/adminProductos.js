@@ -1,4 +1,3 @@
-//Navbar
 const navbarAdminUsuarios = document.getElementById("navbar-admin");
 navbarAdminUsuarios.innerHTML = `<a href="paginaPrincipal.html" class="d-flex align-items-center enlace-logo">
   <img class="ms-1 px-2" src="../img/Logo Play Gaming.png" alt="logo de la empresa"/>
@@ -72,15 +71,36 @@ navbarAdminUsuarios.innerHTML = `<a href="paginaPrincipal.html" class="d-flex al
   </div>`;
 
 (() => {
+  const validacionUsuario = JSON.parse(localStorage.getItem("usuarios")) || [];
+
+  const usuario = validacionUsuario.find(
+    (validacion) => validacion.id && validacion.login === false
+  );
+
+  const usuarioAdmin = validacionUsuario.find(
+    (validacion) =>
+      validacion.id && validacion.login === true && validacion.rol === "admin"
+  );
+
+  if (usuarioAdmin) {
+  } else {
+    window.location.href = "paginaPrincipal.html";
+    return;
+  }
+
+  if (usuario) {
+  } else {
+    window.location.href = "login.html";
+    return;
+  }
+})();
+
+(() => {
   const usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
   const botonInicio = document.getElementById("loginItem");
   const botonRegistro = document.getElementById("registerItem");
-  const botonLogin = document.getElementById("micuenta");
   const botonLoginAdmin = document.getElementById("administracion");
 
-  const userLogin = usuarios.find(
-    (u) => u.login === true && u.rol === "usuario"
-  );
   const userLoginAdmin = usuarios.find(
     (u) => u.login === true && u.rol === "admin"
   );
@@ -89,15 +109,6 @@ navbarAdminUsuarios.innerHTML = `<a href="paginaPrincipal.html" class="d-flex al
     botonInicio.classList.add("d-none");
     botonRegistro.classList.add("d-none");
     botonLoginAdmin.classList.add("d-block");
-  } else if (userLogin) {
-    botonInicio.classList.add("d-none");
-    botonRegistro.classList.add("d-none");
-    botonLoginAdmin.classList.add("d-none");
-  } else {
-    botonInicio.classList.remove("d-block");
-    botonInicio.classList.remove("d-block");
-    botonInicio.classList.remove("d-none");
-    botonLoginAdmin.classList.add("d-none");
   }
 })();
 

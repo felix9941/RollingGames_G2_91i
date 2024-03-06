@@ -125,6 +125,7 @@ footerGeneral.innerHTML = ` <div class="col-12 col-md-6 col-lg-4 d-flex justify-
 function redireccion() {
   const usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
   const usuario = usuarios.find((usu) => usu.login === true);
+
   if (usuario) {
     if (usuario.rol === "admin") {
       alert("Admin no puede acceder");
@@ -137,6 +138,7 @@ function redireccion() {
     setTimeout(() => {
       window.location.href = "login.html";
     }, 1000);
+
   }
   if (usuario.id == "") {
     alert("Contactanos para ingresar");
