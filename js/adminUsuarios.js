@@ -316,12 +316,8 @@ function cerrarSesion() {
   const usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
   const botonInicio = document.getElementById("loginItem");
   const botonRegistro = document.getElementById("registerItem");
-  const botonLogin = document.getElementById("micuenta");
   const botonLoginAdmin = document.getElementById("administracion");
 
-  const userLogin = usuarios.find(
-    (usuario) => usuario.login === true && usuario.rol === "usuario"
-  );
   const userLoginAdmin = usuarios.find(
     (usuario) => usuario.login === true && usuario.rol === "admin"
   );
@@ -330,14 +326,5 @@ function cerrarSesion() {
     botonInicio.classList.add("d-none");
     botonRegistro.classList.add("d-none");
     botonLoginAdmin.classList.add("d-block");
-  } else if (userLogin) {
-    botonInicio.classList.add("d-none");
-    botonRegistro.classList.add("d-none");
-    botonLoginAdmin.classList.add("d-none");
-  } else {
-    botonInicio.classList.add("d-block");
-    botonRegistro.classList.add("d-block");
-    botonLogin.classList.add("d-none");
-    botonLoginAdmin.classList.add("d-none");
   }
 })();

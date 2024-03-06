@@ -427,10 +427,10 @@ function cerrarSesion() {
   const botonLoginAdmin = document.getElementById("administracion");
 
   const userLogin = usuarios.find(
-    (u) => u.login === true && u.rol === "usuario"
+    (usuario) => usuario.login === true && usuario.rol === "usuario"
   );
   const userLoginAdmin = usuarios.find(
-    (u) => u.login === true && u.rol === "admin"
+    (usuario) => usuario.login === true && usuario.rol === "admin"
   );
 
   if (userLoginAdmin) {
@@ -448,3 +448,46 @@ function cerrarSesion() {
     botonLoginAdmin.classList.add("d-none");
   }
 })();
+
+const inputBusqueda = document.getElementById("inputBusqueda");
+const resultadosContainer = document.getElementById("resultadosContainer");
+const destacado = document.getElementById("juegosDestacados");
+const juegos = JSON.parse(localStorage.getItem("catalogoDeJuegos")) || [];
+
+inputBusqueda.addEventListener("input", () => {
+  const searchTerm = inputBusqueda.value.trim().toLowerCase();
+
+  if (searchTerm === "") {
+    destacado.classList.remove("d-none");
+    resultadosContainer.innerHTML = "";
+    return;
+  }
+
+  const resultados = juegos.filter((juego) => {
+    return juego.titulo.toLowerCase().includes(searchTerm);
+  });
+
+  console.log(resultados);
+
+  resultadosContainer.innerHTML = "";
+
+  if (resultados.length > 0) {
+    resultados.forEach((juego) => {
+      const cardHTML = `
+        <div class="col-12 col-md-4 col-lg-2 mt-4">
+          <div class="card-categoria mx-3">
+          <h5 class="card-text-categoria anta-regular textCenter">${juego.titulo}</h5>
+            <a href="../page/detalleJuego.html" class="card-link">
+              <img src="${juego.imagen}" class="card-img-top-categoria" alt="${juego.titulo}">
+            </a>
+          </div>
+        </div>
+      `;
+      resultadosContainer.innerHTML += cardHTML;
+      destacado.classList.add("d-none");
+    });
+  } else {
+    resultadosContainer.innerHTML =
+      '<div class="text-white mt-3">No se encontraron resultados.</div>';
+  }
+});

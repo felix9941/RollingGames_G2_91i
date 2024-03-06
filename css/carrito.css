@@ -4,6 +4,10 @@
   box-sizing: border-box;
 }
 
+.nav-item .dropdown .nav-link:focus {
+  color: rgba(255, 255, 255, 0.75);
+}
+
 body {
   display: flex;
   flex-direction: column;

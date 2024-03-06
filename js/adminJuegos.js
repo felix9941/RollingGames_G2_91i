@@ -94,9 +94,9 @@ navbarAdminUsuarios.innerHTML = `<a href="paginaPrincipal.html" class="d-flex al
     botonRegistro.classList.add("d-none");
     botonLoginAdmin.classList.add("d-none");
   } else {
-    botonInicio.classList.add("d-block");
-    botonRegistro.classList.add("d-block");
-    botonLogin.classList.add("d-none");
+    botonInicio.classList.remove("d-block");
+    botonInicio.classList.remove("d-block");
+    botonInicio.classList.remove("d-none");
     botonLoginAdmin.classList.add("d-none");
   }
 })();

@@ -1,10 +1,8 @@
-const navbarUsuario = document.getElementById("navbar-usuario");
-navbarUsuario.innerHTML = `
-<div class="container-fluid">
-<a href="../index.html" class="d-flex align-items-center enlace-logo">
-  <img class="ms-1 px-2" src="../img/Logo Play Gaming.png" alt="Logo Play Gamming" />
-</a>
-<button
+const navbarCarrito = document.getElementById("navbar-Carrito");
+navbarCarrito.innerHTML = `<a href="paginaPrincipal.html" class="d-flex align-items-center enlace-logo">
+  <img class="ms-1 px-2" src="../img/Logo Play Gaming.png" alt="logo de la empresa"/>
+  </a>
+  <button
   class="navbar-toggler"
   type="button"
   data-bs-toggle="collapse"
@@ -12,41 +10,66 @@ navbarUsuario.innerHTML = `
   aria-controls="navbarSupportedContent"
   aria-expanded="false"
   aria-label="Toggle navigation"
->
+  >
   <span class="navbar-toggler-icon"></span>
-</button>
-<div class="collapse navbar-collapse" id="navbarSupportedContent">
+  </button>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
   <ul class="navbar-nav ms-auto me-5 mb-2 mb-lg-0">
     <li class="nav-item"></li>
+  
     <li class="nav-item">
       <a
         class="nav-link btn-hover btn-focus text-navbar anta-regular ms-3 px-2"
-        href="../page/sobreNosotros.html">Sobre nosotros</a
+        href="sobreNosotros.html"
+        >Sobre nosotros</a
       >
     </li>
     <li class="nav-item">
       <a
         class="nav-link btn-hover btn-focus text-navbar anta-regular ms-3 px-2"
-        href="../page/contacto.html"
+        href="contacto.html"
         >Contacto</a
       >
     </li>
     <li class="nav-item">
-        <div class="dropdown">
-           <a class="dropdown-toggle nav-link btn-hover btn-focus text-navbar anta-regular ms-3 px-2" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-           Mi cuenta
-          </a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="favoritos.html">Favoritos</a></li>
-            <li><a class="dropdown-item" href="carrito.html">Carrito</a></li>
-            <li><a class="dropdown-item" href="error404.html"">Mis datos</a></li>
-            <li><a class="dropdown-item" href="#" onclick="cerrarSesion()">Cerrar Sesion</a></li>
-          </ul>
-        </div>
-      </li>
+      <a
+        class="nav-link btn-hover btn-focus text-navbar anta-regular ms-3 px-2"
+        href="login.html" id="loginItem">Iniciar sesion</a
+      >
+    </li>
+    <li class="nav-item">
+      <a
+        class="nav-link btn-hover btn-focus text-navbar anta-regular ms-3 px-2"
+        href="registro.html" id="registerItem">Registrarse</a
+      >
+    </li>
+    <li class="nav-item" id="administracion">
+          <div class="dropdown">
+             <a class="dropdown-toggle nav-link btn-hover btn-focus text-navbar anta-regular ms-3 px-2" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+             Administracion
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="adminUsuarios.html">Admin Usuarios</a></li>
+              <li><a class="dropdown-item" href="adminProductos.html">Admin Productos</a></li>
+            </ul>
+          </div>
+        </li>
+    <li class="nav-item" id="micuenta">
+    <div class="dropdown">
+       <a class="dropdown-toggle nav-link btn-hover btn-focus text-navbar anta-regular ms-3 px-2" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+       Mi cuenta
+      </a>
+      <ul class="dropdown-menu">
+        <li><a class="dropdown-item" href="favoritos.html">Favoritos</a></li>
+        <li><a class="dropdown-item" href="carrito.html">Carrito</a></li>
+        <li><a class="dropdown-item" href="error404.html"">Mis datos</a></li>
+        <li><a class="dropdown-item" href="#" onclick="cerrarSesion()">Cerrar Sesion</a></li>
+      </ul>
+    </div>
+  </li>
   </ul>
-</div>
-</div>`;
+  </div>`;
+
 const footerGeneral = document.getElementById("footerGeneral");
 footerGeneral.innerHTML = ` <div class="col-12 col-md-6 col-lg-4 d-flex justify-content-center">
 <a href="paginaPrincipal.html"
@@ -103,8 +126,19 @@ footerGeneral.innerHTML = ` <div class="col-12 col-md-6 col-lg-4 d-flex justify-
 
   const usuario = validacionUsuario.find(
     (validacion) =>
-      validacion.id && validacion.login === true && validacion.rol === "usuario"
+      validacion.id && validacion.login === true && validacion.rol === "admin"
   );
+
+  const usuarioAdmin = validacionUsuario.find(
+    (validacion) =>
+      validacion.id && validacion.login === true && validacion.rol === "admin"
+  );
+
+  if (usuarioAdmin) {
+  } else {
+    window.location.href = "paginaPrincipal.html";
+    return;
+  }
 
   if (usuario) {
   } else {
@@ -112,6 +146,7 @@ footerGeneral.innerHTML = ` <div class="col-12 col-md-6 col-lg-4 d-flex justify-
     return;
   }
 })();
+
 const usuarios = JSON.parse(localStorage.getItem("usuarios"));
 const usuario = usuarios.find((usu) => usu.login === true);
 const indexUsuario = usuarios.findIndex((user) => user.id === usuario.id);
@@ -225,7 +260,7 @@ if (usuario) {
 function cerrarSesion() {
   const usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
 
-  const userLogin = usuarios.find((u) => u.id && u.login === true);
+  const userLogin = usuarios.find((usuario) => usuario.id && usuario.login === true);
 
   if (userLogin) {
     userLogin.login = false;
@@ -237,3 +272,33 @@ function cerrarSesion() {
     window.location.href = "/index.html";
   }, 1000);
 }
+
+(() => {
+  const usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
+  const botonInicio = document.getElementById("loginItem");
+  const botonRegistro = document.getElementById("registerItem");
+  const botonLogin = document.getElementById("micuenta");
+  const botonLoginAdmin = document.getElementById("administracion");
+
+  const userLogin = usuarios.find(
+    (usuario) => usuario.login === true && usuario.rol === "usuario"
+  );
+  const userLoginAdmin = usuarios.find(
+    (usuario) => usuario.login === true && usuario.rol === "admin"
+  );
+
+  if (userLoginAdmin) {
+    botonInicio.classList.add("d-none");
+    botonRegistro.classList.add("d-none");
+    botonLoginAdmin.classList.add("d-block");
+  } else if (userLogin) {
+    botonInicio.classList.add("d-none");
+    botonRegistro.classList.add("d-none");
+    botonLoginAdmin.classList.add("d-none");
+  } else {
+    botonInicio.classList.add("d-block");
+    botonRegistro.classList.add("d-block");
+    botonLogin.classList.add("d-none");
+    botonLoginAdmin.classList.add("d-none");
+  }
+})();
