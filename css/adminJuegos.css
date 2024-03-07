@@ -5,11 +5,11 @@
 }
 
 .checked {
-  color: yellow; /* Cambia el color a amarillo cuando está seleccionado */
+  color: yellow;
 }
 
 .unchecked {
-  color: gray; /* Color por defecto cuando no está seleccionado */
+  color: gray;
 }
 
 @media (max-width: 640px) {

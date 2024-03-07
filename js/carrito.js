@@ -122,33 +122,6 @@ footerGeneral.innerHTML = ` <div class="col-12 col-md-6 col-lg-4 d-flex justify-
 </div>
 </div>`;
 
-function redireccion() {
-  const usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
-  const usuario = usuarios.find((usu) => usu.login === true);
-
-  if (usuario) {
-    if (usuario.rol === "admin") {
-      alert("Admin no puede acceder");
-      setTimeout(() => {
-        window.location.href = "paginaPrincipal.html";
-      }, 1000);
-    }
-  } else {
-    alert("Ups aun no te logueaste. Inicia sesion");
-    setTimeout(() => {
-      window.location.href = "login.html";
-    }, 1000);
-
-  }
-  if (usuario.id == "") {
-    alert("Contactanos para ingresar");
-    setTimeout(() => {
-      window.location.href = "contacto.html";
-    }, 1000);
-  }
-}
-redireccion();
-
 const usuarios = JSON.parse(localStorage.getItem("usuarios"));
 const usuario = usuarios.find((usu) => usu.login === true);
 const indexUsuario = usuarios.findIndex((user) => user.id === usuario.id);
@@ -243,9 +216,34 @@ if (usuario) {
     botonPagar.textContent = "Pagar";
     botonCarrito.appendChild(botonPagar);
     botonPagar.addEventListener("click", function () {
-      window.location.href = "../page/error404.html";
+      redireccion();
     });
 
+    function redireccion() {
+      const usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
+      const usuario = usuarios.find((usu) => usu.login === true);
+
+      if (usuario) {
+        if (usuario.rol === "admin") {
+          alert("Admin no esta autorizado para pagar");
+          setTimeout(() => {
+            window.location.href = "../page/paginaPrincipal.html";
+          }, 1000);
+        }
+      } else {
+        alert("Ups aun no te logueaste. Inicia sesion");
+        setTimeout(() => {
+          window.location.href = "../page/login.html";
+        }, 1000);
+      }
+
+      if (usuario && usuario.rol === "usuario") {
+        alert("Error al procesar el pago");
+        setTimeout(() => {
+          window.location.href = "../page/error404.html";
+        }, 1000);
+      }
+    }
     const botonesEliminar = document.querySelectorAll(".btn-danger");
     botonesEliminar.forEach((boton) => {
       boton.addEventListener("click", function (event) {

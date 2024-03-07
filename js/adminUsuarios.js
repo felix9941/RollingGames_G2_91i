@@ -240,7 +240,7 @@ function cambiarEstadoUsuario(usuarioId) {
     );
 
     if (confirmacion) {
-      usuario.delete = !usuario.delete; // Cambiar el estado (true a false o viceversa)
+      usuario.delete = !usuario.delete;
       localStorage.setItem("usuarios", JSON.stringify(adminUsuarios));
       location.reload();
     }

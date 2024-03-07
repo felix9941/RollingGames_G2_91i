@@ -48,3 +48,28 @@ body {
 .imagenAlCien {
   width: 100%;
 }
+
+.ver-mas {
+  background-color: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
+  border-color: rgba(26, 26, 46);
+  transition: color 0.2s, box-shadow 0.5s;
+  padding-left: 2em;
+  padding-right: 2em;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  font-weight: 500;
+  display: inline-block;
+  text-decoration: none;
+  border-radius: 5%;
+  margin-left: 30%;
+}
+.ver-mas:hover,
+.ver-mas:focus,
+.btn:hover,
+.btn:focus {
+  border-color: rgb(255, 184, 20);
+  box-shadow: 0 0 5px rgba(255, 184, 20, 1);
+  background-color: rgba(26, 26, 46);
+  color: white;
+}

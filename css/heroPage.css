@@ -1,40 +1,33 @@
-/* Fuente recomendada para navbar */
 .anta-regular {
   font-family: "Anta", sans-serif;
   font-weight: 400;
   font-style: normal;
 }
-/* Fuente recomendada para texto */
 .kanit-light {
   font-family: "Kanit", sans-serif;
   font-weight: 300;
   font-style: normal;
 }
 
-/* Inicio - navbar */
 .navbar-color {
   background-color: rgba(26, 26, 46);
 }
-/* Inicio estilo hamburguesa */
 .navbar-toggler .navbar-toggler-icon {
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.75%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
 }
 .navbar-toggler {
   --bs-navbar-toggler-border-color: rgba(255, 255, 255, 0.75);
 }
-/* Fin Hamburguesa */
 
-/* Efector hover focus para botones*/
 .btn-hover,
 .btn-focus {
-  transition: color 0.2s, box-shadow 0.3s; /* Transición suave de 0.3 segundos */
+  transition: color 0.2s, box-shadow 0.3s;
 }
 .btn-hover:hover,
 .btn-focus:focus {
   color: rgb(255, 184, 20);
   box-shadow: 0 0 5px rgba(255, 184, 20, 0.8);
 }
-/* Fin - Efector hover focus */
 
 .text-navbar {
   color: rgba(255, 255, 255, 0.75);
@@ -48,9 +41,6 @@
 img {
   height: 100%;
 }
-/* Fin - navbar */
-
-/* Inicio - Carrucel */
 
 .texto-bajo-carrucel {
   color: white;
@@ -61,7 +51,7 @@ img {
   background-color: rgb(255, 255, 255);
   color: rgb(0, 0, 0);
   border-color: rgba(26, 26, 46);
-  transition: color 0.2s, box-shadow 0.5s; /* Transición suave de 0.3 segundos */
+  transition: color 0.2s, box-shadow 0.5s;
   padding-left: 2em;
   padding-right: 2em;
   padding-top: 0.5em;
@@ -91,7 +81,6 @@ body {
   background-color: #000000;
 }
 
-/* Adaptacion de pantallas media query */
 @media (min-width: 1367px) {
   .contenedor-img-carrusel {
     height: 91vh;
@@ -102,8 +91,8 @@ body {
     top: 50%;
     left: 40%;
     transform: translate(-50%, -50%);
-    color: white; /* Color del texto */
-    padding: 20px; /* Espaciado interior */
+    color: white;
+    padding: 20px;
   }
 
   .text-efecto-sombra {
@@ -125,8 +114,8 @@ body {
 
   .carousel-control-prev,
   .carousel-control-next {
-    top: 38%; /* Posición vertical al centro */
-    transform: translateY(-50%); /* Ajuste fino de la posición vertical */
+    top: 38%;
+    transform: translateY(-50%);
   }
 
   .text-alto {
@@ -148,8 +137,8 @@ body {
   }
   .carousel-control-prev,
   .carousel-control-next {
-    top: 30%; /* Posición vertical al centro */
-    transform: translateY(-50%); /* Ajuste fino de la posición vertical */
+    top: 30%;
+    transform: translateY(-50%);
   }
   .text-alto {
     padding-top: 1em;
@@ -168,11 +157,10 @@ body {
   .contenedor-img-carrusel {
     height: 35vh;
   }
-  /* Estilo personalizado para las flechas de navegación del carousel */
   .carousel-control-prev,
   .carousel-control-next {
-    top: 20%; /* Posición vertical al centro */
-    transform: translateY(-50%); /* Ajuste fino de la posición vertical */
+    top: 20%;
+    transform: translateY(-50%);
   }
   .text-alto {
     padding-top: 1em;
@@ -191,12 +179,10 @@ body {
   .contenedor-img-carrusel {
     height: 25vh;
   }
-
-  /* Estilo personalizado para las flechas de navegación del carousel */
   .carousel-control-prev,
   .carousel-control-next {
-    top: 20%; /* Posición vertical al centro */
-    transform: translateY(-50%); /* Ajuste fino de la posición vertical */
+    top: 20%;
+    transform: translateY(-50%);
   }
   .text-alto {
     padding-top: 1em;
@@ -210,4 +196,3 @@ body {
     height: 18vh;
   }
 }
-/* Fin - Carrucel */
