@@ -138,10 +138,10 @@ const enviarMail = () => {
       Host: "smtp.elasticemail.com",
       Username: "martin.fesito@gmail.com",
       Password: "D52D5DF04EAF1430F1A6BA108E1ADA8E4BF6",
-      To: "martin.fesito@gmail.com",
-      From: correo,
-      Subject: "Contacto desde tu sitio web",
-      Body: `Nombre: ${nombre}\nApellido: ${apellido}\nCorreo: ${correo}\nMensaje: ${mensaje}`,
+      To: correo,
+      From: "martin.fesito@gmail.com",
+      Subject: "Contacto Play Gaming",
+      Body: `Estimado ${nombre} ${apellido},\nHemos recibido exitosamente su contacto. En 24 horas estaremos respondiendo su consulta.`,
     });
 
     Swal.fire({
@@ -149,6 +149,11 @@ const enviarMail = () => {
       text: "Mail enviado correctamente",
       icon: "success",
     });
+
+    idNombre.value = "";
+    idApellido.value = "";
+    idMail.value = "";
+    idMensaje.value = "";
   } else {
     alert("Por favor completa los campos");
   }
