@@ -41,7 +41,7 @@ function tieneJuegos() {
           <h4 class="card-title mt-2">${juego.titulo}</h4>
           <h4 class="card-title mt-2">Precio: $ ${juego.precio}</h4>
           <button
-          class="btn btn-danger mt-2 mb-2 botones" onclick="eliminarFavorito(${juego.id})"
+          class="btn btn-danger mt-2 mb-2 botones ver-mas" onclick="eliminarFavorito(${juego.id})"
         
         >
           Eliminar
