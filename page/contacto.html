@@ -38,6 +38,8 @@
       src="https://kit.fontawesome.com/cc73719364.js"
       crossorigin="anonymous"
     ></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script src="https://smtpjs.com/v3/smtp.js"></script>
 
     <link rel="stylesheet" href="../css/contacto.css" />
     <link
@@ -51,94 +53,92 @@
   <body>
     <header>
       <nav class="navbar navbar-expand-lg navbar-color">
-        <div class="container-fluid">
-          <a onclick="atras ()" class="d-flex align-items-center enlace-logo">
-            <img class="ms-1 px-2" src="../img/Logo Play Gaming.png" alt="" />
-          </a>
-          <button
-            class="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav ms-auto me-5 mb-2 mb-lg-0">
-              <li class="nav-item"></li>
-
-              <li class="nav-item">
-                <a
-                  class="nav-link btn-hover btn-focus text-navbar anta-regular ms-3 px-2"
-                  href="./sobreNosotros.html"
-                  >Sobre nosotros</a
-                >
-              </li>
-              <li class="nav-item">
-                <a
-                  class="nav-link btn-hover btn-focus text-navbar anta-regular ms-3 px-2"
-                  href="./contacto.html"
-                  >Contacto</a
-                >
-              </li>
-              <li class="nav-item">
-                <a
-                  class="nav-link btn-hover btn-focus text-navbar anta-regular ms-3 px-2"
-                  href="./login.html"
-                  >Iniciar sesion</a
-                >
-              </li>
-              <li class="nav-item">
-                <a
-                  class="nav-link btn-hover btn-focus text-navbar anta-regular ms-3 px-2"
-                  href="./registro.html"
-                  >Registrarse</a
-                >
-              </li>
-            </ul>
-          </div>
-        </div>
+        <div class="container-fluid" id="navbarContacto"></div>
       </nav>
     </header>
 
     <main>
       <div class="container">
-        <div id="info-empresa">
-          <h4>Contactanos</h4>
-            <h1>¡DI HOLA!</h1>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium molestiae voluptatibus tenetur unde alias. Modi, iste! Veritatis praesentium, quis similique ducimus est totam tenetur eius autem ea, doloribus, tempore illo.</p>
-            <p>Dirección <br>General Paz 576, SMT, Tucuman</p>
-            <p>Teléfono: <br>123-456-789</p>
-            <p>Email: <br>info@empresa.com</p>
-        </div>
-        <div id="map-contacto">
-            <div id="map">
-               <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3560.105917472264!2d-65.20974192372748!3d-26.836583276692647!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94225d3ad7f30f1d%3A0xf8606cd659b8e3e4!2sRollingCode%20School!5e0!3m2!1ses-419!2sar!4v1709316301240!5m2!1ses-419!2sar"
-            width="600"
-            height="450"
-            style="border: 0"
-            allowfullscreen=""
-            loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"
-          ></iframe>
+        <div class="row">
+          <div class="col-md-6 mt-4">
+            <div id="info-empresa">
+              <h4>Contactanos</h4>
+              <h1>¡DI HOLA!</h1>
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Laudantium molestiae voluptatibus tenetur unde alias. Modi,
+                iste! Veritatis praesentium, quis similique ducimus est totam
+                tenetur eius autem ea, doloribus, tempore illo.
+              </p>
+              <p>Dirección <br />General Paz 576, SMT, Tucuman</p>
+              <p>Teléfono: <br />123-456-789</p>
+              <p>Email: <br />info@empresa.com</p>
             </div>
-            <div class="contact-form">
-                <h2>Contacto</h2>
-                <form action="#" method="post">
-                    <input type="text" name="nombre" placeholder="Nombre" required>
-                    <input type="text" name="apellido" placeholder="Apellido" required>
-                    <input type="email" name="correo" placeholder="Correo electrónico" required>
-                    <textarea name="mensaje" placeholder="Mensaje" required></textarea>
-                    <input type="submit" value="Enviar">
-                </form>
-            </div>
-        </div>
-    </div>
+          </div>
+          <div class="col-md-6 mt-4">
+            <div id="map-contacto">
+              <div id="map">
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3560.105917472264!2d-65.20974192372748!3d-26.836583276692647!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94225d3ad7f30f1d%3A0xf8606cd659b8e3e4!2sRollingCode%20School!5e0!3m2!1ses-419!2sar!4v1709316301240!5m2!1ses-419!2sar"
+                  width="100%"
+                  height="450"
+                  style="border: 0"
+                  allowfullscreen=""
+                  loading="lazy"
+                  referrerpolicy="no-referrer-when-downgrade"
+                ></iframe>
+              </div>
+              <div class="contact-form my-3">
+                <h2 class="my-3">Contacto</h2>
+                <form id="contactForm" action="#" method="post">
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="nombre"
+                    placeholder="Nombre"
+                    id="idNombre"
+                    required
+                  />
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="apellido"
+                    placeholder="Apellido"
+                    id="idApellido"
+                    required
+                  />
+                  <input
+                    type="email"
+                    class="form-control"
+                    name="correo"
+                    placeholder="Correo electrónico"
+                    id="idMail"
+                    required
+                  />
+                  <textarea
+                    class="form-control"
+                    name="mensaje"
+                    placeholder="Mensaje"
+                    id="idMensaje"
+                    required
+                  ></textarea>
 
+                  <div>
+                    <button
+                      class="btn btn-success"
+                      type="button"
+                      onclick="enviarMail()"
+                    >
+                      Enviar
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
     <footer>
       <div class="container-fluid containerFooter">
         <div class="row" id="footerGeneral"></div>
@@ -152,6 +152,5 @@
     ></script>
 
     <script src="../js/contacto.js"></script>
-
   </body>
 </html>
