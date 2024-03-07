@@ -31,7 +31,7 @@ function tieneJuegos() {
       const juego = juegos.find((game) => game.id === elemento);
       const nuevoJuego = document.createElement("div");
       nuevoJuego.innerHTML = `
-    <div class="card mb-3 tarjetaDeJuego" >
+      <div class="card mb-3 tarjetaDeJuego" >
       <div class="row g-0">
         <div class="col-md-7" >
         <a href="detalleDeJuego.html?id=${juego.id}"><img src="${juego.imagen}" style="width:100%; height: 100%;" class=" rounded-start" alt="${juego.titulo}"></a>
