@@ -1,5 +1,3 @@
-// Pegar al comienzo del js
-//Redireccion - control de acceso.
 function redireccion() {
   const usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
   const usuario = usuarios.find((usu) => usu.login === true);
@@ -18,7 +16,6 @@ function redireccion() {
 }
 redireccion();
 
-//Navbar
 const navbarAdminUsuarios = document.getElementById("navbar-admin");
 navbarAdminUsuarios.innerHTML = `<a href="paginaPrincipal.html" class="d-flex align-items-center enlace-logo">
   <img class="ms-1 px-2" src="../img/Logo Play Gaming.png" alt="logo de la empresa"/>
@@ -121,7 +118,6 @@ navbarAdminUsuarios.innerHTML = `<a href="paginaPrincipal.html" class="d-flex al
   }
 })();
 
-// Footer general
 const footerGeneral = document.getElementById("footerGeneral");
 footerGeneral.innerHTML = ` <div class="col-12 col-md-6 col-lg-4 d-flex justify-content-center">
 <a href="./paginaPrincipal.html"
@@ -186,13 +182,6 @@ function cerrarSesion() {
   }, 1000);
 }
 
-/* *************************** Contenido de la pagina del juego ************************* */
-
-/* //"https://youtu.be/1rPxiXXxftE"
-const url = location.search.split("/")[2];
- */
-
-//obtengo juego
 const juegos = JSON.parse(localStorage.getItem("catalogoDeJuegos")) || [];
 const idJuego = location.search.split("=")[1];
 const juego = juegos.find((game) => game.id === Number(idJuego));
@@ -382,49 +371,3 @@ function textConSaltosDeLinea(contenido) {
   //const contenidoConSaltosDeLinea = contenido.replace(/\. /g, "<br>");
   return contenidoConSaltosDeLinea;
 }
-
-/* //Logica de carrito aplicar al boton de carrito juego
-
-const usuarios = JSON.parse(localStorage.getItem("usuarios"));
-const usuario = usuarios.find((usu) => usu.login === true);
-const indexUsuario = usuarios.findIndex((user) => user.id === usuario.id);
-let usuarioCarrito = [];
-
-const juegos = JSON.parse(localStorage.getItem("catalogoDeJuegos"));
-let indice;
-
-//Descomentar el if unicamente para cargar carrito, una vez ejecutado volver a comentar
-/*   // INICIO -carga de juego en el usuario Borrar en un futuro
-  if (indexUsuario !== -1) {
-    usuarios[indexUsuario].carrito = [5, 3];
-    //usuarios[indexUsuario].carrito.push(5, 6, 7); // Cargar los elementos 5, 6 y 7 al carrito
-    console.log(usuarios[indexUsuario].carrito);
-
-    localStorage.setItem("usuarios", JSON.stringify(usuarios));
-  } else {
-    console.log("Usuario no encontrado");
-  }
-  // FIN - carga de juego en el usuario Borrar en un futuro 
-
-if (usuario) {
-  console.log("Esta logueado");
-  if (indexUsuario != -1) {
-    console.log("Se encontro posicion de usuario");
-    idDeJuegos = usuarios[indexUsuario].carrito;
-    cantDeJuegos = idDeJuegos.length;
-    if (cantDeJuegos) {
-      console.log("Los juegos a comprar son:");
-      for (let index = 0; index < cantDeJuegos; index++) {
-        indice = juegos.findIndex((juego) => juego.id == idDeJuegos[index]);
-        console.log(juegos[indice].titulo);
-      }
-    } else {
-      console.log("Carrito vacio");
-    }
-  } else {
-    console.log("Posicion de usuario no encontrado");
-  }
-} else {
-  console.log("No sta logueado");
-}
- */

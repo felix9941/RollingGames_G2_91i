@@ -112,7 +112,6 @@ navbarAdminProductos.innerHTML = `<a href="paginaPrincipal.html" class="d-flex a
   }
 })();
 
-// Footer general
 const footerGeneral = document.getElementById("footerGeneral");
 footerGeneral.innerHTML = ` <div class="col-12 col-md-6 col-lg-4 d-flex justify-content-center">
 <a href="./paginaPrincipal.html"
@@ -169,7 +168,6 @@ const tablaJuegos = document.getElementById("idTablaJuegos");
 const juegos = JSON.parse(localStorage.getItem("catalogoDeJuegos")) || [];
 const nuevoJuego = document.getElementById("idBotonNuevoJuego");
 
-//Nuevo Juego
 nuevoJuego.innerHTML = `  
   <div class="">  
       <!-- Button trigger modal -->
@@ -250,7 +248,6 @@ nuevoJuego.innerHTML = `
   </div>
 `;
 
-// Tabla de juegos
 tablaJuegos.innerHTML = juegos
   .map(
     (juego) => `
@@ -444,9 +441,6 @@ tablaJuegos.innerHTML = juegos
   )
   .join("");
 
-//  Editar juego
-
-//Validaciones colores de input para juego nuevo y editar
 function colorInput(idInput) {
   document.getElementById(idInput).addEventListener("input", function () {
     var valorInput = this.value;
@@ -476,8 +470,6 @@ const guardaJuegoEditado = (event) => {
   colorInput("idInputTituloEdit");
   colorInput("idSeleccionCategoriaEdit");
   colorInput("idDescripcionEdit");
-  //colorInput("idRequisitosMinimosEdit");
-  //colorInput("idRequisitosRecomendadosEdit");
   colorInput("idInputLinkImagenEdit");
   colorInput("idInputLinkEdit");
   colorInput("idInputPrecioEdit");
@@ -536,16 +528,11 @@ const guardaJuegoEditado = (event) => {
   location.reload();
 };
 
-// Boton de Destacado OK
 function nuevoValorDeDestacado(valorActual) {
   const juegos = JSON.parse(localStorage.getItem("catalogoDeJuegos")) || [];
   if (valorActual) {
-    //habilitar botones de eliminar
     return false;
   } else {
-    //sacar boton de borrar
-    /*     const miElemento = document.getElementById("miId");
-    miElemento.classList.add("d-none"); */
     return true;
   }
 }
@@ -591,11 +578,10 @@ function cambiarDestacado(id) {
 function colorBotonDestacar(id) {
   const juegos = JSON.parse(localStorage.getItem("catalogoDeJuegos")) || [];
   const juego = juegos.find((juego) => juego.id === id);
-  // Devolver la clase del botón según el estado del juego
   if (juego && juego.destacado) {
-    return "btn-warning"; // Si el juego está destacado, usar la clase 'btn-primary'
+    return "btn-warning";
   } else {
-    return "btn-secondary"; // Si el juego no está destacado, usar la clase 'btn-dark'
+    return "btn-secondary";
   }
 }
 
@@ -603,18 +589,15 @@ function eliminacionFisica(id) {
   const juegos = JSON.parse(localStorage.getItem("catalogoDeJuegos")) || [];
   let index = juegos.findIndex((juegaso) => juegaso.id === id);
   if (index !== -1) {
-    //Si es destacado entonces no borrar y mostrar alert que te saque
     if (juegos[index].destacado === true) {
       alert("El juego esta como destacado, no es posible eliminar");
     } else {
-      juegos.splice(index, 1); // Eliminar el juego del array
+      juegos.splice(index, 1);
       localStorage.setItem("catalogoDeJuegos", JSON.stringify(juegos));
     }
     location.reload();
   }
 }
-
-//Logica para boton de publicar OK
 function estadoDePublicacion(estado, id) {
   if (estado) {
     const indexJuego = juegos.findIndex((juego) => juego.id === id);
@@ -647,7 +630,6 @@ function despublicar(id) {
   location.reload();
 }
 
-//Validaciones para nuevo Juego
 const validacionJuego = (event) => {
   event.preventDefault();
   colorInput("idInputTitulo");

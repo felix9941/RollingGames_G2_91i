@@ -145,20 +145,6 @@ footerGeneral.innerHTML = ` <div class="col-12 col-md-6 col-lg-4 d-flex justify-
 </div>
 </div>`;
 
-/* (() => {
-  const validacionUsuario = JSON.parse(localStorage.getItem("usuarios")) || [];
-
-  const usuario = validacionUsuario.find(
-    (validacion) => validacion.id && validacion.login === true
-  );
-
-  if (usuario) {
-  } else {
-    window.location.href = "login.html";
-    return;
-  }
-})(); */
-
 function mostrarJuego() {
   const juego = catalogoJuegos.find((juego) => juego.destacado === true);
 
@@ -169,7 +155,16 @@ function mostrarJuego() {
 
   document.getElementById("imagenJuego").src = juego.imagen;
   document.getElementById("tituloJuego").innerText = juego.titulo;
-  document.getElementById("descripcionJuego").innerText = juego.descripcion;
+
+  const descripcionJuegoElement = document.getElementById("descripcionJuego");
+  descripcionJuegoElement.innerText = juego.descripcion;
+
+  descripcionJuegoElement.style.overflow = "hidden";
+  descripcionJuegoElement.style.display = "-webkit-box";
+  descripcionJuegoElement.style.webkitBoxOrient = "vertical";
+  descripcionJuegoElement.style.webkitLineClamp = "4";
+  descripcionJuegoElement.style.whiteSpace = "normal";
+
   document.getElementById(
     "botonDestacado"
   ).href = `../page/detalleDeJuego.html?id=${juego.id}`;
@@ -183,9 +178,8 @@ function inicializarPagina() {
 function inicializarCarrusel() {
   actualizarCarrusel(catalogoJuegos);
 }
-
 window.onload = inicializarPagina;
-/* Categoria */
+
 const filtroJuegos = document.getElementById("filtroJuegos");
 filtroJuegos.innerHTML = `
 <div class="row justify-content-center">
@@ -276,7 +270,7 @@ data-bs-slide="next"
 </button>
 </div>
 `;
-const createCard = (juego, index) => `
+const createCard = (juego) => `
 <div class="col-12 col-md-4 col-lg-3 my-3">
 <h5 class="card-text-categoria anta-regular" style="text-align: center;">${juego.titulo}</h5>
   <div class="card-categoria">
@@ -369,7 +363,7 @@ document.getElementById("load-all-cards-btn").addEventListener("click", () => {
 window.onresize = () => {
   actualizarCarrusel(catalogoJuegos);
 };
-//Publicidad
+
 const publicidadSección = document.getElementById("publicidadSección");
 publicidadSección.innerHTML = `
 <ul class="img-list scroller_inner">
@@ -479,7 +473,7 @@ inputBusqueda.addEventListener("input", () => {
         <div class="col-12 col-md-4 col-lg-2 mt-4">
           <div class="card-categoria mx-3">
           <h5 class="card-text-categoria anta-regular textCenter">${juego.titulo}</h5>
-            <a href="../page/detalleJuego.html" class="card-link">
+            <a href="../page/detalleDeJuego.html?id=${juego.id}" class="card-link">
               <img src="${juego.imagen}" class="card-img-top-categoria" alt="${juego.titulo}">
             </a>
           </div>
