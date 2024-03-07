@@ -174,6 +174,9 @@ footerGeneral.innerHTML = ` <div class="col-12 col-md-6 col-lg-4 d-flex justify-
 </div>
 </div>`;
 
+const requisitoSistemaTitulo = document.getElementById("idRequisitosSistema");
+requisitoSistemaTitulo.innerHTML = `<h2>Requisitos del sistema</h2>`;
+
 function cerrarSesion() {
   const usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
   const userLogin = usuarios.find((u) => u.id && u.login === true);
