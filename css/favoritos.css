@@ -144,20 +144,19 @@ img {
   }
 }
 
-.ver-mas:hover,
-.ver-mas:focus {
+.eliminarx:hover,
+.eliminarx:focus {
   border-color: rgb(204, 147, 12);
   box-shadow: 0 0 5px rgba(25, 26, 46, 1);
   background-color: rgb(255, 184, 20);
   color: white;
 }
 
-.ver-mas,
-.ver-mas {
+.eliminarx {
   background-color: rgba(26, 26, 46);
   color: white;
   border-color: rgba(26, 26, 46);
-  transition: color 0.2s, box-shadow 0.5s; /* Transición suave de 0.3 segundos */
+  transition: color 0.2s, box-shadow 0.5s;
   padding-left: 2em;
   padding-right: 2em;
   padding-top: 0.5em;

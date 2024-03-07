@@ -29,7 +29,7 @@ function tieneJuegos() {
       const juego = juegos.find((game) => game.id === elemento);
       const nuevoJuego = document.createElement("div");
       nuevoJuego.innerHTML = `
-    <div class="card mb-3 tarjetaDeJuego" >
+      <div class="card mb-3 tarjetaDeJuego" >
       <div class="row g-0">
         <div class="col-md-7" >
         <a href="detalleDeJuego.html?id=${juego.id}"><img src="${juego.imagen}" style="width:100%; height: 100%;" class=" rounded-start" alt="${juego.titulo}"></a>
@@ -41,7 +41,7 @@ function tieneJuegos() {
           <h4 class="card-title mt-2">${juego.titulo}</h4>
           <h4 class="card-title mt-2">Precio: $ ${juego.precio}</h4>
           <button
-          class="btn btn-danger mt-2 mb-2 botones ver-mas" onclick="eliminarFavorito(${juego.id})"
+          class=" mt-2  eliminarx" onclick="eliminarFavorito(${juego.id})"
         
         >
           Eliminar
