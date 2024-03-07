@@ -121,34 +121,7 @@ footerGeneral.innerHTML = ` <div class="col-12 col-md-6 col-lg-4 d-flex justify-
   </div>
 </div>
 </div>`;
-/*
-function redireccion() {
-  const usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
-  const usuario = usuarios.find((usu) => usu.login === true);
 
-  if (usuario) {
-    if (usuario.rol === "admin") {
-      alert("Admin no puede acceder");
-      setTimeout(() => {
-        window.location.href = "paginaPrincipal.html";
-      }, 1000);
-    }
-  } else {
-    alert("Ups aun no te logueaste. Inicia sesion");
-    setTimeout(() => {
-      window.location.href = "login.html";
-    }, 1000);
-
-  }
-  if (usuario.id == "") {
-    alert("Contactanos para ingresar");
-    setTimeout(() => {
-      window.location.href = "contacto.html";
-    }, 1000);
-  }
-}
-redireccion();
-*/
 const usuarios = JSON.parse(localStorage.getItem("usuarios"));
 const usuario = usuarios.find((usu) => usu.login === true);
 const indexUsuario = usuarios.findIndex((user) => user.id === usuario.id);
