@@ -42,36 +42,30 @@ h2 {
   color: white;
 }
 
-/* Fuente recomendada para navbar */
 .anta-regular {
   font-family: "Anta", sans-serif;
   font-weight: 400;
   font-style: normal;
 }
-/* Fuente recomendada para texto */
 .kanit-light {
   font-family: "Kanit", sans-serif;
   font-weight: 300;
   font-style: normal;
 }
 
-/* Inicio - navbar */
 .navbar-color {
   background-color: rgba(26, 26, 46);
 }
-/* Inicio estilo hamburguesa */
 .navbar-toggler .navbar-toggler-icon {
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.75%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
 }
 .navbar-toggler {
   --bs-navbar-toggler-border-color: rgba(255, 255, 255, 0.75);
 }
-/* Fin Hamburguesa */
 
-/* Efector hover focus para botones*/
 .btn-hover,
 .btn-focus {
-  transition: color 0.2s, box-shadow 0.3s; /* Transición suave de 0.3 segundos */
+  transition: color 0.2s, box-shadow 0.3s;
 }
 .btn-hover:hover,
 .btn-focus:focus {

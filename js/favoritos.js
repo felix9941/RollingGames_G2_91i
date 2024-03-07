@@ -1,5 +1,3 @@
-// Pegar al comienzo del js
-//Redireccion - control de acceso.
 function redireccion() {
   const usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
   const usuario = usuarios.find((usu) => usu.login === true);
@@ -73,7 +71,6 @@ function eliminarFavorito(idJuego) {
   location.reload();
 }
 
-//Navbar
 const navbarAdminUsuarios = document.getElementById("navbar-admin");
 navbarAdminUsuarios.innerHTML = `<a href="paginaPrincipal.html" class="d-flex align-items-center enlace-logo">
   <img class="ms-1 px-2" src="../img/Logo Play Gaming.png" alt="logo de la empresa"/>
@@ -176,7 +173,6 @@ navbarAdminUsuarios.innerHTML = `<a href="paginaPrincipal.html" class="d-flex al
   }
 })();
 
-// Footer general
 const footerGeneral = document.getElementById("footerGeneral");
 footerGeneral.innerHTML = ` <div class="col-12 col-md-6 col-lg-4 d-flex justify-content-center">
 <a href="./paginaPrincipal.html"
