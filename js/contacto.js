@@ -1,11 +1,12 @@
 const footerGeneral = document.getElementById("footerGeneral");
 footerGeneral.innerHTML = ` <div class="col-12 col-md-6 col-lg-4 d-flex justify-content-center">
-<a href="/index.html"
+<a 
   ><img
     src="../img/Logo Play Gaming.png"
     alt="Logo-PlayGaming"
     width="150vw"
     class="pb-3"
+    onclick="PaginaPrincipal()"
 /></a>
 </div>
 
@@ -38,7 +39,7 @@ footerGeneral.innerHTML = ` <div class="col-12 col-md-6 col-lg-4 d-flex justify-
     class="informacion-pag text-center mt-4 mb-3 listNone"
     
   >
-    
+    <li><a onclick="PaginaPrincipal()">Inicio</a></li>
     <li><a href="sobreNosotros.html">Sobre nosotros</a></li>
     <li><a href="contacto.html">Contacto</a></li>
     <li>
@@ -218,4 +219,17 @@ function cerrarSesion() {
   setTimeout(() => {
     window.location.href = "/index.html";
   }, 1000);
+}
+
+function PaginaPrincipal() {
+  const usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
+  const logoPrincipal = document.getElementById("loginP");
+
+  const userLogin = usuarios.find((usuario) => usuario.login === true);
+
+  if (userLogin) {
+    logoPrincipal = window.location.href = "paginaPrincipal.html";
+  } else {
+    logoPrincipal = window.location.href = "/index.html";
+  }
 }

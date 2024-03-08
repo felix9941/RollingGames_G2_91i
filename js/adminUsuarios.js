@@ -148,8 +148,6 @@ const validacionUser = () => {
   );
 
   if (usuario) {
-    const alert = document.getElementById("alert");
-    alert.classList.add("d-none");
   } else {
     const tableAdmin = document.getElementById("tableAdmin");
     tableAdmin.classList.add("d-none");
@@ -164,7 +162,7 @@ const adminUsuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
 let tableContent = "";
 
 const usuarioAdminLogueado = adminUsuarios.find((usuario) => {
-  return usuario.rol === "admin" && usuario.login === true;
+  return usuario.rol === "admin" && usuario.login;
 });
 
 adminUsuarios.forEach((usuario) => {
@@ -175,28 +173,16 @@ adminUsuarios.forEach((usuario) => {
       if (!usuario.estado) {
         accionesHTML = `
           <div class="btn-group" role="group">
-            <button type="button" class="btn btn-success" onclick="confirmarAutorizacion(${
-              usuario.id
-            })">Autorizar</button>
-            <button type="button" class="btn btn-warning text-white" onclick="cambiarEstadoUsuario(${
-              usuario.id
-            })">${usuario.delete ? "Habilitar" : "Deshabilitar"}</button>
-            <button type="button" class="btn btn-danger" onclick="borrarUsuario(${
-              usuario.id
-            })"><i class="fa-solid fa-trash-can"></i></button>
-          </div>
-        `;
-      } else {
-        accionesHTML = `
-          <div class="btn-group" role="group">
             <button type="button" class="btn ${
               usuario.delete ? "btn-success" : "btn-warning text-white"
-            }" onclick="cambiarEstadoUsuario(${usuario.id})">${
-          usuario.delete ? "Habilitar" : "Deshabilitar"
-        }</button>
+            }" onclick="cambiarEstadoUsuario(${usuario.id})">
+              ${usuario.delete ? "Habilitar" : "Deshabilitar"}
+            </button>
             <button type="button" class="btn btn-danger" onclick="borrarUsuario(${
               usuario.id
-            })"><i class="fa-solid fa-trash-can"></i></button>
+            })">
+              <i class="fa-solid fa-trash-can"></i>
+            </button>
           </div>
         `;
       }
@@ -204,18 +190,15 @@ adminUsuarios.forEach((usuario) => {
   }
 
   tableContent += `
-      <tr class="text-center">
-        <th scope="row">${usuario.id}</th>
-        <td>${usuario.usuario}</td>
-        <td>${usuario.mail}</td>
-        <td>${
-          usuario.estado === false ? "Pendiente de aprobación" : "Permitido"
-        }</td>
-        <td>${usuario.delete === false ? "Habilitado" : "Inhabilitado"}</td>
-        <td>${usuario.rol}</td>
-        <td>${accionesHTML}</td>
-      </tr>
-    `;
+    <tr class="text-center">
+      <th scope="row">${usuario.id}</th>
+      <td>${usuario.usuario}</td>
+      <td>${usuario.mail}</td>
+      <td>${usuario.delete === false ? "Habilitado" : "Inhabilitado"}</td>
+      <td>${usuario.rol}</td>
+      <td>${accionesHTML}</td>
+    </tr>
+  `;
 });
 
 tableAdmin.innerHTML = `
@@ -227,7 +210,6 @@ tableAdmin.innerHTML = `
               <th scope="col">ID</th>
               <th scope="col">Usuario</th>
               <th scope="col">Mail</th>
-              <th scope="col">Acceso</th>
               <th scope="col">Estado</th>
               <th scope="col">Rol</th>
               <th scope="col">Acciones</th>
@@ -245,65 +227,67 @@ function cambiarEstadoUsuario(usuarioId) {
   const usuario = adminUsuarios.find((usuario) => usuario.id === usuarioId);
 
   if (usuario) {
-    const confirmacion = window.confirm(
-      `¿Estás seguro de ${
+    Swal.fire({
+      title: `¿Estás seguro de ${
         usuario.delete ? "habilitar" : "deshabilitar"
-      } al usuario con ID ${usuario.id}?`
-    );
+      } al usuario con ID ${usuario.id}?`,
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Sí, continuar",
+      cancelButtonText: "Cancelar",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        usuario.delete = !usuario.delete;
 
-    if (confirmacion) {
-      usuario.delete = !usuario.delete;
-      localStorage.setItem("usuarios", JSON.stringify(adminUsuarios));
-      location.reload();
-    }
-  }
-}
+        const asunto = usuario.delete
+          ? "Su cuenta ha sido deshabilitada"
+          : "Su cuenta ha sido habilitada";
+        const mensaje = usuario.delete
+          ? `El usuario ${usuario.usuario} ha sido deshabilitado. Para recuperar tu cuenta puedes contactarnos en nuestra página de contacto.`
+          : `El usuario ${usuario.usuario} ha sido habilitado. Para conectarte, ingresa aquí.`;
 
-function confirmarAutorizacion(usuarioId) {
-  const usuario = adminUsuarios.find((usuario) => usuario.id === usuarioId);
-  console.log(usuario);
-  if (usuario) {
-    const confirmacion = window.confirm(
-      `¿Estás seguro de autorizar al usuario ${usuario.usuario}?`
-    );
+        enviarMail(usuario.mail, asunto, mensaje);
 
-    if (confirmacion) {
-      usuario.estado = true;
-      enviarMail(usuario.mail, usuario.usuario);
-      localStorage.setItem("usuarios", JSON.stringify(adminUsuarios));
-      setTimeout(function () {
-        location.reload();
-      }, 100);
-    }
+        localStorage.setItem("usuarios", JSON.stringify(adminUsuarios));
+
+        setTimeout(() => {
+          location.reload();
+        }, 1000);
+      }
+    });
   }
 }
 
 function borrarUsuario(usuarioId) {
-  const confirmacion = window.confirm(
-    `¿Estás seguro de borrar al usuario con ID ${usuarioId}?`
-  );
-
-  if (confirmacion) {
-    const index = adminUsuarios.findIndex(
-      (usuario) => usuario.id === usuarioId
-    );
-    if (index !== -1) {
-      adminUsuarios.splice(index, 1);
-      localStorage.setItem("usuarios", JSON.stringify(adminUsuarios));
-      location.reload();
+  Swal.fire({
+    title: `¿Estás seguro de borrar al usuario con ID ${usuarioId}?`,
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonText: "Sí, borrar",
+    cancelButtonText: "Cancelar",
+  }).then((result) => {
+    if (result.isConfirmed) {
+      const index = adminUsuarios.findIndex(
+        (usuario) => usuario.id === usuarioId
+      );
+      if (index !== -1) {
+        adminUsuarios.splice(index, 1);
+        localStorage.setItem("usuarios", JSON.stringify(adminUsuarios));
+        location.reload();
+      }
     }
-  }
+  });
 }
 
-const enviarMail = (correo, usuario) => {
+const enviarMail = (correo, mensaje, asunto) => {
   Email.send({
     Host: "smtp.elasticemail.com",
     Username: "martin.fesito@gmail.com",
     Password: "D52D5DF04EAF1430F1A6BA108E1ADA8E4BF6",
     To: correo,
     From: "martin.fesito@gmail.com",
-    Subject: "Bienvenido a Play Gaming",
-    Body: `Estimado ${usuario} a nuestra plataforma Play Gaming. Su usuario fue aprobado.`,
+    Subject: mensaje,
+    Body: asunto,
   });
 };
 

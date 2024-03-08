@@ -301,9 +301,8 @@ const registerUser = () => {
     rol: "usuario",
     favoritos: [],
     carrito: [],
-    estado: false,
     login: false,
-    delete: false,
+    delete: true,
   };
 
   const usersList = JSON.parse(localStorage.getItem("usuarios")) || [];

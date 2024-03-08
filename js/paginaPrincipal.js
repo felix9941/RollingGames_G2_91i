@@ -460,14 +460,12 @@ inputBusqueda.addEventListener("input", () => {
   }
 
   const resultados = juegos.filter((juego) => {
-    return juego.titulo.toLowerCase().includes(searchTerm);
+    return juego.titulo.toLowerCase().includes(searchTerm) && juego.publicado;
   });
-
-  console.log(resultados);
 
   resultadosContainer.innerHTML = "";
 
-  if (resultados.length > 0 && juegos.publicado) {
+  if (resultados.length > 0) {
     resultados.forEach((juego) => {
       const cardHTML = `
         <div class="col-12 col-md-4 col-lg-2 mt-4">

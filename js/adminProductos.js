@@ -96,8 +96,6 @@ const validacionUser = () => {
   );
 
   if (usuario) {
-    const alert = document.getElementById("alert");
-    alert.classList.add("d-none");
   } else {
     const tableAdmin = document.getElementById("tableAdmin");
     tableAdmin.classList.add("d-none");

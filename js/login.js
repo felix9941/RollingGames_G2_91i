@@ -318,18 +318,9 @@ const loginUser = () => {
 
   if (isUserInhabilitado) {
     Swal.fire({
-      icon: "error",
-      title: "Importante",
-      text: "Usuario inhabilitado",
-    });
-    return;
-  }
-
-  if (isUserPendiente) {
-    Swal.fire({
       icon: "warning",
       title: "Estado de tu cuenta",
-      text: "Pendiente de aprobacion",
+      text: "Usuario inhabilitado",
     });
 
     setTimeout(() => {

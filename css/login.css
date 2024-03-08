@@ -64,7 +64,7 @@
 
 .slide {
   --color: RGB(26, 26, 46);
-  --hover: RGB(228, 161, 2);
+  --hover: rgba(26, 26, 46);
 }
 
 .slide {
@@ -86,6 +86,8 @@
   line-height: 1;
   margin: 0.5em;
   padding: 10px;
+  background-color: rgb(255, 184, 20);
+  color: white;
 }
 
 .anta-regular {
