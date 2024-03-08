@@ -145,6 +145,24 @@ footerGeneral.innerHTML = ` <div class="col-12 col-md-6 col-lg-4 d-flex justify-
 </div>
 </div>`;
 
+const validacionUser = () => {
+  const validacionUsuario = JSON.parse(localStorage.getItem("usuarios")) || [];
+
+  const usuario = validacionUsuario.find(
+    (validacion) => validacion.id && validacion.login
+  );
+
+  if (usuario) {
+  } else {
+    const usuarioNoLogueado = document.getElementById("usuarioNoLogueado");
+    usuarioNoLogueado.classList.add("d-none");
+    window.location.href = "login.html";
+    return;
+  }
+};
+
+validacionUser();
+
 function mostrarJuego() {
   const juego = catalogoJuegos.find((juego) => juego.destacado === true);
 
@@ -460,10 +478,8 @@ inputBusqueda.addEventListener("input", () => {
   }
 
   const resultados = juegos.filter((juego) => {
-    return juego.titulo.toLowerCase().includes(searchTerm);
+    return juego.titulo.toLowerCase().includes(searchTerm) && juego.publicado;
   });
-
-  console.log(resultados);
 
   resultadosContainer.innerHTML = "";
 

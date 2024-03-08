@@ -122,8 +122,26 @@ footerGeneral.innerHTML = ` <div class="col-12 col-md-6 col-lg-4 d-flex justify-
 </div>
 </div>`;
 
+const validacionUser = () => {
+  const validacionUsuario = JSON.parse(localStorage.getItem("usuarios")) || [];
+
+  const usuario = validacionUsuario.find(
+    (validacion) => validacion.id && validacion.login
+  );
+
+  if (usuario) {
+  } else {
+    const tableCarrito = document.getElementById("tablaCarrito");
+    tableCarrito.classList.add("d-none");
+    window.location.href = "login.html";
+    return;
+  }
+};
+
+validacionUser();
+
 const usuarios = JSON.parse(localStorage.getItem("usuarios"));
-const usuario = usuarios.find((usu) => usu.login === true);
+const usuario = usuarios.find((usu) => usu.login);
 const indexUsuario = usuarios.findIndex((user) => user.id === usuario.id);
 let usuarioCarrito = [];
 
@@ -134,29 +152,34 @@ const carritoBody = document.getElementById("carritoBody");
 
 function eliminarJuego(juegoId, event) {
   event.stopPropagation();
-  const confirmarEliminar = window.confirm(
-    `¿Estás seguro de eliminar el juego con ID ${juegoId}?`
-  );
-
-  if (confirmarEliminar) {
-    const juegoIndex = usuarioCarrito.findIndex((id) => id === juegoId);
-    if (juegoIndex !== -1) {
-      usuarioCarrito.splice(juegoIndex, 1);
-      localStorage.setItem("usuarios", JSON.stringify(usuarios));
-      const fila = document.getElementById(`fila-${juegoId}`);
-      fila.remove();
-      const totalElement = document.getElementById("total");
-      const juego = juegos.find((juego) => juego.id === juegoId);
-      if (juego) {
-        const precio = parseFloat(juego.precio);
-        const totalActual = parseFloat(totalElement.textContent);
-        totalElement.textContent = (totalActual - precio).toFixed(2);
+  Swal.fire({
+    title: `¿Estás seguro de eliminar el juego con ID ${juegoId}?`,
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonText: "Sí, eliminar",
+    cancelButtonText: "Cancelar",
+  }).then((result) => {
+    if (result.isConfirmed) {
+      const juegoIndex = usuarioCarrito.findIndex((id) => id === juegoId);
+      if (juegoIndex !== -1) {
+        usuarioCarrito.splice(juegoIndex, 1);
+        localStorage.setItem("usuarios", JSON.stringify(usuarios));
+        const fila = document.getElementById(`fila-${juegoId}`);
+        fila.remove();
+        const totalElement = document.getElementById("total");
+        const juego = juegos.find((juego) => juego.id === juegoId);
+        if (juego) {
+          const precio = parseFloat(juego.precio);
+          const totalActual = parseFloat(totalElement.textContent);
+          totalElement.textContent = (totalActual - precio).toFixed(2);
+        }
+      } else {
+        alert(`No se encontró el juego con ID ${juegoId} en su carrito`);
       }
-    } else {
-      console.error(`No se encontró el juego con ID ${juegoId} en su carrito`);
     }
-  }
+  });
 }
+
 if (usuario) {
   if (indexUsuario !== -1) {
     usuarioCarrito = usuarios[indexUsuario].carrito || [];
@@ -180,17 +203,13 @@ if (usuario) {
             </td>
           `;
           total += parseFloat(juegos[indice].precio);
-          console.log(total);
 
           carritoBody.appendChild(row);
         } else {
-          console.error(
-            `No se encontró el juego con ID ${usuarioCarrito[index]}`
-          );
+          alert(`No se encontró el juego con ID ${usuarioCarrito[index]}`);
         }
       }
     } else {
-      console.log("Carrito vacío");
       const filaCarritoVacio = document.createElement("tr");
       const cell = document.createElement("td");
       cell.colSpan = "6";
@@ -221,24 +240,36 @@ if (usuario) {
 
     function redireccion() {
       const usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
-      const usuario = usuarios.find((usu) => usu.login === true);
+      const usuario = usuarios.find((usu) => usu.login);
 
       if (usuario) {
         if (usuario.rol === "admin") {
-          alert("Admin no esta autorizado para pagar");
+          Swal.fire({
+            icon: "warning",
+            title: "Error al procesar el pago",
+            text: "Admin no esta autorizado para pagar",
+          });
           setTimeout(() => {
             window.location.href = "../page/paginaPrincipal.html";
           }, 1000);
         }
       } else {
-        alert("Ups aun no te logueaste. Inicia sesion");
+        Swal.fire({
+          icon: "warning",
+          title: "Inicie sesion",
+          text: "Ups aun no te logueaste. Inicia sesion",
+        });
         setTimeout(() => {
           window.location.href = "../page/login.html";
         }, 1000);
       }
 
       if (usuario && usuario.rol === "usuario") {
-        alert("Error al procesar el pago");
+        Swal.fire({
+          icon: "error",
+          title: "Importante",
+          text: "Error al procesar el pago",
+        });
         setTimeout(() => {
           window.location.href = "../page/error404.html";
         }, 1000);

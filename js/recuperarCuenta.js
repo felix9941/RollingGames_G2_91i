@@ -332,16 +332,6 @@ const validacionRecupero = () => {
     return;
   }
 
-  if (passRecupero === userExists[passIndex]?.contrasena) {
-    Swal.fire({
-      icon: "warning",
-      title: "Atencion! error al actualizar tu contraseña",
-      text: "Utilice una contraseña distinta a la anterior.",
-    });
-
-    return;
-  }
-
   if (usuarioIndex !== -1) {
     userExists[usuarioIndex].contrasena = passRecupero;
 

@@ -1,20 +1,41 @@
 function redireccion() {
   const usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
   const usuario = usuarios.find((usu) => usu.login === true);
-  if (!usuario) {
-    alert("Ups aun no te logueaste. Inicia sesion");
+
+  if (usuario) {
+    if (usuario.rol === "admin") {
+      Swal.fire({
+        icon: "warning",
+        title: "Error al procesar el pago",
+        text: "Admin no esta autorizado para pagar",
+      });
+
+      setTimeout(() => {
+        window.location.href = "../page/paginaPrincipal.html";
+      }, 1000);
+    }
+  } else {
+    Swal.fire({
+      icon: "warning",
+      title: "Inicie sesion",
+      text: "Ups aun no te logueaste. Inicia sesion",
+    });
     setTimeout(() => {
-      window.location.href = "login.html";
+      window.location.href = "../page/login.html";
     }, 1000);
   }
-  if (usuario.id == "") {
-    alert("Contactanos para ingresar");
+
+  if (usuario && usuario.rol === "usuario") {
+    Swal.fire({
+      icon: "error",
+      title: "Importante",
+      text: "Error al procesar el pago",
+    });
     setTimeout(() => {
-      window.location.href = "contacto.html";
+      window.location.href = "../page/error404.html";
     }, 1000);
   }
 }
-redireccion();
 
 const navbarAdminUsuarios = document.getElementById("navbar-admin");
 navbarAdminUsuarios.innerHTML = `<a href="paginaPrincipal.html" class="d-flex align-items-center enlace-logo">
@@ -88,6 +109,24 @@ navbarAdminUsuarios.innerHTML = `<a href="paginaPrincipal.html" class="d-flex al
   </ul>
   </div>`;
 
+const validacionUser = () => {
+  const validacionUsuario = JSON.parse(localStorage.getItem("usuarios")) || [];
+
+  const usuario = validacionUsuario.find(
+    (validacion) => validacion.id && validacion.login
+  );
+
+  if (usuario) {
+  } else {
+    const usuarioNoLogueado = document.getElementById("usuarioNoLogueado");
+    usuarioNoLogueado.classList.add("d-none");
+    window.location.href = "login.html";
+    return;
+  }
+};
+
+validacionUser();
+
 (() => {
   const usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
   const botonInicio = document.getElementById("loginItem");
@@ -96,10 +135,10 @@ navbarAdminUsuarios.innerHTML = `<a href="paginaPrincipal.html" class="d-flex al
   const botonLoginAdmin = document.getElementById("administracion");
 
   const userLogin = usuarios.find(
-    (u) => u.login === true && u.rol === "usuario"
+    (usuario) => usuario.login === true && usuario.rol === "usuario"
   );
   const userLoginAdmin = usuarios.find(
-    (u) => u.login === true && u.rol === "admin"
+    (usuario) => usuario.login === true && usuario.rol === "admin"
   );
 
   if (userLoginAdmin) {
@@ -205,7 +244,7 @@ fotoComprar.innerHTML = `<div class="col-md-8 pe-0 ps-2">
         <div class="col-12 mt-1 mb-1 p-0 text-center">
 
         <button
-            class="btn btn-warning botones" onclick="comprar(${juego.id})"
+            class="btn btn-warning botones" onclick="redireccion()"
           
           >
             Comprar
@@ -284,7 +323,6 @@ function comprar(id) {
     usuarioLogueado.carrito.push(id);
     usuarios[posicionUsuario] = usuarioLogueado;
     localStorage.setItem("usuarios", JSON.stringify(usuarios));
-    console.log(usuarioLogueado);
     window.location.href = "carrito.html";
   }
 }

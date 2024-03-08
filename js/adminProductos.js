@@ -70,30 +70,41 @@ navbarAdminProductos.innerHTML = `<a href="paginaPrincipal.html" class="d-flex a
   </ul>
   </div>`;
 
-(() => {
+const validacionAdmin = () => {
   const validacionUsuario = JSON.parse(localStorage.getItem("usuarios")) || [];
-
-  const usuario = validacionUsuario.find(
-    (validacion) => validacion.id && validacion.login === true
-  );
 
   const usuarioAdmin = validacionUsuario.find(
     (validacion) =>
-      validacion.id && validacion.login === true && validacion.rol === "admin"
+      validacion.id && validacion.login && validacion.rol === "admin"
   );
 
   if (usuarioAdmin) {
   } else {
+    const tableAdmin = document.getElementById("usuarioNoLogueado");
+    tableAdmin.classList.add("d-none");
     window.location.href = "paginaPrincipal.html";
-    return;
   }
+};
+
+validacionAdmin();
+
+const validacionUser = () => {
+  const validacionUsuario = JSON.parse(localStorage.getItem("usuarios")) || [];
+
+  const usuario = validacionUsuario.find(
+    (validacion) => validacion.id && validacion.login
+  );
 
   if (usuario) {
   } else {
+    const tableAdmin = document.getElementById("usuarioNoLogueado");
+    tableAdmin.classList.add("d-none");
     window.location.href = "login.html";
     return;
   }
-})();
+};
+
+validacionUser();
 
 (() => {
   const usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
@@ -255,7 +266,6 @@ tablaJuegos.innerHTML = juegos
   <th scope="row">${juego.id}</th>
   <td class="letraPequeña">${juego.titulo}</td>
   <td class="letraPequeña">${juego.categoria}</td>
-  <td class="letraPequeña">${juego.descripcion}</td> 
   <td>
     <div class="form-check form-switch">
       <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" ${
@@ -456,7 +466,6 @@ let juegoOriginal = {};
 let editado = {};
 function ubicaJuegoParaEditar(id) {
   juegoOriginal = juegos.find((item) => item.id === id);
-  console.log("busca ubicacion:", juegoOriginal.titulo);
 }
 
 const cargaJuegoEditado = (evento) => {
@@ -552,9 +561,6 @@ function cambiarDestacado(id) {
             const indexViejo = juegos.findIndex(
               (juego) => juego.destacado === true
             );
-            console.log(indexViejo);
-            console.log(juegosDestacados[0].id);
-            console.log(juegos[index].id);
             juegos[indexViejo].destacado = false;
             juegos[index].destacado = true;
           } else {
@@ -571,7 +577,7 @@ function cambiarDestacado(id) {
     localStorage.setItem("catalogoDeJuegos", JSON.stringify(juegos));
     window.location.reload(); // Recargar la página
   } else {
-    console.log(`No se encontró ningún juego con ID ${id}`);
+    alert(`No se encontró ningún juego con ID ${id}`);
   }
 }
 
@@ -587,13 +593,27 @@ function colorBotonDestacar(id) {
 
 function eliminacionFisica(id) {
   const juegos = JSON.parse(localStorage.getItem("catalogoDeJuegos")) || [];
-  let index = juegos.findIndex((juegaso) => juegaso.id === id);
+  const usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
+
+  const index = juegos.findIndex((juego) => juego.id === id);
   if (index !== -1) {
     if (juegos[index].destacado === true) {
-      alert("El juego esta como destacado, no es posible eliminar");
+      alert("El juego está como destacado y no es posible eliminarlo.");
     } else {
       juegos.splice(index, 1);
       localStorage.setItem("catalogoDeJuegos", JSON.stringify(juegos));
+
+      // Elimina el juego de la lista de favoritos de cada usuario
+      usuarios.forEach((usuario) => {
+        const favoritosIndex = usuario.favoritos.findIndex(
+          (favId) => favId === id
+        );
+        if (favoritosIndex !== -1) {
+          usuario.favoritos.splice(favoritosIndex, 1);
+        }
+      });
+
+      localStorage.setItem("usuarios", JSON.stringify(usuarios));
     }
     location.reload();
   }
@@ -617,7 +637,6 @@ function publicar(id) {
   const indexJuego = juegos.findIndex((juego) => juego.id === id);
   juegos[indexJuego].publicado = true;
   localStorage.setItem("catalogoDeJuegos", JSON.stringify(juegos));
-  console.log("Publicar");
   location.reload();
 }
 
@@ -626,7 +645,6 @@ function despublicar(id) {
   const indexJuego = juegos.findIndex((juego) => juego.id === id);
   juegos[indexJuego].publicado = false;
   localStorage.setItem("catalogoDeJuegos", JSON.stringify(juegos));
-  console.log("Despublicar");
   location.reload();
 }
 
