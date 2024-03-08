@@ -70,30 +70,43 @@ navbarAdminProductos.innerHTML = `<a href="paginaPrincipal.html" class="d-flex a
   </ul>
   </div>`;
 
-(() => {
+const validacionAdmin = () => {
   const validacionUsuario = JSON.parse(localStorage.getItem("usuarios")) || [];
-
-  const usuario = validacionUsuario.find(
-    (validacion) => validacion.id && validacion.login === true
-  );
 
   const usuarioAdmin = validacionUsuario.find(
     (validacion) =>
-      validacion.id && validacion.login === true && validacion.rol === "admin"
+      validacion.id && validacion.login && validacion.rol === "admin"
   );
 
   if (usuarioAdmin) {
   } else {
+    const tableAdmin = document.getElementById("tableAdmin");
+    tableAdmin.classList.add("d-none");
     window.location.href = "paginaPrincipal.html";
-    return;
   }
+};
+
+validacionAdmin();
+
+const validacionUser = () => {
+  const validacionUsuario = JSON.parse(localStorage.getItem("usuarios")) || [];
+
+  const usuario = validacionUsuario.find(
+    (validacion) => validacion.id && validacion.login
+  );
 
   if (usuario) {
+    const alert = document.getElementById("alert");
+    alert.classList.add("d-none");
   } else {
+    const tableAdmin = document.getElementById("tableAdmin");
+    tableAdmin.classList.add("d-none");
     window.location.href = "login.html";
     return;
   }
-})();
+};
+
+validacionUser();
 
 (() => {
   const usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
@@ -255,7 +268,7 @@ tablaJuegos.innerHTML = juegos
   <th scope="row">${juego.id}</th>
   <td class="letraPequeña">${juego.titulo}</td>
   <td class="letraPequeña">${juego.categoria}</td>
-  <td class="letraPequeña">${juego.descripcion}</td> 
+
   <td>
     <div class="form-check form-switch">
       <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" ${

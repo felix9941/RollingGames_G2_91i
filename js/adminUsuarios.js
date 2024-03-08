@@ -122,31 +122,43 @@ footerGeneral.innerHTML = ` <div class="col-12 col-md-6 col-lg-4 d-flex justify-
 </div>
 </div>`;
 
-(() => {
+const validacionAdmin = () => {
   const validacionUsuario = JSON.parse(localStorage.getItem("usuarios")) || [];
-
-  const usuario = validacionUsuario.find(
-    (validacion) => validacion.id && validacion.login === true
-  );
 
   const usuarioAdmin = validacionUsuario.find(
     (validacion) =>
-      validacion.id && validacion.login === true && validacion.rol === "admin"
+      validacion.id && validacion.login && validacion.rol === "admin"
   );
 
   if (usuarioAdmin) {
   } else {
+    const tableAdmin = document.getElementById("tableAdmin");
+    tableAdmin.classList.add("d-none");
     window.location.href = "paginaPrincipal.html";
-    return;
   }
+};
+
+validacionAdmin();
+
+const validacionUser = () => {
+  const validacionUsuario = JSON.parse(localStorage.getItem("usuarios")) || [];
+
+  const usuario = validacionUsuario.find(
+    (validacion) => validacion.id && validacion.login
+  );
 
   if (usuario) {
+    const alert = document.getElementById("alert");
+    alert.classList.add("d-none");
   } else {
+    const tableAdmin = document.getElementById("tableAdmin");
+    tableAdmin.classList.add("d-none");
     window.location.href = "login.html";
     return;
   }
-})();
+};
 
+validacionUser();
 const tableAdmin = document.getElementById("tableAdmin");
 const adminUsuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
 let tableContent = "";

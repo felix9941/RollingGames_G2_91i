@@ -467,7 +467,7 @@ inputBusqueda.addEventListener("input", () => {
 
   resultadosContainer.innerHTML = "";
 
-  if (resultados.length > 0) {
+  if (resultados.length > 0 && juegos.publicado) {
     resultados.forEach((juego) => {
       const cardHTML = `
         <div class="col-12 col-md-4 col-lg-2 mt-4">
