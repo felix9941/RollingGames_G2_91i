@@ -31,7 +31,6 @@ function tieneJuegos() {
   const arregloFavoritos = usuario.favoritos;
   const juegosFavoritos = document.getElementById("juegosFavoritos");
   const juegos = JSON.parse(localStorage.getItem("catalogoDeJuegos"));
-  console.log(arregloFavoritos.lengt);
   if (arregloFavoritos.length !== 0) {
     arregloFavoritos.forEach(function (elemento) {
       const juego = juegos.find((game) => game.id === elemento);

@@ -323,7 +323,6 @@ function comprar(id) {
     usuarioLogueado.carrito.push(id);
     usuarios[posicionUsuario] = usuarioLogueado;
     localStorage.setItem("usuarios", JSON.stringify(usuarios));
-    console.log(usuarioLogueado);
     window.location.href = "carrito.html";
   }
 }

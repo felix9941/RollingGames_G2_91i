@@ -174,9 +174,7 @@ function eliminarJuego(juegoId, event) {
           totalElement.textContent = (totalActual - precio).toFixed(2);
         }
       } else {
-        console.error(
-          `No se encontró el juego con ID ${juegoId} en su carrito`
-        );
+        alert(`No se encontró el juego con ID ${juegoId} en su carrito`);
       }
     }
   });
@@ -205,17 +203,13 @@ if (usuario) {
             </td>
           `;
           total += parseFloat(juegos[indice].precio);
-          console.log(total);
 
           carritoBody.appendChild(row);
         } else {
-          console.error(
-            `No se encontró el juego con ID ${usuarioCarrito[index]}`
-          );
+          alert(`No se encontró el juego con ID ${usuarioCarrito[index]}`);
         }
       }
     } else {
-      console.log("Carrito vacío");
       const filaCarritoVacio = document.createElement("tr");
       const cell = document.createElement("td");
       cell.colSpan = "6";

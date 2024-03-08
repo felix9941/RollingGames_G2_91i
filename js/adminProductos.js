@@ -80,7 +80,7 @@ const validacionAdmin = () => {
 
   if (usuarioAdmin) {
   } else {
-    const tableAdmin = document.getElementById("tableAdmin");
+    const tableAdmin = document.getElementById("usuarioNoLogueado");
     tableAdmin.classList.add("d-none");
     window.location.href = "paginaPrincipal.html";
   }
@@ -97,7 +97,7 @@ const validacionUser = () => {
 
   if (usuario) {
   } else {
-    const tableAdmin = document.getElementById("tableAdmin");
+    const tableAdmin = document.getElementById("usuarioNoLogueado");
     tableAdmin.classList.add("d-none");
     window.location.href = "login.html";
     return;
@@ -266,7 +266,7 @@ tablaJuegos.innerHTML = juegos
   <th scope="row">${juego.id}</th>
   <td class="letraPequeña">${juego.titulo}</td>
   <td class="letraPequeña">${juego.categoria}</td>
-
+  <td class="letraPequeña">${juego.descripcion}</td> 
   <td>
     <div class="form-check form-switch">
       <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" ${
@@ -467,7 +467,6 @@ let juegoOriginal = {};
 let editado = {};
 function ubicaJuegoParaEditar(id) {
   juegoOriginal = juegos.find((item) => item.id === id);
-  console.log("busca ubicacion:", juegoOriginal.titulo);
 }
 
 const cargaJuegoEditado = (evento) => {
@@ -563,9 +562,6 @@ function cambiarDestacado(id) {
             const indexViejo = juegos.findIndex(
               (juego) => juego.destacado === true
             );
-            console.log(indexViejo);
-            console.log(juegosDestacados[0].id);
-            console.log(juegos[index].id);
             juegos[indexViejo].destacado = false;
             juegos[index].destacado = true;
           } else {
@@ -582,7 +578,7 @@ function cambiarDestacado(id) {
     localStorage.setItem("catalogoDeJuegos", JSON.stringify(juegos));
     window.location.reload(); // Recargar la página
   } else {
-    console.log(`No se encontró ningún juego con ID ${id}`);
+    alert(`No se encontró ningún juego con ID ${id}`);
   }
 }
 
@@ -628,7 +624,6 @@ function publicar(id) {
   const indexJuego = juegos.findIndex((juego) => juego.id === id);
   juegos[indexJuego].publicado = true;
   localStorage.setItem("catalogoDeJuegos", JSON.stringify(juegos));
-  console.log("Publicar");
   location.reload();
 }
 
@@ -637,7 +632,6 @@ function despublicar(id) {
   const indexJuego = juegos.findIndex((juego) => juego.id === id);
   juegos[indexJuego].publicado = false;
   localStorage.setItem("catalogoDeJuegos", JSON.stringify(juegos));
-  console.log("Despublicar");
   location.reload();
 }
 
