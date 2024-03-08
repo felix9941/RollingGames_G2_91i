@@ -266,7 +266,6 @@ tablaJuegos.innerHTML = juegos
   <th scope="row">${juego.id}</th>
   <td class="letraPequeña">${juego.titulo}</td>
   <td class="letraPequeña">${juego.categoria}</td>
-  <td class="letraPequeña">${juego.descripcion}</td> 
   <td>
     <div class="form-check form-switch">
       <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" ${
