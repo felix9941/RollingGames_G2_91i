@@ -118,8 +118,8 @@ const validacionUser = () => {
 
   if (usuario) {
   } else {
-    const tableAdmin = document.getElementById("tablaCarrito");
-    tableAdmin.classList.add("d-none");
+    const usuarioNoLogueado = document.getElementById("usuarioNoLogueado");
+    usuarioNoLogueado.classList.add("d-none");
     window.location.href = "login.html";
     return;
   }

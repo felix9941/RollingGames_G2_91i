@@ -3,13 +3,21 @@ function redireccion() {
   const usuario = usuarios.find((usu) => usu.login === true);
   if (usuario) {
     if (usuario.id == "") {
-      alert("Contactanos para ingresar");
+      Swal.fire({
+        icon: "warning",
+        title: "Importante",
+        text: "Contactanos para ingresar",
+      });
       setTimeout(() => {
         window.location.href = "contacto.html";
       }, 1000);
     }
   } else {
-    alert("Ups aun no te logueaste. Inicia sesion");
+    Swal.fire({
+      icon: "warning",
+      title: "Inicie sesion",
+      text: "Ups aun no te logueaste. Inicia sesion",
+    });
     setTimeout(() => {
       window.location.href = "login.html";
     }, 1000);

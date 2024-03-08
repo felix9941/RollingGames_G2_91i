@@ -131,8 +131,8 @@ const validacionUser = () => {
 
   if (usuario) {
   } else {
-    const tableAdmin = document.getElementById("tablaCarrito");
-    tableAdmin.classList.add("d-none");
+    const tableCarrito = document.getElementById("tablaCarrito");
+    tableCarrito.classList.add("d-none");
     window.location.href = "login.html";
     return;
   }
