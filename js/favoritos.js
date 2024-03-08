@@ -1,29 +1,18 @@
-function redireccion() {
-  const usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
-  const usuario = usuarios.find((usu) => usu.login === true);
+const validacionUser = () => {
+  const validacionUsuario = JSON.parse(localStorage.getItem("usuarios")) || [];
+
+  const usuario = validacionUsuario.find(
+    (validacion) => validacion.id && validacion.login
+  );
+
   if (usuario) {
-    if (usuario.id == "") {
-      Swal.fire({
-        icon: "warning",
-        title: "Importante",
-        text: "Contactanos para ingresar",
-      });
-      setTimeout(() => {
-        window.location.href = "contacto.html";
-      }, 1000);
-    }
   } else {
-    Swal.fire({
-      icon: "warning",
-      title: "Inicie sesion",
-      text: "Ups aun no te logueaste. Inicia sesion",
-    });
-    setTimeout(() => {
-      window.location.href = "login.html";
-    }, 1000);
+    window.location.href = "login.html";
+    return;
   }
-}
-redireccion();
+};
+
+validacionUser();
 
 function tieneJuegos() {
   const usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
@@ -31,41 +20,46 @@ function tieneJuegos() {
   const arregloFavoritos = usuario.favoritos;
   const juegosFavoritos = document.getElementById("juegosFavoritos");
   const juegos = JSON.parse(localStorage.getItem("catalogoDeJuegos"));
-  if (arregloFavoritos.length !== 0) {
+  const juegosPublicados = juegos.filter((juego) => juego.publicado);
+
+  if (arregloFavoritos.length !== 0 && juegosPublicados.length !== 0) {
     arregloFavoritos.forEach(function (elemento) {
       const juego = juegos.find((game) => game.id === elemento);
-      const nuevoJuego = document.createElement("div");
-      nuevoJuego.innerHTML = `
-      <div class="card mb-3 tarjetaDeJuego" >
-      <div class="row g-0">
-        <div class="col-md-7" >
-        <a href="detalleDeJuego.html?id=${juego.id}"><img src="${juego.imagen}" style="width:100%; height: 100%;" class=" rounded-start" alt="${juego.titulo}"></a>
-          
-        </div>
-        <div class="col-md-5 d-flex justify-content-around">
-          <div class="card-body centrarContTarjeta">
-  
-          <h4 class="card-title mt-2">${juego.titulo}</h4>
-          <h4 class="card-title mt-2">Precio: $ ${juego.precio}</h4>
-          <button
-          class=" mt-2  eliminarx" onclick="eliminarFavorito(${juego.id})"
-        
-        >
-          Eliminar
-        </button>
-      </div>
-          
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="p-4"></div>
-      `;
-      // Agregar el nuevo elemento div al contenedor juegosFavoritos
-      juegosFavoritos.appendChild(nuevoJuego);
+      if (juego && juego.publicado) {
+        const nuevoJuego = document.createElement("div");
+        nuevoJuego.innerHTML = `
+          <div class="card mb-3 tarjetaDeJuego">
+            <div class="row g-0">
+              <div class="col-md-7">
+                <a href="detalleDeJuego.html?id=${juego.id}">
+                  <img src="${juego.imagen}" style="width:100%; height: 100%;" class="rounded-start" alt="${juego.titulo}">
+                </a>
+              </div>
+              <div class="col-md-5 d-flex justify-content-around">
+                <div class="card-body centrarContTarjeta">
+                  <h4 class="card-title mt-2">${juego.titulo}</h4>
+                  <h4 class="card-title mt-2">Precio: $ ${juego.precio}</h4>
+                  <button class="mt-2 eliminarx" onclick="eliminarFavorito(${juego.id})">
+                    Eliminar
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="p-4"></div>
+        `;
+        juegosFavoritos.appendChild(nuevoJuego);
+      } else {
+        const index = arregloFavoritos.indexOf(elemento);
+        if (index !== -1) {
+          arregloFavoritos.splice(index, 1);
+          localStorage.setItem("usuarios", JSON.stringify(usuarios));
+        }
+        location.reload();
+      }
     });
   } else {
-    juegosFavoritos.innerHTML = `<h3 class="mt-3 text-efecto-sombra">Aun no tiene Juegos favoritos</h3>`;
+    juegosFavoritos.innerHTML = `<h3 class="mt-3 text-efecto-sombra">Aún no tienes juegos favoritos</h3>`;
   }
 }
 tieneJuegos();

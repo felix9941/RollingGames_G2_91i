@@ -593,13 +593,27 @@ function colorBotonDestacar(id) {
 
 function eliminacionFisica(id) {
   const juegos = JSON.parse(localStorage.getItem("catalogoDeJuegos")) || [];
-  let index = juegos.findIndex((juegaso) => juegaso.id === id);
+  const usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
+
+  const index = juegos.findIndex((juego) => juego.id === id);
   if (index !== -1) {
     if (juegos[index].destacado === true) {
-      alert("El juego esta como destacado, no es posible eliminar");
+      alert("El juego está como destacado y no es posible eliminarlo.");
     } else {
       juegos.splice(index, 1);
       localStorage.setItem("catalogoDeJuegos", JSON.stringify(juegos));
+
+      // Elimina el juego de la lista de favoritos de cada usuario
+      usuarios.forEach((usuario) => {
+        const favoritosIndex = usuario.favoritos.findIndex(
+          (favId) => favId === id
+        );
+        if (favoritosIndex !== -1) {
+          usuario.favoritos.splice(favoritosIndex, 1);
+        }
+      });
+
+      localStorage.setItem("usuarios", JSON.stringify(usuarios));
     }
     location.reload();
   }
