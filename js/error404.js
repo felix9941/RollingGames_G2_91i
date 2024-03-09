@@ -157,7 +157,7 @@ function atras() {
     (usuario) => usuario.login === true && usuario.rol === "usuario"
   );
   const userLoginAdmin = usuarios.find(
-    (usuario) => usuario.login === true && usuario.rol === "admin"
+    (usuario) => usuario.login === true && usuario.rol === "SuperAdmin" || "admin"
   );
 
   if (userLoginAdmin) {

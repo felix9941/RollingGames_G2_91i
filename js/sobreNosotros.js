@@ -242,7 +242,8 @@ footerGeneral.innerHTML = ` <div class="col-12 col-md-6 col-lg-4 d-flex justify-
     (usuario) => usuario.login === true && usuario.rol === "usuario"
   );
   const userLoginAdmin = usuarios.find(
-    (usuario) => usuario.login === true && usuario.rol === "admin"
+    (usuario) =>
+      (usuario.login === true && usuario.rol === "SuperAdmin") || "admin"
   );
 
   if (userLoginAdmin) {

@@ -75,7 +75,8 @@ const validacionAdmin = () => {
 
   const usuarioAdmin = validacionUsuario.find(
     (validacion) =>
-      validacion.id && validacion.login && validacion.rol === "admin"
+      (validacion.id && validacion.login && validacion.rol === "SuperAdmin") ||
+      "admin"
   );
 
   if (usuarioAdmin) {
@@ -113,7 +114,7 @@ validacionUser();
   const botonLoginAdmin = document.getElementById("administracion");
 
   const userLoginAdmin = usuarios.find(
-    (u) => u.login === true && u.rol === "admin"
+    (u) => (u.login === true && u.rol === "SuperAdmin") || "admin"
   );
 
   if (userLoginAdmin) {

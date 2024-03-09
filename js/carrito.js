@@ -243,7 +243,7 @@ if (usuario) {
       const usuario = usuarios.find((usu) => usu.login);
 
       if (usuario) {
-        if (usuario.rol === "admin") {
+        if (usuario.rol === "SuperAdmin" || "admin") {
           Swal.fire({
             icon: "warning",
             title: "Error al procesar el pago",
@@ -317,7 +317,8 @@ function cerrarSesion() {
     (usuario) => usuario.login === true && usuario.rol === "usuario"
   );
   const userLoginAdmin = usuarios.find(
-    (usuario) => usuario.login === true && usuario.rol === "admin"
+    (usuario) =>
+      (usuario.login === true && usuario.rol === "SuperAdmin") || "admin"
   );
 
   if (userLoginAdmin) {

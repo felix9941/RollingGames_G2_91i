@@ -155,7 +155,7 @@ navbarAdminUsuarios.innerHTML = `<a href="paginaPrincipal.html" class="d-flex al
     (u) => u.login === true && u.rol === "usuario"
   );
   const userLoginAdmin = usuarios.find(
-    (u) => u.login === true && u.rol === "admin"
+    (u) => (u.login === true && u.rol === "SuperAdmin") || "admin"
   );
 
   if (userLoginAdmin) {

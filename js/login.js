@@ -171,7 +171,7 @@ footerGeneral.innerHTML = ` <div class="col-12 col-md-6 col-lg-4 d-flex justify-
     mail: "playgaming@gaming.com.ar",
     contrasena: "playgaming24",
     login: false,
-    rol: "admin",
+    rol: "SuperAdmin",
     favoritos: [],
     carrito: [],
     delete: false,
@@ -209,9 +209,7 @@ const loginUser = () => {
 
   const isUserInhabilitado = userExists && userExists.delete === true;
 
-  const isUserPendiente = userExists && userExists.estado === false;
-
-  const admin = userExists && userExists.rol === "admin";
+  const admin = (userExists && userExists.rol === "SuperAdmin") || "admin";
 
   const usuarioLogueado = usersList.find(
     (userLogin) => userLogin.id && userLogin.login === true
