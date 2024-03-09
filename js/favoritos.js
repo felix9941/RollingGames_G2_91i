@@ -154,11 +154,15 @@ navbarAdminUsuarios.innerHTML = `<a href="paginaPrincipal.html" class="d-flex al
   const userLogin = usuarios.find(
     (u) => u.login === true && u.rol === "usuario"
   );
-  const userLoginAdmin = usuarios.find(
-    (u) => (u.login === true && u.rol === "SuperAdmin") || "admin"
+  const userLoginSuper = usuarios.find(
+    (usuario) => usuario.login === true && usuario.rol === "SuperAdmin"
   );
 
-  if (userLoginAdmin) {
+  const userLoginAdmin = usuarios.find(
+    (usuario) => usuario.login === true && usuario.rol === "admin"
+  );
+
+  if (userLoginAdmin || userLoginSuper) {
     botonInicio.classList.add("d-none");
     botonRegistro.classList.add("d-none");
     botonLoginAdmin.classList.add("d-block");

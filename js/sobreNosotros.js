@@ -242,11 +242,13 @@ footerGeneral.innerHTML = ` <div class="col-12 col-md-6 col-lg-4 d-flex justify-
     (usuario) => usuario.login === true && usuario.rol === "usuario"
   );
   const userLoginAdmin = usuarios.find(
-    (usuario) =>
-      (usuario.login === true && usuario.rol === "SuperAdmin") || "admin"
+    (usuario) => usuario.login === true && usuario.rol === "admin"
+  );
+  const userLoginSuper = usuarios.find(
+    (usuario) => usuario.login === true && usuario.rol === "SuperAdmin"
   );
 
-  if (userLoginAdmin) {
+  if (userLoginAdmin || userLoginSuper) {
     botonInicio.classList.add("d-none");
     botonRegistro.classList.add("d-none");
     botonLoginAdmin.classList.add("d-block");
