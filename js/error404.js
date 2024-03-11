@@ -159,8 +159,11 @@ function atras() {
   const userLoginAdmin = usuarios.find(
     (usuario) => usuario.login === true && usuario.rol === "admin"
   );
+  const userLoginSuper = usuarios.find(
+    (usuario) => usuario.login === true && usuario.rol === "SuperAdmin"
+  );
 
-  if (userLoginAdmin) {
+  if (userLoginAdmin || userLoginSuper) {
     botonInicio.classList.add("d-none");
     botonRegistro.classList.add("d-none");
     botonLoginAdmin.classList.add("d-block");

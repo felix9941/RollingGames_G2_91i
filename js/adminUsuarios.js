@@ -127,7 +127,8 @@ const validacionAdmin = () => {
 
   const usuarioAdmin = validacionUsuario.find(
     (validacion) =>
-      validacion.id && validacion.login && validacion.rol === "admin"
+      (validacion.id && validacion.login && validacion.rol === "SuperAdmin") ||
+      "admin"
   );
 
   if (usuarioAdmin) {
@@ -162,17 +163,31 @@ const adminUsuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
 let tableContent = "";
 
 const usuarioAdminLogueado = adminUsuarios.find((usuario) => {
-  return usuario.rol === "admin" && usuario.login;
+  return (
+    usuario.rol === "SuperAdmin" || (usuario.rol === "admin" && usuario.login)
+  );
 });
 
 adminUsuarios.forEach((usuario) => {
   let accionesHTML = "";
+  let rolContent = "";
+  let rowClass = "";
+  const highlightClass = "table-info";
 
-  if (usuario.rol !== "admin") {
+  if (usuarioAdminLogueado && usuario.login) {
+    rowClass = highlightClass;
+  }
+
+  if (usuario.rol !== "SuperAdmin") {
     if (usuarioAdminLogueado) {
       if (!usuario.estado) {
         accionesHTML = `
           <div class="btn-group" role="group">
+            <button type="button" class="btn btn-danger" onclick="cambiarRol(${
+              usuario.id
+            })">
+              Editar
+            </button>
             <button type="button" class="btn ${
               usuario.delete ? "btn-success" : "btn-warning text-white"
             }" onclick="cambiarEstadoUsuario(${usuario.id})">
@@ -186,97 +201,189 @@ adminUsuarios.forEach((usuario) => {
           </div>
         `;
       }
+
+      rolContent = `
+        <select class="form-select" aria-label="Default select example" id="cambiarRol_${
+          usuario.id
+        }">
+          ${
+            usuario.rol === "admin"
+              ? `<option value="admin" selected>admin</option><option value="usuario">usuario</option>`
+              : `<option value="usuario" selected>usuario</option><option value="admin">admin</option>`
+          }
+        </select>
+      `;
+    } else {
+      rolContent = usuario.rol;
     }
+  } else {
+    rolContent = usuario.rol;
   }
 
   tableContent += `
-    <tr class="text-center">
-      <th scope="row">${usuario.id}</th>
-      <td>${usuario.usuario}</td>
-      <td>${usuario.mail}</td>
-      <td>${usuario.delete === false ? "Habilitado" : "Inhabilitado"}</td>
-      <td>${usuario.rol}</td>
-      <td>${accionesHTML}</td>
+    <tr class="text-center ${rowClass}">
+      <th scope="row" class="align-middle">${usuario.id}</th>
+      <td class="align-middle">${usuario.usuario}</td>
+      <td class="align-middle">${usuario.mail}</td>
+      <td class="align-middle">${
+        usuario.delete === false ? "Habilitado" : "Inhabilitado"
+      }</td>
+      <td class="align-middle">${rolContent}</td>
+      <td class="align-middle">${accionesHTML}</td>
     </tr>
   `;
 });
 
 tableAdmin.innerHTML = `
-    <div class="col-12">
-      <div class="table-responsive">
-        <table class="table mt-5 shadow p-3 mb-5 bg-body-tertiary rounded">
-          <thead>
-            <tr class="text-center">
-              <th scope="col">ID</th>
-              <th scope="col">Usuario</th>
-              <th scope="col">Mail</th>
-              <th scope="col">Estado</th>
-              <th scope="col">Rol</th>
-              <th scope="col">Acciones</th>
-            </tr>
-          </thead>
-          <tbody>
-            ${tableContent}
-          </tbody>
-        </table>
-      </div>
+  <div class="col-12">
+    <div class="table-responsive">
+      <table class="table mt-5 shadow p-3 mb-5 bg-body-tertiary rounded">
+        <thead>
+          <tr class="text-center">
+            <th scope="col">ID</th>
+            <th scope="col">Usuario</th>
+            <th scope="col">Mail</th>
+            <th scope="col">Estado</th>
+            <th scope="col">Rol</th>
+            <th scope="col">Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${tableContent}
+        </tbody>
+      </table>
     </div>
-  `;
+  </div>
+`;
+
+const cambiarRol = (usuarioId) => {
+  const rolSelect = document.getElementById(`cambiarRol_${usuarioId}`);
+  const rol = rolSelect.value;
+
+  const usuarioRol = JSON.parse(localStorage.getItem("usuarios")) || [];
+  const usuario = usuarioRol.find((usuario) => usuario.id === usuarioId);
+
+  const usuarioAdminLogueado = usuarioRol.find(
+    (usuario) => usuario.rol === "admin" && usuario.login
+  );
+
+  if (usuario) {
+    if (usuarioAdminLogueado && usuarioAdminLogueado.id === usuarioId) {
+      Swal.fire({
+        icon: "error",
+        title: "Error",
+        text: "No puedes cambiar el rol de tu propio usuario",
+      });
+    } else {
+      if (usuario.rol === rol) {
+        Swal.fire({
+          icon: "warning",
+          title: "Error",
+          text: `El usuario ${usuario.usuario} ya tiene el rol de "${rol}".`,
+        });
+      } else {
+        Swal.fire({
+          title: "¿Estás seguro?",
+          text: `Estás a punto de cambiar el rol a "${rol}" para el usuario ${usuario.usuario}.`,
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#3085d6",
+          cancelButtonColor: "#d33",
+          confirmButtonText: "Sí, cambiar rol",
+        }).then((result) => {
+          if (result.isConfirmed) {
+            usuario.rol = rol;
+            localStorage.setItem("usuarios", JSON.stringify(usuarioRol));
+            Swal.fire(
+              "Rol cambiado",
+              `El rol para ${usuario.usuario} se cambió a "${rol}"`,
+              "success"
+            );
+          }
+        });
+      }
+    }
+  }
+};
 
 function cambiarEstadoUsuario(usuarioId) {
+  const usuarioAdminLogueado = adminUsuarios.find(
+    (usuario) => usuario.rol === "admin" && usuario.login
+  );
+
   const usuario = adminUsuarios.find((usuario) => usuario.id === usuarioId);
 
   if (usuario) {
-    Swal.fire({
-      title: `¿Estás seguro de ${
-        usuario.delete ? "habilitar" : "deshabilitar"
-      } al usuario con ID ${usuario.id}?`,
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonText: "Sí, continuar",
-      cancelButtonText: "Cancelar",
-    }).then((result) => {
-      if (result.isConfirmed) {
-        usuario.delete = !usuario.delete;
+    if (usuarioAdminLogueado && usuarioAdminLogueado.id === usuarioId) {
+      Swal.fire({
+        icon: "error",
+        title: "Error",
+        text: "No puedes deshabilitarte a ti mismo como administrador.",
+      });
+    } else {
+      Swal.fire({
+        title: `¿Estás seguro de ${
+          usuario.delete ? "habilitar" : "deshabilitar"
+        } al usuario con ID ${usuario.id}?`,
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Sí, continuar",
+        cancelButtonText: "Cancelar",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          usuario.delete = !usuario.delete;
 
-        const asunto = usuario.delete
-          ? "Su cuenta ha sido deshabilitada"
-          : "Su cuenta ha sido habilitada";
-        const mensaje = usuario.delete
-          ? `El usuario ${usuario.usuario} ha sido deshabilitado. Para recuperar tu cuenta puedes contactarnos en nuestra página de contacto.`
-          : `El usuario ${usuario.usuario} ha sido habilitado. Para conectarte, ingresa aquí.`;
+          const asunto = usuario.delete
+            ? "Su cuenta ha sido deshabilitada"
+            : "Su cuenta ha sido habilitada";
+          const mensaje = usuario.delete
+            ? `El usuario ${usuario.usuario} ha sido deshabilitado. Para recuperar tu cuenta puedes contactarnos en nuestra página de contacto.`
+            : `El usuario ${usuario.usuario} ha sido habilitado. Para conectarte, ingresa aquí.`;
 
-        enviarMail(usuario.mail, asunto, mensaje);
+          enviarMail(usuario.mail, asunto, mensaje);
 
-        localStorage.setItem("usuarios", JSON.stringify(adminUsuarios));
+          localStorage.setItem("usuarios", JSON.stringify(adminUsuarios));
 
-        setTimeout(() => {
-          location.reload();
-        }, 1000);
-      }
-    });
+          setTimeout(() => {
+            location.reload();
+          }, 1000);
+        }
+      });
+    }
   }
 }
 
 function borrarUsuario(usuarioId) {
-  Swal.fire({
-    title: `¿Estás seguro de borrar al usuario con ID ${usuarioId}?`,
-    icon: "warning",
-    showCancelButton: true,
-    confirmButtonText: "Sí, borrar",
-    cancelButtonText: "Cancelar",
-  }).then((result) => {
-    if (result.isConfirmed) {
-      const index = adminUsuarios.findIndex(
-        (usuario) => usuario.id === usuarioId
-      );
-      if (index !== -1) {
-        adminUsuarios.splice(index, 1);
-        localStorage.setItem("usuarios", JSON.stringify(adminUsuarios));
-        location.reload();
+  const usuarioAdminLogueado = adminUsuarios.find(
+    (usuario) => usuario.rol === "admin" && usuario.login
+  );
+
+  if (usuarioAdminLogueado && usuarioAdminLogueado.id === usuarioId) {
+    Swal.fire({
+      icon: "error",
+      title: "Error",
+      text: "No puedes borrarte a ti mismo como administrador.",
+    });
+  } else {
+    Swal.fire({
+      title: `¿Estás seguro de borrar al usuario con ID ${usuarioId}?`,
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Sí, borrar",
+      cancelButtonText: "Cancelar",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        const index = adminUsuarios.findIndex(
+          (usuario) => usuario.id === usuarioId
+        );
+        if (index !== -1) {
+          adminUsuarios.splice(index, 1);
+          localStorage.setItem("usuarios", JSON.stringify(adminUsuarios));
+          location.reload();
+        }
       }
-    }
-  });
+    });
+  }
 }
 
 const enviarMail = (correo, mensaje, asunto) => {
@@ -314,7 +421,8 @@ function cerrarSesion() {
   const botonLoginAdmin = document.getElementById("administracion");
 
   const userLoginAdmin = usuarios.find(
-    (usuario) => usuario.login === true && usuario.rol === "admin"
+    (usuario) =>
+      (usuario.login === true && usuario.rol === "SuperAdmin") || "admin"
   );
 
   if (userLoginAdmin) {

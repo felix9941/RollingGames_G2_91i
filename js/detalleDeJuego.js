@@ -3,7 +3,7 @@ function redireccion() {
   const usuario = usuarios.find((usu) => usu.login === true);
 
   if (usuario) {
-    if (usuario.rol === "admin") {
+    if (usuario.rol === "SuperAdmin" || "admin") {
       Swal.fire({
         icon: "warning",
         title: "Error al procesar el pago",
@@ -137,11 +137,15 @@ validacionUser();
   const userLogin = usuarios.find(
     (usuario) => usuario.login === true && usuario.rol === "usuario"
   );
+  const userLoginSuper = usuarios.find(
+    (usuario) => usuario.login === true && usuario.rol === "SuperAdmin"
+  );
+
   const userLoginAdmin = usuarios.find(
     (usuario) => usuario.login === true && usuario.rol === "admin"
   );
 
-  if (userLoginAdmin) {
+  if (userLoginAdmin || userLoginSuper) {
     botonInicio.classList.add("d-none");
     botonRegistro.classList.add("d-none");
     botonLoginAdmin.classList.add("d-block");
@@ -257,7 +261,7 @@ fotoComprar.innerHTML = `<div class="col-md-8 pe-0 ps-2">
           tieneJuegos(juego.id) ? "btn-warning" : "bg-light text-dark "
         }"  onclick="carrito(${
   juego.id
-})">Carrito <i class="fas fa-cart-shopping ms-2"></i></button>
+})">Agregar al carrito<i class="fas fa-cart-shopping ms-2"></i></button>
     </div>
 
         <div class="col-12 mt-1 mb-3 mb-4 p-0  text-center">

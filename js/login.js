@@ -171,7 +171,7 @@ footerGeneral.innerHTML = ` <div class="col-12 col-md-6 col-lg-4 d-flex justify-
     mail: "playgaming@gaming.com.ar",
     contrasena: "playgaming24",
     login: false,
-    rol: "admin",
+    rol: "SuperAdmin",
     favoritos: [],
     carrito: [],
     delete: false,
@@ -209,9 +209,9 @@ const loginUser = () => {
 
   const isUserInhabilitado = userExists && userExists.delete === true;
 
-  const isUserPendiente = userExists && userExists.estado === false;
-
   const admin = userExists && userExists.rol === "admin";
+
+  const adminSuper = userExists && userExists.rol === "SuperAdmin";
 
   const usuarioLogueado = usersList.find(
     (userLogin) => userLogin.id && userLogin.login === true
@@ -223,7 +223,7 @@ const loginUser = () => {
     localStorage.setItem("usuarios", JSON.stringify(usersList));
   }
 
-  if (admin) {
+  if (admin || adminSuper) {
     Swal.fire({
       title: "Bienvenido Administrador",
       text: "Inicio de sesión exitoso!",
