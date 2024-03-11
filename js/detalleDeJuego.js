@@ -261,7 +261,7 @@ fotoComprar.innerHTML = `<div class="col-md-8 pe-0 ps-2">
           tieneJuegos(juego.id) ? "btn-warning" : "bg-light text-dark "
         }"  onclick="carrito(${
   juego.id
-})">Carrito <i class="fas fa-cart-shopping ms-2"></i></button>
+})">Agregar al carrito<i class="fas fa-cart-shopping ms-2"></i></button>
     </div>
 
         <div class="col-12 mt-1 mb-3 mb-4 p-0  text-center">
